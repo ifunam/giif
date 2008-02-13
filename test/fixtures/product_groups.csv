@@ -1,0 +1,33 @@
+id, name
+1, Celeron 
+2, Celeron D
+3, Pentium
+4, Pentium II
+5, Pentium III
+6, Pentium D
+7, Core Duo
+8, Core 2 Duo
+9, Pentium IV
+10, Prescott
+11, HT
+12, Extreme
+13, Power PC
+14, G3
+15, G4
+16, G5
+17, PDA
+18, Inyección de tinta
+19, Laser alto volumen B/N
+20, Laser alto volumen color
+21, Laser personal B/N
+22, Laser personal color
+23, Matriz
+24, Cámara dígital
+25, Proyectores
+26, Scanner cama plana para oficina
+27, Scanner gran volumen
+28, Access Point
+29, Hub
+30, Modem
+31, Router
+32, Switch
