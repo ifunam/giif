@@ -11,10 +11,10 @@ class Schema < MigrationHelper
 
     create_table :groups do |t|
       t.string   :name, :null => false
-      t.integer  :moduser_id
       t.datetime :created_on, :null => false
       t.datetime :updated_on, :null => false
     end
+#    fixtures :groups
 
     create_table :user_groups do |t|
       t.integer :user_id, :null => false

@@ -1,0 +1,102 @@
+  [4;36;1mSQL (0.000592)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.014929)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.003482)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000354)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to Schema (1)
+  [4;35;1mSQL (0.013015)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar(255) NOT NULL, "password" varchar(255) NOT NULL, "status" boolean NOT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;36;1mSQL (0.004228)[0m   [0;1mCREATE TABLE groups ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.004515)[0m   [0mCREATE TABLE user_groups ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "group_id" integer NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;36;1mSQL (0.005059)[0m   [0;1mCREATE TABLE products ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_type_id" integer NOT NULL, "model" varchar(255) NOT NULL, "vendor" varchar(255) NOT NULL, "inventory_number" integer DEFAULT NULL, "serial_number" varchar(255) DEFAULT NULL, "description" varchar(255) DEFAULT NULL, "ip_adress" integer DEFAULT NULL, "mac_adress" integer DEFAULT NULL, "speed" integer DEFAULT NULL, "wired" integer DEFAULT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime DEFAULT NULL, "updated_on" datetime DEFAULT NULL) [0m
+  [4;35;1mSQL (0.005977)[0m   [0mCREATE TABLE product_types ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "product_category_id" integer NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;36;1mSQL (0.009828)[0m   [0;1mCREATE TABLE product_categories ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.005783)[0m   [0mCREATE TABLE features ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime DEFAULT NULL, "updated_on" datetime DEFAULT NULL) [0m
+  [4;36;1mSQL (0.006303)[0m   [0;1mCREATE TABLE products_features ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer NOT NULL, "feature_id" integer NOT NULL, "description" text NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime DEFAULT NULL, "updated_on" datetime DEFAULT NULL) [0m
+  [4;35;1mSQL (0.005882)[0m   [0mCREATE TABLE orders ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer NOT NULL, "price" integer NOT NULL, "folio" integer NOT NULL, "description" text NOT NULL, "provider_id" varchar(255) NOT NULL, "status" boolean DEFAULT 'f' NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;36;1mSQL (0.005318)[0m   [0;1mCREATE TABLE providers ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.004719)[0m   [0mCREATE TABLE rooms ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "building_id" integer NOT NULL, "room_type_id" integer NOT NULL, "number" varchar(255) DEFAULT NULL, "floor" varchar(255) DEFAULT NULL, "name" varchar(255) DEFAULT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;36;1mSQL (0.004931)[0m   [0;1mCREATE TABLE room_types ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.005001)[0m   [0mCREATE TABLE buildings ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;36;1mSQL (0.004008)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000333)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001137)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000106)[0m   [0mPRAGMA index_list(buildings)[0m
+  [4;36;1mSQL (0.000088)[0m   [0;1mPRAGMA index_list(features)[0m
+  [4;35;1mSQL (0.000110)[0m   [0mPRAGMA index_list(groups)[0m
+  [4;36;1mSQL (0.000201)[0m   [0;1mPRAGMA index_list(orders)[0m
+  [4;35;1mSQL (0.000113)[0m   [0mPRAGMA index_list(product_categories)[0m
+  [4;36;1mSQL (0.000398)[0m   [0;1mPRAGMA index_list(product_types)[0m
+  [4;35;1mSQL (0.000118)[0m   [0mPRAGMA index_list(products)[0m
+  [4;36;1mSQL (0.000110)[0m   [0;1mPRAGMA index_list(products_features)[0m
+  [4;35;1mSQL (0.000094)[0m   [0mPRAGMA index_list(providers)[0m
+  [4;36;1mSQL (0.000181)[0m   [0;1mPRAGMA index_list(room_types)[0m
+  [4;35;1mSQL (0.000170)[0m   [0mPRAGMA index_list(rooms)[0m
+  [4;36;1mSQL (0.000103)[0m   [0;1mPRAGMA index_list(user_groups)[0m
+  [4;35;1mSQL (0.000093)[0m   [0mPRAGMA index_list(users)[0m
+  [4;36;1mGroup Load (0.000471)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Admininstrador') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000341)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Admininstrador') LIMIT 1[0m
+  [4;36;1mGroup Create (0.000888)[0m   [0;1mINSERT INTO groups ("created_on", "name", "moduser_id", "updated_on") VALUES('2008-02-15 16:50:06', 'Admininstrador', NULL, '2008-02-15 16:50:06')[0m
+  [4;36;1mGroup Load (0.000434)[0m   [0;1mSELECT * FROM groups WHERE (groups."id" = 1) [0m
+  [4;35;1mGroup Load (0.000415)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Administrador' AND groups.id <> 1) LIMIT 1[0m
+  [4;36;1mGroup Update (0.000919)[0m   [0;1mUPDATE groups SET "moduser_id" = NULL, "name" = 'Administrador', "updated_on" = '2008-02-15 16:54:04', "created_on" = '2008-02-15 16:50:06' WHERE "id" = 1[0m
+  [4;35;1mGroup Destroy (0.000475)[0m   [0m DELETE FROM groups
+ WHERE "id" = 1
+[0m
+  [4;36;1mGroup Load (0.000401)[0m   [0;1mSELECT * FROM groups WHERE (groups."id" = 1) [0m
+  [4;36;1mSQL (0.000425)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000997)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001131)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000108)[0m   [0mPRAGMA index_list(buildings)[0m
+  [4;36;1mSQL (0.000085)[0m   [0;1mPRAGMA index_list(features)[0m
+  [4;35;1mSQL (0.000084)[0m   [0mPRAGMA index_list(groups)[0m
+  [4;36;1mSQL (0.000086)[0m   [0;1mPRAGMA index_list(orders)[0m
+  [4;35;1mSQL (0.000084)[0m   [0mPRAGMA index_list(product_categories)[0m
+  [4;36;1mSQL (0.000085)[0m   [0;1mPRAGMA index_list(product_types)[0m
+  [4;35;1mSQL (0.000088)[0m   [0mPRAGMA index_list(products)[0m
+  [4;36;1mSQL (0.000084)[0m   [0;1mPRAGMA index_list(products_features)[0m
+  [4;35;1mSQL (0.000084)[0m   [0mPRAGMA index_list(providers)[0m
+  [4;36;1mSQL (0.000552)[0m   [0;1mPRAGMA index_list(room_types)[0m
+  [4;35;1mSQL (0.000088)[0m   [0mPRAGMA index_list(rooms)[0m
+  [4;36;1mSQL (0.000084)[0m   [0;1mPRAGMA index_list(user_groups)[0m
+  [4;35;1mSQL (0.000084)[0m   [0mPRAGMA index_list(users)[0m
+  [4;36;1mSQL (0.000252)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: buildings: DROP TABLE buildings[0m
+  [4;36;1mSQL (0.008917)[0m   [0;1mCREATE TABLE buildings ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: features: DROP TABLE features[0m
+  [4;36;1mSQL (0.003226)[0m   [0;1mCREATE TABLE features ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime DEFAULT NULL, "updated_on" datetime DEFAULT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: groups: DROP TABLE groups[0m
+  [4;36;1mSQL (0.003120)[0m   [0;1mCREATE TABLE groups ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: orders: DROP TABLE orders[0m
+  [4;36;1mSQL (0.003110)[0m   [0;1mCREATE TABLE orders ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer NOT NULL, "price" integer NOT NULL, "folio" integer NOT NULL, "description" text NOT NULL, "provider_id" varchar(255) NOT NULL, "status" boolean DEFAULT 'f' NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: product_categories: DROP TABLE product_categories[0m
+  [4;36;1mSQL (0.003159)[0m   [0;1mCREATE TABLE product_categories ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: product_types: DROP TABLE product_types[0m
+  [4;36;1mSQL (0.002953)[0m   [0;1mCREATE TABLE product_types ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "product_category_id" integer NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: products: DROP TABLE products[0m
+  [4;36;1mSQL (0.003637)[0m   [0;1mCREATE TABLE products ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_type_id" integer NOT NULL, "model" varchar(255) NOT NULL, "vendor" varchar(255) NOT NULL, "inventory_number" integer DEFAULT NULL, "serial_number" varchar(255) DEFAULT NULL, "description" varchar(255) DEFAULT NULL, "ip_adress" integer DEFAULT NULL, "mac_adress" integer DEFAULT NULL, "speed" integer DEFAULT NULL, "wired" integer DEFAULT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime DEFAULT NULL, "updated_on" datetime DEFAULT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: products_features: DROP TABLE products_features[0m
+  [4;36;1mSQL (0.003394)[0m   [0;1mCREATE TABLE products_features ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer NOT NULL, "feature_id" integer NOT NULL, "description" text NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime DEFAULT NULL, "updated_on" datetime DEFAULT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: providers: DROP TABLE providers[0m
+  [4;36;1mSQL (0.300228)[0m   [0;1mCREATE TABLE providers ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: room_types: DROP TABLE room_types[0m
+  [4;36;1mSQL (0.028258)[0m   [0;1mCREATE TABLE room_types ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: rooms: DROP TABLE rooms[0m
+  [4;36;1mSQL (0.006392)[0m   [0;1mCREATE TABLE rooms ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "building_id" integer NOT NULL, "room_type_id" integer NOT NULL, "number" varchar(255) DEFAULT NULL, "floor" varchar(255) DEFAULT NULL, "name" varchar(255) DEFAULT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: user_groups: DROP TABLE user_groups[0m
+  [4;36;1mSQL (0.017907)[0m   [0;1mCREATE TABLE user_groups ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "group_id" integer NOT NULL, "moduser_id" integer DEFAULT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: no such table: users: DROP TABLE users[0m
+  [4;36;1mSQL (0.012536)[0m   [0;1mCREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar(255) NOT NULL, "password" varchar(255) NOT NULL, "status" boolean NOT NULL, "created_on" datetime NOT NULL, "updated_on" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.039600)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.013238)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.004288)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.001210)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;36;1mGroup Load (0.000450)[0m   [0;1mSELECT * FROM groups WHERE (groups."id" = 1) [0m
+  [4;35;1mGroup Load (0.000406)[0m   [0mSELECT * FROM groups WHERE (groups."id" = 1) [0m
+  [4;36;1mGroup Load (0.000392)[0m   [0;1mSELECT * FROM groups WHERE (groups."id" = 1) [0m
+  [4;35;1mGroup Load (0.000391)[0m   [0mSELECT * FROM groups WHERE (groups."id" = 0) [0m

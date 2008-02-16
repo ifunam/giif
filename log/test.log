@@ -1,0 +1,24 @@
+  [4;36;1mGroup Load (0.000209)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000135)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;36;1mGroup Load (0.000138)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000128)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;36;1mGroup Create (0.000239)[0m   [0;1mINSERT INTO groups ("created_on", "name", "moduser_id", "updated_on") VALUES('2008-02-15 18:14:10', 'Las vacas locas', NULL, '2008-02-15 18:14:10')[0m
+  [4;36;1mGroup Load (0.000207)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000138)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;36;1mGroup Load (0.000140)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000133)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;36;1mGroup Create (0.000244)[0m   [0;1mINSERT INTO groups ("created_on", "name", "moduser_id", "updated_on") VALUES('2008-02-15 18:16:24', 'Las vacas locas', NULL, '2008-02-15 18:16:24')[0m
+  [4;35;1mGroup Load (0.000205)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'nil') LIMIT 1[0m
+  [4;36;1mGroup Load (0.000134)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'nil') LIMIT 1[0m
+  [4;36;1mGroup Load (0.000202)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000135)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;36;1mGroup Load (0.000136)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000130)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;36;1mGroup Create (0.002580)[0m   [0;1mINSERT INTO groups ("created_on", "name", "moduser_id", "updated_on") VALUES('2008-02-15 18:16:52', 'Las vacas locas', NULL, '2008-02-15 18:16:52')[0m
+  [4;35;1mGroup Load (0.000196)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'nil') LIMIT 1[0m
+  [4;36;1mGroup Load (0.000149)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'nil') LIMIT 1[0m
+  [4;36;1mGroup Load (0.000195)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000135)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;36;1mGroup Load (0.000139)[0m   [0;1mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;35;1mGroup Load (0.000128)[0m   [0mSELECT * FROM groups WHERE (groups.name = 'Las vacas locas') LIMIT 1[0m
+  [4;36;1mGroup Create (0.000275)[0m   [0;1mINSERT INTO groups ("created_on", "name", "moduser_id", "updated_on") VALUES('2008-02-15 18:17:05', 'Las vacas locas', NULL, '2008-02-15 18:17:05')[0m
