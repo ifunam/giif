@@ -1,0 +1,17 @@
+<h2>Ingresa tu nombre de usuario y contrasena</h2>
+  <% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %>
+  <%= error_messages_for 'user' %>
+
+  <% form_for :user, @user, :url => { :action => "signup" } do |f| %>
+     <p>
+            <label>Usuario:</label>
+            <%= f.text_field(:login) %>
+     </p>
+     <p>
+            <label>Contraseña:</label>
+            <%= f.password_field(:password) %>
+     </p>
+     <p>
+       <%= submit_tag "Ingresar" %>
+     </p>
+<% end %>
