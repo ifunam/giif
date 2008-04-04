@@ -71,25 +71,6 @@ class Schema < MigrationHelper
       t.datetime  :updated_on
     end
 
-    create_table :orders do |t|
-      t.integer  :amount, :null => false
-      t.integer  :price, :null => false
-      t.integer  :folio, :null => false
-      t.text     :description, :null => false
-      t.string   :provider_id, :null => false
-      t.boolean  :status, :null => false, :default => false
-      t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
-    end
-
-    create_table :providers do |t|
-      t.string   :name, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
-    end
-
     create_table :rooms do |t|
       t.integer  :building_id, :null => false
       t.integer  :room_type_id, :null => false
