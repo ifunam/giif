@@ -1,26 +1,27 @@
 class CreateOrders < ActiveRecord::Migration
   def self.up
     create_table :project_types do |t| # Link this table to administrative system (presupuesto, partidas, etc)
-      t.text     :name, null => false
+      t.string     :name, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
+    fixtures :project_types
 
     create_table :projects do |t|
-      t.text     :name, null => false
+      t.text     :name, :null => false
       t.string   :key # todo: Verify if :key is required and not null
       t.integer  :project_type_id, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :order_statuses do |t|
-      t.text     :name, null => false
+      t.text     :name, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :orders do |t|
@@ -31,8 +32,8 @@ class CreateOrders < ActiveRecord::Migration
       t.string   :provider_id, :null => false
       t.integer  :order_status_id, :null => false, :default => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :order_products do |t|
@@ -42,16 +43,17 @@ class CreateOrders < ActiveRecord::Migration
       t.text     :unit # todo: Verify if :unit  is required and not null
       t.float  :price_per_unit, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :file_types do |t|
-      t.text     :name, null => false
+      t.string     :name, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
+      fixtures :file_types
 
     create_table :order_files do |t|
       t.integer  :order_id, :null => false
@@ -60,23 +62,23 @@ class CreateOrders < ActiveRecord::Migration
       t.string   :filename, :null => false
       t.integer  :file_type_id, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :providers do |t|
       t.string   :name, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :order_providers do |t|
       t.integer  :order_id, :null => false
       t.integer  :provider_id, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :order_logs do |t|
@@ -85,8 +87,8 @@ class CreateOrders < ActiveRecord::Migration
       t.integer  :user_incharge_id
       t.integer  :order_status_id, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
   end
 

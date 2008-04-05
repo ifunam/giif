@@ -1,27 +1,26 @@
-require RAILS_ROOT + '/db/migrate/migration_helper'
-class Schema < MigrationHelper
+class Schema   < ActiveRecord::Migration
   def self.up
     create_table :users  do |t|
       t.string  :login, :null => false
       t.string  :password, :null => false
       t.boolean :status, :null => false
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :groups do |t|
       t.string   :name, :null => false
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
-#    fixtures :groups
+    fixtures :groups
 
     create_table :user_groups do |t|
       t.integer :user_id, :null => false
       t.integer :group_id, :null => false
       t.integer :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :products do |t|
@@ -44,15 +43,15 @@ class Schema < MigrationHelper
       t.string   :name, :null => false
       t.integer  :product_category_id, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :product_categories do |t|
       t.string   :name, :null => false
       t.integer :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :features do |t|
@@ -78,22 +77,22 @@ class Schema < MigrationHelper
       t.string   :floor
       t.string   :name
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :room_types do |t|
       t.string   :name, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     create_table :buildings do |t|
       t.string   :name, :null => false
       t.integer  :moduser_id
-      t.datetime :created_on, :null => false
-      t.datetime :updated_on, :null => false
+      t.datetime :created_on
+      t.datetime :updated_on
     end
 
     #Categorías: Investigadores, Personal de Confianza, Técnicos Académicos, Visitantes y Estudiantes se comunica con la plataforma de info curricular
