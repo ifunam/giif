@@ -1,0 +1,5 @@
+fernando_house:
+ id: 1
+ location: "Por el rumbo"
+ phone: "0 0 Hasta que se te canse el dedo"
+ user_id: <%= User.find_by_login('fernando').id %>

@@ -11,6 +11,24 @@
 
 ActiveRecord::Schema.define(:version => 2) do
 
+  create_table "addresses", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.text     "location",   :null => false
+    t.text     "phone"
+    t.text     "fax"
+    t.text     "movil"
+    t.integer  "moduser_id"
+    t.datetime "created_on"
+    t.datetime "updated_on"
+  end
+
+  create_table "adscriptions", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "moduser_id"
+    t.datetime "created_on"
+    t.datetime "updated_on"
+  end
+
   create_table "buildings", :force => true do |t|
     t.string   "name",       :null => false
     t.integer  "moduser_id"
@@ -97,6 +115,17 @@ ActiveRecord::Schema.define(:version => 2) do
     t.datetime "updated_on"
   end
 
+  create_table "people", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.text     "firstname",  :null => false
+    t.text     "lastname1",  :null => false
+    t.text     "lastname2"
+    t.boolean  "gender",     :null => false
+    t.integer  "moduser_id"
+    t.datetime "created_on"
+    t.datetime "updated_on"
+  end
+
   create_table "product_categories", :force => true do |t|
     t.string   "name",       :null => false
     t.integer  "moduser_id"
@@ -178,6 +207,14 @@ ActiveRecord::Schema.define(:version => 2) do
     t.datetime "updated_on"
   end
 
+  create_table "user_adscriptions", :force => true do |t|
+    t.integer  "user_id",        :null => false
+    t.integer  "adscription_id", :null => false
+    t.integer  "moduser_id"
+    t.datetime "created_on"
+    t.datetime "updated_on"
+  end
+
   create_table "user_groups", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.integer  "group_id",   :null => false
@@ -188,7 +225,9 @@ ActiveRecord::Schema.define(:version => 2) do
 
   create_table "users", :force => true do |t|
     t.string   "login",      :null => false
+    t.string   "email",      :null => false
     t.string   "password",   :null => false
+    t.string   "salt",       :null => false
     t.boolean  "status",     :null => false
     t.datetime "created_on"
     t.datetime "updated_on"
