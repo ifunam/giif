@@ -23,6 +23,7 @@ class CreateOrders < ActiveRecord::Migration
       t.datetime :created_on
       t.datetime :updated_on
     end
+    fixtures :order_statuses
 
     create_table :orders do |t|
       t.integer  :user_id, :null => false
@@ -53,7 +54,7 @@ class CreateOrders < ActiveRecord::Migration
       t.datetime :created_on
       t.datetime :updated_on
     end
-      fixtures :file_types
+    fixtures :file_types
 
     create_table :order_files do |t|
       t.integer  :order_id, :null => false
@@ -90,7 +91,50 @@ class CreateOrders < ActiveRecord::Migration
       t.datetime :created_on
       t.datetime :updated_on
     end
+
+    create_table :currencies do|t|
+      t.string   :name, :null => false
+      t.string   :url
+      t.integer  :moduser_id
+      t.datetime :created_on
+      t.datetime :updated_on
   end
+
+    create_table :biddings do |t|
+      t.integer   :order_id, :null => false
+      t.integer   :user_id, :null =>false
+      t.integer   :currency_id, :null => false
+      t.float        :exchange_rate, :null => false
+      t.float        :equivalent_mx, :null => false
+      t.integer   :adjudication_type_id, :null =>false
+      t.text         :person_invited, :null =>false
+      t.boolean :is_subcomittee # todo: verify if :is_subcomittee is  boolean or catalog
+      t.boolean  :is_public, :null =>false
+      t.integer  :moduser_id
+      t.datetime :created_on
+      t.datetime :updated_on
+    end
+
+    create_table :estimate_data do |t|
+      t.integer   :order_id, :null => false
+      t.integer   :user_id, :null =>false
+      t.integer    :code
+      t.string       :external_account
+      t.integer    :previous_number
+      t.text          :observations
+      t.integer    :moduser_id
+      t.datetime :created_on
+      t.datetime :updated_on
+    end
+
+   create_table :adjudication_types do |t|
+     t.string   :name, :null => false
+     t.integer  :moduser_id
+     t.datetime :created_on
+     t.datetime :updated_on
+   end
+
+ end
 
   def self.down
     drop_table :orders
