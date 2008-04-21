@@ -6,20 +6,18 @@ class SessionsController < ApplicationController
   end
 
   def signup
-    if  User.authenticate?(params[:user][:login] , params[:user][:password])
-      flash[:notice] = 'Bienvenido wey!'
+    if User.authenticate?(params[:user][:login], params[:user][:password])
+      flash[:notice] = 'Bienvenido (a)!'
       session[:user] = User.find_by_login(params[:user][:login]).id
       respond_to do |format|
-        format.html {     redirect_to :controller => :groups,  :action=> :index }
+        default = 'order_requests'
+        format.html { session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(:controller => default) }
       end
-      #redirect_to :controller => :groups,  :action=> :index
-
    else
-      flash[:notice] = 'El login o password es incorrecto (wey)!'
+      flash[:notice] = 'El login o password es incorrecto!'
       respond_to do |format|
-        format.html {redirect_to :action =>:index}
+        format.html { redirect_to :action =>:index }
       end
-      #redirect_to :action =>:index
    end
   end
 

@@ -1,142 +1,118 @@
 class CreateOrders < ActiveRecord::Migration
   def self.up
-    create_table :project_types do |t| # Link this table to administrative system (presupuesto, partidas, etc)
-      t.string     :name, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+    create_table :project_types do |t| # NOTE: Link this table to administrative system (presupuesto, partidas, etc)
+      t.string      :name, :null => false
+      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
     fixtures :project_types
 
     create_table :projects do |t|
-      t.text     :name, :null => false
-      t.string   :key # todo: Verify if :key is required and not null
-      t.integer  :project_type_id, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.text       :name, :null => false
+      t.string     :key # TODO: Verify if :key is required and not null
+      t.integer    :project_type_id, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
 
     create_table :order_statuses do |t|
-      t.text     :name, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.string     :name, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
     fixtures :order_statuses
 
     create_table :orders do |t|
-      t.integer  :user_id, :null => false
-      t.integer  :user_incharge_id, :null => false
-      t.date :date, :null => false
-      t.integer  :administrative_key, :null => false
-      t.string   :provider_id, :null => false
-      t.integer  :order_status_id, :null => false, :default => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.references :user,:order_status, :null => false
+      t.integer    :administrative_key, :null => false
+      t.references :user_incharge, :class_name => 'User', :foreign_key => "user_incharge_id"
+      t.date       :date, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
 
     create_table :order_products do |t|
-      t.integer  :order_id, :null => false
-      t.integer  :quantity, :null => false
-      t.text     :description, :null => false
-      t.text     :unit # todo: Verify if :unit  is required and not null
-      t.float  :price_per_unit, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.references :order, :null => false
+      t.integer    :quantity, :null => false
+      t.text       :description, :null => false
+      t.text       :unit # TODO: Verify if :unit  is required and not null
+      t.float      :price_per_unit, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
 
     create_table :file_types do |t|
       t.string     :name, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
     fixtures :file_types
 
     create_table :order_files do |t|
-      t.integer  :order_id, :null => false
-      t.binary    :file, :null => false
-      t.string   :content_type, :null => false
-      t.string   :filename, :null => false
-      t.integer  :file_type_id, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.references :order, :file_type, :null => false
+      t.binary     :file, :null => false
+      t.string     :content_type, :filename, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
 
     create_table :providers do |t|
-      t.string   :name, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.string     :name, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
+    fixtures :providers
 
     create_table :order_providers do |t|
-      t.integer  :order_id, :null => false
-      t.integer  :provider_id, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.references :order, :provider, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
 
     create_table :order_logs do |t|
-      t.integer  :order_id, :null => false
-      t.integer  :user_id, :null => false
-      t.integer  :user_incharge_id
-      t.integer  :order_status_id, :null => false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.references :order, :user, :order_status, :null => false
+      t.references :user_incharge, :class_name => 'User', :foreign_key => "user_incharge_id"
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
 
     create_table :currencies do|t|
-      t.string   :name, :null => false
-      t.string   :url
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
-  end
+      t.string     :name, :null => false
+      t.string     :url
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
+    end
 
     create_table :biddings do |t|
-      t.integer   :order_id, :null => false
-      t.integer   :user_id, :null =>false
-      t.integer   :currency_id, :null => false
-      t.float        :exchange_rate, :null => false
-      t.float        :equivalent_mx, :null => false
-      t.integer   :adjudication_type_id, :null =>false
-      t.text         :person_invited, :null =>false
-      t.boolean :is_subcomittee # todo: verify if :is_subcomittee is  boolean or catalog
-      t.boolean  :is_public, :null =>false
-      t.integer  :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.references :order, :user, :currency, :adjutication_type, :null => false
+      t.float      :exchange_rate, :equivalent_mx, :null => false
+      t.text       :person_invited, :null =>false
+      t.boolean    :is_subcomittee # TODO: verify if :is_subcomittee is  boolean or catalog
+      t.boolean    :is_public, :null =>false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
 
     create_table :estimate_data do |t|
-      t.integer   :order_id, :null => false
-      t.integer   :user_id, :null =>false
-      t.integer    :code
-      t.string       :external_account
-      t.integer    :previous_number
-      t.text          :observations
-      t.integer    :moduser_id
-      t.datetime :created_on
-      t.datetime :updated_on
+      t.references :order, :user, :null => false
+      t.integer    :code,  :previous_number
+      t.string     :external_account
+      t.text       :observations
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
     end
 
-   create_table :adjudication_types do |t|
-     t.string   :name, :null => false
-     t.integer  :moduser_id
-     t.datetime :created_on
-     t.datetime :updated_on
-   end
+    create_table :adjudication_types do |t|
+      t.string     :name, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
+    end
 
- end
+  end
 
   def self.down
-    drop_table :orders
+    drop_table :project_types, :projects, :order_statuses, :orders, :order_products, 
+    :file_types, :order_files, :providers, :order_providers, :order_logs, :currencies, 
+    :biddings, :estimate_data, :adjutication_types
   end
 end

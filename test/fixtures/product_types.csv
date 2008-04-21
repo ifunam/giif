@@ -1,29 +1,21 @@
 id, name, product_category_id
-
-# Equipo de computo
-1, Computadora Personal
-2, Servidor
-3, Portátil
-4, Alto rendimiento
-
-#Equipo de telecomunicaciones
-5, Access Point
-6, Hub
-7, Modem
-8, Router
-9, Switch
-
-#Equipo de impresión
-10, Inyección de tinta
-11, Laser alto volumen B/N
-12, Laser alto volumen color
-13, Laser personal B/N
-14, Laser personal color
-15, Matriz
-
-#Otros equipos digitales
-29, PDA
-30, Cámara dígital
-31, Proyectores
-32, Scanner cama plana para oficina
-33, Scanner gran volumen
+1, Computadora Personal, 1
+2, Servidor, 1
+3, Portátil, 1
+4, Alto rendimiento, 1
+5, Access Point, 1
+6, Hub, 1
+7, Modem, 1
+8, Router, 1
+9, Switch, 1
+10, Inyección de tinta, 1
+11, Laser alto volumen B/N, 1
+12, Laser alto volumen color, 1
+13, Laser personal B/N, 1
+14, Laser personal color, 1
+15, Matriz, 1
+29, PDA, 1
+30, Cámara dígital, 1
+31, Proyectores, 1
+32, Scanner cama plana para oficina, 1
+33, Scanner gran volumen, 1

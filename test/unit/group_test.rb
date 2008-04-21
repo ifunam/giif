@@ -32,9 +32,10 @@ class GroupTest < ActiveSupport::TestCase
     end
 
     def test_not_update_duplicated_name
-      @group = Group.find(2)
-      @group.name = "Default"
+      @group = Group.find(1)
+      @group.name = 'Capturista'
       assert !@group.valid?
+      assert !@group.save
     end
 
     def test_not_update
