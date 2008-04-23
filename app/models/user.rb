@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :login, :email
 
   belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
-
+  has_one :person
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create :encrypt_password # This callback is related to valid? and save methods, use one of them to make tests
@@ -28,11 +28,19 @@ class User < ActiveRecord::Base
       end
   end
 
+    def phone
+      record = Address.find(:first, :conditions => "user_id = #{self.id}")
+      record.phone unless record.nil?
+    end
+
   def adscription_name # TODO: Move this method to UserProfile Class
     record = UserAdscription.find(:first, :conditions => "user_id = #{self.id}")
     record.adscription.name unless record.nil?
   end
 
+  def user_incharge_fullname
+    self.user_incharge.person.fullname
+  end
   def is_activated?
     self.status
   end
