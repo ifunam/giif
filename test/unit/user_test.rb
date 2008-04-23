@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
     @newuser = { :login => 'fernando', :email => 'usuario@mail.com', :password => 'lifeislife', :password_confirmation => 'lifeislife'}
   end
 
-  def test_user_phone
+  def test_phone
     @record = User.find(2)
     assert_equal '0 0 Hasta que se te canse el dedo', @record.phone
   end
