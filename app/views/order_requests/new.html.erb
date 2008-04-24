@@ -1,0 +1,39 @@
+<div id="topbar">
+<div id="logo">
+<%= image_tag('logo_unam.jpg', :border => 0, :size => '100x100') %>
+</div>
+<div id="organization">
+<%= content_tag(:h3, "Universidad Nacional Autónoma de México") %>
+<%= content_tag(:h3, "Instituto de Física") %>
+<%= content_tag(:b, "CLAVE: ") %>314.01 <br/>
+<%= content_tag(:b, "Secretaría Administrativa") %>  <br/>
+<%= content_tag(:b, "Bienes y suministros") %> <br/>
+</div>
+</div>
+
+<h2>SOLICITUD INTERNA DE COMPRA<h2>
+<% form_for(:order_requests, @order) do |f| %>
+<div class="row">
+<div class="td", style="width:400px;">
+Área solicitante: <%= User.find(session[:user]).adscription_name  %>
+</div>
+<div class="td">
+        Fecha: <%= Date.today.to_s %>
+</div>
+</div>
+
+<div class="row">
+<div class="td" style="width:500px;">
+Nombre del solicitante: <br/>
+Teléfono: <User.find(session[:user]).phone_number>
+</div>
+<div class="td">
+Autorización del responsable del área
+</div>
+</div>
+
+<div id="products">
+  <%= render :partial =>"product", :collection => @order.order_products %>
+</div>
+
+<% end %>

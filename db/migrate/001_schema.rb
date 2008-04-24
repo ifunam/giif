@@ -109,6 +109,9 @@ class Schema   < ActiveRecord::Migration
     
     fixtures :groups
     add_index :groups, [:name], :name => "groups_name_idx"
+    
+    fixtures :people
+    fixtures :addresses
   end
 
   def self.down
