@@ -8,7 +8,7 @@ class Schema   < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
-  
+
     create_table :addresses, :force => true do |t|
       t.references :user, :null => false
       t.text    :location,              :null => false
@@ -16,7 +16,7 @@ class Schema   < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
-  
+
     create_table :user_adscriptions do |t|
       t.references  :user, :adscription, :null => false
       t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
@@ -28,7 +28,7 @@ class Schema   < ActiveRecord::Migration
       t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
-    
+
     create_table :users  do |t|
       t.string  :login, :email, :null => false
       t.text    :password, :salt, :null => false
@@ -36,7 +36,7 @@ class Schema   < ActiveRecord::Migration
       t.references  :user_incharge, :class_name => 'User', :foreign_key => "user_incharge_id"
       t.timestamps
     end
-      
+
     create_table :groups do |t|
       t.string   :name, :null => false
       t.timestamps
@@ -102,16 +102,18 @@ class Schema   < ActiveRecord::Migration
       t.timestamps
     end
 
-    fixtures :users  
+    fixtures :users
     add_index :users, [:id], :name => "users_id_idx"
     add_index :users, [:login], :name => "users_login_idx"
     add_index :users, [:email], :name => "users_email_key", :unique => true
-    
+
     fixtures :groups
     add_index :groups, [:name], :name => "groups_name_idx"
-    
+
     fixtures :people
     fixtures :addresses
+    fixtures :adscriptions
+    fixtures :user_adscriptions
   end
 
   def self.down

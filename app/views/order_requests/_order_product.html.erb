@@ -1,0 +1,14 @@
+<div class="product">
+<% fields_for "product[]", order_product  do |product| %>
+     <div class="quantity">
+    <%= product.text_field :quantity, :size => '3', :maxlenght => '3' %>
+    </div>
+     <div class="description">
+    <%= product.text_area :description, :size => '40x4' %>
+    </div>
+     <div class="price_per_unit">
+    <%= product.text_field :price_per_unit, :size => '10', :maxlenght => '15' %>
+    </div>
+ <% end %>
+<%= link_to_function "Borrar producto", "$(this).up('.product').remove();" %>
+</div>

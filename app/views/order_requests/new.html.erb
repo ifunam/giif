@@ -12,7 +12,7 @@
 </div>
 
 <h2>SOLICITUD INTERNA DE COMPRA<h2>
-<% form_for(:order_requests, @order) do |f| %>
+<% form_for(:order_request, @order) do |f| %>
 <div class="row">
 <div class="td", style="width:400px;">
 Área solicitante: <%= User.find(session[:user]).adscription_name  %>
@@ -24,8 +24,8 @@
 
 <div class="row">
 <div class="td" style="width:500px;">
-Nombre del solicitante: <br/>
-Teléfono: <User.find(session[:user]).phone_number>
+Nombre del solicitante: <%= User.find(session[:user]).person.fullname  %> <br/>
+Teléfono: <%= User.find(session[:user]).phone %>
 </div>
 <div class="td">
 Autorización del responsable del área
@@ -33,7 +33,11 @@ Autorización del responsable del área
 </div>
 
 <div id="products">
-  <%= render :partial =>"product", :collection => @order.order_products %>
+  <%= render :partial =>"order_product", :collection => @order.order_products %>
 </div>
+ <%= link_to_function "Agregar" do |page|
+    page.insert_html :bottom, 'products', :partial =>"order_product", :object => OrderProduct.new
+  end
+  %>
 
 <% end %>
