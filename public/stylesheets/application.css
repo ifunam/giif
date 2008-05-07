@@ -1,0 +1,33 @@
+.list-line-odd {
+    background-color: #2d3d4d
+}
+
+.list-line-even {
+    background-color: #cfcfcf
+}
+
+.td_option {
+  display: table-cell;
+  font-weight: bold;
+  width: 45px;
+  padding: 3px;
+  text-align: center;
+  border-bottom: 1px solid silver;
+}
+
+.td_content {
+  display:table-cell;
+  width: 140px;
+  vertical-align: top;
+  padding: 2px;
+  border-bottom: 1px solid silver;
+}
+
+.td_actions {
+  display:table-cell;
+  width: 45px;
+  padding: 3px;
+  vertical-align: top;
+  text-align: center;
+  border-bottom: 1px solid silver;
+}
