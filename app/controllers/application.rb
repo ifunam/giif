@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '6daee55e83b237ac80abfbade22cd326'
+  
+  protected
+  def  set_user(model)
+    model.user_id = session[:user] if model.has_attribute? 'user_id'
+    model.moduser_id = session[:user] if model.has_attribute? 'moduser_id'
+  end
 
   private
   def login_required

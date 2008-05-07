@@ -1,34 +1,18 @@
-<<<<<<< HEAD:app/views/order_requests/_order_product.html.erb
   <% classname = cycle('list-line-odd', 'list-line-even') %>
   <div class="<%= classname %>">
-  <% fields_for "products[]", order_product do |product| %>
-      <span class="td_option">
-        <%= product.text_field :quantity, :size => '3', :maxlenght => '3' %>
+    <% fields_for "products[]", order_product do |product| %>
+    <span class="td_option">
+      <%= product.text_field :quantity, :size => '3', :maxlenght => '3' %>
+    </span>
+    <span class="td_content">
+      <%= product.text_field :description, :size => '100', :maxlenght => '150' %>
+    </span>
+    <span class="td_option">
+      <%= product.text_field :price_per_unit, :size => '10', :maxlenght => '15' %>
       </span>
-      <span class="td_content">
-        <%= product.text_field :description, :size => '100', :maxlenght => '150' %>
-      </span>
-      <span class="td_option">
-        <%= product.text_field :price_per_unit, :size => '10', :maxlenght => '15' %>
-      </span>
-     <span class="td_actions">
+    <span class="td_actions">
       <%= link_to_function "Borrar", "$(this).up('.#{classname}').remove();" %>
-      </span>
-  <% end %>
+    </span>
+    <% end %>
   </div>
-=======
-<div class="product">
-<% fields_for "product[]", order_product  do |product| %>
-     <div class="quantity">
-    <%= product.text_field :quantity, :size => '3', :maxlenght => '3' %>
-    </div>
-     <div class="description">
-    <%= product.text_area :description, :size => '40x4' %>
-    </div>
-     <div class="price_per_unit">
-    <%= product.text_field :price_per_unit, :size => '10', :maxlenght => '15' %>
-    </div>
- <% end %>
-<%= link_to_function "Borrar producto", "$(this).up('.product').remove();" %>
-</div>
->>>>>>> 086d1987cc6c9bac21df19977a2f4c5ce6117203:app/views/order_requests/_order_product.html.erb
+

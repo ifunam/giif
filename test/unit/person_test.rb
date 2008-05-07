@@ -8,7 +8,7 @@ class PersonTest < ActiveSupport::TestCase
 
   def test_fullname
     @record = Person.find(1)
-    assert_equal 'Reyes Jiménez Fernando',  @record.fullname
+    assert_equal 'Reyes Jímenez Fernando',  @record.fullname
   end
 
   def test_create
@@ -59,12 +59,6 @@ class PersonTest < ActiveSupport::TestCase
      assert !@person.valid?
      assert !@person.save
    end
-
-#    def test_not_create_if_gender_is_not_valid
-#      @person = Person.new(@person)
-#      @person.gender = 'verdadero'
-#      assert !@person.valid?
-#      assert !@person.save
 
 #      puts @person.errors.full_messages.join(',')
 #   end

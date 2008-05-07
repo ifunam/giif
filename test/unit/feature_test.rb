@@ -1,7 +1,6 @@
  require File.dirname(__FILE__) + '/../test_helper'
 
 class FeatureTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
    fixtures :features
 
   def test_create

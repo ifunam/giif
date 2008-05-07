@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'group'
 class GroupTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
   fixtures :groups
   def test_create
     @group = Group.new(:name => 'Las vacas locas')

@@ -1,5 +1,13 @@
 class Schema   < ActiveRecord::Migration
   def self.up
+    create_table :users  do |t|
+      t.string  :login, :email, :null => false
+      t.text    :password, :salt, :null => false
+      t.boolean :status, :null => false
+      t.references  :user_incharge, :class_name => 'User', :foreign_key => "user_incharge_id"
+      t.timestamps
+    end
+
     create_table :people, :force => true do |t|
       t.references :user, :null => false
       t.string     :firstname, :lastname1, :null => false
@@ -12,14 +20,8 @@ class Schema   < ActiveRecord::Migration
     create_table :addresses, :force => true do |t|
       t.references :user, :null => false
       t.text    :location,              :null => false
-      t.string  :phone, :fax, :movil
+      t.string  :phone, :fax, :mobile
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
-      t.timestamps
-    end
-
-    create_table :user_adscriptions do |t|
-      t.references  :user, :adscription, :null => false
-      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
 
@@ -29,11 +31,9 @@ class Schema   < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :users  do |t|
-      t.string  :login, :email, :null => false
-      t.text    :password, :salt, :null => false
-      t.boolean :status, :null => false
-      t.references  :user_incharge, :class_name => 'User', :foreign_key => "user_incharge_id"
+    create_table :user_adscriptions do |t|
+      t.references  :user, :adscription, :null => false
+      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
 
@@ -48,12 +48,9 @@ class Schema   < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :products do |t|
-      t.references  :product_type, :null => false
-      t.string   :model, :vendor, :null => false
-      t.string   :inventory_number, :serial_number, :description, :ip_adress, :mac_adress, :speed
-      t.boolean  :is_wired
-      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+    create_table :product_categories do |t|
+      t.string   :name, :null => false
+      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
 
@@ -64,9 +61,12 @@ class Schema   < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :product_categories do |t|
-      t.string   :name, :null => false
-      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+    create_table :products do |t|
+      t.references  :product_type, :null => false
+      t.string   :model, :vendor, :null => false
+      t.string   :inventory_number, :serial_number, :description, :ip_adress, :mac_adress, :speed
+      t.boolean  :is_wired
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
 
@@ -83,13 +83,6 @@ class Schema   < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :rooms do |t|
-      t.references  :building, :room_type, :null => false
-      t.string      :number, :floor, :name
-      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
-      t.timestamps
-    end
-
     create_table :room_types do |t|
       t.string    :name, :null => false
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
@@ -98,6 +91,13 @@ class Schema   < ActiveRecord::Migration
 
     create_table :buildings do |t|
       t.string      :name, :null => false
+      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
+    end
+
+    create_table :rooms do |t|
+      t.references  :building, :room_type, :null => false
+      t.string      :number, :floor, :name
       t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
@@ -114,6 +114,7 @@ class Schema   < ActiveRecord::Migration
     fixtures :addresses
     fixtures :adscriptions
     fixtures :user_adscriptions
+    fixtures :features
   end
 
   def self.down

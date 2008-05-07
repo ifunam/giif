@@ -27,6 +27,7 @@ module ActiveRecord
         create_sql << ") #{options[:options]}"
         execute create_sql
 
+
         table_definition.reference_keys.keys.each do |table|
           if ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
             execute "ALTER TABLE #{quote_table_name(table_name)} ADD FOREIGN KEY (#{table_definition.reference_keys[table]}) REFERENCES #{table} ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE"

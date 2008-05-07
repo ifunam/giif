@@ -2,10 +2,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class OrderStatusTest < ActiveSupport::TestCase
   fixtures :order_statuses
-  # Replace this with your real tests.
-#  def test_whatever
- #    OrderStatus.find(:all).collect {|record| puts record.name }
-  #end
 
   def test_create
     @orderstatus= OrderStatus.new(:name => 'Otro')

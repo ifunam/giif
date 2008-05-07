@@ -1,83 +1,58 @@
 <div id="topbar">
-<div id="logo">
-<%= image_tag('logo_unam.jpg', :border => 0, :size => '100x100') %>
-</div>
-<div id="organization">
-<%= content_tag(:h3, "Universidad Nacional Autónoma de México") %>
-<%= content_tag(:h3, "Instituto de Física") %>
-<%= content_tag(:b, "CLAVE: ") %>314.01 <br/>
-<%= content_tag(:b, "Secretaría Administrativa") %> <br/>
-<%= content_tag(:b, "Bienes y suministros") %> <br/>
-</div>
+  <div id="logo">
+  <%= image_tag('logo_unam.jpg', :border => 0, :size => '100x100') %>
+  </div>
+  <div id="organization">
+    <%= content_tag(:h3, "Universidad Nacional Autónoma de México") %>
+    <%= content_tag(:h3, "Instituto de Física") %>
+    <%= content_tag(:b, "CLAVE: ") %>314.01 <br/>
+    <%= content_tag(:b, "Secretaría Administrativa") %> <br/>
+    <%= content_tag(:b, "Bienes y suministros") %> <br/>
+  </div>
 </div>
 
 <%= error_messages_for :order %>
-<h2>SOLICITUD INTERNA DE COMPRA<h2>
-<<<<<<< HEAD:app/views/order_requests/new.html.erb
+<h2>SOLICITUD INTERNA DE COMPRA</h2>
 <% form_for(:order_request, @order, :url => { :action => "create" }) do |f| %>
-=======
-<% form_for(:order_request, @order) do |f| %>
->>>>>>> 086d1987cc6c9bac21df19977a2f4c5ce6117203:app/views/order_requests/new.html.erb
 <div class="row">
-<div class="td", style="width:400px;">
-Área solicitante: <%= User.find(session[:user]).adscription_name %>
-</div>
-<div class="td">
-        Fecha: <%= Date.today.to_s %>
-</div>
+  <div class="td", style="width:400px;">
+    Área solicitante: <%= User.find(session[:user]).adscription_name %>
+  </div>
+  <div class="td">
+    Fecha: <%= Date.today.to_s %>
+  </div>
 </div>
 
 <div class="row">
-<div class="td" style="width:500px;">
-<<<<<<< HEAD:app/views/order_requests/new.html.erb
-Nombre del solicitante: <%= User.find(session[:user]).person.fullname %> <br/>
-=======
-Nombre del solicitante: <%= User.find(session[:user]).person.fullname  %> <br/>
->>>>>>> 086d1987cc6c9bac21df19977a2f4c5ce6117203:app/views/order_requests/new.html.erb
-Teléfono: <%= User.find(session[:user]).phone %>
-</div>
-<div class="td">
-Autorización del responsable del área
-</div>
+  <div class="td" style="width:500px;">
+    Nombre del solicitante: <%= User.find(session[:user]).person.fullname %> <br/>
+    Teléfono: <%= User.find(session[:user]).phone %>
+  </div>
+  <div class="td">
+    Autorización del responsable del área
+  </div>
 </div>
 <br>
 
 <div id="products" class="table">
   <div class="row">
-  <span class="th_option">Cantidad</span> <span class="th_content">Descripción</span> <span class="th_option">Precio por unidad</span> <span class="th_actions">Acciones</span>
- </div>
+    <span class="th_option">Cantidad</span> <span class="th_content">Descripción</span> <span class="th_option">Precio por unidad</span> <span class="th_actions">Acciones</span>
+  </div>
 
-  <%= render :partial =>"order_product", :collection => @order.order_products %>
 
-<<<<<<< HEAD:app/views/order_requests/new.html.erb
-=======
-<div id="products">
-  <%= render :partial =>"order_product", :collection => @order.order_products %>
->>>>>>> 086d1987cc6c9bac21df19977a2f4c5ce6117203:app/views/order_requests/new.html.erb
+  <div id="products">
+    <%= render :partial =>"order_product", :collection => @order.order_products %>
+  </div>
 </div>
- <%= link_to_function "Agregar" do |page|
+  <%= link_to_function "Agregar" do |page|
     page.insert_html :bottom, 'products', :partial =>"order_product", :object => OrderProduct.new
   end
   %>
 
-<div id="results" class="table">
-  <div class="row" >
-  <span class="td_option">
-  <%= link_to_function "Agregar" do |page|
-    page.insert_html :bottom, 'products', :partial =>"order_product", :object => OrderProduct.new
- end
-  %>
-  </span><span class="td_content" style="font-weigth: bold; text-align: right;">Total</span>
-  <span class="td_action">Valor total</span>
-  </div>
-</div>
-
+</span><span class="td_content" style="font-weigth: bold; text-align: right;">Total</span>
+<span class="td_action">Valor total</span>
 <p>
   <%= f.submit "Enviar datos" %>
 </p>
 
 <% end %>
-
-
-
-
