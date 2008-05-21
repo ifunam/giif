@@ -13,7 +13,7 @@
 
 <%= error_messages_for :order %>
 <h2>SOLICITUD INTERNA DE COMPRA</h2>
-<% form_for(:order_request, @order, :url => { :action => "create" }) do |f| %>
+<% form_for(:order_request, @order, :url => { :action => "create" }, :html => {:id => 'order'}) do |f| %>
 <div class="row">
   <div class="td", style="width:400px;">
     Área solicitante: <%= User.find(session[:user]).adscription_name %>
@@ -38,8 +38,6 @@
   <div class="row">
     <span class="th_option">Cantidad</span> <span class="th_content">Descripción</span> <span class="th_option">Precio por unidad</span> <span class="th_actions">Acciones</span>
   </div>
-
-
   <div id="products">
     <%= render :partial =>"order_product", :collection => @order.order_products %>
   </div>
@@ -51,8 +49,22 @@
 
 </span><span class="td_content" style="font-weigth: bold; text-align: right;">Total</span>
 <span class="td_action">Valor total</span>
+
+
+<div id="providers" class="table">
+  <div class="row">
+    <span class="th_content">Proveedor</span>  <span class="th_actions">Acciones</span>
+  </div>
+    <%= render :partial =>"order_provider", :collection => @providers %>
+ </div>
+  <%= link_to_function "Agregar" do |page|
+    page.insert_html :bottom, 'providers', :partial =>"order_provider", :object => Provider.new
+  end
+  %>
+
 <p>
-  <%= f.submit "Enviar datos" %>
+                 <%= f.submit "Enviar Orden de Compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
 </p>
+
 
 <% end %>

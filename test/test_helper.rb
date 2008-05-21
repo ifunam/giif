@@ -35,4 +35,9 @@ class Test::Unit::TestCase
  #fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def login_as(login,password)
+    @controller = SessionsController.new
+    post :signup, :user => { :login => login, :password => password }
+    puts session[:user]
+  end
 end

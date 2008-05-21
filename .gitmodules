@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/autocomplete"]
+	path = vendor/plugins/autocomplete
+	url = git://github.com/redinger/auto_complete.git

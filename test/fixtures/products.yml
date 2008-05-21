@@ -1,0 +1,10 @@
+motorola:
+ id: 1
+ product_type: Portátil
+ model: BGY7654
+ vendor: Motorola
+ id: 2
+ product_type: Servidor
+ model: JK19876
+ vendor: HP
+

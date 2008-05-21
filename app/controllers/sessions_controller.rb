@@ -9,16 +9,12 @@ class SessionsController < ApplicationController
     if User.authenticate?(params[:user][:login], params[:user][:password])
       flash[:notice] = 'Bienvenido (a)!'
       session[:user] = User.find_by_login(params[:user][:login]).id
-      respond_to do |format|
-        default = 'order_requests'
-        format.html { session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(:controller => default) }
-      end
+      options = session[:return_to] ?  session[:return_to] : { :controller => 'order_requests' }
    else
       flash[:notice] = 'El login o password es incorrecto!'
-      respond_to do |format|
-        format.html { redirect_to :action =>:index }
-      end
+      options = { :action =>:index }
    end
+    respond_to do |format|  format.html { redirect_to options } end
   end
 
   def destroy

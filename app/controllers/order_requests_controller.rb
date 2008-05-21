@@ -1,5 +1,6 @@
-
 class OrderRequestsController < ApplicationController
+  auto_complete_for :order_product, :description
+#  before_filter :authorize
   def index
   end
 
@@ -8,19 +9,21 @@ class OrderRequestsController < ApplicationController
     @order.date = Date.today
     @order.user_id = session[:user]
     1.times{ @order.order_products.build }
+    @providers = [ Provider.new ]
   end
 
   def create
-    @order = Order.new
-    @order.order_status_id = 1
-    @order.user_incharge_id = User.find(session[:user]).user_incharge.id unless User.find(session[:user]).user_incharge.nil?
-    @order.date = Date.today
+    @order = Order.new(:order_status_id => 1, :date => Date.today)
     self.set_user(@order)
 
     params[:products].each do |p|
       @product = OrderProduct.new(p)
       self.set_user(@product)
       @order.order_products <<  @product
+    end
+
+    params[:providers].each do |p|
+      @order.order_providers.build.provider = Provider.exists?(p) ? Provider.find(:first, :conditions => p) : Provider.new(p)
     end
 
     respond_to do |format|

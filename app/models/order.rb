@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
 
   belongs_to :order_status
   has_many :order_products, :dependent => :destroy
+  has_many :order_providers
+  has_many :providers, :through => :order_providers
 
   validates_associated :order_products, :order_status
 
