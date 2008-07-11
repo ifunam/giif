@@ -9,4 +9,6 @@ class AdscriptionTest < ActiveSupport::TestCase
   should_not_allow_zero_or_negative_number_for :id
   should_allow_nil_value_for :id
   should_not_allow_float_number_for :id
+
+  should_have_many :user_adscriptions
 end
