@@ -32,7 +32,7 @@ class Test::Unit::TestCase
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
- #fixtures :all
+  #fixtures :all
 
   # Add more helper methods to be used by all tests here...
   def login_as(login,password)
@@ -40,4 +40,59 @@ class Test::Unit::TestCase
     post :signup, :user => { :login => login, :password => password }
     puts session[:user]
   end
+
+  module Shoulda 
+    module Extensions
+      include Test::Unit::Assertions
+      def should_allow_nil_value_for(*attributes)
+        @record = make_model
+        attributes.each do |attribute|
+          @record.send("#{attribute}=", nil)
+          @record.valid?
+          assert !@record.errors.on(attribute), @record.errors.full_messages.join("\n")
+        end
+      end
+
+      def should_not_allow_nil_value_for(*attributes)
+        @record = make_model
+        attributes.each do |attribute|
+          @record.send("#{attribute}=", nil)
+          assert_validation_with_message(/is not a number/, attribute)
+        end
+      end
+
+      def should_not_allow_float_number_for(*attributes)
+        @record = make_model
+        attributes.each do |attribute|
+          @record.send("#{attribute}=", 1.01)
+          assert_validation_with_message(/is not a number/, attribute)
+        end
+      end
+
+      def should_not_allow_zero_or_negative_number_for(*attributes)
+        attributes.each do |attribute|
+          should_not_allow_values_for attribute, -1,  :message => /must be greater than 0/
+          should_not_allow_values_for attribute, 0,  :message => /must be greater than 0/
+        end
+      end
+
+      def assert_validation_with_message(pattern, attribute)
+        model_name = @record.class
+        @record.valid?
+        assert @record.errors.on(attribute), "Expected #{model_name} to have an error on #{attribute}, but it did not."
+        actual_error = @record.errors.on(attribute).to_s
+        assert_match(pattern, actual_error, "Expected #{model_name} to have the error #{pattern}\n Real message was: #{actual_error}")
+      end
+
+      # private
+      def make_model
+        model =  model_class
+        options = model.valid_options
+        yield options if block_given?
+        model.new(options)
+      end
+    end
+  end
+  include Shoulda::Extensions
+  extend Shoulda::Extensions
 end
