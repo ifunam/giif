@@ -6,4 +6,14 @@ class OrderProduct < ActiveRecord::Base
   belongs_to :order
   belongs_to :user
 
+  class << self
+    def valid_options
+      { :order_id => 13, :quantity => 2, :description => 'Product X', :price_per_unit => 200.00}
+    end
+
+    def build_valid
+      OrderProduct.new(OrderProduct.valid_options)
+    end
+  end
+
 end

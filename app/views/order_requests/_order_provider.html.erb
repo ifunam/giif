@@ -1,9 +1,9 @@
- <div class="row">
+ <div class="row" style="background-color: #ccddee;">
     <% fields_for "providers[]", order_provider do |provider| %>
-    <span class="td_content">
+    <span class="th_content">
       <%= provider.text_field :name, :size => '100', :maxlenght => '150' %>
     </span>
-    <span class="td_actions">
+    <span class="th_actions">
       <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
     </span>
     <% end %>

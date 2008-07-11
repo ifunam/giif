@@ -1,18 +1,18 @@
-  <% classname = cycle('list-line-odd', 'list-line-even') %>
-  <div class="<%= classname %>">
-    <% fields_for "products[]", order_product do |product| %>
-    <span class="td_option">
-      <%= product.text_field :quantity, :size => '3', :maxlenght => '3' %>
-    </span>
-    <span class="td_content">
-      <%= product.text_field :description, :size => '100', :maxlenght => '150' %>
-    </span>
-    <span class="td_option">
-      <%= product.text_field :price_per_unit, :size => '10', :maxlenght => '15' %>
-      </span>
-    <span class="td_actions">
-      <%= link_to_function "Borrar", "$(this).up('.#{classname}').remove();" %>
-    </span>
-    <% end %>
-  </div>
+<% classname = cycle('list-line-odd', 'list-line-even') %>
+<div class="<%= classname %>" style="background-color: #ccddee;">
+  <% fields_for "products[]", order_product do |product| %>
+  <span class="th_quantity">
+    <%= product.text_field :quantity, :size => '3', :maxlenght => '3' %>
+  </span>
+  <span class="th_description">
+    <%= product.text_field :description, :size => '89', :maxlenght => '150' %>
+  </span>
+  <span class="th_price">
+    <%= product.text_field :price_per_unit, :size => '10', :maxlenght => '15' %>
+  </span>
+  <span class="th_actions">
+    <%= link_to_function "Borrar", "$(this).up('.#{classname}').remove();" %>
+  </span>
+  <% end %>
+</div>
 

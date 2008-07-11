@@ -1,33 +1,151 @@
+body {background-color: #E6E6EF}
+
+/*Structure of layouts*/
+
+#container {
+    background-color: #ffffff;
+    width: 1100px;
+    margin: 0 4em 0 4em;
+}
+#header {
+    text-align: center;
+}
+#menu {
+    width: 100%;
+}
+#title{
+    text-align: center;
+    width: 1100px;
+}
+#contain {
+    float: left;
+    width: 1000px;
+    text-align: left;
+}
+#footer {
+    font: bold italic 14px georgia, times, serif;
+    text-align: right;
+    clear: both;
+}
+
+/*login and menu*/
+#text_login{
+    font: bold 14px georgia, times, serif;
+    margin-left: 245px;
+}
+.td_text {
+    margin-left: 30em;
+    display:table-cell;
+    width: 100px;
+    vertical-align: top;
+    padding: 2px;
+    }
+.td_textbox{
+    display:table-cell;
+    width: 400px;
+    vertical-align: top;
+    padding: 2px;
+}
+
+/*Menu*/
+#link_cell{
+    font: bold 14px georgia, times, serif;
+    color: white;
+    display:table-cell;
+    width: 220px;
+    text-align: center;
+    background-color: #ccddee;
+    padding: 2px;
+}
+
+/*Advice*/
+.notice {
+    background-color: yellow;
+    font: bold italic 14px georgia, times, serif;
+    text-align: center;
+}
+/*General cells*/
+.row{
+   display: table-row;
+   padding: 2px;
+}
+.cell{
+   display: table-cell;
+   padding: 0px;
+}
+/*Orders*/
+#title_ob{
+    text-size: medium;
+    text-align: center;
+}
+.cell1{
+   display: table-cell;
+   padding: 0px;
+   width: 200px;
+}
+.cell2{
+   display: table-cell;
+   padding: 0px;
+   width: 250px;
+}
+#data{
+    margin-left: 100px;
+    font: bold 14px georgia, times, serif;
+}
+#data-order{
+    margin-left: 100 px;
+    font: bold 45px georgia, times, serif;
+}
 .list-line-odd {
-    background-color: #2d3d4d
+    background-color: #ffffff
 }
-
 .list-line-even {
-    background-color: #cfcfcf
+    background-color: #ffffff
 }
-
-.td_option {
+.th_content {
+    display:table-cell;
+    width: 750px;
+    padding: 2px;
+    text-align: left;
+}
+.th_quantity{
+    display:table-cell;
+    width: 45px;
+    padding: 2px;
+    text-align: left;
+}
+.th_description {
+    display: table-cell;
+    width: 650px;
+    padding: 2px;
+    text-align: left;
+}
+.th_price {
+    display: table-cell;
+    width: 130px;
+    padding: 2px;
+    text-align: left;
+}
+.th_value {
   display: table-cell;
-  font-weight: bold;
-  width: 45px;
-  padding: 3px;
-  text-align: center;
-  border-bottom: 1px solid silver;
-}
-
-.td_content {
-  display:table-cell;
-  width: 140px;
-  vertical-align: top;
+  width: 90px;
   padding: 2px;
-  border-bottom: 1px solid silver;
+  text-align: left;
+}
+.th_actions {
+  display:table-cell;
+  width: 50px;
+  padding: 2px;
+  text-align: left;
 }
 
-.td_actions {
-  display:table-cell;
-  width: 45px;
-  padding: 3px;
-  vertical-align: top;
-  text-align: center;
-  border-bottom: 1px solid silver;
+/*Total*/
+#total{
+    margin-left: 615px;
+}
+
+/*Links*/
+#links{
+    text-align: right;
+    color: green;
 }

@@ -20,11 +20,16 @@ class OrderRequestsControllerTest < ActionController::TestCase
 
   def test_should_create_order
     @request.session[:user] = User.find_by_login('fernando').id
-    post :create, { :products => [
-                                  {:description => 'Notebook', :price_per_unit => 789.00, :quantity => 2},
-                                  {:description => 'Server', :price_per_unit => 1980.00, :quantity => 3}
-                                  ]
-                            }
+     post :create, { :products => [
+                                   {:description => 'Notebook', :price_per_unit => 789.00, :quantity => 2},
+                                   {:description => 'Server', :price_per_unit => 1980.00, :quantity => 3}
+                                   ]
+                             }
+     post :create, { :providers => [
+                                    {:name => 'Proveedor A'},
+                                    {:name => 'Proveedor B'}
+                                   ]
+                             }
     assert_response :success
     assert_template 'create'
   end
@@ -43,7 +48,7 @@ class OrderRequestsControllerTest < ActionController::TestCase
     def test_should_not_create_order_with_empty_product
     @request.session[:user] = User.find_by_login('fernando').id
       post :create, { :products => [{:description => nil, :price_per_unit => nil, :quantity => nil} ]}
-    assert_response :success
-    assert_template 'new'
+      assert_response :success
+      assert_template 'new'
   end
 end

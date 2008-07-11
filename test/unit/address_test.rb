@@ -49,14 +49,14 @@ class AddressTest < ActiveSupport::TestCase
     assert @address.valid?
     assert @address.save
     assert_equal 1,@address.id
-    assert_equal 'Por el rumbo',@address.location
+    assert_equal 'Distrito Federal',@address.location
    end
 
     def test_update
       @address = Address.find_by_id(1)
       @address.location = @address.location.reverse
       assert @address.save
-      assert_equal 'Por el rumbo'.reverse, @address.location
+      assert_equal 'Distrito Federal'.reverse, @address.location
     end
 
     def test_not_update_duplicated_user_id

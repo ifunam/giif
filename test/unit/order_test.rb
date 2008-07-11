@@ -1,20 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 class OrderTest < ActiveSupport::TestCase
- fixtures :users, :order_statuses, :orders
+ fixtures :users, :order_statuses, :orders, :order_products, :providers, :order_providers
 
   def setup
     @my_order = { :user_id => 2, :date => '2008-04-19', :order_status_id => 1}
-  end
-
-  def test_create
-    @order = Order.new(@my_order)
-    assert @order.valid?
-    assert @order.save
-    assert_equal 2, @order.user_id
-    assert_equal 2008, @order.date.year
-    assert_equal 4, @order.date.month
-    assert_equal 19, @order.date.day
-    assert_equal 1, @order.order_status_id
   end
 
   def test_not_create
@@ -82,7 +71,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 2008, @order.date.year
     assert_equal 1, @order.date.month
     assert_equal 1, @order.date.day
-    assert_equal 1,@order.order_status_id
+    assert_equal 1, @order.order_status_id
    end
 
     def test_update
@@ -163,4 +152,53 @@ class OrderTest < ActiveSupport::TestCase
     def test_not_delete_nil
       assert_raise (ActiveRecord::RecordNotFound) {  Order.destroy(nil)  }
     end
+
+    def test_should_create_order
+      @order = Order.build_valid
+      @order.order_products << OrderProduct.build_valid
+      @order.order_providers << OrderProvider.build_valid
+      assert @order.valid?, @order.errors.full_messages
+    end
+
+    def test_should_not_create_order_with_empty_products
+      @order = Order.build_valid
+      @order.order_providers << OrderProvider.build_valid
+      assert !@order.valid?, @order.errors.full_messages
+    end
+
+    def test_should_not_create_order_with_empty_providers
+      @order = Order.build_valid
+      @order.order_products << OrderProduct.build_valid
+      assert !@order.valid?, @order.errors.full_messages
+    end
+
+    def test_should_add_products
+      @order = Order.build_valid
+      @order_products = [{:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X'},
+                         {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y'}]
+      @order.add_products(@order_products)
+      assert_equal 2, @order.order_products.size
+    end
+
+    def test_should_not_add_products_with_empty_products
+      @order = Order.build_valid
+      @order.order_providers << OrderProvider.build_valid
+      assert !@order.valid?
+      assert_equal ["You should add at least one product"], @order.errors.full_messages
+    end
+
+    def test_should_add_providers
+      @order = Order.build_valid
+      @order_providers = [{ :name => 'Proveedor A'}, { :name => 'Proveedor B'}]
+      @order.add_providers(@order_providers)
+      assert_equal 2, @order.order_providers.size
+    end
+
+    def test_should_not_add_products_with_empty_providers
+      @order = Order.build_valid
+      @order.order_products << OrderProduct.build_valid
+      assert !@order.valid?
+      assert_equal ["You should add at least one provider"], @order.errors.full_messages
+    end
+
 end

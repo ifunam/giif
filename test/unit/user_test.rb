@@ -9,7 +9,7 @@ class UserTest < ActiveSupport::TestCase
 
   def test_phone
     @record = User.find(2)
-    assert_equal '0 0 Hasta que se te canse el dedo', @record.phone
+    assert_equal '26-21-20-44', @record.phone
   end
 
   def test_user_incharge_fullname
