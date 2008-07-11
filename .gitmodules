@@ -1,3 +1,6 @@
-[submodule "vendor/plugins/autocomplete"]
-	path = vendor/plugins/autocomplete
-	url = git://github.com/redinger/auto_complete.git
+[submodule "vendor/plugins/shoulda"]
+	path = vendor/plugins/shoulda
+	url = git://github.com/thoughtbot/shoulda.git
+[submodule "vendor/plugins/auto_complete"]
+	path = vendor/plugins/auto_complete
+	url = git://github.com/rails/auto_complete.git
