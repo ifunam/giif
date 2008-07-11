@@ -91,6 +91,10 @@ class Test::Unit::TestCase
         yield options if block_given?
         model.new(options)
       end
+      
+       def myfucking_error
+        puts "Bunch of crappy code here..."
+       end
     end
   end
   include Shoulda::Extensions
