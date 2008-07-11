@@ -41,7 +41,7 @@ class Test::Unit::TestCase
     puts session[:user]
   end
 
-  module Shoulda 
+  module Shoulda
     module Extensions
       include Test::Unit::Assertions
       def should_allow_nil_value_for(*attributes)
@@ -91,8 +91,12 @@ class Test::Unit::TestCase
         yield options if block_given?
         model.new(options)
       end
-      
+
        def myfucking_error
+        puts "Bunch of crappy code here..."
+       end
+
+        def myfucking_method
         puts "Bunch of crappy code here..."
        end
     end
