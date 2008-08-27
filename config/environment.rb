@@ -58,7 +58,7 @@ Rails::Initializer.run do |config|
   # config.active_record.default_timezone = :utc
 
   # ActionMailer configuration:
-  # http://api.rubyonrails.com/classes/ActionMailer/Base.html
+  # http://api.rubyonrails.com/classes/ActionMailer/Base.htmlx
 #   if RAILS_ENV != 'test'
 #     begin
 #       mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))

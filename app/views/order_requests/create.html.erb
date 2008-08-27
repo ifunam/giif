@@ -24,7 +24,12 @@
     </div>
 
     <div>
+      <h4>Documento(s)</h4>
+      <%= render :partial => 'file', :collection =>@order.order_files %>
+    </div>
+
+    <div>
       <h4>Proveedor(es)</h4>
       <%= render :partial => 'provider', :collection =>@order.providers %>
-      <%= @order.providers.size %>
     </div>
+

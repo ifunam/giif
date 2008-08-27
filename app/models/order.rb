@@ -8,6 +8,7 @@ class Order < ActiveRecord::Base
   has_many :order_products, :dependent => :destroy
   has_many :order_providers, :dependent => :destroy
   has_many :providers, :through => :order_providers
+  has_many :order_files
 
   validates_associated :order_products, :order_status
 
@@ -60,4 +61,9 @@ class Order < ActiveRecord::Base
  #   end
   end
 
+#   def send_mail(order)
+#     email = Notifier.create_sent(order)
+#     email.set_content_type("text/html" )
+#     Notifier.deliver(email)
+#   end
 end

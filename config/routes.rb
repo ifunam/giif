@@ -1,9 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :upload_files
-
   map.resource :session
 
-  map.resources :order_requests
+  map.resources :order_requests, :member => {:get_file => :get}
 
   map.resources :users
 

@@ -7,7 +7,7 @@
 </div>
 
 <%= error_messages_for :order %>
-<% form_for(:order_request, @order, :url => { :action => "create" }, :html => {:id => 'order'}) do |f| %>
+<% form_for(:order_request, @order, :url => { :action => "create" }, :html => {:id => 'order', :multipart => true }) do |f| %>
 <div id="data">
   <%= content_tag(:h2, "Datos del solicitante:") %>
   <div class="cell1">Nombre:</div>
@@ -25,11 +25,11 @@
 
   <div id="products" class="table">
     <span class="th_quantity">Cant.</span><span class="th_description">Descripción</span> <span class="th_price">Precio unitario</span> <span class="th_actions">Acciones</span>
-    <%= render :partial =>"order_product", :collection => @order.order_products %>
+    <%= render :partial => "order_product", :collection => @order.order_products %>
   </div>
 
   <%= link_to_function "Agregar" do |page|
-                  page.insert_html :bottom, 'products', :partial =>"order_product", :object => OrderProduct.new
+                  page.insert_html :bottom, 'products', :partial => "order_product", :object => OrderProduct.new
                 end
   %>
 
@@ -37,36 +37,41 @@
     <span class="th_value">Total:</span> <span class="th_value"><label for="value">0</label></span><br/>
     <span class="th_value">Valor total:</span>  <span class="th_value"><label for="total">0</label></span>
   </div>
+
+  <%= content_tag(:h2, "Proveedor(es):") %>
+
   <div id="providers" class="table">
-
-    <%= content_tag(:h2, "Proveedor(es):") %>
-
     <span class="th_content">Proveedor</span> <span class="th_actions">Acciones</span>
-    <%= render :partial =>"order_provider", :collection => @order.providers %>
+    <%= render :partial => "order_provider", :object => @order.order_providers.first.provider %>
   </div>
 
   <%= link_to_function "Agregar" do |page|
                     page.insert_html :bottom, 'providers', :partial =>"order_provider", :object => Provider.new
                   end
-                                                       %>
+  %>
 
   <p>
     <%= content_tag(:h2, "Anexos:") %>
   </p>
   <p>
-    Seleccione uno de los siguientes:
-    <%= select( "Cotizaciones", "id", { "--Ninguno--" => "1", "Cotizaciones" => "2", "Catálogos" => "3", "Justificación" => "4", "Otros" => "5"}) %>
-    <% fields_for(:file_type, @file_type, :html => {:multipart => true}) do |f| %>
-    <div style="margin-left: 263px;">
-      <%= f.file_field :upload_file %>
+   Seleccione el tipo de archivo que va a adjuntar a su orden de compra: <br/>
+
+    <div id="select">
+      <%= select(:order_files, :file_type_id, FileType.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ] }, { :prompt => '--Seleccionar--' }) %> <br/>
+      <%= file_field(:order_files, :file) %>
     </div>
-  </p>
-  <% end %>
+
   <p>
     <%= content_tag(:h2, "Con cargo a:") %>
   <p>
-    Seleccione uno de los siguientes:
-    <%= select( "attached_document", "id", { "--Ninguno--" => "1", "Presupuesto" => "2", "PAPIIT" => "3", "CONACYT" => "4", "Ingresos externos" => "5"}) %>
+    Seleccione una de las siguientes opciones: <br/>
+    <div id="select">
+      <%= select( :project_types, :project_type_id, ProjectType.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ] }, { :prompt => '--Seleccionar--' }) %>
+    </div>
+    <div>
+      Nombre del proyecto: <%= text_field(:project_name, :name, :size => 65) %>
+      No. Proyecto: <%= text_field(:project_name, :name, :size => 3) %>
+    </div>
   </p>
   </p>
   <p>

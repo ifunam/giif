@@ -1,8 +1,9 @@
 settings:
-  :address: fenix.fisica.unam.mx
-  :port:    25
-  :domain:  fisica.unam.mx
+  :address:           smtp.gmail.com
+  :port:                 587
+  :user_name:      fereyji@gmail.com
+  :password:        angiefer
+  :authentication: :plain
 
-method: sendmail
-
+method: smtp
 charset: utf-8

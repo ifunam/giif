@@ -3,6 +3,8 @@ class FileType < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
 
+  belongs_to :order_file
+
   def valid_params
     @params = { :name => ''}
   end
