@@ -10,7 +10,6 @@ class OrderRequestsController < ApplicationController
     @order.user_id = session[:user]
     1.times{ @order.order_products.build }
     @order.order_providers.build.provider = Provider.new
-    #1.times{ @order.order_providers.build }
     @order.order_files << OrderFile.new
   end
 
@@ -26,7 +25,7 @@ class OrderRequestsController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        Notifier.deliver_order_request(@order)
+        #Notifier.deliver_order_request(@order)
         format.html { render :action => "create" }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
@@ -50,5 +49,4 @@ private
       @order_file.filename = file.original_filename.chomp
     end
   end
-
 end

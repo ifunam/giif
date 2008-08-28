@@ -5,5 +5,5 @@ settings:
   :password:        angiefer
   :authentication: :plain
 
-method: smtp
+method: sendmail
 charset: utf-8

@@ -60,10 +60,4 @@ class Order < ActiveRecord::Base
       end
  #   end
   end
-
-#   def send_mail(order)
-#     email = Notifier.create_sent(order)
-#     email.set_content_type("text/html" )
-#     Notifier.deliver(email)
-#   end
 end
