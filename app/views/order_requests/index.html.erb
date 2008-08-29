@@ -1,1 +1,11 @@
-<p>some kind of list</p>
+<div id="collection">
+ <div class="row">
+  <span class="id_th">No. de orden</span>
+  <span class="description_th">Descripcion</span>
+  <span class="amount_th">Cantidad</span>
+  <span class="date_th">Fecha de solicitud</span>
+  <span class="actions_th">Acciones</span>
+ </div>
+ <%= render :partial => 'record', :collection => @collection %>
+<div>
+<%= will_paginate @collection %>

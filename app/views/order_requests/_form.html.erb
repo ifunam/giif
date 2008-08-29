@@ -1,0 +1,66 @@
+  <%= content_tag(:h2, "Datos del solicitante:") %>
+  <div class="cell1">Nombre:</div>
+  <div class="cell2"><%= User.find(session[:user]).person.fullname %></div><br/>
+  <div class="cell1">Área:</div>
+  <div class="cell2"><%= User.find(session[:user]).adscription_name %></div><br/>
+  <div class="cell1">Teléfono:</div>
+  <div class="cell2"><%= User.find(session[:user]).phone %></div><br/>
+  <div class="cell1">Fecha de solicitud:</div>
+  <div class="cell2"><%= Date.today.to_s %></div><br/>
+  <div class="cell1">Autorizado por:</div>
+  <div class="cell2"><%= User.find(session[:user]).user_incharge_fullname %></div><br/>
+
+  <%= content_tag(:h2, "Artículo(s):") %>
+
+  <div id="products" class="table">
+    <span class="th_quantity">Cant.</span><span class="th_description">Descripción</span> <span class="th_price">Precio unitario</span> <span class="th_actions">Acciones</span>
+    <%= render :partial => "order_product", :collection => @order.order_products %>
+  </div>
+
+  <%= link_to_function "Agregar" do |page|
+                  page.insert_html :bottom, 'products', :partial => "order_product", :object => OrderProduct.new
+                end
+  %>
+
+  <div id="total">
+    <span class="th_value">Total:</span> <span class="th_value"><label for="value">0</label></span><br/>
+    <span class="th_value">Valor total:</span>  <span class="th_value"><label for="total">0</label></span>
+  </div>
+
+  <%= content_tag(:h2, "Proveedor(es):") %>
+
+  <div id="providers" class="table">
+    <span class="th_content">Proveedor</span> <span class="th_actions">Acciones</span>
+    <%= render :partial => "order_provider", :object => @order.order_providers.first.provider %>
+  </div>
+
+  <%= link_to_function "Agregar" do |page|
+                    page.insert_html :bottom, 'providers', :partial =>"order_provider", :object => Provider.new
+                  end
+  %>
+
+  <p>
+    <%= content_tag(:h2, "Anexos:") %>
+  </p>
+  <p>
+   Seleccione el tipo de archivo que va a adjuntar a su orden de compra: <br/>
+
+    <div id="select">
+      <%= select(:order_files, :file_type_id, FileType.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ] }, { :prompt => '--Seleccionar--' }) %> <br/>
+      <%= file_field(:order_files, :file) %>
+    </div>
+
+  <p>
+    <%= content_tag(:h2, "Con cargo a:") %>
+  <p>
+    Seleccione una de las siguientes opciones: <br/>
+    <div id="select">
+      <%= select( :project_types, :project_type_id, ProjectType.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ] }, { :prompt => '--Seleccionar--' }) %>
+    </div>
+    <div>
+      Nombre del proyecto: <%= text_field(:project_name, :name, :size => 65) %>
+      No. Proyecto: <%= text_field(:project_name, :name, :size => 3) %>
+    </div>
+  </p>
+  </p>
+

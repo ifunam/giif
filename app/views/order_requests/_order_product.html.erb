@@ -1,6 +1,7 @@
+<% new_or_existing = order_product.new_record? ? 'new' : 'existing'%>
 <% classname = cycle('list-line-odd', 'list-line-even') %>
 <div class="<%= classname %>" style="background-color: #ccddee;">
-  <% fields_for "products[]", order_product do |product| %>
+  <% fields_for "products[#{new_or_existing}][]", order_product do |product| %>
   <span class="th_quantity">
     <%= product.text_field :quantity, :size => '3', :maxlenght => '3' %>
   </span>

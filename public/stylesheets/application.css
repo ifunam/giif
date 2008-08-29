@@ -1,4 +1,4 @@
-body {background-color: #E6E6EF}
+body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 
 /*Structure of layouts*/
 
@@ -66,8 +66,9 @@ body {background-color: #E6E6EF}
 }
 /*General cells*/
 .row{
-   display: table-row;
+   // display: table-row;
    padding: 2px;
+   border-bottom: 1px solid silver;
 }
 .cell{
    display: table-cell;
@@ -139,6 +140,69 @@ body {background-color: #E6E6EF}
   text-align: left;
 }
 
+.id_th{
+    display: table-cell;
+    font-weight: bold;
+    width: 5%;
+}
+
+.description_th{
+    display: table-cell;
+    font-weight: bold;
+    width: 31%;
+}
+
+.amount_th{
+    display: table-cell;
+    font-weight: bold;
+    width: 10%;
+}
+
+.date_th{
+    display: table-cell;
+    font-weight: bold;
+    width: 10%;
+}
+
+.actions_th{
+    display: table-cell;
+    font-weight: bold;
+    width: 30%;
+}
+
+
+.id_td{
+    display: table-cell;
+    width: 5%;
+   padding-right: 30px;
+    max-width: 12px;
+}
+
+.description_td{
+    display: table-cell;
+    width: 350px;
+//    padding-right: 300px;
+    max-width: 350px;
+    position: relative;
+}
+
+.amount_td{
+    display: table-cell;
+    width: 10%;
+}
+
+.date_td{
+    display: table-cell;
+    width: 10%;
+}
+
+.actions_td{
+    display: table-cell;
+    width: 30%;
+}
+
+
+
 /*Total*/
 #total{
     margin-left: 615px;
@@ -154,4 +218,22 @@ body {background-color: #E6E6EF}
 
 #select{
     margin-left: 263px;
+}
+
+#collection{
+    display: table;
+    width: 100%;
+//    border: 1px solid magenta;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#collection a{
+    color: blue;
+    text-decoration: none;
+}
+
+#collection a:hover {
+    color: green;
+    text-decoration: none;
 }

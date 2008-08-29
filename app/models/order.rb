@@ -44,20 +44,36 @@ class Order < ActiveRecord::Base
 
   def add_products(products)
     unless products.nil?
-      products.each do |p|
-        self.order_products << OrderProduct.new(p)
+      if products.has_key? :new
+        products[:new].each do |p|
+          self.order_products << OrderProduct.new(p)
+        end
+      end
+      if products.has_key? :existing
+        products[:existing].each do |p|
+          self.order_products << OrderProduct.update(p[0], p[1])
+        end
       end
     end
   end
 
   def add_providers(providers)
-#    unless providers.nil?
-      providers.each do |p|
+    #    unless providers.nil?
+    if providers.has_key? :new
+      providers[:new].each do |p|
         provider = Provider.exists?(p) ? Provider.find(:first, :conditions => p) : Provider.new(p)
         order_provider = OrderProvider.new
         order_provider.provider = provider
         self.order_providers << order_provider
       end
- #   end
+    end
+
+    if providers.has_key? :existing
+      providers[:existing].each do |p|
+        Provider.update(p[0], p[1])
+      end
+    end
+
+#   end
   end
 end

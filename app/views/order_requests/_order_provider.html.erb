@@ -1,5 +1,6 @@
- <div class="row" style="background-color: #ccddee;">
-    <% fields_for "providers[]", order_provider do |provider| %>
+<% new_or_existing = order_provider.new_record?  ? 'new' : 'existing' %>
+<div class="row" style="background-color: #ccddee;">
+    <% fields_for "providers[#{new_or_existing}][]", order_provider do |provider| %>
     <span class="th_content">
       <%= provider.text_field :name, :size => '100', :maxlenght => '150' %>
     </span>

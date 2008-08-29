@@ -7,12 +7,12 @@
 </div>
 
 <%= error_messages_for :order %>
-<% form_for(:order_request, @order, :url => { :action => "create" }, :html => {:id => 'order', :multipart => true }) do |f| %>
+ <% form_for :order_request, @order, :url => order_request_path(@order), :html => { :method => :put, :id => 'order', :multipart => true } do |f| %>
 <div id="data">
      <%= render :partial => 'form', :locals => {:f => f} %>
   <p>
-    <%= f.submit "Enviar orden de compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
+    <%= f.submit "Actualizar orden de compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
   </p>
 </div>
-<% end %>
+  <% end %>
 

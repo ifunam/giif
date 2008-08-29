@@ -1,0 +1,14 @@
+<div class="row">
+  <span class="id_td"><%= record.id %></span>
+  <span class="description_td">
+            <%= record.order_products.collect {|product| product.description}.join(",") %> <br/>
+            <%= link_to 'Ver más detalles', order_request_path(record) %>
+  </span>
+  <span class="amount_td"><%= record.order_products.sum("quantity * price_per_unit") %></span>
+  <span class="date_td"><%= record.date %></span>
+  <span class="actions_td">
+   <%= link_to 'Mostrar', order_request_path(record) %> |
+   <%= link_to 'Modificar', edit_order_request_path(record) %> |
+   <%= link_to 'Borrar', order_request_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?' %>
+</span>
+</div>
