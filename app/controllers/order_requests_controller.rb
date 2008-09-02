@@ -75,7 +75,11 @@ class OrderRequestsController < ApplicationController
 
   def destroy
     @order = Order.find(params[:id])
-    @order.destroy
+
+    unless @order.order_status == 1
+      @order.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to :action => 'index' }
     end

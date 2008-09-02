@@ -1,12 +1,16 @@
+A continuación se listan las ordenes de compra que ha solicitado.
 <div id="collection">
- <div class="row">
-  <span class="id_th">No. de orden</span>
-  <span class="description_th">Descripcion</span>
-  <span class="amount_th">Cantidad</span>
-  <span class="date_th">Fecha de solicitud</span>
-  <span class="actions_th">Acciones</span>
- </div>
- <%= render :partial => 'record', :collection => @collection %>
-<div>
-<%= will_paginate @collection %>
-<%= link_to 'Agregar', new_order_request_path%>
+  <div class="row">
+    <span class="id_th">No. de orden</span>
+    <span class="description_th">Descripcion</span>
+    <span class="amount_th">Cantidad</span>
+    <span class="date_th">Fecha de solicitud</span>
+    <span class="status_th">Estado</span>
+    <span class="actions_th">Acciones</span>
+  </div>
+  <%= render :partial => 'record', :collection => @collection %>
+  <div>
+    <%= will_paginate @collection %>
+<br/><br/><%= link_to 'Agregar nueva orden de compra', new_order_request_path%>
+  </div>
+</div>
