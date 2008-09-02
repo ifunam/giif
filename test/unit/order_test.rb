@@ -174,8 +174,10 @@ class OrderTest < ActiveSupport::TestCase
 
     def test_should_add_products
       @order = Order.build_valid
-      @order_products = [{:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X'},
-                         {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y'}]
+      @order_products = { :new => [ {:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X'},
+                                     {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y'}
+                                  ]
+                         }
       @order.add_products(@order_products)
       assert_equal 2, @order.order_products.size
     end
@@ -189,7 +191,7 @@ class OrderTest < ActiveSupport::TestCase
 
     def test_should_add_providers
       @order = Order.build_valid
-      @order_providers = [{ :name => 'Proveedor A'}, { :name => 'Proveedor B'}]
+      @order_providers = { :new => [ { :name => 'Proveedor A'}, { :name => 'Proveedor B'} ] }
       @order.add_providers(@order_providers)
       assert_equal 2, @order.order_providers.size
     end

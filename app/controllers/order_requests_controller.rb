@@ -1,3 +1,4 @@
+require 'ruby-debug'
 class OrderRequestsController < ApplicationController
   auto_complete_for :order_product, :description
 #  before_filter :authorize
