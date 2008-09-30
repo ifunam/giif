@@ -1,0 +1,17 @@
+<% new_or_existing = order_project.new_record?  ? 'new' : 'existing' %>
+<div class="row" style="background-color: #ccddee;">
+  <% fields_for "projects[#{new_or_existing}][]", order_project do |project| %>
+    <span class="op_type">
+      <%= project.simple_select(ProjectType, order_project.project_type_id) %>
+    </span>
+    <span class="op_name">
+      <%= project.text_field :name, :size => '50', :maxlenght => '100' %>
+    </span>
+    <span class="op_number">
+      <%= project.text_field :key, :size => '5', :maxlenght => '10' %>
+    </span>
+    <span class="op_actions">
+      <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
+    </span>
+    <% end %>
+</div>

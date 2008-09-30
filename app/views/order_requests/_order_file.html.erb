@@ -1,0 +1,15 @@
+<% new_or_existing = order_file.new_record?  ? 'new' : 'existing' %>
+<div class="row" style="background-color: #ccddee;">
+  <% fields_for "files[#{new_or_existing}][]", order_file do |file| %>
+    <span class="of_filetype">
+      <%= file.simple_select(FileType, order_file.file_type_id) %>
+    </span>
+    <span class="of_file">
+      <%= file.file_field(:file) %>
+    </span>
+    <span class="of_actions">
+      <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
+    </span>
+      <%= render :partial => 'file', :object => order_file  unless order_file.new_record?%>
+    <% end %>
+</div>
