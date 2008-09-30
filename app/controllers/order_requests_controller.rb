@@ -78,12 +78,18 @@ class OrderRequestsController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
 
-    unless @order.order_status == 1
-      @order.destroy
-    end
+    @order.destroy unless @order.order_status == 1
 
     respond_to do |format|
       format.html { redirect_to :action => 'index' }
+    end
+  end
+  
+  def destroy_file
+    @order_file = OrderFile.find(params[:id])
+    @order_file.destroy
+    respond_to do |format|
+      format.js { render :action => 'destroy_file.rjs'}
     end
   end
 

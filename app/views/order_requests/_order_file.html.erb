@@ -1,5 +1,5 @@
 <% new_or_existing = order_file.new_record?  ? 'new' : 'existing' %>
-<div class="row" style="background-color: #ccddee;">
+<div class="row" style="background-color: #ccddee;" id="<%= order_file.dom_id %>">
   <% fields_for "files[#{new_or_existing}][]", order_file do |file| %>
     <span class="of_filetype">
       <%= file.simple_select(FileType, order_file.file_type_id) %>
@@ -8,8 +8,13 @@
       <%= file.file_field(:file) %>
     </span>
     <span class="of_actions">
-      <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
-    </span>
-      <%= render :partial => 'file', :object => order_file  unless order_file.new_record?%>
+	 <% unless order_file.new_record? %>
+      <%= link_to_remote  "Borrar", :url => destroy_file_order_request_path(order_file.id), :method => :delete,
+  	 	                     :confirm => "¿ Desea borrar este archivo ?"%>
+     </span>
+      <%= render :partial => 'file', :object => order_file  %>
+    <% else%>
+     <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
     <% end %>
+  <% end %>
 </div>
