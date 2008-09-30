@@ -15,6 +15,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def new
+    @user_profile = UserProfileClient.find_by_login(User.find(session[:user]).login)
     @order = Order.new
     @order.date = Date.today
     @order.user_id = session[:user]

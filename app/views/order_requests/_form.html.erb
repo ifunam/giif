@@ -1,15 +1,9 @@
-  <%= content_tag(:h2, "Datos del solicitante:") %>
-  <div class="cell1">Nombre:</div>
-  <div class="cell2"><%= User.find(session[:user]).person.fullname %></div><br/>
-  <div class="cell1">Área:</div>
-  <div class="cell2"><%= User.find(session[:user]).adscription_name %></div><br/>
-  <div class="cell1">Teléfono:</div>
-  <div class="cell2"><%= User.find(session[:user]).phone %></div><br/>
-  <div class="cell1">Fecha de solicitud:</div>
-  <div class="cell2"><%= Date.today.to_s %></div><br/>
-  <div class="cell1">Autorizado por:</div>
-  <div class="cell2"><%= User.find(session[:user]).user_incharge_fullname %></div><br/>
-
+ <div id="user_profile">
+  <div class="row" style="border: none;"><b>Nombre:</b> <%= @user_profile.fullname %> (<%= @user_profile.adscription_name %>)</div>
+  <div class="row" style="border: none;"><b>Teléfono:</b> <%= 'Some fucking phone' %></div>
+  <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= Date.today.to_s %></div>
+  <div class="row" style="border: none;"><b>Autorizado por:</b><%= 'Name of your f. boss' %></div>
+ </div>
   <%= content_tag(:h2, "Artículo(s):") %>
 
   <div id="products" class="table">

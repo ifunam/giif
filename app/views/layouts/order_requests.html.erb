@@ -25,8 +25,7 @@
               Usuario: <%= logged_user  %> |
               <%= link_to('Salir', session_path, :method => :delete ) %>
               </br>
-          </div>
-          <%= image_tag('orden_compra.jpg', :order => 0, :size => '1100X200') %>
+          </div>		
           <p style="background-color: yellow"><%= flash[:notice] %></p>
           <%= yield %>
         </div>

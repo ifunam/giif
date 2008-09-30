@@ -23,14 +23,14 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
     text-align: left;
 }
 #footer {
-    font: bold italic 14px georgia, times, serif;
+    font: bold italic 14px;
     text-align: right;
     clear: both;
 }
 
 /*login and menu*/
 #text_login{
-    font: bold 14px georgia, times, serif;
+    font: bold 14px;
     margin-left: 245px;
 }
 .td_text {
@@ -49,7 +49,7 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 
 /*Menu*/
 #link_cell{
-    font: bold 14px georgia, times, serif;
+    font: bold 14px;
     color: white;
     display:table-cell;
     width: 220px;
@@ -61,7 +61,7 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 /*Advice*/
 .notice {
     background-color: yellow;
-    font: bold italic 14px georgia, times, serif;
+    font: bold italic 14px;
     text-align: center;
 }
 /*General cells*/
@@ -91,11 +91,11 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 }
 #data{
     margin-left: 100px;
-    font: bold 14px georgia, times, serif;
+    font: bold 14px;
 }
 #data-order{
     margin-left: 100 px;
-    font: bold 45px georgia, times, serif;
+    font: bold 45px;
 }
 .list-line-odd {
     background-color: #ffffff
@@ -363,4 +363,15 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
     width: 70px;
     padding: 2px;
     text-align: left;
+}
+
+#user_profile {
+	margin-top: 15px;
+	border-bottom: 1px solid silver;
+}
+
+#user_profile b{
+	display: table-cell;
+	float: left;
+	width: 150px;
 }
