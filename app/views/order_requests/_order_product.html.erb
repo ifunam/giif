@@ -2,16 +2,16 @@
 <% classname = cycle('list-line-odd', 'list-line-even') %>
 <div class="<%= classname %>" style="background-color: #ccddee;">
   <% fields_for "products[#{new_or_existing}][]", order_product do |product| %>
-  <span class="th_quantity">
-    <%= product.text_field :quantity, :size => '3', :maxlenght => '3' %>
+  <span class="pd_quantity">
+    <%= product.text_field :quantity, :size => '4', :maxlenght => '4' %>
   </span>
-  <span class="th_description">
-    <%= product.text_field :description, :size => '89', :maxlenght => '150' %>
+  <span class="pd_description">
+    <%= product.text_field :description, :size => '71', :maxlenght => '100' %>
   </span>
-  <span class="th_price">
-    <%= product.text_field :price_per_unit, :size => '10', :maxlenght => '15' %>
+  <span class="pd_price">
+    <%= product.text_field :price_per_unit, :size => '9', :maxlenght => '15' %>
   </span>
-  <span class="th_actions">
+  <span class="pd_actions">
     <%= link_to_function "Borrar", "$(this).up('.#{classname}').remove();" %>
   </span>
   <% end %>

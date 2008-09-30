@@ -1,10 +1,10 @@
 <% new_or_existing = order_provider.new_record?  ? 'new' : 'existing' %>
 <div class="row" style="background-color: #ccddee;">
     <% fields_for "providers[#{new_or_existing}][]", order_provider do |provider| %>
-    <span class="th_content">
-      <%= provider.text_field :name, :size => '100', :maxlenght => '150' %>
+    <span class="pv_description">
+      <%= provider.text_field :name, :size => '84', :maxlenght => '100' %>
     </span>
-    <span class="th_actions">
+    <span class="pv_actions">
       <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
     </span>
     <% end %>

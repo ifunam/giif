@@ -105,41 +105,46 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 }
 .th_content {
     display:table-cell;
-    width: 750px;
+    width: 50px;
     padding: 2px;
     text-align: left;
 }
 .th_quantity{
     display:table-cell;
-    width: 45px;
+    width: 70px;
     padding: 2px;
     text-align: left;
 }
 .th_description {
     display: table-cell;
-    width: 650px;
+    width: 600px;
     padding: 2px;
     text-align: left;
 }
 .th_price {
     display: table-cell;
-    width: 130px;
+    width: 100px;
     padding: 2px;
     text-align: left;
 }
+.th_actions_pd {
+  display:table-cell;
+  width: 60px;
+  padding: 2px;
+  text-align: left;
+}
 .th_value {
   display: table-cell;
-  width: 90px;
+  width: 60px;
   padding: 2px;
   text-align: left;
 }
 .th_actions {
   display:table-cell;
-  width: 50px;
+  width: 15%;
   padding: 2px;
   text-align: left;
 }
-
 .id_th{
     display: table-cell;
     font-weight: bold;
@@ -278,4 +283,84 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 #collection a:hover {
     color: green;
     text-decoration: none;
+}
+
+/*style for each cell of order request*/
+.pv_description{
+    display:table-cell;
+    width: 700px;
+    padding: 2px;
+    text-align: left;
+}
+.pv_actions{
+    display:table-cell;
+    width: 70px;
+    padding: 2px;
+    text-align: left;
+}
+.pd_quantity{
+    display:table-cell;
+    width: 60px;
+    padding: 2px;
+    text-align: left;
+}
+.pd_description{
+    display:table-cell;
+    width: 600px;
+    padding: 2px;
+    text-align: left;
+}
+.pd_price{
+    display:table-cell;
+    width: 100px;
+    padding: 2px;
+    text-align: left;
+}
+.pd_actions{
+    display:table-cell;
+    width: 70px;
+    padding: 2px;
+    text-align: left;
+}
+.of_filetype{
+    display:table-cell;
+    width: 130px;
+    padding: 2px;
+    text-align: left;
+}
+.of_file{
+    display:table-cell;
+    width: 350px;
+    padding: 2px;
+    text-align: left;
+}
+.of_actions{
+    display:table-cell;
+    width: 70px;
+    padding: 2px;
+    text-align: left;
+}
+.op_type{
+    display:table-cell;
+    width: 120px;
+    padding: 2px;
+    text-align: left;
+}
+.op_name{
+    display:table-cell;
+    width: 430px;
+    padding: 2px;
+    text-align: left;
+}
+.op_number{
+    display:table-cell;
+    width: 100px;
+    padding: 2px;
+    text-align: left;
+}
+.op_actions{
+    display:table-cell;
+    width: 70px;
+    padding: 2px;
+    text-align: left;
 }

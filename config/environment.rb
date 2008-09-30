@@ -74,3 +74,4 @@ Rails::Initializer.run do |config|
 #   end
 
 end
+require File.join(File.dirname(__FILE__), '../lib/form_builder_extensions')

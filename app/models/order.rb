@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
   has_many :order_providers, :dependent => :destroy
   has_many :providers, :through => :order_providers
   has_many :order_files
+  has_many :projects
 
   validates_associated :order_products, :order_status
 
@@ -73,7 +74,38 @@ class Order < ActiveRecord::Base
         Provider.update(p[0], p[1])
       end
     end
-
-#   end
   end
+
+  def add_files(files)
+    if files.has_key? :new
+      files[:new].each do |fh|
+        self.order_files << OrderFile.new(:file => fh['file'].read, :content_type => fh['file'].content_type.chomp.to_s,
+                                                              :filename => fh['file'].original_filename.chomp, :file_type_id => fh['file_type_id'])
+      end
+    end
+    if files.has_key? :existing
+      files[:existing].each do |p|
+        fh = p[1]
+         OrderFile.update(p[0], {:file => fh['file'].read, :content_type => fh['file'].content_type.chomp.to_s,
+                                               :filename => fh['file'].original_filename.chomp, :file_type_id => fh['file_type_id']})
+      end
+    end
+  end
+
+  def add_projects(projects)
+    if projects.has_key? :new
+      projects[:new].each do |fh|
+        self.projects << Project.new(:name => fh['name'], :key => fh['key'],
+                                                      :project_type_id => fh['project_type_id'])
+      end
+    end
+    if projects.has_key? :existing
+      projects[:existing].each do |p|
+        fh = p[1]
+        Project.update(p[0], {:name => fh['name'], :key => fh['key'],
+                                           :project_type_id => fh['project_type_id']})
+      end
+    end
+  end
+
 end

@@ -8,7 +8,7 @@ class Schema   < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :people, :force => true do |t|
+    create_table :people do |t|
       t.references :user, :null => false
       t.string     :firstname, :lastname1, :null => false
       t.string     :lastname2
@@ -17,7 +17,7 @@ class Schema   < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :addresses, :force => true do |t|
+    create_table :addresses do |t|
       t.references :user, :null => false
       t.text    :location,              :null => false
       t.string  :phone, :fax, :mobile
@@ -115,12 +115,10 @@ class Schema   < ActiveRecord::Migration
     fixtures :adscriptions
     fixtures :user_adscriptions
     fixtures :features
-  end
+   end
 
   def self.down
-    drop_table :users, :groups, :user_groups, :products, :product_types, :product_groups, :features,
-    :product_features, :orders, :providers, :buildings, :rooms, :room_types,
-    :people, :addresses, :adscriptions, :user_adscriptions     # SALVA
+    drop_table :users, :groups, :user_groups, :products, :product_types, :product_groups, :features, :product_features, :orders, :providers, :buildings, :rooms, :room_types, :people, :addresses, :adscriptions, :user_adscriptions     # SALVA
   end
 end
 

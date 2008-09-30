@@ -1,20 +1,5 @@
 class CreateOrders < ActiveRecord::Migration
   def self.up
-    create_table :project_types do |t| # NOTE: Link this table to administrative system (presupuesto, partidas, etc)
-      t.string      :name, :null => false
-      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
-      t.timestamps
-    end
-    fixtures :project_types
-
-    create_table :projects do |t|
-      t.text       :name, :null => false
-      t.string     :key # TODO: Verify if :key is required and not null
-      t.integer    :project_type_id, :null => false
-      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
-      t.timestamps
-    end
-
     create_table :order_statuses do |t|
       t.string     :name, :null => false
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
@@ -26,6 +11,21 @@ class CreateOrders < ActiveRecord::Migration
       t.references :user,:order_status, :null => false
       t.references :user_incharge, :class_name => 'User', :foreign_key => "user_incharge_id"
       t.date       :date, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
+    end
+
+    create_table :project_types do |t| # NOTE: Link this table to administrative system (presupuesto, partidas, etc)
+      t.string      :name, :null => false
+      t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps
+    end
+    fixtures :project_types
+
+    create_table :projects do |t|
+      t.references :order, :project_type, :null => false
+      t.text       :name, :null => false
+      t.string     :key # TODO: Verify if :key is required and not null
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end

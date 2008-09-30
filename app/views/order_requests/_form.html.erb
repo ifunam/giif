@@ -13,7 +13,7 @@
   <%= content_tag(:h2, "Artículo(s):") %>
 
   <div id="products" class="table">
-    <span class="th_quantity">Cant.</span><span class="th_description">Descripción</span> <span class="th_price">Precio unitario</span> <span class="th_actions">Acciones</span>
+    <span class="pd_quantity">Cantidad</span><span class="pd_description">Descripción</span> <span class="pd_price">Precio unitario</span> <span class="pd_actions">Acciones</span>
     <%= render :partial => "order_product", :collection => @order.order_products %>
   </div>
 
@@ -23,14 +23,14 @@
   %>
 
   <div id="total">
-    <span class="th_value">Total:</span> <span class="th_value"><label for="value">0</label></span><br/>
+    <span class="th_value">Total:</span> <span class="th_value"><label for="value"><%= @order.order_products[0].quantity %></label></span><br/>
     <span class="th_value">Valor total:</span>  <span class="th_value"><label for="total">0</label></span>
   </div>
 
   <%= content_tag(:h2, "Proveedor(es):") %>
 
   <div id="providers" class="table">
-    <span class="th_content">Proveedor</span> <span class="th_actions">Acciones</span>
+    <span class="pv_description">Proveedor</span> <span class="pv_actions">Acciones</span>
     <%= render :partial => "order_provider", :object => @order.order_providers.first.provider %>
   </div>
 
@@ -45,22 +45,29 @@
   <p>
    Seleccione el tipo de archivo que va a adjuntar a su orden de compra: <br/>
 
-    <div id="select">
-      <%= select(:order_files, :file_type_id, FileType.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ] }, { :prompt => '--Seleccionar--' }) %> <br/>
-      <%= file_field(:order_files, :file) %>
-    </div>
+  <div id="order_files" class="table">
+    <span class="of_filetype">Tipo de archivo</span><span class="of_file">Archivo</span><span class="of_actions">Acciones</span>
+     <%= render :partial => "order_file", :collection =>  @order.order_files %>
+   </div>
+     <%= link_to_function "Agregar" do |page|
+         page.insert_html :bottom, 'order_files', :partial =>"order_file", :object => OrderFile.new
+     end
+     %>
+
 
   <p>
     <%= content_tag(:h2, "Con cargo a:") %>
   <p>
     Seleccione una de las siguientes opciones: <br/>
-    <div id="select">
-      <%= select( :project_types, :project_type_id, ProjectType.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ] }, { :prompt => '--Seleccionar--' }) %>
+
+    <div id="projects" class="table">
+      <span class="op_type">Tipo de proyecto</span><span class="op_name">Nombre del proyecto</span><span class="op_number">No. de proyecto</span><span class="op_actions">Acciones</span>
+      <%= render :partial => "order_project", :collection => @order.projects %>
     </div>
-    <div>
-      Nombre del proyecto: <%= text_field(:project_name, :name, :size => 65) %>
-      No. Proyecto: <%= text_field(:project_name, :name, :size => 3) %>
-    </div>
+    <%= link_to_function "Agregar" do |page|
+        page.insert_html :bottom, 'projects', :partial =>"order_project", :object => Project.new
+    end
+    %>
   </p>
   </p>
 

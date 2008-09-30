@@ -4,7 +4,7 @@ class OrderProvider < ActiveRecord::Base
   belongs_to :order
   belongs_to :provider
 
- validates_associated :order, :provider, :on => :update
+# validates_associated :order, :provider, :on => :update
 
   class << self
     def valid_options

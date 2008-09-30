@@ -24,7 +24,7 @@
     </div>
 
     <div>
-      <h4>Documento(s)</h4>
+      <h4>Anexo(s)</h4>
       <%= render :partial => 'file', :collection =>@order.order_files %>
     </div>
 
@@ -33,3 +33,7 @@
       <%= render :partial => 'provider', :collection =>@order.providers %>
     </div>
 
+    <div>
+      <h4>Con cargo a:</h4>
+      <%= render :partial => 'project', :collection =>@order.projects %>
+    </div>
