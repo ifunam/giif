@@ -28,4 +28,20 @@ class UserProfileClient < ActiveResource::Base
   def remote_user_id
     @attributes['user_id']
   end
+  
+  def phone
+    @attributes['phone']
+  end
+  
+  def email
+    @attributes['email']
+  end
+  
+  def has_user_incharge?
+    !@attributes['user_incharge_id'].nil? 
+  end
+  
+  def user_incharge
+    UserProfileClient.find_by_user_id(@attributes['user_incharge_id']) if has_user_incharge?
+  end
 end

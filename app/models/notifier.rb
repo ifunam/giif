@@ -7,10 +7,12 @@ class Notifier < ActionMailer::Base
 #     @sent_on    = sent_at
 #   end
 
-  def order_request(order)
+  def order_request(order, user_profile)
     @subject    = 'Solicitud de Orden de Compra'
-    @recipients = 'fereyji@gmail.com'
-    @from       = 'fereyji@gmail.com'
+    emails = [ user_profile.email ]
+    emails << user_profile.user_incharge.email if user_profile.has_user_incharge?
+    @recipients = emails.join(', ')
+    @from       = 'noreply@fisica.unam.mx'
     @sent_on    = Time.now
     @body = { :order => order}
   end

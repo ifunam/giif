@@ -15,7 +15,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def new
-    @user_profile = UserProfileClient.find_by_login(User.find(session[:user]).login)
+    @user_profile = user_profile
     @order = Order.new
     @order.date = Date.today
     @order.user_id = session[:user]
@@ -35,7 +35,7 @@ class OrderRequestsController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
-          Notifier.deliver_order_request(@order)
+          Notifier.deliver_order_request(@order, user_profile)
           format.html { render :action => "show" }
           format.xml  { render :xml => @order, :status => :created, :location => @order }
         else
@@ -100,5 +100,10 @@ class OrderRequestsController < ApplicationController
   def get_file
     record = OrderFile.find(params[:id])
     send_data record.file, :type => record.content_type, :filename => record.filename, :disposition => 'attachment'
+  end
+
+  private
+  def user_profile
+    UserProfileClient.find_by_login(User.find(session[:user]).login)
   end
 end

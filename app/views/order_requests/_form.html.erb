@@ -1,9 +1,12 @@
  <div id="user_profile">
   <div class="row" style="border: none;"><b>Nombre:</b> <%= @user_profile.fullname %> (<%= @user_profile.adscription_name %>)</div>
-  <div class="row" style="border: none;"><b>Teléfono:</b> <%= 'Some fucking phone' %></div>
+  <div class="row" style="border: none;"><b>Teléfono:</b> <%= @user_profile.phone %></div>
   <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= Date.today.to_s %></div>
-  <div class="row" style="border: none;"><b>Autorizado por:</b><%= 'Name of your f. boss' %></div>
+  <% if @user_profile.has_user_incharge? %>
+  <div class="row" style="border: none;"><b>Responsable académico:</b><%= @user_profile.user_incharge.fullname %></div>
+  <% end %>
  </div>
+
   <%= content_tag(:h2, "Artículo(s):") %>
 
   <div id="products" class="table">
