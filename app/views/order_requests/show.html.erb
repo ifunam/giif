@@ -1,32 +1,23 @@
-
 <h1>Su solicitud  ha sido  enviada.<h1>
-    <h4>Con los siguientes datos:</h4>
-    </br>
-    <div>
       <h4>Información del solicitante:</h4>
-      <p>
-        <label>Nombre del solicitante: <%= User.find(session[:user]).person.fullname  %></label>
-      </p>
-      <p>
-        <label>Área de adscripción: <%= User.find(session[:user]).adscription_name  %></label>
-      </p>
-      <p>
-        <label>Responsable: <%= User.find(session[:user]).user_incharge_fullname %></label>
-      </p>
-      <p>
-        <label>Fecha de solicitud: <%= @order.date %></label>
-      </p>
-    </div>
+      <div>
+        <label>Nombre del solicitante: <%= @user_profile.fullname %> (<%= @user_profile.adscription_name %>)</label><br/>
+        <label>Teléfono: <%= @user_profile.phone %></label><br/>
+        <label>Fecha de solicitud: <%= Date.today.to_s %></label><br/>
+        <% if @user_profile.has_user_incharge? %>
+        <label>Responsable académico: <%= @user_profile.user_incharge.fullname %></label><br/>
+        <% end %>
+      </div>
 
-    <div>
-      <h4>Artículo(s)</h4>
-      <%= render :partial => 'product', :collection =>@order.order_products %>
-    </div>
+      <div>
+        <h4>Artículo(s)</h4>
+        <%= render :partial => 'product', :collection =>@order.order_products %>
+      </div>
 
-    <div>
-      <h4>Anexo(s)</h4>
-      <%= render :partial => 'file', :collection =>@order.order_files %>
-    </div>
+      <div>
+        <h4>Anexo(s)</h4>
+        <%= render :partial => 'file', :collection =>@order.order_files %>
+      </div>
 
     <div>
       <h4>Proveedor(es)</h4>

@@ -366,12 +366,12 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 }
 
 #user_profile {
-	margin-top: 15px;
-	border-bottom: 1px solid silver;
+        margin-top: 15px;
+        border-bottom: 1px solid silver;
 }
 
 #user_profile b{
-	display: table-cell;
-	float: left;
-	width: 150px;
+        display: table-cell;
+        float: left;
+        width: 200px;
 }

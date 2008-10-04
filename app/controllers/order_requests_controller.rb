@@ -26,6 +26,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def create
+    @user_profile = user_profile
     @order = Order.new(:order_status_id => 1, :date => Date.today)
     self.set_user(@order)
     @order.add_products(params[:products])
@@ -47,6 +48,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def edit
+    @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
       format.html { render :action => 'edit'}
@@ -54,6 +56,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def show
+    @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
       format.html { render :action => "show" }
@@ -61,6 +64,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def update
+    @user_profile = user_profile
     @order = Order.find(params[:id])
     @order.add_products(params[:products])
     @order.add_providers(params[:providers])
@@ -94,6 +98,14 @@ class OrderRequestsController < ApplicationController
     @order_file.destroy
     respond_to do |format|
       format.js { render :action => 'destroy_file.rjs'}
+    end
+  end
+
+  def destroy_project
+    @project = Project.find(params[:id])
+    @project.destroy
+    respond_to do |format|
+      format.js { render :action => 'destroy_project.rjs'}
     end
   end
 

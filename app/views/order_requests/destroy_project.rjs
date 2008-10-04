@@ -1,0 +1,1 @@
+page.remove @project.dom_id

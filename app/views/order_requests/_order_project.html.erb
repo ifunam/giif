@@ -1,5 +1,5 @@
 <% new_or_existing = order_project.new_record?  ? 'new' : 'existing' %>
-<div class="row" style="background-color: #ccddee;">
+<div class="row" style="background-color: #ccddee;" id="<%= order_project.dom_id %>">
   <% fields_for "projects[#{new_or_existing}][]", order_project do |project| %>
     <span class="op_type">
       <%= project.simple_select(ProjectType, order_project.project_type_id) %>
@@ -10,8 +10,14 @@
     <span class="op_number">
       <%= project.text_field :key, :size => '5', :maxlenght => '10' %>
     </span>
-    <span class="op_actions">
-      <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
+
+    <span class="of_actions">
+      <% unless order_project.new_record? %>
+      <%= link_to_remote  "Borrar", :url => destroy_project_order_request_path(order_project.id), :method => :delete,
+                                                       :confirm => "¿Desea borrar este registro?"%>
     </span>
+    <% else%>
+    <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
+    <% end %>
     <% end %>
 </div>
