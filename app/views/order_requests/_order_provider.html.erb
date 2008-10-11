@@ -1,6 +1,17 @@
 <% new_or_existing = order_provider.new_record?  ? 'new' : 'existing' %>
-<div class="row" style="background-color: #ccddee;">
-    <% fields_for "providers[#{new_or_existing}][]", order_provider do |provider| %>
+<div class="row" style="background-color: #ccddee;" id="<%= order_provider.dom_id %>">
+  <% unless order_provider.new_record? %>
+    <% fields_for "providers[#{new_or_existing}][]", order_provider.provider do |provider| %>
+    <span class="pv_description">
+      <%= provider.text_field :name, :size => '84', :maxlenght => '100' %>
+    </span>
+    <span class="pv_actions">
+      <%= link_to_remote  "Borrar", :url => destroy_item_order_request_path(:id => order_provider.id, :table => 'order_provider'), :method => :delete,
+                                                       :confirm => "¿Desea borrar este registro?"%>
+    </span>
+    <% end %>
+    <% else%>
+    <% fields_for "providers[#{new_or_existing}][]", Provider.new do |provider| %>
     <span class="pv_description">
       <%= provider.text_field :name, :size => '84', :maxlenght => '100' %>
     </span>
@@ -8,4 +19,5 @@
       <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
     </span>
     <% end %>
-  </div>
+    <% end %>
+</div>

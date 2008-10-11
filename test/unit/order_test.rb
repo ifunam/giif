@@ -1,9 +1,15 @@
 require File.dirname(__FILE__) + '/../test_helper'
 class OrderTest < ActiveSupport::TestCase
- fixtures :users, :order_statuses, :orders, :order_products, :providers, :order_providers
+  fixtures :users, :order_statuses, :orders, :order_products, :providers, :order_providers
 
   def setup
     @my_order = { :user_id => 2, :date => '2008-04-19', :order_status_id => 1}
+  end
+
+  def test_create
+    @order = Order.new(@myorder)
+    assert_equal [], @order.providers
+    assert !@order.valid?
   end
 
   def test_not_create

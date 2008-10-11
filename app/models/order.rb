@@ -21,7 +21,7 @@ class Order < ActiveRecord::Base
     if self.order_products.size <= 0
       errors.add_to_base("You should add at least one product")
       validation = false
-    elsif self.order_providers.size <= 0
+    elsif self.providers.size <= 0
       errors.add_to_base("You should add at least one provider")
       validation = false
     end
@@ -59,13 +59,10 @@ class Order < ActiveRecord::Base
   end
 
   def add_providers(providers)
-    #    unless providers.nil?
     if providers.has_key? :new
       providers[:new].each do |p|
         provider = Provider.exists?(p) ? Provider.find(:first, :conditions => p) : Provider.new(p)
-        order_provider = OrderProvider.new
-        order_provider.provider = provider
-        self.order_providers << order_provider
+        self.providers << provider
       end
     end
 
@@ -106,6 +103,11 @@ class Order < ActiveRecord::Base
                                            :project_type_id => fh['project_type_id']})
       end
     end
+  end
+
+  def change_to_sent_status
+    self.order_status_id = 2
+    self.save
   end
 
 end

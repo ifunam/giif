@@ -8,9 +8,9 @@
       <%= file.file_field(:file) %>
     </span>
     <span class="of_actions">
-	 <% unless order_file.new_record? %>
-      <%= link_to_remote  "Borrar", :url => destroy_file_order_request_path(order_file.id), :method => :delete,
-  	 	                     :confirm => "¿ Desea borrar este archivo ?"%>
+         <% unless order_file.new_record? %>
+      <%= link_to_remote  "Borrar", :url => destroy_item_order_request_path(:id => order_file.id, :table => 'order_file'), :method => :delete,
+                                     :confirm => "¿ Desea borrar este archivo ?"%>
      </span>
       <%= render :partial => 'file', :object => order_file  %>
     <% else%>

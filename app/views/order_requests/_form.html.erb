@@ -19,16 +19,12 @@
                 end
   %>
 
-  <div id="total">
-    <span class="th_value">Total:</span> <span class="th_value"><label for="value"><%= @order.order_products[0].quantity %></label></span><br/>
-    <span class="th_value">Valor total:</span>  <span class="th_value"><label for="total">0</label></span>
-  </div>
-
   <%= content_tag(:h2, "Proveedor(es):") %>
 
   <div id="providers" class="table">
     <span class="pv_description">Proveedor</span> <span class="pv_actions">Acciones</span>
-    <%= render :partial => "order_provider", :object => @order.order_providers.first.provider %>
+    <%= render :partial => "order_provider", :collection => @order.order_providers %>
+
   </div>
 
   <%= link_to_function "Agregar" do |page|

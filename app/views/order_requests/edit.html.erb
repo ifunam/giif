@@ -12,7 +12,13 @@
      <%= render :partial => 'form', :locals => {:f => f} %>
   <p>
     <%= f.submit "Actualizar orden de compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
+    <%= f.submit "Cancelar", :onclick => "return (confirm('Al cancelar no se almacenarán los cambios'));"%>
+    <%= link_to 'Cancelar', :action => 'index', :controller => 'order_request', :confirm => 'Al cancelar no se almacenarán los cambios realizados' %>
   </p>
-</div>
   <% end %>
+ <% form_for :order_request, @order, :url => order_request_path(@order), :html => { :method => :get, :action => 'index', :multipart => true } do |f| %>
+ <%= f.submit "Cancelar", :onclick => "return (confirm('Al cancelar no se almacenarán los cambios'));"%>
+  <% end %>
+</div>
+
 

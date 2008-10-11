@@ -1,15 +1,12 @@
 <div class="row">
   <span class="id_td"><%= record.id %></span>
   <span class="description_td">
-            <%= record.order_products.collect {|product| product.description}.join(", ") %> |
-            <%= link_to 'Ver más detalles', order_request_path(record) %>
+    <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/>
+    Total: $<%= record.order_products.sum("quantity * price_per_unit") %> | <%= link_to 'Ver más detalles', order_request_path(record) %>
   </span>
-  <span class="amount_td"><%= record.order_products.sum("quantity * price_per_unit") %></span>
   <span class="date_td"><%= record.date %></span>
-  <span class="status_td"><%= record.status_name %></span>
-  <span class="actions_td">
-   <%= link_to 'Mostrar', order_request_path(record) %> |
-   <%= link_to 'Modificar', edit_order_request_path(record) %> |
-   <%= link_to 'Borrar', order_request_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?' %>
+  <span class="status_td" id="<%= record.dom_id + '_status' %>"><%= record.status_name %></span>
+  <span class="actions_td" id="<%= record.dom_id + '_actions' %>">
+    <%= render :partial => 'record_actions', :locals => {:record => record} %>
 </span>
 </div>

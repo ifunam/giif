@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resource :session
 
-  map.resources :order_requests, :member => {:get_file => :get, :destroy_file => :delete, :destroy_project => :delete}
+  map.resources :order_requests, :member => {:get_file => :get, :destroy_item => :delete, :send_order => :post }
 
   map.resources :users
 

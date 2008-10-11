@@ -1,6 +1,6 @@
 <% new_or_existing = order_product.new_record? ? 'new' : 'existing'%>
 <% classname = cycle('list-line-odd', 'list-line-even') %>
-<div class="<%= classname %>" style="background-color: #ccddee;">
+<div class="<%= classname %>" style="background-color: #ccddee;" id="<%= order_product.dom_id %>">
   <% fields_for "products[#{new_or_existing}][]", order_product do |product| %>
   <span class="pd_quantity">
     <%= product.text_field :quantity, :size => '4', :maxlenght => '4' %>
@@ -11,9 +11,15 @@
   <span class="pd_price">
     <%= product.text_field :price_per_unit, :size => '9', :maxlenght => '15' %>
   </span>
-  <span class="pd_actions">
+
+    <span class="pd_actions">
+      <% unless order_product.new_record? %>
+      <%= link_to_remote  "Borrar", :url => destroy_item_order_request_path(:id => order_product.id, :table => 'order_product'), :method => :delete,
+                                                       :confirm => "¿Desea borrar este registro?"%>
+    <% else%>
     <%= link_to_function "Borrar", "$(this).up('.#{classname}').remove();" %>
-  </span>
+    <% end %>
+    </span>
   <% end %>
 </div>
 
