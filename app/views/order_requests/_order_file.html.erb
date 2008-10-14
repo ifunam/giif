@@ -4,17 +4,23 @@
     <span class="of_filetype">
       <%= file.simple_select(FileType, order_file.file_type_id) %>
     </span>
-    <span class="of_file">
-      <%= file.file_field(:file) %>
+    <span class="of_file" id="<%= order_file.dom_id + '_upload' %>">
+      <% unless !order_file.new_record? %>
+         <%= render :partial => 'upload_file', :locals => {:file => file} %>
+      <% else %>
+         <%= render :partial => 'file', :object => order_file, :locals => {:file => file} %>
+      <% end %>
     </span>
     <span class="of_actions">
-         <% unless order_file.new_record? %>
+      <% unless order_file.new_record? %>
+      <%=  link_to_function("Modificar | ", nil, :id => "more_link") do |page|
+      page.replace_html  order_file.dom_id + '_upload', :partial => "upload_file", :locals => {:file => file}
+      end  %>
       <%= link_to_remote  "Borrar", :url => destroy_item_order_request_path(:id => order_file.id, :table => 'order_file'), :method => :delete,
-                                     :confirm => "¿ Desea borrar este archivo ?"%>
+                                                                                                                         :confirm => "¿ Desea borrar este archivo ?"%>
      </span>
-      <%= render :partial => 'file', :object => order_file  %>
     <% else%>
-     <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
+    <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
     <% end %>
-  <% end %>
+    <% end %>
 </div>

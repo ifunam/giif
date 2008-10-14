@@ -9,7 +9,8 @@
 <div id="data">
      <%= render :partial => 'form', :locals => {:f => f} %>
   <p>
-    <%= f.submit "Guardar orden de compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
+    <%= f.submit "Guardar orden de compra", :onclick => "return (confirm('¿Desea almacenar esta orden de compra?'));"%>
+    <%= link_to 'Cancelar', order_requests_path, :confirm => 'Al cancelar la orden de compra no será almacenada' %>
   </p>
 </div>
 <% end %>

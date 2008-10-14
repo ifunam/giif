@@ -39,7 +39,7 @@ class OrderRequestsController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
-          format.html { render :action => "index" }
+          format.html { redirect_to :action => "index" }
           format.xml  { render :xml => @order, :status => :created, :location => @order }
         else
           format.html { render :action => "new" }
@@ -118,11 +118,6 @@ class OrderRequestsController < ApplicationController
   def get_file
     record = OrderFile.find(params[:id])
     send_data record.file, :type => record.content_type, :filename => record.filename, :disposition => 'attachment'
-  end
-
-  def change_order_status
-    @order.order_status_id = 2
-    @order.save
   end
 
   private

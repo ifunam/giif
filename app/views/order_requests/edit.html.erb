@@ -9,15 +9,12 @@
 <%= error_messages_for :order %>
  <% form_for :order_request, @order, :url => order_request_path(@order), :html => { :method => :put, :id => 'order', :multipart => true } do |f| %>
 <div id="data">
-     <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= link_to 'Regresar', order_requests_path, :confirm => 'Los cambios no serán almacenados' %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
   <p>
     <%= f.submit "Actualizar orden de compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
-    <%= f.submit "Cancelar", :onclick => "return (confirm('Al cancelar no se almacenarán los cambios'));"%>
-    <%= link_to 'Cancelar', :action => 'index', :controller => 'order_request', :confirm => 'Al cancelar no se almacenarán los cambios realizados' %>
+    <%= link_to 'Cancelar', order_requests_path, :confirm => 'Al cancelar los cambios no serán almacenados' %>
   </p>
-  <% end %>
- <% form_for :order_request, @order, :url => order_request_path(@order), :html => { :method => :get, :action => 'index', :multipart => true } do |f| %>
- <%= f.submit "Cancelar", :onclick => "return (confirm('Al cancelar no se almacenarán los cambios'));"%>
   <% end %>
 </div>
 

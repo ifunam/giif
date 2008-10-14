@@ -336,7 +336,7 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 }
 .of_actions{
     display:table-cell;
-    width: 70px;
+    width: 120px;
     padding: 2px;
     text-align: left;
 }
@@ -374,4 +374,15 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
         display: table-cell;
         float: left;
         width: 200px;
+}
+
+/*style for show page*/
+#cell_left{
+    font-weight: bold;
+    display: table-cell;
+    width: 200px;
+}
+#cell_right{
+    display: table-cell;
+    width: 300px;
 }

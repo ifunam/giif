@@ -1,32 +1,46 @@
 <%= link_to 'Regresar a inicio', order_requests_path %>
-<h1>Los datos de su orden de compra son los siguientes:<h1>
-      <h4>Información del solicitante:</h4>
-      <div>
-        <label>Nombre del solicitante: <%= @user_profile.fullname %> (<%= @user_profile.adscription_name %>)</label><br/>
-        <label>Teléfono: <%= @user_profile.phone %></label><br/>
-        <label>Fecha de solicitud: <%= Date.today.to_s %></label><br/>
-        <% if @user_profile.has_user_incharge? %>
-        <label>Responsable académico: <%= @user_profile.user_incharge.fullname %></label><br/>
-        <% end %>
-      </div>
+<h2 style="margin-left: 50px;">Los datos de su orden de compra son los siguientes:</h2>
+<div id="collection">
+  <h4>Información del solicitante:</h4>
+  <div class="row">
+    <span id="cell_left">Nombre del solicitante:</span>
+    <span id="cell_right"><%= @user_profile.fullname %> (<%= @user_profile.adscription_name %>)</span><br/>
+    <span id="cell_left">Teléfono: </span>
+    <span id="cell_right"><%= @user_profile.phone %></span><br/>
+    <span id="cell_left">Fecha de solicitud:</span>
+    <span id="cell_right"><%= Date.today.to_s %></span><br/>
+    <% if @user_profile.has_user_incharge? %>
+    <span id="cell_left">Responsable académico:</span>
+    <span id="cell_right"><%= @user_profile.user_incharge.fullname %></span><br/>
+    <% end %>
+  </div>
+</div>
 
-      <div>
-        <h4>Artículo(s)</h4>
-        <%= render :partial => 'product', :collection =>@order.order_products %>
-      </div>
+<div id="collection">
+  <div class="row">
+  <h4>Artículo(s)</h4>
+  <%= render :partial => 'product', :collection =>@order.order_products %>
+  </div>
+</div>
 
-      <div>
-        <h4>Anexo(s)</h4>
-        <%= render :partial => 'file', :collection =>@order.order_files %>
-      </div>
+<div id="collection">
+  <div class="row">
+  <h4>Anexo(s)</h4>
+  <%= render :partial => 'file', :collection =>@order.order_files %>
+</div>
+</div>
 
-    <div>
-      <h4>Proveedor(es)</h4>
-      <%= render :partial => 'provider', :collection =>@order.providers %>
-    </div>
+<div id="collection">
+  <div class="row">
+  <h4>Proveedor(es)</h4>
+  <%= render :partial => 'provider', :collection =>@order.providers %>
+</div>
+</div>
 
-    <div>
-      <h4>Con cargo a:</h4>
-      <%= render :partial => 'project', :collection =>@order.projects %>
-    </div>
+<div id="collection">
+  <div class="row">
+  <h4>Con cargo a:</h4>
+  <%= render :partial => 'project', :collection =>@order.projects %>
+</div>
+</div>
 <%= link_to 'Regresar a inicio', order_requests_path %>
