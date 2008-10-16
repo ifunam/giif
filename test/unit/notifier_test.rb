@@ -1,28 +1,25 @@
 require File.dirname(__FILE__) + '/../test_helper'
-
+require 'notifier'
+require 'flexmock/test_unit'
 class NotifierTest < ActionMailer::TestCase
-  tests Notifier
-  # def test_confirm
-  #     @expected.subject = 'Notifier#confirm'
-  #     @expected.body    = read_fixture('confirm')
-  #     @expected.date    = Time.now
-  # 
-  #     assert_equal @expected.encoded, Notifier.create_confirm(@expected.date).encoded
-  #   end
-  # 
-  #   def test_sent
-  #     @expected.subject = 'Notifier#sent'
-  #     @expected.body    = read_fixture('sent')
-  #     @expected.date    = Time.now
-  # 
-  #     assert_equal @expected.encoded, Notifier.create_sent(@expected.date).encoded
-  #   end
+  fixtures :users, :orders
   
-  # def test_order_request
-  #     response = Notifier.create_order_request(@order)
-  #     assert_equal("Pragmatic Store Order Confirmation" , response.subject)
-  #     assert_equal("dave@pragprog.com" , response.to[0])
-  #     assert_match(/Dear Dave Thomas/, response.body)
-  #   end
+  def setup
+    @user_incharge = UserProfileClient.new
+    @user_incharge.attributes = { 'fullname' => "Juárez Robles Jesús Alejandro", 'adscription_id' => 7, 
+                                  'phone' => "56225001 ext 289", 'user_id' => 167, 'adscription' => "Apoyo", 
+                                  'email' => "alex@fisica.unam.mx" }
+    @user_profile = UserProfileClient.new
+    @user_profile.attributes = { 'fullname' => "Fernando Reyes Jiménez", 'adscription_id' => 7, 
+                                 'phone' => "56225001 ext 289", 'user_id' => 2, 'adscription' => "Apoyo", 
+                                 'email' => "fereyji@gmail.com", 'user_incharge_id' =>167 }
+  end 
+
+  def test_order_request_for_user
+    flexmock(UserProfileClient).should_receive(:find_by_user_id).and_return(@user_incharge)
+    response = Notifier.create_order-request_for_user(Order.first, UserProfileClient.find_by_user_id(2))
+    assert_equal 'subject', response.subject
+    assert_equal 'fereyji@gmail.com', response.to.first
+  end
  
 end
