@@ -28,19 +28,15 @@ class Order < ActiveRecord::Base
     validation
   end
 
-  class << self
-    def valid_options
-      { :user_id=> 1,  :date=> '2008-01-01', :order_status_id=> 1}
-    end
-
-    def build_valid
-      Order.new(Order.valid_options)
-    end
-  end
-
-
   def status_name
     OrderStatus.find(self.order_status_id).name
+  end
+
+  def change_to_sent_status
+    if self.order_status_id ==1
+      self.order_status_id = 2
+      self.save
+    end
   end
 
   def add_products(products)
@@ -104,10 +100,4 @@ class Order < ActiveRecord::Base
       end
     end
   end
-
-  def change_to_sent_status
-    self.order_status_id = 2
-    self.save
-  end
-
 end

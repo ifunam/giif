@@ -27,6 +27,13 @@ class GroupsControllerTest < ActionController::TestCase
      assert_redirected_to group_path(assigns(:record))
    end
 
+   def test_not_create_group
+     @request.session[:user] = User.find_by_login('fernando').id
+     post :create, :group => {:name => nil }
+     assert_response :success
+     assert_template 'new'
+   end
+
    def test_should_show_group
      @request.session[:user] = User.find_by_login('fernando').id
      get :show, :id => Group.find_by_name("Default").id
@@ -46,6 +53,13 @@ class GroupsControllerTest < ActionController::TestCase
      @request.session[:user] = User.find_by_login('fernando').id
      put :update, :id => Group.find_by_name("Default").id, :group => { :name => "De los norteños +"}
      assert_redirected_to group_path(assigns(:record))
+   end
+
+   def test_not_update_group
+     @request.session[:user] = User.find_by_login('fernando').id
+     put :update, :id => Group.find_by_name("Default").id, :group => { :name => nil}
+     assert_response :success
+     assert_template "edit"
    end
 
    def test_should_destroy_group

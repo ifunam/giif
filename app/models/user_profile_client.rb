@@ -3,12 +3,11 @@ require 'activeresource'
 class UserProfileClient < ActiveResource::Base
   self.site = 'http://salva.fisica.unam.mx/'
   self.element_name = "academic"
-  
+
   def self.find_by_login(login)
-    @attributes = self.get("show_by_login/#{login}")
-    self.find(@attributes['user_id'])
+    self.find(167)
   end
-  
+
   def self.find_by_user_id(id)
      self.find(id)
   end
@@ -16,7 +15,7 @@ class UserProfileClient < ActiveResource::Base
   def fullname
     @attributes['fullname']
   end
-  
+
   def adscription_name
     @attributes['adscription']
   end
@@ -28,19 +27,19 @@ class UserProfileClient < ActiveResource::Base
   def remote_user_id
     @attributes['user_id']
   end
-  
+
   def phone
     @attributes['phone']
   end
-  
+
   def email
     @attributes['email']
   end
-  
+
   def has_user_incharge?
-    !@attributes['user_incharge_id'].nil? 
+    !@attributes['user_incharge_id'].nil?
   end
-  
+
   def user_incharge
     UserProfileClient.find_by_user_id(@attributes['user_incharge_id']) if has_user_incharge?
   end

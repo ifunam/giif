@@ -1,18 +1,16 @@
 class Notifier < ActionMailer::Base
- #  def confirm(sent_at = Time.now)
-#     @subject    = 'Solicitud de Orden de Compra enviada!'
-#   #  @body["Notifier"]       = notifier
-#     @recipients = 'fereyji@gmail.com'
-#     @from       = 'fereyji@gmail.com'
-#     @sent_on    = sent_at
-#   end
+  def order_request_from_user(order, user_profile)
+    @subject    = '[GIIF] Solicitud de orden de compra'
+    @recipients = user_profile.email
+    @from = 'noreply@fisica.unam.mx'
+    @sent_on    = Time.now
+    @body = { :order => order}
+  end
 
-  def order_request(order, user_profile)
-    @subject    = 'Solicitud de Orden de Compra'
-    emails = [ user_profile.email ]
-    emails << user_profile.user_incharge.email if user_profile.has_user_incharge?
-    @recipients = emails.join(', ')
-    @from       = 'noreply@fisica.unam.mx'
+  def order_to_userincharge(order, user_incharge)
+    @subject    = '[GIIF] Solicitud de aprobación de orden de compra'
+    @recipients = user_incharge.email #user_profile.user_incharge.email if user_profile.has_user_incharge?
+    @from = 'noreply@fisica.unam.mx'
     @sent_on    = Time.now
     @body = { :order => order}
   end

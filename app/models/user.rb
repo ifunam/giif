@@ -3,12 +3,12 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
 
   validates_presence_of :login, :password, :email
-  validates_length_of :login, :within => 3..30
-  validates_length_of :password, :within => 5..200, :allow_nil => true
-  validates_confirmation_of :password
-  validates_format_of :login, :with => /\A[-a-z0-9\.]*\Z/
-  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_uniqueness_of :login, :email
+  validates_length_of :login, :within => 3..30
+  validates_format_of :login, :with => /\A[-a-z0-9\.]*\Z/
+  validates_length_of :password, :within => 5..30, :allow_nil => true
+  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
+  validates_confirmation_of :password
 
   belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
   has_one :person
@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   def user_incharge_fullname
     self.user_incharge.person.fullname
   end
+
   def is_activated?
     self.status
   end
@@ -79,7 +80,7 @@ class User < ActiveRecord::Base
 
   def change_userstatus(st)
     self.status = st
-    save(true)
+    self.save
   end
 
   def random_string(n)

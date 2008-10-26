@@ -1,10 +1,7 @@
 require 'ruby-debug'
 class OrderRequestsController < ApplicationController
-  auto_complete_for :order_product, :description
+
   #  before_filter :authorize
-  def setup
-    @select = Order.find(2).id
-  end
 
   def index
     @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date DESC" ,
@@ -53,7 +50,11 @@ class OrderRequestsController < ApplicationController
     @order = Order.find(params[:id])
     respond_to do |format|
       if @order.change_to_sent_status
-        #Notifier.deliver_order_request(@order, user_profile)
+        Notifier.deliver_order_request_from_user(@order, user_profile)
+        unless UserProfileClient.find_by_login(:user).has_user_incharge?
+          puts 'here i am'
+          Notifier.deliver_order_to_userincharge(@order, user_incharge)
+       end
         format.js { render :action => 'send_order.rjs'}
       else
         format.js  { render :action => 'errors.rjs' }
@@ -123,5 +124,8 @@ class OrderRequestsController < ApplicationController
   private
   def user_profile
     UserProfileClient.find_by_login(User.find(session[:user]).login)
+  end
+  def user_incharge
+    UserProfileClient.find_by_id(User.find(session[:user]).user_incharge)
   end
 end

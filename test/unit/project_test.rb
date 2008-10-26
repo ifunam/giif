@@ -1,8 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
-  end
+  fixtures :projects
+
+  should_require_attributes :project_type_id, :name, :key
+
+  should_only_allow_numeric_values_for :id
+
+  should_belong_to :order
 end

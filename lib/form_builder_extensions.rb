@@ -2,8 +2,9 @@
 module ActionView
   module Helpers
     class FormBuilder
+      include AutoComplete
       def simple_select(model_name, id=nil)
-        field_name = Inflector.foreign_key(model_name)
+        field_name = ActiveSupport::Inflector.foreign_key(model_name) #TODO: change to ActiveSupport::Inflector because Inflector is deprecated
         select(field_name, model_name.find(:all).collect { |record| [record.name, record.id] }, :prompt => '--Seleccionar--', :selected => id)
       end
     end

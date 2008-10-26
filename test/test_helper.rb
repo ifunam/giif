@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+require File.dirname(__FILE__) + "/factory"
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -36,9 +37,7 @@ class Test::Unit::TestCase
 
   # Add more helper methods to be used by all tests here...
   def login_as(login,password)
-    @controller = SessionsController.new
-    post :signup, :user => { :login => login, :password => password }
-    puts session[:user]
+     @request.session[:user] = User.authenticate?(login,password) ?  User.find_by_login(login.to_s).id : nil
   end
 
   module Shoulda
@@ -87,18 +86,10 @@ class Test::Unit::TestCase
       # private
       def make_model
         model =  model_class
-        options = model.valid_options
+        options = model.build_valid.attributes #model.valid_options
         yield options if block_given?
         model.new(options)
       end
-
-       def myfucking_error
-        puts "Bunch of crappy code here..."
-       end
-
-        def myfucking_method
-        puts "Bunch of crappy code here..."
-       end
     end
   end
   include Shoulda::Extensions

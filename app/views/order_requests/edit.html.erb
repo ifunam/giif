@@ -5,8 +5,7 @@
   <%= content_tag(:b, "Secretaría Administrativa") %> <br/>
   <%= content_tag(:b, "Bienes y suministros") %> <br/>
 </div>
-
-<%= error_messages_for :order %>
+<div id="errors"><%= render :partial => 'errors' %></div>
  <% form_for :order_request, @order, :url => order_request_path(@order), :html => { :method => :put, :id => 'order', :multipart => true } do |f| %>
 <div id="data">
   <%= link_to 'Regresar', order_requests_path, :confirm => 'Los cambios no serán almacenados' %>

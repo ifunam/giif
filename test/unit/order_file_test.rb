@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class OrderFileTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
-  end
+  should_require_attributes :file_type_id, :file, :content_type, :filename
+  should_belong_to :order
+  should_belong_to :file_type
 end
