@@ -16,31 +16,6 @@ class OrderTest < ActiveSupport::TestCase
                                    'date' => '2008-04-19',
                                    'order_status_id' => 1
     }
-#     @order_products = OrderProduct.new
-#     @order_products.attributes = {
-#                                       'order_id' => 3,
-#                                       'quantity' => 1,
-#                                       'description' => 'Hub Koesre KIL-09',
-#                                       'price_per_unit' => 1234.00}
-#     @order_providers = OrderProvider.new
-#     @order_providers.attributes = {
-#                                       'order_id' => 3,
-#                                       'provider_id' => '',
-#                                       }
-#     @order_files = OrderFiles.new
-#     @order_files.attributes = {
-#                                        'order_id' => 3,
-#                                        'file_type_id' => 2,
-#                                        'file' => '',
-#                                        'content_type' => 'UTF-8',
-#                                        'filename' => 'filename'
-#                                        }
-#     @order_projects = Project.new
-#     @order_projects.attributes = {
-#                                       'order_id' => 3,
-#                                       'project_type_id' => 2,
-#                                       'name' => 'Proyecto de investigación en ciencia de materiales',
-#                                       'key' => '623-JH'}
   end
 
   def test_status_name

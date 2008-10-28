@@ -2,6 +2,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 require File.dirname(__FILE__) + "/factory"
+require 'action_controller/test_case'
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -37,6 +38,7 @@ class Test::Unit::TestCase
 
   # Add more helper methods to be used by all tests here...
   def login_as(login,password)
+    # @request = TestRequest.new
      @request.session[:user] = User.authenticate?(login,password) ?  User.find_by_login(login.to_s).id : nil
   end
 

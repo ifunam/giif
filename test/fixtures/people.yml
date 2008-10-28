@@ -1,8 +1,7 @@
 fernando:
-  id: 1
-  firstname: Fernando
-  lastname1: Reyes
-  lastname2: Jímenez
-  gender: t
-  user_id: <%= User.find_by_login('fernando').id %>
-
+ id: 1
+ firstname: Fernando
+ lastname1: Reyes
+ lastname2: Jímenez
+ gender: t
+ user_id: 2

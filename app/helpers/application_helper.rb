@@ -3,7 +3,6 @@
 module ApplicationHelper
     def logged_user
       # This method depends on initialized user session, if it doesn't exist, It doesn't work
-      #User.find(@request.session[:user]).login
       User.find(session[:user]).login
     end
 

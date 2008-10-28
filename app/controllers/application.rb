@@ -24,8 +24,4 @@ class ApplicationController < ActionController::Base
   def store_location
     session[:return_to] = request.request_uri
   end
-
-  def authorization_required
-   session[:user] == 1 ? (return true)  : (render :text => 'You are not the admin, we are recording this request!' and return false)
-  end
 end

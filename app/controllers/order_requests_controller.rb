@@ -51,8 +51,7 @@ class OrderRequestsController < ApplicationController
     respond_to do |format|
       if @order.change_to_sent_status
         Notifier.deliver_order_request_from_user(@order, user_profile)
-        unless UserProfileClient.find_by_login(:user).has_user_incharge?
-          puts 'here i am'
+        if UserProfileClient.find_by_login(:user).has_user_incharge?
           Notifier.deliver_order_to_userincharge(@order, user_incharge)
        end
         format.js { render :action => 'send_order.rjs'}
@@ -125,7 +124,8 @@ class OrderRequestsController < ApplicationController
   def user_profile
     UserProfileClient.find_by_login(User.find(session[:user]).login)
   end
+
   def user_incharge
-    UserProfileClient.find_by_id(User.find(session[:user]).user_incharge)
+    UserProfileClient.find_by_login(User.find(session[:user]).login).user_incharge
   end
 end

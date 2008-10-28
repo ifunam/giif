@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'mocha'
 
 class OrderRequestsControllerTest < ActionController::TestCase
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
@@ -147,7 +148,6 @@ class OrderRequestsControllerTest < ActionController::TestCase
     def test_send_order_to_user_incharge_too
       @request.session[:user] = User.find_by_login('alex').id
       post :send_order, { :id => 1, :user => 'alex'}
-      assert :success
       assert_template 'send_order.rjs'
     end
 
@@ -168,7 +168,7 @@ class OrderRequestsControllerTest < ActionController::TestCase
 
   def test_get_file
     @request.session[:user] = User.find_by_login('fernando').id
-          post :update, { :id => 1, :products => { :new => [
+    post :create, { :id => 1, :products => { :new => [
                                                                        {:description => 'Notebook', :price_per_unit => 789.00, :quantity => 2},
                                                                        {:description => 'Server', :price_per_unit => 1980.00, :quantity => 3}
                                                                       ]
@@ -188,11 +188,8 @@ class OrderRequestsControllerTest < ActionController::TestCase
                                                    },
                               :multipart => true
                   }
-    post :get_file, :id => 1
+    @record = Order.find(:last)
+    get :get_file, :id => @record.order_files.first.id
+    assert_response 200
   end
-
-#     def test_set_user
-#       @request.session[:user] = User.find_by_login('fernando').id
-#       set_user
-#     end
 end

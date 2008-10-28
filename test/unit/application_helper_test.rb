@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'action_controller/test_case'
 require 'application_helper'
 require 'action_view/helpers/form_options_helper'
+require 'mocha'
 
 class ApplicationHelperTest < ActiveSupport::TestCase
   fixtures :users, :order_statuses
@@ -13,8 +14,11 @@ class ApplicationHelperTest < ActiveSupport::TestCase
   end
 
   def test_logged_user
-    login_as('fernando', 'maltiempo')
-    assert_equal 'fernando', logged_user
+    @controller = SessionsController.new
+    @request = ActionController::TestRequest.new
+    @response = ActionController::TestResponse.new
+    post :signup, :user => {:login => "alex", :password => "qw12.." }
+    assert_equal 'alex', logged_user
   end
 
   def test_simple_select
