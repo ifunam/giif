@@ -1,7 +1,13 @@
 <p>
-  Nombre del proyecto: <%= project.name %> <br/><br/>
-  Tipo de proyecto: <%= ProjectType.find(project.project_type_id).name %><br/><br/>
-  Número de proyecto: <%= project.key %>
+  <span id="cell_left">Nombre del proyecto:</span>
+  <span id="cell_right"><%= project.name %></span>
 </p>
-<br/>
-
+<p>
+  <span id="cell_left">Tipo de proyecto:</span>
+  <span id="cell_right"><%= ProjectType.find(project.project_type_id).name %></span>
+</p>
+<p>
+  <span id="cell_left">Número de proyecto:</span>
+  <span id="cell_right"><%= project.key %></span>
+</p>
+<br>

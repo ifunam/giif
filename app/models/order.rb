@@ -79,8 +79,12 @@ class Order < ActiveRecord::Base
     if files.has_key? :existing
       files[:existing].each do |p|
         fh = p[1]
-         OrderFile.update(p[0], {:file => fh['file'].read, :content_type => fh['file'].content_type.chomp.to_s,
-                                               :filename => fh['file'].original_filename.chomp, :file_type_id => fh['file_type_id']})
+        if fh['file'].nil?
+          OrderFile.update(p[0], {:file_type_id => fh['file_type_id']})
+        else
+          OrderFile.update(p[0], {:file => fh['file'].read, :content_type => fh['file'].content_type.chomp.to_s,
+                                                :filename => fh['file'].original_filename.chomp, :file_type_id => fh['file_type_id']})
+        end
       end
     end
   end

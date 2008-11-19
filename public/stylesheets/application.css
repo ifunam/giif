@@ -386,3 +386,8 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
     display: table-cell;
     width: 300px;
 }
+
+/* style for h3 labels */
+h3 {
+    color: green;
+}
