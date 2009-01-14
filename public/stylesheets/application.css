@@ -391,3 +391,20 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 h3 {
     color: green;
 }
+
+/*stylesheet for FIX indicator*/
+.fix {
+    background-color: #CDE;
+    width: 375px;
+    float: right;
+}
+
+.fix-left {
+    display: table-cell;
+    width: 100px;
+}
+
+.fix-right {
+    display: table-cell;
+    width: 275px;
+}

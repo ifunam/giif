@@ -1,0 +1,23 @@
+pesos:
+ id: 1
+ name: "Peso"
+ url: "http://themoneyconverter.com/ES/MXN/rss.xml"
+euro:
+ id: 2
+ name: "Euro"
+ url: "http://themoneyconverter.com/ES/EUR/rss.xml"
+
+dolar:
+ id: 3
+ name: "Dólar"
+ url: "http://themoneyconverter.com/ES/USD/rss.xml"
+
+yen:
+ id: 4
+ name: "Yen"
+ url: "http://themoneyconverter.com/ES/JPY/rss.xml"
+
+libra_esterlina:
+ id: 5
+ name: "Libra esterlina"
+ url: "http://themoneyconverter.com/ES/GBP/rss.xml"

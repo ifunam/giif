@@ -4,10 +4,21 @@
   <%= content_tag(:b, "Bienes y suministros") %> <br/>
 </div>
 
+<%= error_messages_for :currency_data %>
+<% form_for(:currency, @order.currency_order, :url => { :action => "index" }) do |f| %>
+  <%= render :partial => "currency_order", :object => @order.currency_order %>
+<% end %>
+<br/>
+<br/>
+<br/>
+
+
+
 <%= error_messages_for :order %>
 <% form_for(:order_request, @order, :url => { :action => "index" }, :html => {:id => 'order', :multipart => true }) do |f| %>
 <div id="data">
-     <%= render :partial => 'form', :locals => {:f => f} %>
+  <% %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
   <p>
     <%= f.submit "Guardar orden de compra", :onclick => "return (confirm('¿Desea almacenar esta orden de compra?'));"%>
     <%= link_to 'Cancelar', order_requests_path, :confirm => 'Al cancelar la orden de compra no será almacenada' %>

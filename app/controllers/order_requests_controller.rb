@@ -12,19 +12,21 @@ class OrderRequestsController < ApplicationController
   end
 
   def new
-    @user_profile = user_profile
+    # @user_profile = user_profile
     @order = Order.new
     @order.date = Date.today
     @order.user_id = session[:user]
     1.times{ @order.order_products.build }
-    # @order.providers << Provider.new
     @order.order_providers.build.provider = Provider.new
     @order.order_files << OrderFile.new
     @order.projects << Project.new
+    @order.currency_order = CurrencyOrder.new
+    @currencies = Currency.find(:all)
+#    @currency = CurrencyClient.new("http://themoneyconverter.com/ES/USD/rss.xml")
   end
 
   def create
-    @user_profile = user_profile
+    # @user_profile = user_profile
     @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date DESC" ,
                                                     :page => params[:page] || 1, :per_page => 20)
     @order = Order.new(:order_status_id => 1, :date => Date.today)
@@ -33,6 +35,7 @@ class OrderRequestsController < ApplicationController
     @order.add_providers(params[:providers])
     @order.add_files(params[:files])
     @order.add_projects(params[:projects])
+    @order.add_currency_data(@order.id, 1, 13.4876)
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
@@ -62,15 +65,16 @@ class OrderRequestsController < ApplicationController
   end
 
   def edit
-    @user_profile = user_profile
+    # @user_profile = user_profile
     @order = Order.find(params[:id])
+    @currency = CurrencyClient.new
     respond_to do |format|
       format.html { render :action => 'edit'}
     end
   end
 
   def show
-    @user_profile = user_profile
+    # @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
       format.html { render :action => "show" }
@@ -78,7 +82,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def update
-    @user_profile = user_profile
+    # @user_profile = user_profile
     @order = Order.find(params[:id])
     @order.add_products(params[:products])
     @order.add_providers(params[:providers])
@@ -118,6 +122,10 @@ class OrderRequestsController < ApplicationController
   def get_file
     record = OrderFile.find(params[:id])
     send_data record.file, :type => record.content_type, :filename => record.filename, :disposition => 'attachment'
+  end
+
+  def get_currency_data
+    @currency = CurrencyClient.new("http://themoneyconverter.com/ES/USD/rss.xml")
   end
 
   private

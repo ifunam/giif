@@ -1,14 +1,7 @@
-  <div id="user_profile">
-   <div class="row" style="border: none;"><b>Nombre:</b> <%= @user_profile.fullname %> (<%= @user_profile.adscription_name %>)</div>
-   <div class="row" style="border: none;"><b>Teléfono:</b> <%= @user_profile.phone %></div>
-   <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= Date.today.to_s %></div>
-   <% if @user_profile.has_user_incharge? %>
-   <div class="row" style="border: none;"><b>Responsable académico:</b><%= @user_profile.user_incharge.fullname %></div>
-   <% end %>
-  </div>
+<div id="user_profile">
 
+</div>
   <%= content_tag(:h2, "Artículo(s):") %>
-
   <div id="products" class="table">
     <span class="pd_quantity">Cantidad</span><span class="pd_description">Descripción</span> <span class="pd_price">Precio unitario</span> <span class="pd_actions">Acciones</span>
     <%= render :partial => "order_product", :collection => @order.order_products %>
@@ -54,7 +47,7 @@
     Seleccione una de las siguientes opciones: <br/>
 
     <div id="projects" class="table">
-      <span class="op_type">Tipo de proyecto</span><span class="op_name">Nombre del proyecto</span><span class="op_number">No. de proyecto</span><span class="op_actions">Acciones</span>
+      <span class="op_type">Tipo de proyecto</span><span class="op_name">Nombre del proyecto</span><span class="op_number"># Proyecto/Partida</span><span class="op_actions">Acciones</span>
       <%= render :partial => "order_project", :collection => @order.projects %>
     </div>
     <%= link_to_function "Agregar" do |page|

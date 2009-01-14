@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
   has_many :providers, :through => :order_providers
   has_many :order_files
   has_many :projects
+  has_one :currency_order
 
   validates_associated :order_products, :order_status
 
@@ -104,4 +105,16 @@ class Order < ActiveRecord::Base
       end
     end
   end
+
+#   def get_currency_data
+#     CurrencyClient.new("http://themoneyconverter.com/ES/USD/rss.xml")
+#   end
+
+  def add_currency_data(order_id, currency_id, value)
+    @currency_data = CurrencyOrder.new
+    @currency_data.currency_id = currency_id
+    @currency_data.value = value
+    self.currency_order = @currency_data
+  end
+
 end

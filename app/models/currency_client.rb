@@ -1,0 +1,59 @@
+require 'rubygems'
+require 'activeresource'
+require '/usr/lib/ruby/gems/1.8/gems/feedtools-0.2.29/lib/feed_tools.rb'
+# require 'feedtools'
+
+# @current_client = CurrencyClient.find(url)
+# @current_client = CurrencyClient.new(url)
+# @current_client.convert(amount)
+
+class CurrencyClient
+  attr_accessor :value, :description
+
+  def self.find(url)
+    self.new(url)
+  end
+
+  def initialize(url,title=nil)
+    @url = url
+    @title = title || "Title: #{title}"
+    @description = nil
+    @value = nil
+    @resource = nil
+  end
+
+  def get_resource
+    @resource= FeedTools::Feed.open(@url)
+  end
+
+  def get_description
+    for i in 0..@resource.items.size - 1
+      if @resource.items[i].description.include? "Peso Mexicano"
+        @description =  @resource.items[i].description
+        break
+      end
+    end
+  end
+
+  def get_url
+    get_resource
+    get_description
+    @value = Currency.find_by_name(@description.split(/\ /)[1]).url
+  end
+
+  def get_value
+    get_resource
+    get_description
+    if @description.split(/\ /)[1] == "Peso"
+      @value = 1
+    else
+      @value = @description.split(/\ /)[4]
+    end
+
+  end
+
+  def convert(amount)
+    get_value
+    @value.to_f * amount.to_f
+  end
+end
