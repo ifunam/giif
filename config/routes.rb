@@ -3,6 +3,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :order_requests, :member => {:get_file => :get, :destroy_item => :delete, :send_order => :post }
 
+  map.resources :currencies
+
   map.resources :users
 
   map.resources :groups

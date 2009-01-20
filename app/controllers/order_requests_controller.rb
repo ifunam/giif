@@ -49,7 +49,7 @@ class OrderRequestsController < ApplicationController
     end
   end
 
-  def send_order
+   def send_order
     @order = Order.find(params[:id])
     respond_to do |format|
       if @order.change_to_sent_status
@@ -67,7 +67,6 @@ class OrderRequestsController < ApplicationController
   def edit
     # @user_profile = user_profile
     @order = Order.find(params[:id])
-    @currency = CurrencyClient.new
     respond_to do |format|
       format.html { render :action => 'edit'}
     end

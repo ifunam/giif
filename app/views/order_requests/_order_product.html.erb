@@ -6,10 +6,13 @@
     <%= product.text_field :quantity, :size => '4', :maxlenght => '4' %>
   </span>
   <span class="pd_description">
-    <%= product.text_field :description, :size => '71', :maxlenght => '100' %>
+    <%= product.text_field :description, :size => '47', :maxlenght => '70' %>
   </span>
   <span class="pd_price">
     <%= product.text_field :price_per_unit, :size => '9', :maxlenght => '15' %>
+  </span>
+  <span class="pd_type" id="product_type">
+    <%= product.simple_select(ProductCategory, order_product.product_category_id)%>
   </span>
 
     <span class="pd_actions">

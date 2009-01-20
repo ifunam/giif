@@ -31,7 +31,7 @@ class CreateOrders < ActiveRecord::Migration
     end
 
     create_table :order_products do |t|
-      t.references :order, :null => false
+      t.references :order, :product_category, :null => false
       t.integer    :quantity, :null => false
       t.text       :description, :null => false
       t.text       :unit # TODO: Verify if :unit  is required and not null

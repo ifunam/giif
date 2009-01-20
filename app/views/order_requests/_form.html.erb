@@ -3,9 +3,11 @@
 </div>
   <%= content_tag(:h2, "Artículo(s):") %>
   <div id="products" class="table">
-    <span class="pd_quantity">Cantidad</span><span class="pd_description">Descripción</span> <span class="pd_price">Precio unitario</span> <span class="pd_actions">Acciones</span>
+    <span class="pd_quantity">Cantidad</span><span class="pd_description">Descripción</span> <span class="pd_price">Precio unitario</span><span class="pd_type">Categoría del producto</span<span class="pd_actions">Acciones</span>
     <%= render :partial => "order_product", :collection => @order.order_products %>
   </div>
+
+  <%= observe_field :products_new__product_category_id, :url => {:controller => 'order_requests', :action => :get_data},  :with => "'id='+$('products_new__product_category_id').value"%>
 
   <%= link_to_function "Agregar" do |page|
                   page.insert_html :bottom, 'products', :partial => "order_product", :object => OrderProduct.new

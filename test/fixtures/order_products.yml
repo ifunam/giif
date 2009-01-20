@@ -1,5 +1,6 @@
 UPS_Triplite:
  id: 1
+ product_category_id: 1
  order_id: 1
  quantity: 10
  description: "UPS Triplite 500W"

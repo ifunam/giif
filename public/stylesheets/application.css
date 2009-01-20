@@ -306,7 +306,7 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 }
 .pd_description{
     display:table-cell;
-    width: 600px;
+    width: 400px;
     padding: 2px;
     text-align: left;
 }
@@ -316,9 +316,16 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
     padding: 2px;
     text-align: left;
 }
+
+.pd_type {
+    display:table-cell;
+    width: 240px;
+    padding: 2px;
+    text-align: left;
+}
 .pd_actions{
     display:table-cell;
-    width: 70px;
+    width: 50px;
     padding: 2px;
     text-align: left;
 }

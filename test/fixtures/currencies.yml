@@ -2,6 +2,7 @@ pesos:
  id: 1
  name: "Peso"
  url: "http://themoneyconverter.com/ES/MXN/rss.xml"
+
 euro:
  id: 2
  name: "Euro"
@@ -21,3 +22,8 @@ libra_esterlina:
  id: 5
  name: "Libra esterlina"
  url: "http://themoneyconverter.com/ES/GBP/rss.xml"
+
+otro:
+ id: 6
+ name: "Otro"
+ url: "http://themoneyconverter.com/ES/MXN/rss.xml"
