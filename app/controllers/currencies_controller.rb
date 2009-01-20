@@ -22,17 +22,11 @@ class CurrenciesController < ApplicationController
    end
 
    def show
-     if params[:id] == 6
-       respond_to do |format|
-         format.js { render :action => 'create.rjs'}
-       end
-     else
        @record = Currency.find(params[:id])
        @currency = CurrencyClient.new(@record.url)
        respond_to do |format|
          format.js { render :action => 'show.rjs'}
        end
-     end
    end
 
 
