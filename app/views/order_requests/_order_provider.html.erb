@@ -1,5 +1,5 @@
 <% new_or_existing = order_provider.new_record?  ? 'new' : 'existing' %>
-<div class="row" style="background-color: #ccddee;" id="<%= order_provider.dom_id %>">
+<div class="row" style="background-color: #e2eef3;" id="<%= order_provider.dom_id %>">
   <% unless order_provider.new_record? %>
     <% fields_for "providers[#{new_or_existing}][]", order_provider.provider do |provider| %>
     <span class="pv_description">

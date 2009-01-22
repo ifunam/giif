@@ -1,5 +1,7 @@
  if @record.id == 6
-   page.replace_html :currency_data, :partial => 'create_currency'
+   @record.name = nil
+   @record.url = nil
+   page.replace_html :currency_data, :partial => 'new'
  else
    page.replace_html :currency_form, :partial => 'currency', :object => @currency
  end

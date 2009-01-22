@@ -4,19 +4,16 @@
   <%= content_tag(:b, "Bienes y suministros") %> <br/>
 </div>
 
-<% form_for(:currency, :url => { :action => "create" }) do |f| %>
 <div class="fix" id="currency_data">
   <div ="row">
     <span class="fix-left">Divisa:</span>
-    <span class="fix-right" ><%= f.simple_select(Currency)%></span>
+    <span class="fix-right" ><%= simple_select(:currency, Currency, @order.currency_order.currency_id)%></span>
   </div>
-
   <%= observe_field :currency_currency_id, :url => {:controller => 'currencies', :action => :show},  :with => "'id='+$('currency_currency_id').value", :loading => "$('currency_form').update(''); $('currency_loader_indicator').show();", :complete => "$('currency_loader_indicator').hide();" %>
   <%= image_tag('progress_bar3.gif', :id => 'currency_loader_indicator', :style => 'display:none') %>
   <div id="currency_form">
   </div>
 </div>
-<% end %>
 
 <%= error_messages_for :order %>
 <% form_for(:order_request, @order, :url => { :action => "index" }, :html => {:id => 'order', :multipart => true }) do |f| %>

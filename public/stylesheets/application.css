@@ -1,15 +1,21 @@
-body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
+body {
+    background-color: #E2E9F3;
+    font: 9pt Arial, sans-serif;
+    margin: 0px 0px 0px 0px;
+}
 
 /*Structure of layouts*/
 
 #container {
     background-color: #ffffff;
     width: 1100px;
-    margin: 0 4em 0 4em;
+    margin: auto
 }
 #header {
     text-align: center;
+
 }
+
 #menu {
     width: 100%;
 }
@@ -48,13 +54,13 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
 }
 
 /*Menu*/
-#link_cell{
-    font: bold 14px;
-    color: white;
+#link_cell {
+    font-size: 14px;
+    color: ##CC3366;
     display:table-cell;
     width: 220px;
     text-align: center;
-    background-color: #ccddee;
+    background-color: #e2eef3;
     padding: 2px;
 }
 
@@ -64,6 +70,14 @@ body {background-color: #E6E6EF; font: 9pt Arial, sans-serif;}
     font: bold italic 14px;
     text-align: center;
 }
+
+/*Session logout*/
+.login {
+
+    text-align: center;
+}
+
+
 /*General cells*/
 .row{
    // display: table-row;
@@ -401,7 +415,7 @@ h3 {
 
 /*stylesheet for FIX indicator*/
 .fix {
-    background-color: #CDE;
+    background-color: #e2eef3;
     width: 375px;
     float: right;
 }

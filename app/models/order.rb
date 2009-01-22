@@ -106,15 +106,19 @@ class Order < ActiveRecord::Base
     end
   end
 
-#   def get_currency_data
-#     CurrencyClient.new("http://themoneyconverter.com/ES/USD/rss.xml")
-#   end
+  def add_currency_data(id, name, url, value)
+    @currency = Currency.new
+    @currency_order = CurrencyOrder.new
 
-  def add_currency_data(order_id, currency_id, value)
-    @currency_data = CurrencyOrder.new
-    @currency_data.currency_id = currency_id
-    @currency_data.value = value
-    self.currency_order = @currency_data
+    if Currency.find_by_name(name).nil?
+      @currency.name = name
+      @currency.url = url
+      @currency.save
+    end
+
+    @currency_order.currency_id = id
+    @currency_order.order_id = self.id
+    @currency_order.value = value
   end
 
 end

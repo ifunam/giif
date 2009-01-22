@@ -1,6 +1,7 @@
+require 'rubygems'
+require 'pdf/writer'
 require 'ruby-debug'
 class OrderRequestsController < ApplicationController
-
   #  before_filter :authorize
 
   def index
@@ -22,7 +23,6 @@ class OrderRequestsController < ApplicationController
     @order.projects << Project.new
     @order.currency_order = CurrencyOrder.new
     @currencies = Currency.find(:all)
-#    @currency = CurrencyClient.new("http://themoneyconverter.com/ES/USD/rss.xml")
   end
 
   def create
@@ -35,7 +35,7 @@ class OrderRequestsController < ApplicationController
     @order.add_providers(params[:providers])
     @order.add_files(params[:files])
     @order.add_projects(params[:projects])
-    @order.add_currency_data(@order.id, 1, 13.4876)
+    @order.add_currency_data(session[:currency].id, session[:currency].name, session[:currency].url, session[:currency_order].value)
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
@@ -64,6 +64,14 @@ class OrderRequestsController < ApplicationController
     end
   end
 
+   def pdf
+     _p = PDF::Writer.new
+     _p.select_font 'Times-Roman'
+
+     _p.text "Hello, Ruby.", :font_size => 72, :justification => :center
+     send_data _p.render, :filename => 'filename', :type => "application/pdf"
+   end
+
   def edit
     # @user_profile = user_profile
     @order = Order.find(params[:id])
@@ -75,6 +83,7 @@ class OrderRequestsController < ApplicationController
   def show
     # @user_profile = user_profile
     @order = Order.find(params[:id])
+    @currencies = Currency.find(:all, :conditions => ["id=?", 6], :order => 'id')
     respond_to do |format|
       format.html { render :action => "show" }
     end
@@ -135,4 +144,5 @@ class OrderRequestsController < ApplicationController
   def user_incharge
     UserProfileClient.find_by_login(User.find(session[:user]).login).user_incharge
   end
+
 end

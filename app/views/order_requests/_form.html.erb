@@ -7,8 +7,6 @@
     <%= render :partial => "order_product", :collection => @order.order_products %>
   </div>
 
-  <%= observe_field :products_new__product_category_id, :url => {:controller => 'order_requests', :action => :get_data},  :with => "'id='+$('products_new__product_category_id').value"%>
-
   <%= link_to_function "Agregar" do |page|
                   page.insert_html :bottom, 'products', :partial => "order_product", :object => OrderProduct.new
                 end
