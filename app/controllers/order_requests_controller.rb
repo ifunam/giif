@@ -64,14 +64,6 @@ class OrderRequestsController < ApplicationController
     end
   end
 
-   def pdf
-     _p = PDF::Writer.new
-     _p.select_font 'Times-Roman'
-
-     _p.text "Hello, Ruby.", :font_size => 72, :justification => :center
-     send_data _p.render, :filename => 'filename', :type => "application/pdf"
-   end
-
   def edit
     # @user_profile = user_profile
     @order = Order.find(params[:id])
