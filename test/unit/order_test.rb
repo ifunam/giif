@@ -139,4 +139,17 @@ end
       assert !@order.valid?
       assert_equal ["You should add at least one product", "You should add at least one provider"], @order.errors.full_messages
     end
+
+    def test_should_add_currency_data
+      @order = Order.build_valid
+
+      currency = Currency.new(:name => 'Pesos Marcianos', :url => 'someplace')
+      currency_order = CurrencyOrder.new(:value => 10.5)
+      @order.add_currency_data(currency, currency_order)
+
+
+
+       assert !@order.currency_order.nil?
+    end
+
 end

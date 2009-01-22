@@ -106,19 +106,14 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def add_currency_data(id, name, url, value)
-    @currency = Currency.new
-    @currency_order = CurrencyOrder.new
-
-    if Currency.find_by_name(name).nil?
-      @currency.name = name
-      @currency.url = url
-      @currency.save
+  def add_currency_data(currency, currency_order)
+    h = currency.attributes
+    [:id, :user_id, :created_at, :updated_at, :moduser_id].each do |k|
+      h.delete(k.to_s)
     end
-
-    @currency_order.currency_id = id
-    @currency_order.order_id = self.id
-    @currency_order.value = value
-  end
+    puts h
+    currency_order.currency = Currency.exists?(h) ? Currency.find(:first, :conditions => h) : currency
+    self.currency_order = currency_order
+   end
 
 end

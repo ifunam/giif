@@ -35,7 +35,7 @@ class OrderRequestsController < ApplicationController
     @order.add_providers(params[:providers])
     @order.add_files(params[:files])
     @order.add_projects(params[:projects])
-    @order.add_currency_data(session[:currency].id, session[:currency].name, session[:currency].url, session[:currency_order].value)
+    @order.add_currency_data(session[:currency], session[:currency_order])
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save

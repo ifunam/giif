@@ -1,0 +1,5 @@
+one:
+ id: 1
+ currency_id: 3
+ order_id: 1
+ value: 3.78
