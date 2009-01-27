@@ -40,4 +40,10 @@ class CurrenciesController < ApplicationController
      end
    end
 
+   def editing
+     respond_to do |format|
+       format.js { render :action => 'edit.rjs'}
+     end
+   end
+
  end

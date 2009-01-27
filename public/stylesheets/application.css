@@ -1,5 +1,5 @@
 body {
-    background-color: #E2E9F3;
+    background-color: #6f9fef;
     font: 9pt Arial, sans-serif;
     margin: 0px 0px 0px 0px;
 }
@@ -83,6 +83,7 @@ body {
    // display: table-row;
    padding: 2px;
    border-bottom: 1px solid silver;
+   width: 95%;
 }
 .cell{
    display: table-cell;
@@ -270,9 +271,29 @@ body {
 }
 
 /*Links*/
-#links{
+#links {
     text-align: right;
     color: green;
+}
+
+#return {
+    padding-right: 150px;
+    text-align: right;
+}
+
+#return a {
+    text-decoration: none;
+    color: green;
+    font-size: 12px;
+}
+
+#return img {
+    color: white;
+}
+
+#return a:hover {
+    text-decoration: none;
+    color: red;
 }
 
 /**/
@@ -284,9 +305,8 @@ body {
 #collection{
     display: table;
     width: 100%;
-//    border: 1px solid magenta;
     margin-bottom: 10px;
-    padding: 10px;
+    padding-left: 70px;
 }
 
 #collection a{
@@ -406,6 +426,30 @@ body {
 #cell_right{
     display: table-cell;
     width: 300px;
+}
+
+#or_data {
+    width: 800px;
+    margin: auto;
+    padding-left: 100px;
+}
+
+#top_image {
+    background: url("../images/top.jpg");
+    min-height: 30px;
+    display-inline: block;
+}
+
+#user_data {
+    background: url("../images/middle.jpg");
+    min-height: 200px;
+    display-inline: block;
+}
+
+#bottom_image {
+    background: url("../images/bottom.jpg");
+    min-height: 30px;
+    display-inline: block;
 }
 
 /* style for h3 labels */

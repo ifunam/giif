@@ -6,22 +6,7 @@
   <%= content_tag(:b, "Bienes y suministros") %> <br/>
 </div>
 
-<div class="fix" id="currency_data">
-  <div ="row">
-    <span class="fix-left">Divisa:</span>
-    <span class="fix-right" ><%= @order.currency_order.currency.name%></span>
-  </div>
-  <div ="row">
-    <span class="fix-left">Tipo de cambio:</span>
-    <span class="fix-right" ><%= @order.currency_order.value%></span>
-  </div>
-  <div ="row">
-    <span class="fix-left">Fuente:</span>
-    <span class="fix-right" ><%= @order.currency_order.currency.url%></span>
-  </div>
-  <div id="currency_form">
-  </div>
-</div>
+<%= render :partial => 'currency_data' %>
 
 <div id="errors"><%= render :partial => 'errors' %></div>
  <% form_for :order_request, @order, :url => order_request_path(@order), :html => { :method => :put, :id => 'order', :multipart => true } do |f| %>

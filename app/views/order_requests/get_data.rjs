@@ -1,1 +1,0 @@
-page.replace_html :product_type, :partial => 'get_data'

@@ -1,6 +1,0 @@
-<div class="fix" id="currency_data">
-  <% fields_for CurrencyOrder, currency_list do |f| %>
-  <span class="fix-left">Divisa:</span>
-  <span class="fix-right" id="currencies_list"><%= f.simple_select(Currency, currency_list.currency_id)%></span>
-  <% end%>
-</div>

@@ -5,7 +5,7 @@ class OrderRequestsController < ApplicationController
   #  before_filter :authorize
 
   def index
-    @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date DESC" ,
+    @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date ASC" ,
                                                     :page => params[:page] || 1, :per_page => 20)
     respond_to do |format|
       format.html { render :action => :index }
@@ -23,6 +23,7 @@ class OrderRequestsController < ApplicationController
     @order.projects << Project.new
     @order.currency_order = CurrencyOrder.new
     @currencies = Currency.find(:all)
+#    @document = DocumentGenerator.new(@order)
   end
 
   def create
@@ -39,6 +40,7 @@ class OrderRequestsController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
+          generate_pdf
           format.html { redirect_to :action => "index" }
           format.xml  { render :xml => @order, :status => :created, :location => @order }
         else
@@ -88,6 +90,7 @@ class OrderRequestsController < ApplicationController
     @order.add_providers(params[:providers])
     @order.add_files(params[:files])
     @order.add_projects(params[:projects])
+#    @order.add_currency_data(session[:currency], session[:currency_order])
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
@@ -135,6 +138,11 @@ class OrderRequestsController < ApplicationController
 
   def user_incharge
     UserProfileClient.find_by_login(User.find(session[:user]).login).user_incharge
+  end
+
+  def generate_pdf
+    @document = DocumentGenerator.new(@order)
+    @document.to_pdf
   end
 
 end
