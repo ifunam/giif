@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'activeresource'
 class UserProfileClient < ActiveResource::Base
-  self.site = 'http://salva.fisica.unam.mx/'
+  self.site = 'http://salva.fisica.unam.mx:8080/'
   self.element_name = "academic"
 
   def self.find_by_login(login)

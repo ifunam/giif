@@ -1,4 +1,5 @@
 id, name
-1, En proceso
-2, Alta
-3, Rechazado
+ 1, Sin enviar
+ 2, Enviado
+ 3, Aprobado
+ 4, Rechazado

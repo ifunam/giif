@@ -19,11 +19,10 @@ class OrderRequestsController < ApplicationController
     @order.user_id = session[:user]
     1.times{ @order.order_products.build }
     @order.order_providers.build.provider = Provider.new
-    @order.order_files << OrderFile.new
-    @order.projects << Project.new
+    @order.order_file = OrderFile.new
+    @order.project = Project.new
     @order.currency_order = CurrencyOrder.new
     @currencies = Currency.find(:all)
-#    @document = DocumentGenerator.new(@order)
   end
 
   def create
@@ -40,7 +39,6 @@ class OrderRequestsController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
-          generate_pdf
           format.html { redirect_to :action => "index" }
           format.xml  { render :xml => @order, :status => :created, :location => @order }
         else
@@ -51,14 +49,16 @@ class OrderRequestsController < ApplicationController
     end
   end
 
-   def send_order
+  def send_order
+    # @user_profile = user_profile
     @order = Order.find(params[:id])
+    # generate_pdf
     respond_to do |format|
       if @order.change_to_sent_status
-        Notifier.deliver_order_request_from_user(@order, user_profile)
-        if UserProfileClient.find_by_login(:user).has_user_incharge?
-          Notifier.deliver_order_to_userincharge(@order, user_incharge)
-       end
+#        Notifier.deliver_order_request_from_user(@order, user_profile)
+#         if UserProfileClient.find_by_login(:user).has_user_incharge?
+#           Notifier.deliver_order_to_userincharge(@order, user_incharge)
+#       end
         format.js { render :action => 'send_order.rjs'}
       else
         format.js  { render :action => 'errors.rjs' }
@@ -90,7 +90,7 @@ class OrderRequestsController < ApplicationController
     @order.add_providers(params[:providers])
     @order.add_files(params[:files])
     @order.add_projects(params[:projects])
-#    @order.add_currency_data(session[:currency], session[:currency_order])
+    @order.add_currency_data(session[:currency], session[:currency_order])
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
@@ -141,7 +141,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def generate_pdf
-    @document = DocumentGenerator.new(@order)
+    @document = DocumentGenerator.new(@order, @user_profile)
     @document.to_pdf
   end
 

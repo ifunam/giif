@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Bienvenido(a)!'
       session[:user] = User.find_by_login(params[:user][:login]).id
       options = session[:return_to] ?  session[:return_to] : { :controller => 'order_requests',  :action => 'index'}
-   else
+    else
       flash[:notice] = 'El login o password es incorrecto!'
       options = { :action =>:index }
    end

@@ -13,14 +13,10 @@
     </span>
     <span class="of_actions">
       <% unless order_file.new_record? %>
-      <%=  link_to_function("Modificar | ", nil, :id => "more_link") do |page|
+      <%=  link_to_function("Cambiar archivo", nil, :id => "more_link") do |page|
       page.replace_html  order_file.dom_id + '_upload', :partial => "upload_file", :locals => {:file => file}
       end  %>
-      <%= link_to_remote  "Borrar", :url => destroy_item_order_request_path(:id => order_file.id, :table => 'order_file'), :method => :delete,
-                                                                                                                         :confirm => "¿ Desea borrar este archivo ?"%>
      </span>
-    <% else%>
-    <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
     <% end %>
     <% end %>
 </div>

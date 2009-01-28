@@ -1,9 +1,9 @@
-Su solicitud de orden de compra ha sido enviada!!
+Su solicitud de orden de compra ha sido enviada.
 
 Número de orden: <%= @order.id %>
-Fecha: <%= @order.created_at %>
+Fecha: <%= @order.created_at.strftime("%d-%m-%Y") %>
 
-Ahora debe esperar para recibir la notificación del status de su orden de compra.
+Ahora debe esperar para recibir la respuesta a su solicitud interna de compra.
 
 Gracias por usar el GIIF!!
 

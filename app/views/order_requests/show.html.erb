@@ -1,20 +1,18 @@
 <div id="return">
   <%= link_to 'Regresar a inicio', order_requests_path %>
-  <%= link_to( image_tag("icono-retroceso.png", :size => '25x25'), order_requests_path )%>
+  <%= link_to( image_tag("return.png", :size => '25x25'), order_requests_path )%>
 </div>
 
 <h2 style="margin-left: 50px;">Los datos de su orden de compra son los siguientes:</h2>
-
 <div id="or_data">
-
   <div id="top_image">
   </div>
 
   <div id="user_data">
-
     <div id="collection">
       <h3>Información del solicitante:</h3>
       <div class="row">
+
       </div>
     </div>
 
@@ -34,13 +32,6 @@
 
     <div id="collection">
       <div class="row">
-        <h3>Anexo(s)</h3>
-        <%= render :partial => 'filelist', :collection =>@order.order_files %>
-      </div>
-    </div>
-
-    <div id="collection">
-      <div class="row">
         <h3>Proveedor(es)</h3>
         <%= render :partial => 'provider', :collection =>@order.providers %>
       </div>
@@ -48,8 +39,15 @@
 
     <div id="collection">
       <div class="row">
+        <h3>Anexo(s)</h3>
+        <%= render :partial => 'filelist', :object =>@order.order_file %>
+      </div>
+    </div>
+
+    <div id="collection">
+      <div class="row">
         <h3>Con cargo a:</h3>
-        <%= render :partial => 'project', :collection =>@order.projects %>
+        <%= render :partial => 'project', :object =>@order.project %>
       </div>
     </div>
 
@@ -61,7 +59,7 @@
 
 <div id="return">
   <%= link_to 'Regresar a inicio', order_requests_path %>
-  <%= link_to( image_tag("icono-retroceso.png", :size => '25x25'), order_requests_path )%>
+  <%= link_to( image_tag("return.png", :size => '25x25'), order_requests_path )%>
 </div>
 
 <br/>

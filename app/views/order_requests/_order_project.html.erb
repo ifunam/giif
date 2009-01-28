@@ -10,14 +10,5 @@
     <span class="op_number">
       <%= project.text_field :key, :size => '5', :maxlenght => '10' %>
     </span>
-
-    <span class="of_actions">
-      <% unless order_project.new_record? %>
-      <%= link_to_remote  "Borrar", :url => destroy_item_order_request_path(:id => order_project.id, :table => 'project'), :method => :delete,
-                                                       :confirm => "¿Desea borrar este registro?"%>
-    </span>
-    <% else%>
-    <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
-    <% end %>
     <% end %>
 </div>

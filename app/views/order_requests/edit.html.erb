@@ -11,7 +11,6 @@
 <div id="errors"><%= render :partial => 'errors' %></div>
  <% form_for :order_request, @order, :url => order_request_path(@order), :html => { :method => :put, :id => 'order', :multipart => true } do |f| %>
 <div id="data">
-  <%= link_to 'Regresar', order_requests_path, :confirm => 'Los cambios no serán almacenados' %>
   <%= render :partial => 'form', :locals => {:f => f} %>
   <p>
     <%= f.submit "Actualizar orden de compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
