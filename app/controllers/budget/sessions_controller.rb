@@ -1,13 +1,13 @@
 class Budget::SessionsController < SessionsController
-  def login
+
+  def signup
     respond_to do |format|
-      @user = User.find_by_login(params[:user][:login])
-      if User.authenticate?(params[:user][:login], params[:user][:password])
-        session[:user_id] = @user.id
-        flash[:notice] = "Bienvenido(a)"
+      if User.authenticate?(params[:user][:login], params[:user][:password]) #and User.is_budget_admin? params[:user][:login]
+        session[:user] = User.find_by_login(params[:user][:login]).id
+        flash[:notice] = "Bienvenido(a)!"
         format.html { redirect_to(budget_order_requests_url) }
       else
-        flash[:notice] = "El login o el password es incorrecto!"
+        flash[:notice] = "El login o password es incorrecto!"
         format.html { render :action => "index" }
       end
     end
