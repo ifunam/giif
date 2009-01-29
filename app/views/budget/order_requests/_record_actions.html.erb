@@ -1,0 +1,6 @@
+   <%= link_to 'Mostrar', order_request_path(record) %>
+   <% if record.order_status_id==1 then %>
+   | <%= link_to 'Modificar', edit_order_request_path(record) %> |
+   <%= link_to 'Borrar', order_request_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?' %> <br/>
+   <%= link_to_remote 'Enviar orden de compra',  :url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
+   <% end %>

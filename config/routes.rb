@@ -9,7 +9,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups
 
-  map.resources :admins
+  map.namespace :budget do |budget|
+    budget.resource :session
+    budget.resource :order_requests
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
 
