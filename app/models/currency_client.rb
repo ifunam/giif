@@ -1,8 +1,5 @@
 require 'rubygems'
-require 'activeresource'
-#require '/usr/lib/ruby/gems/1.8/gems/feedtools-0.2.29/lib/feed_tools.rb'
-#require 'feed_tools'
-
+#require '/Library/Ruby/Gems/1.8/gems/feedtools-0.2.29/lib/feed_tools'
 # @current_client = CurrencyClient.find(url)
 # @current_client = CurrencyClient.new(url)
 # @current_client.convert(amount)

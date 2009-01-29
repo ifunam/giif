@@ -112,6 +112,7 @@ class Order < ActiveRecord::Base
       h.delete(k.to_s)
     end
     currency_order.currency = Currency.exists?(h) ? Currency.find(:first, :conditions => h) : currency
+    
     self.currency_order = currency_order
    end
 
