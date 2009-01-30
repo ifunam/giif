@@ -2,8 +2,10 @@
   <span class="id_td"><%= record.id %></span>
   <span class="description_td">
     <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/>
-    Total: <%= record.calculate_total_amount %>,
-    Divisa: <%= record.currency_order.currency.name%> | <%= link_to 'Ver más detalles', order_request_path(record) %>
+    <div style="color: #006400;">
+      Total: <%= record.calculate_total_amount %>
+      Divisa: <%= record.currency_order.currency.name%>
+    </div>
   </span>
   <span class="date_td"><%= record.date %></span>
   <span class="status_td" id="<%= record.dom_id + '_status' %>"><%= record.status_name %></span>

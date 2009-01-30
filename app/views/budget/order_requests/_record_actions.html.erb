@@ -1,6 +1,9 @@
-   <%= link_to 'Mostrar', order_request_path(record) %>
-   <% if record.order_status_id==1 then %>
-   | <%= link_to 'Modificar', edit_order_request_path(record) %> |
-   <%= link_to 'Borrar', order_request_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?' %> <br/>
-   <%= link_to_remote 'Enviar orden de compra',  :url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
+   <%= link_to 'Mostrar', budget_order_request_path(record) %>
+   <% if record.order_status_id==2 then %>
+    | <%= link_to 'Agregar descripción', :action => 'new'%>
+    | <%= link_to_remote 'Aprobar',  :url => {:action => 'approve_request', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
+    | <%= link_to_remote 'Cancelar',  :url => {:action => 'cancel_request', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
+    | <%= link_to_remote 'Actualizar divisa',  :url => {:action => 'update_currency', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
+    | <%= link_to_remote 'Vista previa',  :url => {:action => 'show_pdf', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
    <% end %>
+

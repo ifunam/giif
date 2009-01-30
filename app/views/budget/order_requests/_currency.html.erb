@@ -1,0 +1,16 @@
+<p>
+  <span id="cell_left">Tipo:</span>
+  <span id="cell_right"><%= currency.currency.name %></span>
+</p>
+<p>
+  <span id="cell_left">Fuente:</span>
+  <span id="cell_right"><%= link_to currency.currency.url, currency.currency.url %></span>
+</p>
+<p>
+  <span id="cell_left">Valor:</span>
+  <span id="cell_right"><%= currency.value %></span>
+</p>
+<p>
+  <span id="cell_left">Fecha:</span>
+  <span id="cell_right"><%= currency.created_at.strftime("%d-%m-%Y") %></span>
+</p>
