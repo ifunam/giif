@@ -127,10 +127,6 @@ class OrderRequestsController < ApplicationController
     send_data record.file, :type => record.content_type, :filename => record.filename, :disposition => 'attachment'
   end
 
-  def get_currency_data
-    @currency = CurrencyClient.new("http://themoneyconverter.com/ES/USD/rss.xml")
-  end
-
   private
   def user_profile
     UserProfileClient.find_by_login(User.find(session[:user]).login)

@@ -12,6 +12,8 @@ class Order < ActiveRecord::Base
   has_one :project
   has_one :currency_order
 
+  has_one :budget_datum
+
   validates_associated :order_products, :order_status
 
   before_validation :verify_products_and_providers
@@ -36,6 +38,20 @@ class Order < ActiveRecord::Base
   def change_to_sent_status
     if self.order_status_id ==1
       self.order_status_id = 2
+      self.save
+    end
+  end
+
+  def change_to_approved_status
+    if self.order_status_id ==2
+      self.order_status_id = 3
+      self.save
+    end
+  end
+
+  def change_to_rejected_status
+    if self.order_status_id ==2
+      self.order_status_id = 4
       self.save
     end
   end
@@ -112,9 +128,18 @@ class Order < ActiveRecord::Base
       h.delete(k.to_s)
     end
     currency_order.currency = Currency.exists?(h) ? Currency.find(:first, :conditions => h) : currency
-    
     self.currency_order = currency_order
-   end
+  end
+
+  def add_budget_datum(budget, user)
+    self.budget_datum = BudgetDatum.new(budget)
+    self.budget_datum.order_id = self.id
+    self.budget_datum.user_id = user
+#     if BudgetDatum.exists?
+#     else
+#     end
+#     budget_datum = BudgetDatum.exists?(budget) ? BudgetDatum.find(:first, :conditions => budget) : BudgetDatum.new(budget)
+  end
 
   def calculate_total_amount
     OrderProduct.sum("quantity * price_per_unit", :conditions => ['order_id=?', self.id])

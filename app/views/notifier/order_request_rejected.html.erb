@@ -1,0 +1,8 @@
+Ciudad Universitaría, <%= Date.today.strftime("%d-%m-%Y")%>
+
+Su solicitud de orden de compra ha sido rechazada.
+
+Número de orden:   <%= @order.id %>
+Fecha de solicitud:   <%= @order.created_at.strftime("%d-%m-%Y") %>
+
+Secretaría administrativa, IFUNAM.

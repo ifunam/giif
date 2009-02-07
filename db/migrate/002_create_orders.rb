@@ -103,10 +103,10 @@ class CreateOrders < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :estimate_data do |t|
+    create_table :budget_data do |t|
       t.references :order, :user, :null => false
-      t.integer    :code,  :previous_number
-      t.string     :external_account
+      t.integer   :previous_number
+      t.string     :code, :external_account
       t.text       :observations
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps

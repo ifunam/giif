@@ -473,3 +473,285 @@ h3 {
     display: table-cell;
     width: 275px;
 }
+
+/*CSS for template of order request*/
+#template_header {
+    text-align: center;
+    font: 8pt Arial, sans-serif;
+    background: url("../images/escudo_unam.jpg");
+    background-position: left;
+    background-repeat: no-repeat;
+    margin-left: 50px;
+    height: 90px;
+}
+
+#order_request_data {
+    width: 1060px;
+    margin: 0px 20px 0px 20px;
+    font: 9pt arial, sans-serif;
+    font-weight: bold;
+}
+
+#order_request_data a {
+    padding-top: 4px;
+    display: inline-block;
+}
+
+#datacell_left {
+    border: 1px solid black;
+    margin-bottom: 5px;
+    width: 180px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#datacell_right {
+    border: 1px solid black;
+    border-left: none;
+    width: 340px;
+    height: 20px;
+    display: inline-block;
+}
+
+#datacell_right a {
+    padding-left: 20px;
+}
+
+#template_date {
+    margin-left: 200px;
+    border: 1px solid black;
+    min-height: 20px;
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+
+ }
+
+#template_date a {
+    padding-left: 20px;
+    text-decoration: underline;
+    display: inline-block;
+}
+
+#number_title {
+    border: 1px solid black;
+    width: 35px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#number_cell {
+    border: 1px solid black;
+    border-top: none;
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    padding-right: 5px;
+    text-align: right;
+    font-weight: normal;
+}
+
+#quantity_title {
+    border: 1px solid black;
+    border-left: none;
+    width: 100px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#quantity_cell {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: -3px;
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    padding-right: 50px;
+    text-align: right;
+    font-weight: normal;
+}
+
+#description_title {
+    border: 1px solid black;
+    border-left: none;
+    width: 588px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#description_cell {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: -3px;
+    width: 568px;
+    height: 20px;
+    display: inline-block;
+    padding-left: 20px;
+    font-weight: normal;
+}
+
+#unit_title {
+    border: 1px solid black;
+    border-left: none;
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#unit_cell {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: -3px;
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    padding-right: 20px;
+    text-align: right;
+    font-weight: normal;
+}
+
+#price_per_unit_title {
+    border: 1px solid black;
+    border-left: none;
+    width: 140px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#price_per_unit_cell {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: -3px;
+    width: 80px;
+    height: 20px;
+    display: inline-block;
+    padding-right: 60px;
+    text-align: right;
+    font-weight: normal;
+}
+
+#total_title {
+    border: 1px solid black;
+    border-left: none;
+    width: 140px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#total_cell {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: -3px;
+    width: 80px;
+    height: 20px;
+    display: inline-block;
+    padding-right: 60px;
+    text-align: right;
+    font-weight: normal;
+}
+
+#total_sum {
+    border: 1px solid black;
+    border-top: none;
+    width: 80px;
+    height: 20px;
+    display: inline-block;
+    text-align: right;
+    padding-right: 60px;
+    font-weight: normal;
+}
+
+
+#provider_title {
+    border: 1px solid black;
+    border-left: none;
+    width: 1022px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#provider_cell {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: -3px;
+    width: 1002px;
+    height: 20px;
+    display: inline-block;
+    text-align: left;
+    font-weight: normal;
+    padding-left: 20px;
+}
+
+#attached {
+    border: 1px solid black;
+}
+
+#charge {
+    border: 1px solid black;
+}
+
+#inrow-left {
+    padding-left: 100px;
+    width: 150px;
+    display: inline-block;
+}
+
+#inrow-right {
+    display: inline-block;
+}
+
+#budget_advice {
+   border-bottom: 1px solid black;
+    text-align:center;
+    background-color: #DCDCDC;
+    margin-bottom: 10px;
+}
+
+#code_title {
+    padding-left: 20px;
+    width: 350px;
+    display: inline-block;
+}
+
+#extaccount_title {
+    width: 350px;
+    display: inline-block;
+}
+
+#prevnumber_title {
+    width: 250px;
+    display: inline-block;
+}
+
+#observations_title {
+    padding-left: 20px;
+    width: 100px;
+
+}
+
+#text_area_observations {
+    width: 600px;
+    padding-left: 120px;
+}
+
+#row_submit {
+    text-align: right;
+    padding-right: 250px;
+}
+
+
+

@@ -1,0 +1,14 @@
+<div id="template_header">
+  <%= render :partial => "order_data"%>
+
+  <div style="border: 1px solid black;">
+    <div id="budget_advice">ESPACIO EXCLUSIVO PARA SER LLENADO POR EL ÁREA DE PRESUPUESTO</div>
+    <%= error_messages_for :budget_datum %>
+    <div id="code_title">Código: <span style="display: inline-block;"><%=f.text_field :code, :size => 15%></span></div>
+    <div id="extaccount_title">Cuenta Ing. Ext.: <span style="display: inline-block;"><%=f.text_field :external_account, :size => 15%></span></div>
+    <div id="prevnumber_title">Previo No.: <span style="display: inline-block;"><%= f.text_field :previous_number, :size => 15%></span></div><br/><br/>
+    <div id="observations_title">Observaciones: </div><div id="text_area_observations"><%= f.text_area :observations, :size => '80x2'%></div><br/>
+  </div>
+
+</div><br/>
+

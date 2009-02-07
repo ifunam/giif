@@ -7,10 +7,9 @@
 
 <%= render :partial => 'currency_info' %>
 
-<%= error_messages_for :order %>
+<%= error_messages_for 'budget_datum' %>
 <% form_for(:order_request, @order, :url => { :action => "index" }, :html => {:id => 'order', :multipart => true }) do |f| %>
 <div id="data">
-  <% %>
   <%= render :partial => 'form', :locals => {:f => f} %>
   <p>
     <%= f.submit "Guardar orden de compra", :onclick => "return (confirm('¿Desea almacenar esta orden de compra?'));"%>
