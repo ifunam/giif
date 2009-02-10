@@ -20,22 +20,26 @@
 
   <br/><br/><div id="number_title"><a>No.</a></div><div id="provider_title"><a>PROVEEDORES</a></div>
   <%= render :partial => "provider", :collection => @order.providers%>
-
+  <% unless @order.order_file.nil? %>
   <br/><br/>
   <div id="attached"> ANEXOS:<br/>
     <span style="padding-left: 100px;"><%= @order.order_file.file_type.name %>  (<%= link_to @order.order_file.filename,  get_file_order_request_path(@order.order_file.id), :method => :get %>)</a>
   </div>
-
+  <% end %>
   <br/><br/>
+
+  <% unless @order.project.nil? %>
   <div id="charge"> CON CARGO A:<br/>
     <div id="inrow-left">Presupuesto:</div><div id="inrow-right"><%= @order.project.project_type.name%></div><br/>
     <div id="inrow-left">Nombre del proyecto: </div><div id="inrow-right"><%= @order.project.name%></div><br/>
     <div id="inrow-left">Número de proyecto: </div><div id="inrow-right"><%= @order.project.key%></div><br/>
   </div><br/>
+  <% end %>
 
+  <% unless @order.currency_order.nil? %>
   <div style="border: 1px solid black;">DIVISA<br/>
     <div id="inrow-left">Divisa: </div><div id="inrow-right"><%= @order.currency_order.currency.name%></div><br/>
     <div id="inrow-left">Tipo de cambio: </div><div id="inrow-right"><%= @order.currency_order.value%></div><br/>
     <div id="inrow-left">Equivalente en M.N.: </div><div id="inrow-right"><%= @order.currency_order.value * @order.calculate_total_amount%></div><br/>
   </div><br/>
-
+  <% end %>

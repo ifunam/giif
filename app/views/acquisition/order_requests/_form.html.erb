@@ -1,5 +1,5 @@
 <div id="template_header">
-  <%= render :partial => "order_data"%>
+  <%= render :partial => "acquisition/order_requests/order_data"%>
 
   <div style="border: 1px solid black;">
     <div id="budget_advice">ESPACIO EXCLUSIVO PARA SER LLENADO POR EL ÁREA DE ADQUISICIONES</div>
@@ -14,17 +14,18 @@
       <div id="acquisition_cell" style="border: 1px solid black;">
         INVITACIÓN A CUANDO MENOS TRES PERSONAS<br/>
         <span class="fix-left">DGPROV</span>
-        <span class="fix-right" ><%=   radio_button("acquisition", "invitation", 0)%></span>
+        <span class="fix-right" ><%=   radio_button("acquisition", "is_subcomittee_invitation", false)%></span>
         <span class="fix-left">SUBCOMITÉ</span>
-        <span class="fix-right" ><%=   radio_button("acquisition", "invitation", 1)%></span>
+        <span class="fix-right" ><%=   radio_button("acquisition", "is_subcomittee_invitation", true)%></span>
       </div>
       <div id="acquisition_cell" style="border: 1px solid black;">LICITACIÓN PÚBLICA<br/>
         <span class="fix-left">DGPROV</span>
-        <span class="fix-right" ><%=   radio_button("acquisition", "bid", 0)%></span>
+        <span class="fix-right" ><%=   radio_button("acquisition", "is_subcomittee_bid", false)%></span>
         <span class="fix-left">SUBCOMITÉ</span>
-        <span class="fix-right" ><%=   radio_button("acquisition", "bid", 1)%></span>
+        <span class="fix-right" ><%=   radio_button("acquisition", "is_subcomittee_bid", true)%></span>
       </div>
     </div>
+	<%= hidden_field :acquisition, :order_id %>
   </div>
 
 </div><br/>

@@ -13,23 +13,25 @@ class Acquisition::OrderRequestsController < ApplicationController
     send_file File.join(RAILS_ROOT, 'tmp', 'documents', 'solicitud_compra_15.pdf'), :type => 'application/pdf', :disposition => 'inline'
   end
 
-  def add_data
+  def new
     @order = Order.find(params[:id])
     @user = user_profile
+    @acquisition = Acquisition.new
+    @acquisition.order_id = @order.id
+    respond_to do |format|
+      format.html { render :action => 'new' }
+    end
   end
 
   def create
-    @collection = Order.paginate(:all, :conditions => [ "order_status_id=3" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
-    @order = Order.find(params[:id])
-    @user = user_profile
-    @order.add_acquisition_data(params[:acquisition], session[:user])
-
+    @acquisition = Acquisition.new(params[:acquisition])
+    @acquisition.currency_id = 1
+    @acquisition.user_id = session[:user]
     respond_to do |format|
-      if @order.acquisition.valid?
-        @order.save
+      if @acquisition.save
         format.html { redirect_to :action => "index" }
       else
-        format.html { render :action => "add_data", :id => @order.id }
+        format.html { redirect_to :action => "new", :id => @acquisition.order_id }
       end
     end
   end

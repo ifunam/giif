@@ -1,0 +1,7 @@
+<% form_for(:acquisition, @acquisition, :url => { :action => "create"}) do |f| %>
+ <%= render :partial => 'form', :locals => {:f => f}%>
+ <div id="row_submit">
+   <%= f.submit "Guardar cambios", :onclick => "return (confirm('¿Desea almacenar los cambios?'));"%>
+   <%= link_to 'Cancelar', acquisition_order_requests_path, :confirm => 'Al cancelar los cambios no serán guardados' %>
+ </div><br/>
+<% end%>
