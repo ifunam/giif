@@ -1,0 +1,24 @@
+<div id="text_login">
+  <% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %>
+  <%= error_messages_for :user %>
+  <div> Ingrese su nombre de administrador y contraseña:</div>
+
+<% form_for :user, :url => { :action => "signup" } do |f| %>
+
+  <p>
+    <div class="td_text"><label>Usuario:</label></div>
+    <div class="td_textbox"><%= f.text_field(:login) %></div>
+  </p>
+
+  <p>
+    <div class="td_text"><label>Contraseña:</label></div>
+    <div class="td_textbox"><%= f.password_field(:password) %></div>
+  </p>
+
+  <p>
+    <%= f.submit "Ingresar" %>
+  </p>
+
+  <% end %>
+</div>
+

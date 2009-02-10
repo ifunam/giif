@@ -753,5 +753,9 @@ h3 {
     padding-right: 250px;
 }
 
+#acquisition_cell {
+    width: 348px;
+    display: inline-block;
+}
 
 

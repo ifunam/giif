@@ -12,7 +12,8 @@ class Order < ActiveRecord::Base
   has_one :project
   has_one :currency_order
 
-  has_one :budget_datum
+  has_one :budget
+  has_one :acquisition
 
   validates_associated :order_products, :order_status
 
@@ -131,14 +132,36 @@ class Order < ActiveRecord::Base
     self.currency_order = currency_order
   end
 
-  def add_budget_datum(budget, user)
-    self.budget_datum = BudgetDatum.new(budget)
-    self.budget_datum.order_id = self.id
-    self.budget_datum.user_id = user
-#     if BudgetDatum.exists?
-#     else
-#     end
-#     budget_datum = BudgetDatum.exists?(budget) ? BudgetDatum.find(:first, :conditions => budget) : BudgetDatum.new(budget)
+  def add_budget_data(budget, user)
+     if Budget.exists?(budget)
+       data = Budget.find(:first, :conditions => ['order_id = ?', self.id])
+       data.code = budget.code
+       data.external_account = budget.external_account
+       data.previous_number = budget.previous_number
+       data.observations = budget.observations
+       self.budget << data
+     else
+       self.budget = Budget.new(budget)
+       self.budget.order_id = self.id
+       self.budget.user_id = user
+     end
+  end
+
+  def add_acquisition_data(acquisition, user)
+    if Acquisition.exists?(:order_id => self.id)
+      self.acquisition = Acquisition.find(:first, :conditions => ['order_id = ?', self.id])
+      self.acquisition.direct_adjudication_type_id = acquisition['direct_adjudication_type_id']
+      self.acquisition.is_subcomitte_invitation = acquisition['invitation']
+      self.acquisition.is_subcomitte_bid = acquisition['bid']
+    else
+      self.acquisition = Acquisition.new
+      self.acquisition.order_id = self.id
+      self.acquisition.user_id = user.id
+      self.acquisition.currency_id = self.currency_order.currency_id
+      self.acquisition.direct_adjudication_type_id = acquisition['direct_adjudication_type_id']
+      self.acquisition.is_subcomittee_invitation = acquisition['invitation']
+      self.acquisition.is_subcomitee_bid = acquisition['bid']
+    end
   end
 
   def calculate_total_amount

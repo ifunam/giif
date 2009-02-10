@@ -14,6 +14,11 @@ ActionController::Routing::Routes.draw do |map|
     budget.resources :order_requests
   end
 
+  map.namespace :acquisition do |acquisition|
+    acquisition.resource :session
+    acquisition.resources :order_requests
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

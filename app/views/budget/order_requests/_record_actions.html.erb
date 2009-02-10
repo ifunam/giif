@@ -1,14 +1,21 @@
-<%= link_to 'Vista previa',  :action => 'show_pdf', :id => record.id%><br/>
-<% if record.order_status_id==2 then %>
-  | <%= link_to_remote 'Aprobar',  :url => {:action => 'approve', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
-  | <%= link_to_remote 'Cancelar',  :url => {:action => 'reject', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %> |<br/>
-<% end%>
-<% if record.order_status_id==3 then %>
-  <% if record.budget_datum.nil? then %>
-    <%= link_to 'Capturar solicitud', :action => 'add_data', :id => record.id%><br/>
-  <% else%>
-    <%= link_to 'Editar', :action => 'edit', :id => record.id%><br/>
-  <% end%>
- <%= link_to_remote 'Cambiar divisa',  :url => {:action => 'update_currency', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
-<% end %>
+<div style="text-align: center">
+<%= link_to 'Ver solicitud',  :action => 'show_pdf', :id => record.id%><br/>
 
+<% if record.order_status_id < 3%>
+<%= link_to_remote 'Cambiar divisa',  :url => {:action => 'show_currency', :id => record.id}, :format => 'js'%><br/>
+<% end%>
+<% if record.order_status_id==2 then %>
+<% if record.budget.nil?%>
+  | <%= link_to 'Agregar datos', :action => 'add_data', :id => record.id%>
+<% else%>
+  | <%= link_to 'Editar', :action => 'edit', :id => record.id%>
+| <%= link_to_remote 'Aprobar',  :url => {:action => 'approve', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
+<% end%>
+
+  | <%= link_to_remote 'Rechazar',  :url => {:action => 'reject', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %> |<br/>
+<% end%>
+
+<% if record.order_status_id==3 then %>
+
+<% end%>
+</div>

@@ -38,42 +38,56 @@ class Budget::OrderRequestsController < ApplicationController
   def add_data
     @order = Order.find(params[:id])
     @user = user_profile
-    @order.budget_datum = BudgetDatum.new
+    @order.budget = Budget.new
   end
 
   def edit
     @order = Order.find(params[:id])
     @user = user_profile
-    @order.budget_datum = BudgetDatum.find_by_order_id(params[:id])
+    @order.budget = Budget.find_by_order_id(params[:id])
   end
 
   def create
     @collection = Order.paginate(:all, :conditions => [ "order_status_id=2" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
     @order = Order.find(params[:id])
-    @order.add_budget_datum(params[:budget_datum], session[:user])
+    @order.add_budget_data(params[:budget], session[:user])
 
-       respond_to do |format|
-         if @order.budget_datum.valid?
-           @order.save
-           format.html { redirect_to :action => "index" }
-         else
-           format.html { render :action => "add_data", :id => @order.id }
-         end
-       end
+    respond_to do |format|
+      if @order.budget.valid?
+        @order.save
+        format.html { redirect_to :action => "index" }
+      else
+        format.html { render :action => "add_data", :id => @order.id }
+      end
+    end
   end
 
   def update
     @collection = Order.paginate(:all, :conditions => [ "order_status_id=2" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
     @order = Order.find(params[:id])
-    @order.add_budget_datum(params[:budget_datum], session[:user])
-       respond_to do |format|
-         if @order.budget_datum.valid?
-           @order.save
-           format.html { redirect_to :action => "index" }
-         else
-           format.html { render :action => "add_data", :id => @order.id }
-         end
-       end
+    @order.add_budget_data(params[:budget], session[:user])
+
+    respond_to do |format|
+      if @order.budget_data.valid?
+        @order.save
+        format.html { redirect_to :action => "index" }
+      else
+        format.html { redirect_to :action => 'index' }
+      end
+    end
+  end
+
+  def show_currency
+    @order = Order.find(params[:id])
+    @currencies = Currency.find(:all, :conditions => ['id <= ?', 6])
+
+    respond_to do |format|
+      format.js { render :action => 'change_currency.rjs'}
+    end
+  end
+
+  def change_currency
+
   end
 
  def show_pdf

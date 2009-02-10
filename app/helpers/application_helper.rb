@@ -14,6 +14,7 @@ module ApplicationHelper
         select(object_name, field_name, model_name.find(:all, :order => 'id').collect { |record| [record.name, record.id] }, :prompt => '--Seleccionar--', :selected => id)
       end
     end
+
 end
 
 

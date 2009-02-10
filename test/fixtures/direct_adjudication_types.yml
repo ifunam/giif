@@ -1,0 +1,11 @@
+SVA:
+  id: 1
+  name: "SVA"
+
+Por montos:
+ id: 2
+ name: "Por montos"
+
+Por excepción:
+ id: 3
+ name: "Por excepción"

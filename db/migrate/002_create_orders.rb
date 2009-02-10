@@ -87,23 +87,21 @@ class CreateOrders < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :adjudication_types do |t|
+    create_table :direct_adjudication_types do |t|
       t.string     :name, :null => false
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
 
-    create_table :biddings do |t|
-      t.references :order, :user, :currencies, :adjudication_type, :null => false
-      t.float      :exchange_rate, :equivalent_mx, :null => false
-      t.text       :person_invited, :null =>false
-      t.boolean    :is_subcomittee # TODO: verify if :is_subcomittee is  boolean or catalog
-      t.boolean    :is_public, :null =>false
+    create_table :acquisitions do |t|
+      t.references :order, :user, :currency, :direct_adjudication_type, :null => false
+      t.boolean    :is_subcomittee_invitation, :null => false # TODO: verify if :is_subcomittee is  boolean or catalog
+      t.boolean    :is_subcomittee_bid, :null =>false
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
 
-    create_table :budget_data do |t|
+    create_table :budgets do |t|
       t.references :order, :user, :null => false
       t.integer   :previous_number
       t.string     :code, :external_account
@@ -117,6 +115,6 @@ class CreateOrders < ActiveRecord::Migration
   def self.down
     drop_table :project_types, :projects, :order_statuses, :orders, :order_products,
     :file_types, :order_files, :providers, :order_providers, :order_logs, :currencies,
-    :currency_orders, :biddings, :estimate_data, :adjutication_types, :files_uploaded
+    :currency_orders, :acquisitions, :direct_adjudication_types, :files_uploaded, :budgets
   end
 end

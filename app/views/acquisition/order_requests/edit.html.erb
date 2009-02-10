@@ -1,4 +1,4 @@
-<% form_for(:budget, @order.budget, :url => { :action => "update", :id => @order.id}) do |f| %>
+<% form_for(:acquisition, @order.acquisition, :url => { :action => "update", :id => @order.id}) do |f| %>
  <%= render :partial => 'form', :locals => {:f => f}%>
  <div id="row_submit">
    <%= f.submit "Actualizar datos", :onclick => "return (confirm('¿Desea actualizar los datos?'));"%>
