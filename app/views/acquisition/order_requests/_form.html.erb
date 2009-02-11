@@ -9,23 +9,23 @@
       <div id="acquisition_cell">
         ADJUDICACIÓN DIRECTA<br/>
         <span class="fix-left">Divisa:</span>
-        <span class="fix-right" ><%= simple_select(:acquisition, DirectAdjudicationType)%></span>
+        <span class="fix-right" ><%= simple_select(:acquisition, DirectAdjudicationType, @acquisition.direct_adjudication_type_id)%></span>
       </div>
       <div id="acquisition_cell" style="border: 1px solid black;">
         INVITACIÓN A CUANDO MENOS TRES PERSONAS<br/>
         <span class="fix-left">DGPROV</span>
-        <span class="fix-right" ><%=   radio_button("acquisition", "is_subcomittee_invitation", false)%></span>
+        <span class="fix-right" ><%= radio_button("acquisition", "is_subcomittee_invitation", false)%></span>
         <span class="fix-left">SUBCOMITÉ</span>
-        <span class="fix-right" ><%=   radio_button("acquisition", "is_subcomittee_invitation", true)%></span>
+        <span class="fix-right" ><%= radio_button("acquisition", "is_subcomittee_invitation",  true)%></span>
       </div>
       <div id="acquisition_cell" style="border: 1px solid black;">LICITACIÓN PÚBLICA<br/>
         <span class="fix-left">DGPROV</span>
-        <span class="fix-right" ><%=   radio_button("acquisition", "is_subcomittee_bid", false)%></span>
+        <span class="fix-right" ><%= radio_button("acquisition", "is_subcomittee_bid", false)%></span>
         <span class="fix-left">SUBCOMITÉ</span>
-        <span class="fix-right" ><%=   radio_button("acquisition", "is_subcomittee_bid", true)%></span>
+        <span class="fix-right" ><%= radio_button("acquisition", "is_subcomittee_bid", true)%></span>
       </div>
     </div>
-	<%= hidden_field :acquisition, :order_id %>
+        <%= hidden_field :acquisition, :order_id %>
   </div>
 
 </div><br/>

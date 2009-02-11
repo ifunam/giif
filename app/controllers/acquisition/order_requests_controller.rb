@@ -9,10 +9,6 @@ class Acquisition::OrderRequestsController < ApplicationController
     end
   end
 
-  def show_pdf
-    send_file File.join(RAILS_ROOT, 'tmp', 'documents', 'solicitud_compra_15.pdf'), :type => 'application/pdf', :disposition => 'inline'
-  end
-
   def new
     @order = Order.find(params[:id])
     @user = user_profile
@@ -25,7 +21,6 @@ class Acquisition::OrderRequestsController < ApplicationController
 
   def create
     @acquisition = Acquisition.new(params[:acquisition])
-    @acquisition.currency_id = 1
     @acquisition.user_id = session[:user]
     respond_to do |format|
       if @acquisition.save
@@ -36,25 +31,35 @@ class Acquisition::OrderRequestsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
+  def show_pdf
+    send_file File.join(RAILS_ROOT, 'tmp', 'documents', 'solicitud_compra_15.pdf'), :type => 'application/pdf', :disposition => 'inline'
+  end
+
   def edit
     @order = Order.find(params[:id])
     @user = user_profile
+    @acquisition = Acquisition.find_by_order_id(params[:id])
+
+    respond_to do |format|
+      format.html { render :action => 'edit'}
+    end
   end
 
-#   def update
-#     @collection = Order.paginate(:all, :conditions => [ "order_status_id=2" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
-#     @order = Order.find(params[:id])
-#     @order.add_budget_datum(params[:budget_datum], session[:user])
+  def update
+    @acquisition = Acquisition.find_by_order_id(params[:id])
 
-#     respond_to do |format|
-#       if @order.budget_datum.valid?
-#         @order.save
-#         format.html { redirect_to :action => "index" }
-#       else
-#         format.html { redirect_to :action => 'index' }
-#       end
-#     end
-#   end
+    respond_to do |format|
+      if @acquisition.update_attributes(params[:acquisition])
+        format.html { redirect_to :action => "index" }
+      else
+        format.html { redirect_to :action => "new", :id => @acquisition.order_id }
+      end
+    end
+  end
 
   private
   def user_profile

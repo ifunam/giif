@@ -94,7 +94,7 @@ class CreateOrders < ActiveRecord::Migration
     end
 
     create_table :acquisitions do |t|
-      t.references :order, :user, :currency, :direct_adjudication_type, :null => false
+      t.references :order, :user, :direct_adjudication_type, :null => false
       t.boolean    :is_subcomittee_invitation, :null => false # TODO: verify if :is_subcomittee is  boolean or catalog
       t.boolean    :is_subcomittee_bid, :null =>false
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"

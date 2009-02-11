@@ -1,5 +1,5 @@
 require 'rubygems'
-#require '/Library/Ruby/Gems/1.8/gems/feedtools-0.2.29/lib/feed_tools'
+require '/usr/lib/ruby/gems/1.8/gems/feedtools-0.2.29/lib/feed_tools.rb'
 #require 'feed_tools'
 class CurrencyClient
   attr_accessor :value, :description

@@ -38,41 +38,37 @@ class Budget::OrderRequestsController < ApplicationController
   def add_data
     @order = Order.find(params[:id])
     @user = user_profile
-    @order.budget = Budget.new
+    @budget = Budget.new
+    @budget.order_id = @order.id
   end
 
   def edit
     @order = Order.find(params[:id])
     @user = user_profile
-    @order.budget = Budget.find_by_order_id(params[:id])
+    @budget = Budget.find_by_order_id(params[:id])
   end
 
   def create
-    @collection = Order.paginate(:all, :conditions => [ "order_status_id=2" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
-    @order = Order.find(params[:id])
-    @order.add_budget_data(params[:budget], session[:user])
+    @budget = Budget.new(params[:budget])
+    @budget.user_id = session[:user]
 
     respond_to do |format|
-      if @order.budget.valid?
-        @order.save
+      if @budget.save
         format.html { redirect_to :action => "index" }
       else
-        format.html { render :action => "add_data", :id => @order.id }
+        format.html { render :action => "add_data", :id => @budget.order_id }
       end
     end
   end
 
   def update
-    @collection = Order.paginate(:all, :conditions => [ "order_status_id=2" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
-    @order = Order.find(params[:id])
-    @order.add_budget_data(params[:budget], session[:user])
+    @budget = Budget.find_by_order_id(params[:id])
 
     respond_to do |format|
-      if @order.budget_data.valid?
-        @order.save
+      if @budget.update_attributes(params[:budget])
         format.html { redirect_to :action => "index" }
       else
-        format.html { redirect_to :action => 'index' }
+        format.html { redirect_to :action => "new", :id => @budget.order_id }
       end
     end
   end
