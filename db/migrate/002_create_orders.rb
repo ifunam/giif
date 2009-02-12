@@ -103,8 +103,8 @@ class CreateOrders < ActiveRecord::Migration
 
     create_table :budgets do |t|
       t.references :order, :user, :null => false
-      t.integer   :previous_number
-      t.string     :code, :external_account
+      t.integer   :previous_number, :null => false
+      t.string     :code, :external_account, :null => false
       t.text       :observations
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps

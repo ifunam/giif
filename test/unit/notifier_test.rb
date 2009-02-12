@@ -18,7 +18,7 @@ class NotifierTest < ActionMailer::TestCase
   def test_order_request_from_user
     flexmock(UserProfileClient).should_receive(:find_by_user_id).and_return(@user_profile)
     response = Notifier.create_order_request_from_user(Order.first, UserProfileClient.find_by_user_id(2))
-    assert_equal '[GIIF] Solicitud de orden de compra', response.subject
+    assert_equal '[GIIF] Solicitud de orden de compra enviada', response.subject
     assert_equal 'fereyji@gmail.com', response.to.first
   end
 
@@ -26,6 +26,21 @@ class NotifierTest < ActionMailer::TestCase
     flexmock(UserProfileClient).should_receive(:find_by_user_id).and_return(@user_incharge)
     response = Notifier.create_order_to_userincharge(Order.first, UserProfileClient.find_by_user_id(167))
     assert_equal '[GIIF] Solicitud de aprobación de orden de compra', response.subject
-    assert_equal 'alex@fisica.unam.mx', response.to.first
+    assert_equal 'fereyji@gmail.com', response.to.first
+#    assert_equal 'alex@fisica.unam.mx', response.to.first #the mail receptor was changed
+  end
+
+  def test_request_approved
+    flexmock(UserProfileClient).should_receive(:find_by_user_id).and_return(@user_profile)
+    response = Notifier.create_request_approved(Order.first)#, UserProfileClient.find_by_user_id(2))
+    assert_equal '[GIIF] Aprobación de solicitud interna de compra', response.subject
+    assert_equal 'fereyji@gmail.com', response.to.first
+  end
+
+  def test_request_rejected
+    flexmock(UserProfileClient).should_receive(:find_by_user_id).and_return(@user_profile)
+    response = Notifier.create_order_request_rejected(Order.first)#, UserProfileClient.find_by_user_id(2))
+    assert_equal '[GIIF] Rechazo de solicitud interna de compra', response.subject
+    assert_equal 'fereyji@gmail.com', response.to.first
   end
 end

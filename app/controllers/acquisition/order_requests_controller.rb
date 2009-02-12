@@ -32,7 +32,12 @@ class Acquisition::OrderRequestsController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
+    @user = user_profile
 
+    respond_to do |format|
+      format.html { render :action => "show" }
+    end
   end
 
   def show_pdf

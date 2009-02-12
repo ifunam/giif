@@ -3,7 +3,7 @@ require 'mocha'
 
 class Acquisition::OrderRequestsControllerTest < ActionController::TestCase
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions, :order_statuses, :orders, :order_products
-  
+
   def test_should_get_new
       @request.session[:user] = User.find_by_login('fernando').id
       get :new, :id => 1
@@ -18,5 +18,5 @@ class Acquisition::OrderRequestsControllerTest < ActionController::TestCase
       assert_response :redirect
       assert_template 'index'
   end
-  
+
 end

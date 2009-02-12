@@ -29,12 +29,6 @@ class CurrencyClient
     end
   end
 
-  def get_url
-    get_resource
-    get_description
-    @value = Currency.find_by_name(@description.split(/\ /)[1]).url
-  end
-
   def get_value
     get_resource
     get_description

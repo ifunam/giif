@@ -15,7 +15,7 @@
 
   <div id="number_title"><a>No.</a></div><div id="quantity_title"><a>CANTIDAD</a></div><div id="description_title"><a>DESCRIPCIÓN DE LOS BIENES E INSUMOS REQUERIDOS</a></div><div id="unit_title"><a>UNIDAD</a></div><div id="price_per_unit_title"><a>PRECIO POR UNIDAD</a></div><div id="total_title"><a>IMPORTE</a></div>
 
-  <%= render :partial => "product", :collection => @order.order_products, :locals => { :i => @order.order_products.last.id}%>
+  <%= render :partial => "product", :collection => @order.order_products%>
   <span style="padding-left: 830px;">COSTO TOTAL: <div id="total_sum"><%= @order.calculate_total_amount%></div></span>
 
   <br/><br/><div id="number_title"><a>No.</a></div><div id="provider_title"><a>PROVEEDORES</a></div>

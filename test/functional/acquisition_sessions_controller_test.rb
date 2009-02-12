@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class SessionsControllerTest < ActionController::TestCase
-  fixtures :users
-
+class Acquisition::SessionsControllerTest < ActionController::TestCase
   def test_should_index
     get :index
     assert_response :success
@@ -10,10 +8,9 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   def test_should_signup
-#    post :signup, :user => {:login => "alex", :password => "qw12.." }
-    post :signup, :user => {:login => "fernando", :password => "maltiempo" }
-    assert_equal 'Bienvenido(a)!', flash[:notice]
-    assert_redirected_to :controller => "order_requests"
+    post :signup, :user => {:login => "fernando", :password => "maltiempo" } #replace with FENIX authentication
+#    assert_equal 'Bienvenido(a)!', flash[:notice]
+    assert_redirected_to :controller => "acquisition/order_requests"
   end
 
   def test_should_not_signup

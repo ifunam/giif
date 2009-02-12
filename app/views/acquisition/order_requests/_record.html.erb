@@ -1,13 +1,18 @@
 <div class="row">
   <span class="id_td"><%= record.id %></span>
-  <span class="description_td">
+  <span class="description_acq" style="font-weight: normal">
     <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/>
     <div style="color: #006400;">
       Total: <%= record.calculate_total_amount %>
       Divisa: <%= record.currency_order.currency.name%>
     </div>
   </span>
-  <span class="date_td"><%= record.date %></span>
+  <span class="date_td"><%= record.created_at.strftime("%d-%m-%Y") %></span>
+  <% unless record.acquisition.nil?%>
+  <span class="date_update_acq" style="font-weight: normal"><%= record.acquisition.updated_at.strftime("%d-%m-%Y, %H:%M") %></span>
+  <% else%>
+  <span class="date_update_acq" style="font-weight: normal"><%= %></span>
+  <% end%>
   <span class="status_td" id="<%= record.dom_id + '_status' %>"><%= record.status_name %></span>
   <span class="actions_td" id="<%= record.dom_id + '_actions' %>">
     <%= render :partial => 'record_actions', :locals => {:record => record} %>

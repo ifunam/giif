@@ -73,7 +73,6 @@ body {
 
 /*Session logout*/
 .login {
-
     text-align: center;
 }
 
@@ -199,71 +198,31 @@ body {
 .id_td{
     display: table-cell;
     width: 60px;
-//    border: 1px solid silver;
 }
 .description_td{
     display: table-cell;
     width: 500px;
-//    border: 1px solid silver;
 }
 
 .amount_td{
     display: table-cell;
     width: 90px;
-//    border: 1px solid silver;
 }
 
 .date_td{
     display: table-cell;
     width: 90px;
-//    border: 1px solid silver;
 }
 
 .status_td{
     display: table-cell;
     width: 90px;
-//    border: 1px solid silver;
 }
 
 .actions_td{
     display: table-cell;
     width: 170px;
-//    border: 1px solid silver;
 }
-
-
-
-/* .id_td{ */
-/*     display: table-cell; */
-/*     width: 5%; */
-/*    padding-right: 30px; */
-/*     max-width: 12px; */
-/* } */
-
-/* .description_td{ */
-/*     display: table-cell; */
-/*     width: 350px; */
-/* //    padding-right: 300px; */
-/*     max-width: 350px; */
-/*     position: relative; */
-/* } */
-
-/* .amount_td{ */
-/*     display: table-cell; */
-/*     width: 10%; */
-/* } */
-
-/* .date_td{ */
-/*     display: table-cell; */
-/*     width: 10%; */
-/* } */
-
-/* .actions_td{ */
-/*     display: table-cell; */
-/*     width: 30%; */
-/* } */
-
-
 
 /*Total*/
 #total{
@@ -758,4 +717,16 @@ h3 {
     display: inline-block;
 }
 
+/*columns of *acquisition/order_requests*/
+.description_acq{
+    display: table-cell;
+    font-weight: bold;
+    width: 370px;
+}
+
+.date_update_acq{
+    display: table-cell;
+    font-weight: bold;
+    width: 110px;
+}
 
