@@ -164,10 +164,9 @@ end
     end
 
     def test_should_calculate_total_amount
-      @order = Order.last
-
       products = {:existing => { 1 => { :order_id => 1,  :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00}}}
       @order.add_products(products)
+      @order.id = 1
 
       assert_equal 2468, @order.calculate_total_amount
     end

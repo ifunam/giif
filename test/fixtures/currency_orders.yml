@@ -1,5 +1,11 @@
 one:
  id: 1
- currency_id: 3
+ currency_id: 2
  order_id: 1
  value: 3.78
+
+two:
+ id: 2
+ currency_id: 2
+ order_id: 2
+ value: 14.56

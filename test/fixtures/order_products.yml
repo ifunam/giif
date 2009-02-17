@@ -5,3 +5,11 @@ UPS_Triplite:
  quantity: 10
  description: "UPS Triplite 500W"
  price_per_unit: 5667.00
+
+two:
+ id: 2
+ product_category_id: 1
+ order_id: 2
+ quantity: 15
+ description: "Laptop Gateway MX989-L"
+ price_per_unit: 1234.67

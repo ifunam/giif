@@ -22,6 +22,6 @@ class ApplicationHelperTest < ActiveSupport::TestCase
   end
 
   def test_simple_select
-    assert_dom_equal %Q(<select name="form[order_status_id]" id="form_order_status_id"><option value="">--Seleccionar--</option>\n<option value="1">En proceso</option>\n<option value="2">Alta</option>\n<option value="3">Rechazado</option></select>), simple_select(:form, OrderStatus)
+    assert_dom_equal %Q(<select name=\"form[order_status_id]\" id=\"form_order_status_id\"><option value=\"\">--Seleccionar--</option>\n<option value=\"1\">Sin enviar</option>\n<option value=\"2\">En proceso</option>\n<option value=\"3\">Aprobado</option>\n<option value=\"4\">Rechazado</option></select>), simple_select(:form, OrderStatus)
   end
 end

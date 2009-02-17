@@ -83,13 +83,10 @@ class Budget::OrderRequestsController < ApplicationController
     end
   end
 
-  def change_currency
 
+  def show_pdf
+    send_file File.join(RAILS_ROOT, 'tmp', 'documents', 'solicitud_compra_15.pdf'), :type => 'application/pdf', :disposition => 'inline'
   end
-
- def show_pdf
-   send_file File.join(RAILS_ROOT, 'tmp', 'documents', 'solicitud_compra_15.pdf'), :type => 'application/pdf', :disposition => 'inline'
- end
 
   private
   def user_profile

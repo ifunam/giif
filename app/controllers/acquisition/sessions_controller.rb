@@ -2,7 +2,7 @@ class Acquisition::SessionsController < SessionsController
 
   def signup
     respond_to do |format|
-      if User.authenticate?(params[:user][:login], params[:user][:password]) #and User.is_budget_admin? params[:user][:login]
+      if User.authenticate?(params[:user][:login], params[:user][:password]) #and User.is_budget_admin? params[:user][:login] #Replace with FENIX authentication
         session[:user] = User.find_by_login(params[:user][:login]).id
         #flash[:notice] = "Bienvenido(a)!"
         format.html { redirect_to :action => 'index', :controller => 'order_requests' }

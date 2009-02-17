@@ -2,7 +2,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'mocha'
 
 class Acquisition::OrderRequestsControllerTest < ActionController::TestCase
-  fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions, :order_statuses, :orders, :order_products
+  fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
+    :order_statuses, :orders, :order_products,:currencies, :currency_orders, 
+    :order_files
 
   def test_should_get_index
     @request.session[:user] = User.find_by_login('fernando').id

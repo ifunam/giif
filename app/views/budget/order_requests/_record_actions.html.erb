@@ -6,7 +6,7 @@
 <% end%>
 <% if record.order_status_id==2 then %>
 <% if record.budget.nil?%>
-  | <%= link_to 'Agregar datos', :action => 'add_data', :id => record.id%>
+  | <%= link_to 'Agregar datos', :action => 'new', :id => record.id%>
 <% else%>
   | <%= link_to 'Editar', :action => 'edit', :id => record.id%>
 | <%= link_to_remote 'Aprobar',  :url => {:action => 'approve', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>

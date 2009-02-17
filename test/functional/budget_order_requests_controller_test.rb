@@ -1,7 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class Budget::OrderRequestsControllerTest < ActionController::TestCase
-  fixtures :users, :orders, :budgets
+  fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
+    :order_statuses, :orders, :order_products,:currencies, :currency_orders, 
+    :order_files
 
   def test_should_get_index
     @request.session[:user] = User.find_by_login('fernando').id
@@ -85,10 +87,10 @@ class Budget::OrderRequestsControllerTest < ActionController::TestCase
     assert_redirected_to 'budget/order_requests/new/1'
   end
 
-  def test_show_currency
-    post :show_currency, :id => 1
-    
-    assert_template :partial => 'currency_info'
+  def test_should_show_currency
+    post :show_currency, :id => 2
+
+    assert_response 302
   end
 
   def test_show_pdf
