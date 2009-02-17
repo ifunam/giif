@@ -13,7 +13,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def new
-    # @user_profile = user_profile
+    @user_profile = user_profile
     @order = Order.new
     @order.date = Date.today
     @order.user_id = session[:user]
@@ -26,7 +26,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def create
-    # @user_profile = user_profile
+    @user_profile = user_profile
     @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date DESC" ,
                                                     :page => params[:page] || 1, :per_page => 20)
     @order = Order.new(:order_status_id => 1, :date => Date.today)
@@ -45,20 +45,21 @@ class OrderRequestsController < ApplicationController
           format.html { render :action => "new" }
           format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
         end
+
       end
     end
   end
 
   def send_order
-    # @user_profile = user_profile
+    @user_profile = user_profile
     @order = Order.find(params[:id])
-    # generate_pdf
+    generate_pdf
     respond_to do |format|
       if @order.change_to_sent_status
-#        Notifier.deliver_order_request_from_user(@order, user_profile)
-#         if UserProfileClient.find_by_login(:user).has_user_incharge?
-#           Notifier.deliver_order_to_userincharge(@order, user_incharge)
-#       end
+        Notifier.deliver_order_request_from_user(@order, user_profile)
+         if UserProfileClient.find_by_login(:user).has_user_incharge?
+           Notifier.deliver_order_to_userincharge(@order, user_incharge)
+       end
         format.js { render :action => 'send_order.rjs'}
       else
         format.js  { render :action => 'errors.rjs' }
@@ -67,7 +68,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def edit
-    # @user_profile = user_profile
+    @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
       format.html { render :action => 'edit'}
@@ -75,7 +76,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def show
-    # @user_profile = user_profile
+    @user_profile = user_profile
     @order = Order.find(params[:id])
     @currencies = Currency.find(:all, :conditions => ["id=?", 6], :order => 'id')
     respond_to do |format|
@@ -84,7 +85,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def update
-    # @user_profile = user_profile
+    @user_profile = user_profile
     @order = Order.find(params[:id])
     @order.add_products(params[:products])
     @order.add_providers(params[:providers])

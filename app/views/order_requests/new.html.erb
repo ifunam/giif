@@ -3,10 +3,10 @@
   <%= content_tag(:b, "Secretaría Administrativa") %> <br/>
   <%= content_tag(:b, "Bienes y suministros") %> <br/>
 </div>
-
-
+ 
+ 
 <%= render :partial => 'currency_info' %>
-
+ 
 <%= error_messages_for 'budget_datum' %>
 <% form_for(:order_request, @order, :url => { :action => "index" }, :html => {:id => 'order', :multipart => true }) do |f| %>
 <div id="data">
@@ -17,4 +17,3 @@
   </p>
 </div>
 <% end %>
-

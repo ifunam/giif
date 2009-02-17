@@ -9,14 +9,14 @@ class Acquisition::SessionsControllerTest < ActionController::TestCase
 
   def test_should_signup
     post :signup, :user => {:login => "fernando", :password => "maltiempo" } #replace with FENIX authentication
-#    assert_equal 'Bienvenido(a)!', flash[:notice]
+    assert_equal 'Bienvenido(a)!', flash[:notice]
     assert_redirected_to :controller => "acquisition/order_requests"
   end
 
   def test_should_not_signup
     post :signup, :user => {:login => "fernando", :password => "badpassword" }
     assert_equal 'El login o password es incorrecto!', flash[:notice]
-    assert_redirected_to :action => 'index'
+    assert_template 'index'
   end
 
   def test_should_logout

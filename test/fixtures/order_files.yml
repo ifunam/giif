@@ -1,3 +1,18 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+<%
+def fixture_data(name)
+  render_binary("#{RAILS_ROOT}/test/fixtures/#{name}")
+end
 
-#one
+def render_binary(filename)
+  data = File.open(filename,'rb').read
+  "!binary | #{[data].pack('m').gsub(/\n/,"\n    ")}\n"
+end
+%>
+
+one:
+ id: 1
+ order_id: 1
+ file_type_id: 1
+ file: <%= fixture_data("logo_unam.jpg") %>
+ content_type: "doc"
+ filename: "top_secret"

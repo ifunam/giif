@@ -44,17 +44,17 @@ class Order < ActiveRecord::Base
   end
 
   def change_to_approved_status
-    if self.order_status_id ==2
+   if self.order_status_id ==2
       self.order_status_id = 3
       self.save
-    end
+   end
   end
 
   def change_to_rejected_status
-    if self.order_status_id ==2
+   if self.order_status_id ==2
       self.order_status_id = 4
       self.save
-    end
+   end
   end
 
   def add_products(products)
@@ -110,8 +110,7 @@ class Order < ActiveRecord::Base
   def add_projects(projects)
     if projects.has_key? :new
       projects[:new].each do |fh|
-        self.project = Project.new(:name => fh['name'], :key => fh['key'],
-                                                      :project_type_id => fh['project_type_id'])
+        self.project = Project.new(:name => fh['name'], :key => fh['key'],:project_type_id => fh['project_type_id'])
       end
     end
     if projects.has_key? :existing
@@ -128,7 +127,9 @@ class Order < ActiveRecord::Base
     [:id, :user_id, :created_at, :updated_at, :moduser_id].each do |k|
       h.delete(k.to_s)
     end
+
     currency_order.currency = Currency.exists?(h) ? Currency.find(:first, :conditions => h) : currency
+    
     self.currency_order = currency_order
   end
 

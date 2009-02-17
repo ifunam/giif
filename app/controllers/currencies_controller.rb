@@ -1,9 +1,4 @@
 class CurrenciesController < ApplicationController
-  def index
-    respond_to do |format|
-      format.html { render :action => :index }
-    end
-  end
 
   def new
     @record = Currency.new
@@ -40,9 +35,9 @@ class CurrenciesController < ApplicationController
      end
    end
 
-   def editing
+   def change_currency
      respond_to do |format|
-       format.js { render :action => 'edit.rjs'}
+       format.js { render :action => 'change_currency.rjs'}
      end
    end
 

@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
   end
 
   def signup
-    if User.authenticate?(params[:user][:login], params[:user][:password])
-#    if AuthenticationClient.authenticate?(params[:user][:login], params[:user][:password])
+#    if User.authenticate?(params[:user][:login], params[:user][:password])
+    if AuthenticationClient.authenticate?(params[:user][:login], params[:user][:password])
       flash[:notice] = 'Bienvenido(a)!'
       session[:user] = User.find_by_login(params[:user][:login]).id
       options = session[:return_to] ?  session[:return_to] : { :controller => 'order_requests',  :action => 'index'}

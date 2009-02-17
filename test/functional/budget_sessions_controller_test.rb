@@ -14,12 +14,12 @@ class Budget::SessionsControllerTest < ActionController::TestCase
     assert_equal 'Bienvenido(a)!', flash[:notice]
     assert_redirected_to :controller => "order_requests"
   end
- 
-   def test_should_not_signup
-     post :signup, :user => {:login => "fernando", :password => "badpassword" }
-     assert_equal 'El login o password es incorrecto!', flash[:notice]
-     assert_template 'index'
-   end
+  
+  def test_should_not_signup
+    post :signup, :user => {:login => "fernando", :password => "badpassword" }
+    assert_equal 'El login o password es incorrecto!', flash[:notice]
+    assert_template 'index'
+  end
 
   def test_should_logout
     post :signup, :user => {:login => "fernando", :password => "maltiempo" }

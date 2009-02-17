@@ -22,9 +22,10 @@ class Budget::OrderRequestsController < ApplicationController
     end
   end
 
+
   def reject
     @order = Order.find(params[:id])
-
+    
     respond_to do |format|
       if @order.change_to_rejected_status
         Notifier.deliver_order_request_rejected(@order) #, user_profile)
@@ -34,8 +35,8 @@ class Budget::OrderRequestsController < ApplicationController
       end
     end
   end
-
-  def add_data
+  
+  def new
     @order = Order.find(params[:id])
     @user = user_profile
     @budget = Budget.new
@@ -56,7 +57,7 @@ class Budget::OrderRequestsController < ApplicationController
       if @budget.save
         format.html { redirect_to :action => "index" }
       else
-        format.html { render :action => "add_data", :id => @budget.order_id }
+        format.html { render :action => "new", :id => @budget.order_id }
       end
     end
   end

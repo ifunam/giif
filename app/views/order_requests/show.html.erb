@@ -12,7 +12,16 @@
     <div id="collection">
       <h3>Información del solicitante:</h3>
       <div class="row">
-
+	<span id="cell_left">Nombre del solicitante:</span>
+	<span id="cell_right"><%= @user_profile.fullname %> (<%= @user_profile.adscription_name %>)</span><br/>
+	<span id="cell_left">Teléfono: </span>
+	<span id="cell_right"><%= @user_profile.phone %></span><br/>
+	<span id="cell_left">Fecha de solicitud:</span>
+	<span id="cell_right"><%= Date.today.to_s %></span><br/>
+	<% if @user_profile.has_user_incharge? %>
+	 <span id="cell_left">Responsable académico:</span>
+	 <span id="cell_right"><%= @user_profile.user_incharge.fullname %></span><br/>
+	<% end %>
       </div>
     </div>
 
