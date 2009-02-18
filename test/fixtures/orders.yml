@@ -9,3 +9,9 @@ two:
  user_id: 2
  date: 2008-02-16
  order_status_id: 2
+
+three:
+ id: 3
+ user_id: 3
+ date: 2008-02-16
+ order_status_id: 3

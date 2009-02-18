@@ -9,3 +9,9 @@ two:
  currency_id: 2
  order_id: 2
  value: 14.56
+
+three:
+ id: 3
+ currency_id: 5
+ order_id: 3
+ value: 21.56

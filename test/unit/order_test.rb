@@ -2,7 +2,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'mocha'
 
 class OrderTest < ActiveSupport::TestCase
-  fixtures :users, :order_statuses, :orders, :order_products, :providers, :order_providers
+  fixtures :users, :order_statuses, :orders, :order_products, 
+           :providers, :order_providers, :project_types, :projects
+           :order_files
 
   should_have_many :order_products, :order_providers, :providers
   should_have_one :order_file, :project, :currency_order, :budget, :acquisition
@@ -82,7 +84,7 @@ class OrderTest < ActiveSupport::TestCase
     file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf').times(2)
     file.stubs(:content_type).returns('application/pdf')
     file.stubs(:read).returns('file_content(a lot of bits here...)')
-    file_1 = { :new => [{'file' => file, 'file_type_id' => 2}]}
+    file_1 = { :existing => { 1 => {'file' => file, 'file_type_id' => 2}}}
     @order.add_files(file_1)
     @order.save
     @order.add_files(:existing => { @order.order_file.id => {'file' => file, 'file_type_id' => 2}})

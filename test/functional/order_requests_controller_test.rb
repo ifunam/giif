@@ -4,7 +4,7 @@ require 'mocha'
 class OrderRequestsControllerTest < ActionController::TestCase
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
     :order_statuses, :orders, :order_products,:currencies, :currency_orders, 
-    :order_files
+    :order_files, :project_types, :projects
 
 
   def test_should_get_index
@@ -94,7 +94,7 @@ class OrderRequestsControllerTest < ActionController::TestCase
   def test_should_post_update
     @request.session[:user] = User.find_by_login('fernando').id
     @request.session[:currency] = Currency.new(:name => 'Dólar nigeriano', :url => 'http://www.currencyexchange.com')
-    @request.session[:currency_order] = CurrencyOrder.new(:currency_id => 2, :value => 13.45, :order_id => 1)
+    @request.session[:currency_order] = CurrencyOrder.new(:order_id => 1, :currency_id => 2, :value => 13.45)
 
     post :update, { :id => 1,
                     :products => { :new => [
@@ -107,9 +107,10 @@ class OrderRequestsControllerTest < ActionController::TestCase
                                              {:name => 'Proveedor B'}
                                             ]
                                   },
-                    :files => {:new =>[
-                                       { :order_id => 1,:file_type_id => 1, :file => fixture_file_upload('../../public/images/rails.png', 'image/png', :binary)}
-                                      ]
+                    :files => {:existing => { 1 =>{ 
+                                                   :file_type_id => 1, :file => fixture_file_upload('../../public/images/rails.png', 'image/png', :binary)
+                                                  }
+                                            }
                               },
                     :projects => {:new => [
                                            { :name => 'Proyecto de investigación en ciencia de materiales', :key => '123-Q', :order_id => 1, :project_type_id => 2}
@@ -137,10 +138,12 @@ class OrderRequestsControllerTest < ActionController::TestCase
                                {:name => 'Proveedor B'}
                               ]
       },
-      :files => {:new =>[
-                         { :file_type_id => 1, :file => fixture_file_upload('../../public/images/rails.png', 'image/png', :binary)}
-                        ]
-      },
+      :files => {:existing => { 1 =>{ 
+                                     :file_type_id => 1, :file => fixture_file_upload('../../public/images/rails.png', 'image/png', :binary)
+                                    }
+                              }
+                },
+
       :projects => {:new => [
                              { :name => 'Proyecto de investigación en ciencia de materiales', :key => '123-Q', :project_type_id => 2, :order_id => 1}
                             ]

@@ -24,3 +24,11 @@ two:
  file: <%= fixture_data("logo_unam.jpg") %>
  content_type: "image/gif"
  filename: "top_secret_2"
+
+three:
+ id: 3
+ order_id: 3
+ file_type_id: 2
+ file: <%= fixture_data("logo_unam.jpg") %>
+ content_type: "image/gif"
+ filename: "top_secret_3"

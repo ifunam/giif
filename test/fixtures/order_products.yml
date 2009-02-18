@@ -13,3 +13,11 @@ two:
  quantity: 15
  description: "Laptop Gateway MX989-L"
  price_per_unit: 1234.67
+
+three:
+ id: 3
+ product_category_id: 2
+ order_id: 3
+ quantity: 4
+ description: "Servidores IBM de alto rendimiento"
+ price_per_unit: 7834.67

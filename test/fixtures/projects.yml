@@ -14,3 +14,9 @@ project_two:
  project_type_id: 2
  key: "KEY-002"
 
+project_three:
+ id: 3
+ order_id: 3
+ name: "Air nano-filter float"
+ project_type_id: 1
+ key: "WXY-PR34"

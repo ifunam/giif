@@ -115,6 +115,6 @@ class CreateOrders < ActiveRecord::Migration
   def self.down
     drop_table :project_types, :projects, :order_statuses, :orders, :order_products,
     :file_types, :order_files, :providers, :order_providers, :order_logs, :currencies,
-    :currency_orders, :acquisitions, :direct_adjudication_types, :files_uploaded, :budgets
+    :currency_orders, :direct_adjudication_types, :acquisitions, :files_uploaded, :budgets
   end
 end
