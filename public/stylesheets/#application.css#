@@ -223,7 +223,6 @@ body {
     vertical-align: bottom;
 }
 
-
 .actions_td{
     display: table-cell;
     width: 170px;
