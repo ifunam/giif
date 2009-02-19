@@ -2,7 +2,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'action_controller/test_case'
 require 'application_helper'
 require 'action_view/helpers/form_options_helper'
-require 'mocha'
 
 class ApplicationHelperTest < ActiveSupport::TestCase
   fixtures :users, :order_statuses

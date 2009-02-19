@@ -1,6 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'mocha'
-
 class OrderTest < ActiveSupport::TestCase
   fixtures :users, :order_statuses, :orders, :order_products, 
            :providers, :order_providers, :project_types, :projects
