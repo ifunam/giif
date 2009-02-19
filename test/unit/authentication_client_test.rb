@@ -1,16 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
-
+require 'flexmock/test_unit'
 class AuthenticationClientTest < ActiveSupport::TestCase
-  fixtures :users
-
-  def setup
-    @client = AuthenticationClient.new
-    @client.attributes = {
-                                   'login' => 'alex',
-                                   'passwd' => 'qw12..'}
-  end
 
   def test_authenticate
-    assert AuthenticationClient.authenticate?(@client.login, @client.passwd)
+    flexmock(AuthenticationClient).should_receive(:authenticate?).with('alex','qw12..').and_return(true)
+    assert AuthenticationClient.authenticate?('alex', 'qw12..')
   end
 end

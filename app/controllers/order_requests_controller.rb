@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'pdf/writer'
-require 'ruby-debug'
 class OrderRequestsController < ApplicationController
   #  before_filter :authorize
 

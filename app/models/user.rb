@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
   has_one :person
+  has_many :adscriptions
+
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create :encrypt_password # This callback is related to valid? and save methods, use one of them to make tests
@@ -27,21 +29,23 @@ class User < ActiveRecord::Base
         Digest::SHA512.hexdigest(password + mysalt)
       end
   end
-
-    def phone
+  
+  # TODO: Move this chunk of code to other model
+  def phone
       record = Address.find(:first, :conditions => "user_id = #{self.id}")
       record.phone unless record.nil?
-    end
+  end
 
   def adscription_name # TODO: Move this method to UserProfile Class
     record = UserAdscription.find(:first, :conditions => "user_id = #{self.id}")
     record.adscription.name unless record.nil?
   end
-
+  
   def user_incharge_fullname
     self.user_incharge.person.fullname
   end
-
+  # /TODO
+  
   def is_activated?
     self.status
   end
@@ -82,7 +86,8 @@ class User < ActiveRecord::Base
     self.status = st
     self.save
   end
-
+  
+  # TODO: Remove this method
   def random_string(n)
     if n.to_i > 1
       s = ""
@@ -91,4 +96,5 @@ class User < ActiveRecord::Base
       s
     end
   end
+  # /TODO
 end

@@ -72,7 +72,8 @@ class CreateOrders < ActiveRecord::Migration
     end
 
     create_table :currencies do|t|
-      t.string     :name, :url, :null => false
+      t.string     :name, :null => false
+      t.text       :url, :conversion_title
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end

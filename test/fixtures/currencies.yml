@@ -1,29 +1,31 @@
 pesos:
  id: 1
  name: "Peso"
- url: "http://themoneyconverter.com/ES/MXN/rss.xml"
 
 euro:
  id: 2
  name: "Euro"
  url: "http://themoneyconverter.com/ES/EUR/rss.xml"
-
+ conversion_title: 'EUR/MXN'
+ 
 dolar:
  id: 3
- name: "Dólar"
+ name: "Dólar Américano"
  url: "http://themoneyconverter.com/ES/USD/rss.xml"
-
+ conversion_title: 'USD/MXN'
+ 
 yen:
  id: 4
  name: "Yen"
  url: "http://themoneyconverter.com/ES/JPY/rss.xml"
-
+ conversion_title: 'JPY/MXN'
+ 
 libra_esterlina:
  id: 5
  name: "Libra esterlina"
  url: "http://themoneyconverter.com/ES/GBP/rss.xml"
-
+ conversion_title: 'GPN/MXN'
+ 
 otro:
  id: 6
  name: "Otro"
- url: "http://themoneyconverter.com/ES/MXN/rss.xml"
