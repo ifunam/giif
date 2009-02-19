@@ -17,11 +17,11 @@ class CurrencyClientTest < ActiveSupport::TestCase
   end
 
   test "Should get item using the default conversion type (US/MXN)" do
-    assert_instance_of Hash, @currency_client.get_item
+    assert_instance_of Hash, @currency_client.item
   end
 
   test "Should get value using the default conversion type (US/MXN)" do
-    assert_not_nil @currency_client.get_value
+    assert_not_nil @currency_client.value
   end
   
   test "Should convert the currency using the default conversion type (US/MXN)" do

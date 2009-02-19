@@ -12,11 +12,7 @@ class CurrencyClient
     @conversion_title = conversion_title || 'USD/MXN'
   end
 
-  def set_conversion(conversion_title)
-    @conversion_title = conversion_title
-  end
-  
-  def get_item
+  def item
     @resource = SimpleRSS.parse open(@url)  
     @resource.items.each do |item|
         @item = item and break if item[:title] == @conversion_title
@@ -24,11 +20,11 @@ class CurrencyClient
     @item
   end
 
-  def get_value
-    get_item[:description].split(' = ').last.split(' ').first.to_f
+  def value
+    item[:description].split(' = ').last.split(' ').first.to_f
   end
 
   def convert(amount)
-    get_value * amount.to_f
+    value * amount.to_f
   end
 end
