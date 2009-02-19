@@ -5,7 +5,6 @@ class CreateOrders < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
-    fixtures :order_statuses
 
     create_table :orders do |t|
       t.references :user,:order_status, :null => false
@@ -20,7 +19,6 @@ class CreateOrders < ActiveRecord::Migration
       t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
-    fixtures :project_types
 
     create_table :projects do |t|
       t.references :order, :project_type, :null => false
@@ -45,7 +43,6 @@ class CreateOrders < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
-    fixtures :file_types
 
     create_table :order_files do |t|
       t.references :order, :file_type, :null => false
@@ -60,7 +57,6 @@ class CreateOrders < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
-    fixtures :providers
 
     create_table :order_providers do |t|
       t.references :order, :provider, :null => false

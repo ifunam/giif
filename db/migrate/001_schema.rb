@@ -101,20 +101,6 @@ class Schema   < ActiveRecord::Migration
       t.references  :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
-
-    fixtures :users
-    add_index :users, [:id], :name => "users_id_idx"
-    add_index :users, [:login], :name => "users_login_idx"
-    add_index :users, [:email], :name => "users_email_key", :unique => true
-
-    fixtures :groups
-    add_index :groups, [:name], :name => "groups_name_idx"
-
-    fixtures :people
-    fixtures :addresses
-    fixtures :adscriptions
-    fixtures :user_adscriptions
-    fixtures :features
    end
 
   def self.down
