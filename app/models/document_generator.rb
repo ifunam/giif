@@ -12,7 +12,7 @@ class DocumentGenerator
   def to_pdf
     pdf = PDF::Writer.new
 
-    pdf.image "public/images/Compras.jpg", :pad => 0, :width => 497, :justification => :center #insert template
+    pdf.image "templates/images/order_bg.jpg", :pad => 0, :width => 497, :justification => :center #insert template
 
     #user data
     pdf.add_text(478, 692, @data.id.to_s, 10)                                              #folio???

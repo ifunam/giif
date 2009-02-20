@@ -8,21 +8,13 @@ class ApplicationHelperTest < ActionController::TestCase
   include ApplicationHelper
   include ActionView::Helpers::FormOptionsHelper
 
-  def setup
+  test "should return the login of a logged user" do
     @request = ActionController::TestRequest.new
-  end
-
-  def test_logged_user
-    @controller = SessionsController.new
-    @request = ActionController::TestRequest.new
-    @response = ActionController::TestResponse.new
-    
-    post :signup, :user => {:login => "alex", :password => "maltiempo" }
-    
+    @request.session[:user] = User.find_by_login('alex').id
     assert_equal "alex", logged_user
   end
 
-  def test_simple_select
+  test "should render a simple select html list" do
     assert_dom_equal %Q(<select name=\"form[order_status_id]\" id=\"form_order_status_id\"><option value=\"\">--Seleccionar--</option>\n<option value=\"1\">Sin enviar</option>\n<option value=\"2\">En proceso</option>\n<option value=\"3\">Aprobado</option>\n<option value=\"4\">Rechazado</option></select>), simple_select(:form, OrderStatus)
   end
 end
