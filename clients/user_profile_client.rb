@@ -5,7 +5,10 @@ class UserProfileClient < ActiveResource::Base
   self.element_name = "academic"
 
   def self.find_by_login(login)
-    self.find(167)
+    @object = new
+    @object.prefix_options = {}
+    @object.attributes = self.get("show_by_login/#{login}")
+    @object
   end
 
   def self.find_by_user_id(id)
