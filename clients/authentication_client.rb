@@ -5,6 +5,6 @@ class AuthenticationClient < ActiveResource::Base
   self.element_name = "session"
 
   def self.authenticate?(login, passwd)
-    self.get('login', { :login=> login, :passwd => passwd })['authentication']
+    self.get(:login, { :login=> login, :passwd => passwd })['authentication']
   end
 end
