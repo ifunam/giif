@@ -1,4 +1,5 @@
 acquisition_one:
+ id: 1
  order_id: 3
  user_id: 2
  direct_adjudication_type_id: 1

@@ -134,7 +134,7 @@ class Order < ActiveRecord::Base
   end
 
   def calculate_total_amount
-    OrderProduct.sum("quantity * price_per_unit", :conditions => ['order_id=?', self.id])
+    OrderProduct.sum("quantity * price_per_unit", :conditions => ['order_id=?', self.id]).to_f
   end
 
 end

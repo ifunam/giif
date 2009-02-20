@@ -12,7 +12,7 @@
     <%= product.text_field :price_per_unit, :size => '9', :maxlenght => '15' %>
   </span>
   <span class="pd_type" id="product_type">
-    <%= product.simple_select(ProductCategory, order_product.product_category_id)%>
+    <%= simple_select(:order_request, ProductCategory)%>
   </span>
 
     <span class="pd_actions">

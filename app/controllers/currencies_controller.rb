@@ -25,9 +25,9 @@ class CurrenciesController < ApplicationController
      @record = Currency.find(params[:id])
 
      if @record.id < 6
-       @currency = CurrencyClient.new(@record.url).get_value
+       @currency = CurrencyClient.new(@record.url, @record.conversion_title)
        session[:currency] = @record
-       session[:currency_order] = CurrencyOrder.new({:value => @currency})
+       session[:currency_order] = CurrencyOrder.new({:value => @currency.value})
      end
 
      respond_to do |format|

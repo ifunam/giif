@@ -168,7 +168,7 @@ end
       @order.add_products(products)
       @order.id = 1
 
-      assert_equal "2468.0", @order.calculate_total_amount
+      assert_equal 2468.0, @order.calculate_total_amount
     end
 
 end

@@ -1,14 +1,14 @@
 require File.dirname(__FILE__) + '/../test_helper'
-
+ 
 class Budget::SessionsControllerTest < ActionController::TestCase
   fixtures :users
-
+ 
   def test_should_index
     get :index
     assert_response :success
     assert_template 'index'
   end
-
+ 
   def test_should_signup
     post :signup, :user => {:login => "alex", :password => "maltiempo" }
     assert_equal 'Bienvenido(a)!', flash[:notice]
@@ -20,7 +20,7 @@ class Budget::SessionsControllerTest < ActionController::TestCase
     assert_equal 'El login o password es incorrecto!', flash[:notice]
     assert_template 'index'
   end
-
+ 
   def test_should_logout
     post :signup, :user => {:login => "fernando", :password => "maltiempo" }
     post :destroy, { :id => session[:user] }
