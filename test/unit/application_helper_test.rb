@@ -3,7 +3,7 @@ require 'action_controller/test_case'
 require 'application_helper'
 require 'action_view/helpers/form_options_helper'
 
-class ApplicationHelperTest < ActiveSupport::TestCase
+class ApplicationHelperTest < ActionController::TestCase
   fixtures :users, :order_statuses
   include ApplicationHelper
   include ActionView::Helpers::FormOptionsHelper
@@ -17,9 +17,9 @@ class ApplicationHelperTest < ActiveSupport::TestCase
     @request = ActionController::TestRequest.new
     @response = ActionController::TestResponse.new
     
-    post :signup, :user => {:login => "alex", :password => "qw12.." }
+    post :signup, :user => {:login => "alex", :password => "maltiempo" }
     
-    assert_equal 'alex', logged_user
+    assert_equal "alex", logged_user
   end
 
   def test_simple_select
