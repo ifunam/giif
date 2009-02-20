@@ -9,7 +9,7 @@ class CurrencyClient
 
   def initialize(url,conversion_title=nil)
     @url = url
-    @conversion_title = conversion_title || 'USD/MXN'
+    @conversion_title = conversion_title || 'MXN/USD'
   end
 
   def item

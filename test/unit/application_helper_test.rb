@@ -16,7 +16,9 @@ class ApplicationHelperTest < ActiveSupport::TestCase
     @controller = SessionsController.new
     @request = ActionController::TestRequest.new
     @response = ActionController::TestResponse.new
+    
     post :signup, :user => {:login => "alex", :password => "qw12.." }
+    
     assert_equal 'alex', logged_user
   end
 

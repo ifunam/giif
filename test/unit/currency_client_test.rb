@@ -3,7 +3,7 @@ require 'mocha'
 class CurrencyClientTest < ActiveSupport::TestCase
   
   def setup
-    @rss = "http://themoneyconverter.com/ES/MXN/rss.xml"
+    @rss = "http://themoneyconverter.com/MXN/USD/rss.xml"
     @currency_client = CurrencyClient.find(@rss)
   end
 
@@ -16,23 +16,23 @@ class CurrencyClientTest < ActiveSupport::TestCase
   end
 
   test "Should get item using the default conversion type (US/MXN)" do
-    @currency_client.expects(:item).returns({ :category => "América del Norte",
-                                               :pubDate => "Thu Feb 19 09:01:21 -0700 2009",
-                                               :title => "USD/MXN",
-                                               :guid => "http://themoneyconverter.com/ES/MXN/USD.aspx",
-                                               :link => "http://themoneyconverter.com/ES/MXN/USD.aspx",
-                                               :description => "1 Peso Mexicano = 0.06868 Dólar Americano"
-                                               })
+    @currency_client.expects(:item).returns({:guid=>"http://themoneyconverter.com/ES/USD/MXN.aspx",
+                                              :description=>"1 Dólar Americano = 14.74131 Peso Mexicano", 
+                                              :link=>"http://themoneyconverter.com/ES/USD/MXN.aspx",
+                                              :title=>"MXN/USD",
+                                              :category=>"América del Norte", 
+                                              :pubDate=>"Thu Feb 19 18:05:04 -0600 2009"
+                                            })
     assert_instance_of Hash, @currency_client.item
   end
 
   test "Should get value using the default conversion type (US/MXN)" do
-    @currency_client.expects(:value).returns(0.06868)
-    assert_equal 0.06868, @currency_client.value
+    @currency_client.expects(:value).returns(14.72247)
+    assert_equal 14.72247, @currency_client.value
   end
   
   test "Should convert the currency using the default conversion type (US/MXN)" do
-    @currency_client.expects(:convert).with(10).returns(150.06)
-    assert_equal 150.06, @currency_client.convert(10)
+    @currency_client.expects(:convert).with(10).returns(147.4131)
+    assert_equal 147.4131, @currency_client.convert(10)
   end
 end
