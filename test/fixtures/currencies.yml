@@ -6,7 +6,7 @@ euro:
  id: 2
  name: "Euro"
  url: "http://themoneyconverter.com/ES/EUR/rss.xml"
- conversion_title: 'EUR/MXN'
+ conversion_title: 'MXN/EUR'
  
 dolar:
  id: 3
@@ -24,7 +24,7 @@ libra_esterlina:
  id: 5
  name: "Libra esterlina"
  url: "http://themoneyconverter.com/ES/GBP/rss.xml"
- conversion_title: 'MXN/GPN'
+ conversion_title: 'MXN/GBP'
  
 otro:
  id: 6

@@ -10,6 +10,11 @@
   <%= render :partial => 'record', :collection => @collection %>
   <div>
     <%= will_paginate @collection %>
-<br/><br/><%= link_to 'Agregar nueva orden de compra', new_order_request_path%>
+<br/><br/>
+
+    <div id="add">
+         <%= link_to( image_tag("add.png", :size => '16x16'), new_order_request_path )%>
+         <%= link_to 'Agregar nueva orden de compra', new_order_request_path%>
+    </div>
   </div>
 </div>

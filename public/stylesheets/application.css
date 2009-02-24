@@ -277,6 +277,26 @@ body {
     vertical-align: bottom;
 }
 
+#add {
+    padding-left: 650px;
+}
+
+#add img {
+    color: white;
+    vertical-align: bottom;
+}
+
+#add a {
+    text-decoration: none;
+    color: green
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+#add a:visited {
+    color: green;
+}
+
 /**/
 
 #select{

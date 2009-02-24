@@ -16,5 +16,6 @@
 </div>
 <% end%>
 <%= f.submit "Guardar" %>
+<%= link_to_remote "Cancelar", :url => { :controller => 'currencies', :action => 'change_currency'} %>
 <% end%>
 </div>

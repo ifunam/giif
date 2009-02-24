@@ -1,7 +1,7 @@
 <div class="row">
   <span class="id_td"><%= record.id %></span>
   <span class="description_td">
-    <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/>
+    <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/><br/>
     <span style="margin-left: 50px; font-weight: bold;">Total: <%= record.calculate_total_amount %>,
     Divisa: <%= record.currency_order.currency.name%> (<%= link_to 'Ver más detalles', order_request_path(record) %>)</span>
   </span>
