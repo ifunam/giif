@@ -5,29 +5,31 @@ body {
 }
 
 /*Structure of layouts*/
-
 #container {
     background-color: #ffffff;
     width: 1100px;
     margin: auto
 }
+
 #header {
     text-align: center;
-
 }
 
 #menu {
     width: 100%;
 }
+
 #title{
     text-align: center;
     width: 1100px;
 }
+
 #contain {
     float: left;
     width: 1000px;
     text-align: left;
 }
+
 #footer {
     font: bold italic 14px;
     text-align: right;
