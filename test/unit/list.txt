@@ -1,0 +1,31 @@
++ acquisition_test.rb 
++ address_test.rb 
++ adscription_test.rb
++ application_helper_test.rb
++ authentication_client_test.rb
++ budget_test.rb
++ currency_client_test.rb
++ currency_order_test.rb
++ currency_test.rb
++ direct_adjudication_type_test.rb
+-- document_generator_test.rb (Complete Rewritting)
++ feature_test.rb
++ file_type_test.rb
++ group_test.rb
+-- notifier_test.rb (port to mocha)
++ order_file_test.rb
++ order_product_test.rb
++ order_provider_test.rb
++ order_status_test.rb
+-- order_test.rb (Complete Rewritting)
++ person_test.rb
++ product_category_test.rb
++ product_type_test.rb
++ project_test.rb
++ project_type_test.rb
++ provider_test.rb
++ room_test.rb
++ room_type_test.rb
++ user_adscription_test.rb
++ user_profile_client_test.rb
+- user_test.rb (Pending tests)

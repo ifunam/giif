@@ -32,7 +32,6 @@ Rails::Initializer.run do |config|
   config.gem "rcov"
   config.gem "simple-rss"
   config.gem "mocha"
-  config.gem "flexmock"
   #config.gem "pdf-writer"
   
   # Only load the plugins named here, in the order given. By default, all plugins 
