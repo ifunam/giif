@@ -12,7 +12,7 @@
     <%= product.text_field :price_per_unit, :size => '9', :maxlenght => '15' %>
   </span>
   <span class="pd_type" id="product_type">
-    <%= simple_select("products[#{new_or_existing}]", ProductCategory)%>
+    <%= product.select(:product_category_id, ProductCategory.all(:order => 'name ASC').collect { |record| [record.name, record.id] })%>
   </span>
  
     <span class="pd_actions">

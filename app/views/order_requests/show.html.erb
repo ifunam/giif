@@ -35,14 +35,14 @@
     <div id="collection">
       <div class="row">
         <h3>Artículo(s)</h3>
-        <%= render :partial => 'product', :collection =>@order.order_products %>
+        <%= render :partial => 'order_products', :collection =>@order.order_products %>
       </div>
     </div>
 
     <div id="collection">
       <div class="row">
         <h3>Proveedor(es)</h3>
-        <%= render :partial => 'provider', :collection =>@order.providers %>
+        <%= render :partial => 'order_providers', :collection =>@order.providers %>
       </div>
     </div>
 

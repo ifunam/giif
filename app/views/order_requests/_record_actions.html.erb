@@ -1,5 +1,4 @@
-   <%= link_to 'Mostrar', order_request_path(record) %>
-   | <%= link_to 'Ver HTML', :action => 'show_html', :id => record.id%>
+   <%= link_to 'Vista previa', :action => 'show_html', :id => record.id%>
    <% if record.order_status_id==1 then %><br/>
    <%= link_to 'Modificar', edit_order_request_path(record) %> |
    <%= link_to 'Borrar', order_request_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?' %> <br/>

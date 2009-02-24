@@ -2,7 +2,7 @@
 <div class="row" style="background-color: #e2eef3;" id="<%= order_file.dom_id %>">
   <% fields_for "files[#{new_or_existing}][]", order_file do |file| %>
     <span class="of_filetype">
-      <%= simple_select(:files, FileType) %>
+      <%= file.select(:file_type_id, FileType.all(:order => 'name ASC').collect { |record| [record.name, record.id]})%>
     </span>
     <span class="of_file" id="<%= order_file.dom_id + '_upload' %>">
       <% unless !order_file.new_record? %>
