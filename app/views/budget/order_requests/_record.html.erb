@@ -7,7 +7,7 @@
       Divisa: <%= record.currency_order.currency.name%>
     </div>
   </span>
-  <span class="date_td"><%= record.date %></span>
+  <span class="date_td"><%= record.created_at.strftime("%d-%m-%Y") %></span>
   <span class="status_td" id="<%= record.dom_id + '_status' %>"><%= record.status_name %></span>
   <span class="actions_td" id="<%= record.dom_id + '_actions' %>">
     <%= render :partial => 'record_actions', :locals => {:record => record} %>

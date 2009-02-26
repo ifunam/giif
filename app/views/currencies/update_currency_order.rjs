@@ -1,7 +1,7 @@
 if @record.id == 6
    @record.name = nil
    @record.url = nil
-   page.replace_html :currency_order, :partial => 'new'
+   page.replace_html :currency_order_data, :partial => 'new_currency_order'
 else
    page.replace_html :currency_order, :partial => 'update_currency_order', :object => @order
 end
