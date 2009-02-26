@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 class OrderTest < ActiveSupport::TestCase
   fixtures :users, :order_statuses, :orders, :order_products, 
-           :providers, :order_providers, :project_types, :projects,
-           :order_files
+  :providers, :order_providers, :project_types, :projects,
+  :order_files
 
   should_have_many :order_products, :order_providers, :providers
   should_have_one :order_file, :project, :currency_order, :budget, :acquisition
@@ -10,10 +10,10 @@ class OrderTest < ActiveSupport::TestCase
   def setup
     @order = Order.new
     @order.attributes = {
-                         'user_id' => 2,
-                         'date' => '2008-04-19',
-                         'order_status_id' => 1
-                        }
+      'user_id' => 2,
+      'date' => '2008-04-19',
+      'order_status_id' => 1
+    }
   end
 
   def test_status_name
@@ -71,7 +71,7 @@ class OrderTest < ActiveSupport::TestCase
     file.stubs(:content_type).returns('application/pdf')
     file.stubs(:read).returns('file_content(a lot of bits here...)')
     file_1 = { :new => [{'file' => file, 'file_type_id' => 2}]}
-     @order.add_files(file_1)
+    @order.add_files(file_1)
     assert_not_nil @order.order_file
     assert_equal 2, @order.order_file.file_type_id
   end
@@ -92,7 +92,7 @@ class OrderTest < ActiveSupport::TestCase
     @order.add_files(:existing => { @order.order_file.id => {'file_type_id' => 2}})
     @order.save
     assert_equal 2 ,@order.order_file.file_type_id
-end
+  end
 
   def test_add_project
     project =     {:new => [{'name' => 'Mac de México', 'key' => '132-LPO', 'project_type_id' => 2}]}
@@ -122,53 +122,52 @@ end
     assert !@order.valid?, @order.errors.full_messages
   end
 
-    def test_should_add_products
-      @order = Order.build_valid
-      @order_products = { :new => [ {:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X'},
-                                                          {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y'}
-                                  ]
-                         }
-      @order.add_products(@order_products)
-      assert_equal 2, @order.order_products.size
-    end
+  def test_should_add_products
+    @order = Order.build_valid
+    @order_products = { :new => [ {:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X'},
+                                  {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y'}
+                                ]
+                      }
+    @order.add_products(@order_products)
+    assert_equal 2, @order.order_products.size
+  end
 
-    def test_should_not_add_provider_with_empty_provider
-      @order = Order.build_valid
-      @order.order_providers << OrderProvider.build_valid
-      assert !@order.valid?
-      assert_equal ["You should add at least one product", "You should add at least one product"], @order.errors.full_messages
-    end
+  def test_should_not_add_provider_with_empty_provider
+    @order = Order.build_valid
+    @order.order_providers << OrderProvider.build_valid
+    assert !@order.valid?
+    assert_equal ["You should add at least one product", "You should add at least one product"], @order.errors.full_messages
+  end
 
-    def test_should_add_providers
-      @order = Order.build_valid
-      @order_providers = { :new => [ { :name => 'Proveedor A'}, { :name => 'Proveedor B'} ] }
-      @order.add_providers(@order_providers)
-      assert_equal 2, @order.providers.size
-    end
+  def test_should_add_providers
+    @order = Order.build_valid
+    @order_providers = { :new => [ { :name => 'Proveedor A'}, { :name => 'Proveedor B'} ] }
+    @order.add_providers(@order_providers)
+    assert_equal 2, @order.providers.size
+  end
 
-    def test_should_not_add_product_with_empty_product
-      @order = Order.build_valid
-      @order.order_products << OrderProduct.build_valid
-      assert !@order.valid?
-      assert_equal ["You should add at least one product", "You should add at least one provider"], @order.errors.full_messages
-    end
+  def test_should_not_add_product_with_empty_product
+    @order = Order.build_valid
+    @order.order_products << OrderProduct.build_valid
+    assert !@order.valid?
+    assert_equal ["You should add at least one product", "You should add at least one provider"], @order.errors.full_messages
+  end
 
-    def test_should_add_currency_data
-      @order = Order.build_valid
+  def test_should_add_currency_data
+    @order = Order.build_valid
 
-      currency = Currency.new(:name => 'Pesos Marcianos', :url => 'someplace')
-      currency_order = CurrencyOrder.new(:value => 10.5)
-      @order.add_currency_data(currency, currency_order)
+    currency = Currency.new(:name => 'Pesos Marcianos', :url => 'someplace')
+    currency_order = CurrencyOrder.new(:value => 10.5)
+    @order.add_currency_data(currency, currency_order)
 
-       assert !@order.currency_order.nil?
-    end
+    assert !@order.currency_order.nil?
+  end
 
-    def test_should_calculate_total_amount
-      products = {:existing => { 1 => { :order_id => 1,  :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00}}}
-      @order.add_products(products)
-      @order.id = 1
+  def test_should_calculate_total_amount
+    products = {:existing => { 1 => { :order_id => 1,  :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00}}}
+    @order.add_products(products)
+    @order.id = 1
 
-      assert_equal 2468.0, @order.calculate_total_amount
-    end
-
+    assert_equal 2468.0, @order.calculate_total_amount
+  end
 end
