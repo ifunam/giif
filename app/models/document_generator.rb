@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'pdf/writer'
 require 'iconv'
+require 'fileutils'
 class DocumentGenerator
   attr_accessor :data
 
@@ -53,8 +54,8 @@ class DocumentGenerator
       pdf.add_text(471, 255, @data.project.key, 10)                                       #key
     #agregar descripcion de otro
 
-
-    pdf.save_as("tmp/documents/solicitud_compra_" + @data.id.to_s + ".pdf")
+    FileUtils.mkdir_p 'spool/documents' unless File.exists? 'spool/documents'
+    pdf.save_as("spool/documents/solicitud_compra_" + @data.id.to_s + ".pdf")
   end
 
 #   def acquisition_data

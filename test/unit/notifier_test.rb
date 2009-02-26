@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'notifier'
 require 'mocha'
 class NotifierTest < ActionMailer::TestCase
-
+  fixtures :users, :orders
   def setup
     @user  = UserProfileClient.new
     @user.attributes = { 
