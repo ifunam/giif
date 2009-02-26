@@ -1,0 +1,33 @@
+<div class="fix" id="currency_data>
+  <div class="row">
+  <b>Cambiar divisa:</b>
+    <span class="fix-left">Divisa:</span>
+    <span class="fix-right" ><%= simple_select(:currency, Currency)%></span>
+    <%= observe_field :currency_currency_id, :url => {:controller => '../currencies', :action => :update_currency_order},  :with => "'id='+$('currency_currency_id').value", :loading => "$('currency_order').update(''); $('currency_order_loader_indicator').show();", :complete => "$('currency_order_loader_indicator').hide();" %>
+    <div id="currency_order">
+    </div>
+    <%= image_tag('progress_bar3.gif', :id => 'currency_order_loader_indicator', :style => 'display:none') %>
+
+  </div>
+</div>
+<div>
+
+<div class="fix">
+  <b>Datos actuales:</b>
+<div class="row">
+  <span class="fix-left">Núm. Orden:</span>
+  <span class="fix-right"><%= @order.id%></span>
+</div>
+<div class="row">
+  <span class="fix-left">Divisa:</span>
+  <span class="fix-right"><%= @currency_order.currency.name%></span>
+</div>
+<div class="row">
+  <span class="fix-left">Tipo de cambio:</span>
+  <span class="fix-right"><%= @currency_order.value%></span>
+</div>
+<div class="row">
+  <span class="fix-left">Fecha:</span>
+  <span class="fix-right"><%= @currency_order.updated_at.strftime("%d-%m-%Y")%></span>
+</div>
+</div>

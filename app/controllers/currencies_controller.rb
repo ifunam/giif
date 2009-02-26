@@ -41,9 +41,38 @@ class CurrenciesController < ApplicationController
      end
    end
 
+   def update
+     @order = Order.find(params[:id])
+     session[:order] = params[:id]
+     @currency_order = CurrencyOrder.find_by_order_id(params[:id])
+
+     respond_to do |format|
+       format.js { render :action => 'update.rjs'}
+     end
+   end
+
+   def update_currency_order
+     @record = Currency.find(params[:id])
+     if @record.id < 6
+       @currency_order = CurrencyClient.new(@record.url, @record.conversion_title)
+       session[:currency_order] = CurrencyOrder.new({:value => @currency_order.value, :currency_id => @record.id})
+     end
+
+     respond_to do |format|
+       format.js { render :action => 'update_currency_order.rjs'}
+     end
+   end
+
+
    def cancel
      respond_to do |format|
        format.js { render :action => 'change_currency.rjs'}
+     end     
+   end
+
+   def clear
+  respond_to do |format|
+       format.js { render :action => 'clear.rjs'}
      end     
    end
 

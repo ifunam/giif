@@ -1,4 +1,4 @@
-<div class="row">
+<div class=<%="row_" + ((record_counter + 1) % 2).to_s%>>
   <span class="id_td"><%= record.id %></span>
   <span class="description_acq" style="font-weight: normal">
     <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/>

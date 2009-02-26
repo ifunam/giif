@@ -55,10 +55,10 @@ class OrderRequestsController < ApplicationController
     generate_pdf
     respond_to do |format|
       if @order.change_to_sent_status
-        Notifier.deliver_order_request_from_user(@order, user_profile)
-         if UserProfileClient.find_by_login(:user).has_user_incharge?
-           Notifier.deliver_order_to_userincharge(@order, user_incharge)
-       end
+#        Notifier.deliver_order_request_from_user(@order, user_profile)
+#         if UserProfileClient.find_by_login(:user).has_user_incharge?
+#           Notifier.deliver_order_to_userincharge(@order, user_incharge)
+#       end
         format.js { render :action => 'send_order.rjs'}
       else
         format.js  { render :action => 'errors.rjs' }
@@ -116,6 +116,7 @@ class OrderRequestsController < ApplicationController
       end
     end
   end
+
 
   def destroy
     @order = Order.find(params[:id])

@@ -1,0 +1,10 @@
+<div class="fix">
+  <div class="row">
+    <span class="fix-left">Tipo de cambio:</span>
+    <span class="fix-right"><%= @currency_order.value%></span>
+  </div>
+  <div class="row">
+    <%= link_to_remote 'Cambiar', :url => {:controller => 'budget/order_requests', :action => 'update_currency_order'}%>
+    <%= link_to_remote 'Cancelar', :url => {:controller => 'currencies', :action => 'clear', :id => @currency_order}%>
+  </div>
+</div>
