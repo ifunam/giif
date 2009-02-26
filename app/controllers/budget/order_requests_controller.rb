@@ -75,11 +75,12 @@ class Budget::OrderRequestsController < ApplicationController
   end
 
   def update_currency_order
+    puts session[:currency_order].currency_id.to_s + "____________________"
     @order =  Order.find(session[:order])
     @currency_order = CurrencyOrder.find_by_order_id(session[:order])
     @currency_order.currency_id = session[:currency_order].currency_id
     @currency_order.value = session[:currency_order].value
-
+  
     respond_to do |format|
       if @currency_order.save
         format.js { render :action => 'update_currency_order.rjs'}

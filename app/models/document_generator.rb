@@ -71,10 +71,11 @@ class DocumentGenerator
 
   def get_x(id)
       case id
-      when 1|5  : "150"
+      when 1    : "150"
       when 2    : "222"
       when 3    : "306"
       when 4    : "387"
+      when 5    : "150"
       end
   end
 

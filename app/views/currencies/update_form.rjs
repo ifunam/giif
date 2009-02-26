@@ -1,0 +1,4 @@
+page.replace_html :currency_data, ""
+page.replace_html "currency_#{@order.id.to_s}", :partial => 'budget/order_requests/currency_row', :object => @order
+page.visual_effect :Highlight, "currency_#{@order.id.to_s}"
+page.visual_effect :blind_down, "currency_#{@order.id.to_s}"
