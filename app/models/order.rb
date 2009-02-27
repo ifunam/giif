@@ -5,10 +5,15 @@ class Order < ActiveRecord::Base
   validates_numericality_of :user_incharge_id, :allow_nil => true, :greater_than => 0, :only_integer => true
 
   belongs_to :order_status
+  belongs_to :user
   has_many :order_products, :dependent => :destroy
   has_many :order_providers, :dependent => :destroy
   has_many :providers, :through => :order_providers
   has_one :order_file
+
+  has_many :order_files
+  has_many :files, :through => :order_files, :source => :order
+
   has_one :project
   has_one :currency_order
 

@@ -10,7 +10,8 @@ class UserProfileClientTest < Test::Unit::TestCase
       :adscription_id => 7,
       :phone =>   "56225001 ext 289",
       :user_incharge_id  => 37,
-      :email => 'alex@somewhere.com'
+      :email => 'alex@somewhere.com',
+      :login => 'alex'
       }.to_xml(:root => :user)
 
     @user_incharge = { 
@@ -19,7 +20,8 @@ class UserProfileClientTest < Test::Unit::TestCase
         :adscription => "Física Teórica",
         :adscription_id => 1,
         :phone =>   "56225001 ext 289",
-        :email => 'ramon@somewhere.com'
+        :email => 'ramon@somewhere.com',
+        :login => 'ramon'
         }.to_xml(:root => :user)
     ActiveResource::HttpMock.respond_to do |mock|
       mock.get "/academics/1.xml", {}, @user
@@ -60,6 +62,10 @@ class UserProfileClientTest < Test::Unit::TestCase
   def test_email
     assert_equal "alex@somewhere.com", @user_profile.email
   end
+
+  def test_login
+     assert_equal "alex", @user_profile.login
+   end
 
   def test_user_incharge
     assert_instance_of UserProfileClient, @user_profile.user_incharge

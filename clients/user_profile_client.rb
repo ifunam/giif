@@ -39,6 +39,10 @@ class UserProfileClient < ActiveResource::Base
     @attributes['email']
   end
 
+  def login
+    @attributes['login']
+  end
+
   def has_user_incharge?
     !@attributes['user_incharge_id'].nil?
   end
