@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'active_resource'
 require 'active_resource/http_mock'
+
 class UserProfileClientTest < Test::Unit::TestCase
   def setup
     @user = { 

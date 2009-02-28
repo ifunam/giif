@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'pdf/writer'
+require 'order_reporter'
 class OrderRequestsController < ApplicationController
   #  before_filter :authorize
 
@@ -75,9 +76,7 @@ class OrderRequestsController < ApplicationController
   end
 
   def show
-    @user_profile = user_profile
-    @order = Order.find(params[:id])
-    @currencies = Currency.find(:all, :conditions => ["id=?", 6], :order => 'id')
+    @order = OrderReporter.find_by_order_id(params[:id])
     respond_to do |format|
       format.html { render :action => "show" }
     end
@@ -107,7 +106,7 @@ class OrderRequestsController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
-          format.html { render :action => "show" }
+          format.html { redirect_to :action => "show", :id => @order.id }
           format.xml  { render :xml => @order, :status => :created, :location => @order }
         else
           format.html { render :action => "edit" }

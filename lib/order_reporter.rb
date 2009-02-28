@@ -32,8 +32,7 @@ class OrderReporter
 
     def remote_ip_address
       # TODO: Add column for ip_address into orders table
-      # @order.ip_address
-      "192.168.1.1"
+      @order.ip_address
     end
 
     def user_login
@@ -73,7 +72,7 @@ class OrderReporter
     end
 
     def attachments
-      @order.files
+      @order.order_files
     end
 
     def project
@@ -94,6 +93,7 @@ class OrderReporter
     end
 
     def footer
-      ['Giif - Inst. Fís., UNAM,', user_login, 'from', remote_ip_address+',', (Time.now.to_s :long)].join(' ')
+      ip_address =  !remote_ip_address.nil? ? "from #{remote_ip_address}," : ''
+      ['Giif - Inst. Fís., UNAM,', user_login, ip_address, (Time.now.to_s :long)].join(' ')
     end
 end

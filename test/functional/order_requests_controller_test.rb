@@ -6,7 +6,7 @@ class OrderRequestsControllerTest < ActionController::TestCase
     :order_statuses, :orders, :order_products,:currencies, :currency_orders,
     :order_files, :project_types, :projects
  
- 
+  # TODO: Replace all this mess....
   def test_should_get_index
     @request.session[:user] = User.find_by_login('fernando').id
     get :index
@@ -119,7 +119,7 @@ class OrderRequestsControllerTest < ActionController::TestCase
                     :multipart => true
     }
  
-    assert_template 'show'
+    assert_redirected_to :action => 'show', :id => 1
   end
  
   def test_should_not_update_with_invalid_params
