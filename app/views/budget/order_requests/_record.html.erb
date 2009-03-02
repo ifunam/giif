@@ -3,7 +3,7 @@
   <span class="description_td">
     <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. " + product.description}.join("<br\>") %><br/>
     <div style="color: #006400; font-weight: bold; padding-left: 50px;" id=<%="currency_#{record.id.to_s}"%>><br/>
-      Total: <%= record.calculate_total_amount %>
+      Total: <%= order_request_total_cost(record.id) %>
       Divisa: <%= record.currency_order.currency.name%>
     </div>
   </span>

@@ -11,6 +11,10 @@ module ApplicationHelper
                           model_name.all({:order => 'name ASC'}.merge(options)).collect { |record| [record.name, record.id] }, 
                           :prompt => '--Seleccionar--' )
     end
+
+    def order_request_total_cost(id)
+      OrderProduct.sum("quantity * price_per_unit", :conditions => ['order_id=?', id]).to_f
+    end
 end
 
 

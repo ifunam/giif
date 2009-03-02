@@ -78,21 +78,19 @@ class OrderRequestsController < ApplicationController
   def show
     @order = OrderReporter.find_by_order_id(params[:id])
     respond_to do |format|
-      format.html { render :action => "show" }
+      format.html { render :action => "show"}
+    end
+  end
+
+  def show_preview
+    @order = OrderReporter.find_by_order_id(params[:id])
+    respond_to do |format|
+      format.html { render :action => "show_preview"}
     end
   end
 
   def show_pdf
     send_file File.join(RAILS_ROOT, 'tmp', 'documents', "solicitud_compra_"+params[:id]+".pdf"), :type => 'application/pdf', :disposition => 'inline'    
-  end
-
-  def show_html
-    @user = user_profile
-    @order = Order.find(params[:id])
-    @currencies = Currency.find(:all, :conditions => ["id=?", 6], :order => 'id')
-    respond_to do |format|
-      format.html { render :action => "show_html" }
-    end    
   end
 
   def update

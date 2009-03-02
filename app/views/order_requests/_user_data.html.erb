@@ -1,0 +1,12 @@
+<div class="row">
+  <span id="cell_left">Nombre del solicitante:</span>
+  <span id="cell_right"><%= user_data.user_fullname %> (<%= user_data.user_adscription_name %>)</span><br/>
+  <span id="cell_left">Teléfono: </span>
+  <span id="cell_right"><%= user_data.user_phone %></span><br/>
+  <span id="cell_left">Fecha de solicitud:</span>
+  <span id="cell_right"><%= user_data.order_date %></span><br/>
+  <% if user_data.user_has_academic_responsible? %>
+    <span id="cell_left">Responsable académico:</span>
+    <span id="cell_right"><%= user_data.academic_responsible_fullname %></span><br/>
+  <% end %>
+</div>
