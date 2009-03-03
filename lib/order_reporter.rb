@@ -82,8 +82,7 @@ class OrderReporter
     def currency
       @order.currency_order
     end
-
-    # TODO: Review this methods, You should consider to Delegate those methods to some class or module called Formatter
+    
     def header
       ['Orden de compra No.', order_id, 'de', user_fullname, 'enviada el', order_date].join(' ')
     end

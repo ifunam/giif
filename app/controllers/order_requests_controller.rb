@@ -79,6 +79,7 @@ class OrderRequestsController < ApplicationController
     @order = OrderReporter.find_by_order_id(params[:id])
     respond_to do |format|
       format.html { render :action => "show"}
+      format.pdf  { render :action => "show.rpdf" }
     end
   end
 

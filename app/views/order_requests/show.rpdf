@@ -1,0 +1,8 @@
+@pdf.image RAILS_ROOT + "/templates/images/order_bg.jpg", :pad => 0, :width => 497, :justification => :center
+
+#user data
+@pdf.add_text(478, 692, @order.order_id, 10)
+@pdf.add_text(468, 671, @order.order_date, 10)
+@pdf.add_text(165, 672, @order.user_adscription_name, 10)
+@pdf.add_text(165, 647, @order.user_fullname, 10)
+@pdf.add_text(165, 628, @order.user_phone, 10) 
