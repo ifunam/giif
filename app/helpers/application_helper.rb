@@ -15,7 +15,22 @@ module ApplicationHelper
     def order_request_total_cost(id)
       OrderProduct.sum("quantity * price_per_unit", :conditions => ['order_id=?', id]).to_f
     end
+
+    def get_x(id)
+      case id
+      when 1    : "150"
+      when 2    : "222"
+      when 3    : "306"
+      when 4    : "387"
+      when 5    : "150"
+      end
+    end
+
+    def get_y(id)
+      if id==5
+        "285"
+      else
+        "295"
+      end
+    end
 end
-
-
-

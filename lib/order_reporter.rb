@@ -30,6 +30,10 @@ class OrderReporter
       @order.date.to_s(:long)
     end
 
+    def order_date_formatted
+      @order.date.strftime("%d     %m     %Y")
+    end
+
     def remote_ip_address
       # TODO: Add column for ip_address into orders table
       @order.ip_address

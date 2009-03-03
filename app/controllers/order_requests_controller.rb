@@ -53,7 +53,6 @@ class OrderRequestsController < ApplicationController
   def send_order
     @user_profile = user_profile
     @order = Order.find(params[:id])
-    generate_pdf
     respond_to do |format|
       if @order.change_to_sent_status
 #        Notifier.deliver_order_request_from_user(@order, user_profile)
