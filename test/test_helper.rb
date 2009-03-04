@@ -65,6 +65,7 @@ class Test::Unit::TestCase
           # Remote user profile
           mock.get "/academics/1.xml", {}, @user
           mock.get "/academics/show_by_login/alex.xml", {}, @user
+          mock.get "/academics/show_by_login/fernando.xml", {}, @user
           mock.get "/academics/37.xml", {}, @user_incharge
           # Remote authentication
           mock.get    "/sessions/login.xml?login=alex&passwd=valid_password", {}, @valid_auth
