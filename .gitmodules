@@ -10,3 +10,6 @@
 [submodule "vendor/rails"]
 	path = vendor/rails
 	url = git://github.com/rails/rails.git
+[submodule "vendor/plugins/rpdf"]
+	path = vendor/plugins/rpdf
+	url = git://github.com/alexjr85/rpdf.git
