@@ -9,46 +9,12 @@
   </div>
 
   <div id="user_data">
-    <div id="collection">
-      <h3>Información del solicitante:</h3>
-      <%= render :partial => 'user_data', :object => @order %>      
-    </div>
-
-    <div id="collection">
-      <div class="row">
-        <h3>Divisa:</h3>
-        <%= render :partial => 'currency', :object => @order.currency %>
-      </div>
-    </div>
-
-    <div id="collection">
-      <div class="row">
-        <h3>Artículo(s)</h3>
-        <%= render :partial => 'order_products', :collection =>@order.products %>
-      </div>
-    </div>
-
-    <div id="collection">
-      <div class="row">
-        <h3>Proveedor(es)</h3>
-        <%= render :partial => 'order_providers', :collection =>@order.providers %>
-      </div>
-    </div>
-
-     <div id="collection">
-      <div class="row">
-        <h3>Anexo(s)</h3>
-        <%= render :partial => 'filelist', :collection =>@order.attachments %>
-      </div>
-    </div>
- 
-    <div id="collection">
-      <div class="row">
-        <h3>Con cargo a:</h3>
-        <%= render :partial => 'project', :object =>@order.project %>
-      </div>
-    </div>
-
+  	<%= render :partial => 'section_show', :locals => { :title => 'Información del solicitante:', :partial => 'user_profile_show', :object => @order } %>
+ 	<%= render :partial => 'section_show', :locals => { :title => 'Divisa:', :partial => 'currency_show', :object => @order.currency } %>
+	<%= render :partial => 'section_show', :locals => { :title => 'Artículo(s)', :partial => 'products_show', :collection  => @order.products } %>
+	<%= render :partial => 'section_show', :locals => { :title => 'Proveedor(es)', :partial => 'providers_show', :collection => @order.providers } %>
+	<%= render :partial => 'section_show', :locals => { :title => 'Anexo(s)', :partial => 'files_show', :collection => @order.attachments } %>
+ 	<%= render :partial => 'section_show', :locals => { :title => 'Con cargo a:', :partial => 'project_show', :object => @order.project } %>
   </div>
 
   <div id="bottom_image">

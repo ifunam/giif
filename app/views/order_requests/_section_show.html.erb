@@ -1,0 +1,7 @@
+<div id="collection">
+  <div class="row">
+    <h3><%= title %></h3>
+    <%= render :partial => partial, :object => object unless object.nil? %>
+	<%= render :partial => partial, :collection => collection if defined? collection %>
+  </div>
+</div>
