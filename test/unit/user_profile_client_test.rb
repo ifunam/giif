@@ -1,35 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'active_resource'
-require 'active_resource/http_mock'
+class UserProfileClientTest < ActiveSupport::TestCase
+  remote_fixtures
 
-class UserProfileClientTest < Test::Unit::TestCase
   def setup
-    @user = { 
-      :user_id => 1,
-      :fullname => "Juárez Robles Jesús Alejandro",
-      :adscription => "Apoyo",
-      :adscription_id => 7,
-      :phone =>   "56225001 ext 289",
-      :user_incharge_id  => 37,
-      :email => 'alex@somewhere.com',
-      :login => 'alex'
-      }.to_xml(:root => :user)
-
-    @user_incharge = { 
-        :user_id => 37,
-        :fullname => "López López Ramón",
-        :adscription => "Física Teórica",
-        :adscription_id => 1,
-        :phone =>   "56225001 ext 289",
-        :email => 'ramon@somewhere.com',
-        :login => 'ramon'
-        }.to_xml(:root => :user)
-    ActiveResource::HttpMock.respond_to do |mock|
-      mock.get "/academics/1.xml", {}, @user
-      mock.get "/academics/show_by_login/alex.xml", {}, @user
-      mock.get "/academics/37.xml", {}, @user_incharge
-    end
-    @user_profile = UserProfileClient.find(1)
+    @user_profile = UserProfileClient.find_by_login('alex')
   end
 
   def test_find_by_login

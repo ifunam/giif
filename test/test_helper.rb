@@ -3,7 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 require File.dirname(__FILE__) + "/factory"
 require 'action_controller/test_case'
-
+require 'active_resource'
+require 'active_resource/http_mock'
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
@@ -36,6 +37,41 @@ class Test::Unit::TestCase
   # -- they do not yet inherit this setting
   #fixtures :all
 
+  def self.remote_fixtures
+      @user = { 
+        :user_id => 1,
+        :fullname => "Juárez Robles Jesús Alejandro",
+        :adscription => "Apoyo",
+        :adscription_id => 7,
+        :phone =>   "56225001 ext 289",
+        :user_incharge_id  => 37,
+        :email => 'alex@somewhere.com',
+        :login => 'alex'
+        }.to_xml(:root => :user)
+
+      @user_incharge = { 
+            :user_id => 37,
+            :fullname => "Ramírez Santiago Guillermo",
+            :adscription => "Física Quimíca",
+            :adscription_id => 1,
+            :phone =>   "56225001 ext 289",
+            :email => 'memo@somewhere.com',
+            :login => 'memo'
+      }.to_xml(:root => :user)
+
+      @valid_auth = { :authentication => true }.to_xml(:root => :user) 
+      @invalid_auth = { :authentication => false }.to_xml(:root => :user) 
+      ActiveResource::HttpMock.respond_to do |mock|
+          # Remote user profile
+          mock.get "/academics/1.xml", {}, @user
+          mock.get "/academics/show_by_login/alex.xml", {}, @user
+          mock.get "/academics/37.xml", {}, @user_incharge
+          # Remote authentication
+          mock.get    "/sessions/login.xml?login=alex&passwd=valid_password", {}, @valid_auth
+          mock.get    "/sessions/login.xml?login=alex&passwd=invalid_password", {}, @invalid_auth
+      end
+  end
+  
   # Add more helper methods to be used by all tests here...
   def login_as(login,password)
     # @request = TestRequest.new
