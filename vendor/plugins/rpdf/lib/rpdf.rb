@@ -7,12 +7,10 @@ module ActionView
       def compile(template)
         "@template_format = :pdf;" +
         "controller.response.content_type ||= Mime::PDF;" +
-        %Q(
-          @pdf = PDF::Writer.new
-          #{template.source}
-          @pdf.render
-          )
-      end 
+        "pdf = PDF::Writer.new;" +
+        template.source +
+        ";pdf.render;"
+      end
     end
   end
 end

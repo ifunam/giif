@@ -1,46 +1,46 @@
-@pdf.image RAILS_ROOT + "/templates/images/order_bg.jpg", :pad => 0, :width => 497, :justification => :center
+pdf.image RAILS_ROOT + "/templates/images/order_bg.jpg", :pad => 0, :width => 497, :justification => :center
 
 #user data
- @pdf.add_text(492, 692, @order.order_id, 10)                                                    #folio
- @pdf.add_text(468, 671, @order.order_date_formatted, 10)                                        #date
- @pdf.add_text(165, 672, @order.user_adscription_name, 10)                                       #adscription
- @pdf.add_text(165, 647, @order.user_fullname, 10)                                               #name
- @pdf.add_text(165, 628, @order.user_phone, 10)                                                  #telephone
+pdf.add_text(492, 692, @order.order_id, 10)                                                    #folio
+pdf.add_text(468, 671, @order.order_date_formatted, 10)                                        #date
+pdf.add_text(165, 672, @order.user_adscription_name, 10)                                       #adscription
+pdf.add_text(165, 647, @order.user_fullname, 10)                                               #name
+pdf.add_text(165, 628, @order.user_phone, 10)                                                  #telephone
  
 
 #order product(s)
 i=0
 @order.products.each do |product|
  i += 1
- @pdf.add_text(85, 608 - 19*i, i, 10)                                                             #numeric order
- @pdf.add_text(115, 608 - 19*i, product.quantity, 10)                                             #quantity
- @pdf.add_text(150, 608 - 19*i, product.description, 10 )                                         #description
- @pdf.add_text(385, 608 - 19*i, "unit", 10)                                                       #unit??
- @pdf.add_text(415, 608 - 19*i, product.price_per_unit, 10)                                       #price
- @pdf.add_text(477, 608 - 19*i, product.quantity*product.price_per_unit, 10)                      #import
+pdf.add_text(85, 608 - 19*i, i, 10)                                                             #numeric order
+pdf.add_text(115, 608 - 19*i, product.quantity, 10)                                             #quantity
+pdf.add_text(150, 608 - 19*i, product.description, 10 )                                         #description
+pdf.add_text(385, 608 - 19*i, "unit", 10)                                                       #unit??
+pdf.add_text(415, 608 - 19*i, product.price_per_unit, 10)                                       #price
+pdf.add_text(477, 608 - 19*i, product.quantity*product.price_per_unit, 10)                      #import
 end
-@pdf.add_text(477, 404, order_request_total_cost(@order.order_id), 10)                            #total
+pdf.add_text(477, 404, order_request_total_cost(@order.order_id), 10)                            #total
 
 #order_providers 
 j=0
 @order.providers.each do |provider|
  j += 1
- @pdf.add_text(85, 388 - 13*j, j, 10)                                                             #numeric order
- @pdf.add_text(115, 388 - 13*j, provider.name, 10)                                                #name
+ pdf.add_text(85, 388 - 13*j, j, 10)                                                             #numeric order
+ pdf.add_text(115, 388 - 13*j, provider.name, 10)                                                #name
 end
 
 #order file
- @pdf.add_text(get_x(@order.attachments[0].file_type_id), 322, "X", 10)                           #type
+pdf.add_text(get_x(@order.attachments[0].file_type_id), 322, "X", 10)                           #type
 
 #order project
- @pdf.add_text(get_x(@order.project.project_type_id), get_y(@order.project.project_type_id), "X", 10)  #type
- @pdf.add_text(185, 269, @order.project.name, 10)                                                      #name
- @pdf.add_text(471, 255, @order.project.key, 10)                                                       #key
+pdf.add_text(get_x(@order.project.project_type_id), get_y(@order.project.project_type_id), "X", 10)  #type
+pdf.add_text(185, 269, @order.project.name, 10)                                                      #name
+pdf.add_text(471, 255, @order.project.key, 10)                                                       #key
 
 #currency
- @pdf.add_text(120, 216, @order.currency.currency.name, 8)                                        #currency
- @pdf.add_text(265, 217, @order.currency.value, 8)                                                #exchange rate
- @pdf.add_text(475, 217, order_request_total_cost(@order.order_id) * @order.currency.value, 8)    #equivalency of total in pesos
+pdf.add_text(120, 216, @order.currency.currency.name, 8)                                        #currency
+pdf.add_text(265, 217, @order.currency.value, 8)                                                #exchange rate
+pdf.add_text(475, 217, order_request_total_cost(@order.order_id) * @order.currency.value, 8)    #equivalency of total in pesos
 
 
 
