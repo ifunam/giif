@@ -138,4 +138,7 @@ class Order < ActiveRecord::Base
     self.currency_order = currency_order
   end
 
+  def total_amount
+    order_products.sum("quantity * price_per_unit").to_f
+  end
 end

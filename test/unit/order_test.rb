@@ -163,11 +163,8 @@ class OrderTest < ActiveSupport::TestCase
     assert !@order.currency_order.nil?
   end
 
-  def test_should_calculate_total_amount
-    products = {:existing => { 1 => { :order_id => 1,  :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00}}}
-    @order.add_products(products)
-    @order.id = 1
-
-    assert_equal 2468.0, @order.calculate_total_amount
+  def test_calculate_total_amount
+    @order = Order.first
+    assert_equal 56670.0, @order.total_amount
   end
 end
