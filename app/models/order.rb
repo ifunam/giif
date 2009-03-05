@@ -6,15 +6,25 @@ class Order < ActiveRecord::Base
 
   belongs_to :order_status
   belongs_to :user
+  
   has_many :order_products, :dependent => :destroy
+  has_many :products, :class_name => 'OrderProduct'
+  accepts_nested_attributes_for :products
+  
   has_many :order_providers, :dependent => :destroy
   has_many :providers, :through => :order_providers
+  accepts_nested_attributes_for :providers
+ 
   has_one :order_file
-
-  has_many :order_files
-  has_many :files, :through => :order_files, :source => :order
+  has_one :file, :through => :order_file, :source => :order
+  accepts_nested_attributes_for :file # Fix it: implement this feature
+  
+  has_many :order_files, :dependent => :destroy
+  has_many :files, :class_name => 'OrderFile'
+  accepts_nested_attributes_for :files
 
   has_one :project
+  
   has_one :currency_order
 
   has_one :budget

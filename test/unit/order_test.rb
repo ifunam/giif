@@ -1,19 +1,17 @@
 require File.dirname(__FILE__) + '/../test_helper'
 class OrderTest < ActiveSupport::TestCase
-  fixtures :users, :order_statuses, :orders, :order_products, 
-  :providers, :order_providers, :project_types, :projects,
-  :order_files
+  fixtures :users, :order_statuses, :orders, :product_categories, :products, :order_products, 
+  :providers, :order_providers, :project_types, :projects, :file_types, :order_files
 
   should_have_many :order_products, :order_providers, :providers
   should_have_one :order_file, :project, :currency_order, :budget, :acquisition
 
   def setup
-    @order = Order.new
-    @order.attributes = {
-      'user_id' => 2,
-      'date' => '2008-04-19',
-      'order_status_id' => 1
-    }
+    @order = Order.first
+    @mock_file = mock('file')
+    @mock_file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf')
+    @mock_file.stubs(:content_type).returns('application/pdf')
+    @mock_file.stubs(:read).returns(StringIO.new(( ("01" *39) + "\n" * 10)).read)
   end
 
   def test_status_name
@@ -37,55 +35,51 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 4, @order.order_status_id
   end
 
-  def test_add_products
-    products = { :new => [{:order_id => 2,  :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00}]}
-    @order.add_products(products)
-    assert_not_nil @order.order_products
-    assert_equal 'Hub Koesre KIL-09', @order.order_products.first.description
+  def test_add_new_products
+    @order.products_attributes = [{:quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00, :product_category_id => 1}]
+    @order.save
+    assert_not_nil @order.products
+    assert_equal 'Hub Koesre KIL-09', @order.products.last.description
   end
 
   def test_update_products
-    products = {:existing => { 1 => { :order_id => 1,  :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00}}}
-    @order.add_products(products)
-    assert_not_nil @order.order_products
-    assert_equal 'Hub Koesre KIL-09', @order.order_products.first.description
+    @order.products_attributes = { "1" => { :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00, :product_category_id => 2} }
+    assert_not_nil @order.products
+    assert_equal 'Hub Koesre KIL-09', @order.products.last.description
   end
 
   def test_add_providers
-    providers = { :new => [{:name => 'Mac de México'}]}
-    @order.add_providers(providers)
+    @order.providers_attributes = [{:name => 'Mac de México'}]
     assert_not_nil @order.providers
-    assert_equal 'Mac de México', @order.providers.first.name
+    @order.save
+    assert_equal 'Mac de México', @order.providers.last.name
   end
 
   def test_update_providers
-    @order = Order.find(1)
-    @order.add_providers({ :existing => {1 => { :name => 'Mac de México'}}})
+    @order.providers_attributes = { "1" => { :name => 'Mac de México City'}}
     assert_not_nil @order.providers
-    assert_equal 'Mac de México', @order.providers.find(1).name
+    assert_equal 'Mac de México City', @order.providers.last.name
   end
 
-  def test_add_file
-    file = mock('file')
-    file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf')
-    file.stubs(:content_type).returns('application/pdf')
-    file.stubs(:read).returns('file_content(a lot of bits here...)')
-    file_1 = { :new => [{'file' => file, 'file_type_id' => 2}]}
-    @order.add_files(file_1)
-    assert_not_nil @order.order_file
-    assert_equal 2, @order.order_file.file_type_id
+  def test_add_files
+    @order.files_attributes = [ 
+                                { :file => @mock_file.read, :content_type => @mock_file.content_type.chomp.to_s, 
+                                  :filename => @mock_file.original_filename.chomp, :file_type_id => 2 
+                                },
+                                { :file => @mock_file.read, :content_type => @mock_file.content_type.chomp.to_s, 
+                                  :filename => @mock_file.original_filename.chomp.reverse, :file_type_id => 2 
+                                }
+                              ]
+    @order.save
+    assert_equal 3, @order.files.count
   end
 
-  def test_update_file
+  def test_update_files
     @order = Order.find(1)
-    file = mock('file')
-    file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf').times(2)
-    file.stubs(:content_type).returns('application/pdf')
-    file.stubs(:read).returns('file_content(a lot of bits here...)')
-    file_1 = {:existing => {1 => {'file' => file, 'file_type_id' => 2}}}
+    file_1 = {:existing => {1 => {'file' => @mock_file, 'file_type_id' => 2}}}
     @order.add_files(file_1)
     @order.save
-    @order.add_files(:existing => { @order.order_file.id => {'file' => file, 'file_type_id' => 2}})
+    @order.add_files(:existing => { @order.order_file.id => {'file' => @mock_file, 'file_type_id' => 2}})
     @order.save
     assert_not_nil @order.order_file
     assert_equal 'Presupuesto_proyecto_CONACYT.pdf' ,@order.order_file.filename
