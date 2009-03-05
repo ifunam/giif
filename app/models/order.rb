@@ -16,16 +16,23 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :providers
  
   has_one :order_file
-  has_one :file, :through => :order_file, :source => :order
-  accepts_nested_attributes_for :file # Fix it: implement this feature
+  has_one :file, :class_name => 'OrderFile'
+  accepts_nested_attributes_for :file
   
   has_many :order_files, :dependent => :destroy
   has_many :files, :class_name => 'OrderFile'
   accepts_nested_attributes_for :files
+  
+  has_one :project, :class_name => 'Project'
+  accepts_nested_attributes_for :project
 
-  has_one :project
+  has_many :projects, :class_name => 'Project'
+  accepts_nested_attributes_for :projects
   
   has_one :currency_order
+  accepts_nested_attributes_for :currency_order
+  has_one :currency, :through => :currency_order
+#  accepts_nested_attributes_for :currency
 
   has_one :budget
   has_one :acquisition
