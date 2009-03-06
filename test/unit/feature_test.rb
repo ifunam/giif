@@ -3,9 +3,9 @@
 class FeatureTest < ActiveSupport::TestCase
    fixtures :features
 
-  should_require_attributes :name
-  should_require_unique_attributes :name
+  should_validate_presence_of :name
+  should_validate_uniqueness_of :name
 
-  should_only_allow_numeric_values_for :id
+  should_validate_numericality_of :id
   should_not_allow_zero_or_negative_number_for :id
 end
