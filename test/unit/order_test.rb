@@ -14,54 +14,54 @@ class OrderTest < ActiveSupport::TestCase
     @mock_file.stubs(:read).returns(StringIO.new(( ("01" *39) + "\n" * 10)).read)
   end
 
-  def test_status_name
+  test "Should return the current status name" do
     assert_equal 'Sin enviar', @order.status_name
   end
 
-  def test_change_to_sent_status
+  test "Should change the current status to sent" do 
     @order.change_to_sent_status
     assert_equal 2, @order.order_status_id
   end
 
-  def test_change_to_approved_status
+  test "Should change the current status to approved" do 
     @order.order_status_id = 2
     @order.change_to_approved_status
     assert_equal 3, @order.order_status_id
   end
 
-  def test_change_to_rejected_status
+  test "Should change the current status to rejected" do 
     @order.order_status_id = 2
     @order.change_to_rejected_status
     assert_equal 4, @order.order_status_id
   end
 
-  def test_add_new_products
+  test "Should add new products" do 
     @order.products_attributes = [ { :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00, :product_category_id => 1} ]
     @order.save
     assert_not_nil @order.products
     assert_equal 'Hub Koesre KIL-09', @order.products.last.description
   end
 
-  def test_update_products
+  test "Should update products" do 
     @order.products_attributes = { "1" => { :quantity => 2, :description => 'Hub Koesre KIL-09', :price_per_unit => 1234.00, :product_category_id => 2 } }
     assert_not_nil @order.products
     assert_equal 'Hub Koesre KIL-09', @order.products.last.description
   end
 
-  def test_add_providers
+  test "Should add new providers" do
     @order.providers_attributes = [ { :name => 'Mac de México' } ]
     assert_not_nil @order.providers
     @order.save
     assert_equal 'Mac de México', @order.providers.last.name
   end
 
-  def test_update_providers
+  test "Should update providers" do
     @order.providers_attributes = { "1" => { :name => 'Mac de México City'}}
     assert_not_nil @order.providers
     assert_equal 'Mac de México City', @order.providers.last.name
   end
 
-  def test_add_files
+  test "Should add new files" do
     @order.files_attributes = [ 
       { 
         :file => @mock_file.read, :content_type => @mock_file.content_type.chomp.to_s, 
@@ -76,7 +76,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 3, @order.files.count
   end
 
-  def test_update_files
+  test "Should update existent files" do
     @order.files_attributes = { 
       1 => { 
              :file => @mock_file.read, :content_type => @mock_file.content_type.chomp.to_s, 
@@ -87,77 +87,74 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal "fdp.TYCANOC_otceyorp_otseupuserP", @order.files.last.filename
   end
 
-  def test_add_project
+  test "Should add new project" do
     @order.project_attributes = { :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2}
     @order.save
     assert_not_nil @order.project
     assert_equal 'Alpha project', @order.project.name
   end
 
-  def test_add_projects
+  test "Should add new projects" do
      @order.projects_attributes = [ { :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2}  ]
      assert_not_nil @order.projects
      assert_equal 'Alpha project', @order.projects.last.name
   end
   
-  def test_update_projects
+  test "Should update projects" do
     @order.projects_attributes = { 1 => { :name => 'Beta project', :key => '132-LPO', :project_type_id => 2 } }
     @order.save
     assert_not_nil @order.project
     assert_equal 'Beta project', @order.projects.last.name
    end
 
-  def test_should_not_create_order_with_empty_products
+  test "Should not create order with empty products" do
     @order = Order.build_valid
     @order.order_providers << OrderProvider.build_valid
     assert !@order.valid?, @order.errors.full_messages
   end
 
-  def test_should_not_create_order_with_empty_providers
+  test "Should not create order with empty providers" do
     @order = Order.build_valid
     @order.order_products << OrderProduct.build_valid
     assert !@order.valid?, @order.errors.full_messages
   end
 
-  def test_should_add_products
-    @order = Order.build_valid
-    @order_products = { :new => [ {:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X'},
-                                  {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y'}
-                                ]
-                      }
-    @order.add_products(@order_products)
-    assert_equal 2, @order.order_products.size
+  test "Should add product for an existent order" do
+    @order.products_attributes = [ {:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X', :product_category_id => 1},
+                                    {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y', :product_category_id => 2}
+                                  ]
+    @order.save
+    assert_equal 3, @order.order_products.count
   end
 
-  def test_should_not_add_provider_with_empty_provider
-    @order = Order.build_valid
-    @order.order_providers << OrderProvider.build_valid
-    assert !@order.valid?
-    assert_equal ["You should add at least one product", "You should add at least one product"], @order.errors.full_messages
+  test "Should not be a valid order if It does'nt hace at least one product" do 
+    order = Order.build_valid
+    order.order_providers << OrderProvider.build_valid
+    assert !order.valid?
+    assert_equal ["You should add at least one product", "You should add at least one product"], order.errors.full_messages
   end
 
-  def test_should_add_providers
+  test "Should add providers to an existent order" do
     @order.providers_attributes = [ { :name => 'Proveedor A'}, { :name => 'Proveedor B'} ]
     @order.save
     assert_equal 3, @order.providers.size
   end
 
-  def test_should_not_add_product_with_empty_product
-    @order = Order.build_valid
-    @order.order_products << OrderProduct.build_valid
-    assert !@order.valid?
-    assert_equal ["You should add at least one product", "You should add at least one provider"], @order.errors.full_messages
+  test "Should not be a valid order if It does'nt havee at least one provider" do 
+    order = Order.build_valid
+    order.order_products << OrderProduct.build_valid
+    assert !order.valid?
+    assert_equal ["You should add at least one product", "You should add at least one provider"], order.errors.full_messages
   end
 
-  def test_should_add_currency_data
-    @order = Order.build_valid
-    @order.currency_order_attributes = { :value => 10.5, :currency_id => 1}
-    @order.save
-    assert_equal 10.5, @order.currency_order.value
+  test "Should add currency into a new order" do
+    order = Order.build_valid
+    order.currency_order_attributes = { :value => 10.5, :currency_id => 1}
+    order.save
+    assert_equal 10.5, order.currency_order.value
   end
 
-  def test_calculate_total_amount
-    @order = Order.first
+  test "Should calculate total_amount for existent order" do
     assert_equal 56670.0, @order.total_amount
   end
 end
