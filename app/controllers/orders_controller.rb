@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'pdf/writer'
 require 'order_reporter'
-class OrderRequestsController < ApplicationController
+class OrdersController < ApplicationController
   #  before_filter :authorize
 
   def index
@@ -27,15 +27,14 @@ class OrderRequestsController < ApplicationController
 
   def create
     @user_profile = user_profile
-    @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date DESC" ,
-                                                    :page => params[:page] || 1, :per_page => 20)
-    @order = Order.new(:order_status_id => 1, :date => Date.today)
+    @order = Order.new(params[:order].merge(:order_status_id => 1, :date => Date.today))
     self.set_user(@order)
-    @order.add_products(params[:products])
-    @order.add_providers(params[:providers])
-    @order.add_files(params[:files])
-    @order.add_projects(params[:projects])
-    @order.add_currency_data(session[:currency], session[:currency_order])
+    
+#    @order.add_products(params[:products])
+#    @order.add_providers(params[:providers])
+#    @order.add_files(params[:files])
+#    @order.add_projects(params[:projects])
+#    @order.add_currency_data(session[:currency], session[:currency_order])
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save

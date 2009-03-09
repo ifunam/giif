@@ -14,7 +14,7 @@
   <%= render :partial => 'form', :locals => {:f => f} %>
   <p>
     <%= f.submit "Actualizar orden de compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
-    <%= link_to 'Cancelar', order_requests_path, :confirm => 'Al cancelar los cambios no serán almacenados' %>
+    <%= link_to 'Cancelar', orders_path, :confirm => 'Al cancelar los cambios no serán almacenados' %>
   </p>
   <% end %>
 </div>

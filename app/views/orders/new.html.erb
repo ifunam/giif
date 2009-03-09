@@ -3,17 +3,15 @@
   <%= content_tag(:b, "Secretaría Administrativa") %> <br/>
   <%= content_tag(:b, "Bienes y suministros") %> <br/>
 </div>
- 
- 
-<%= render :partial => 'currency_info' %>
+  <!-- <%= render :partial => 'currency_info' %> -->
  
 <%= error_messages_for 'budget_datum' %>
-<% form_for(:order_request, @order, :url => { :action => "index" }, :html => {:id => 'order', :multipart => true }) do |f| %>
+<% form_for(@order, :html => {:id => 'order', :multipart => true }) do |f| %>
 <div id="data">
-  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= render :partial => 'form', :locals => { :f => f} %>
   <p>
     <%= f.submit "Guardar orden de compra", :onclick => "return (confirm('¿Desea almacenar esta orden de compra?'));"%>
-    <%= link_to 'Cancelar', order_requests_path, :confirm => 'Al cancelar la orden de compra no será almacenada' %>
+    <%= link_to 'Cancelar', orders_path, :confirm => 'Al cancelar la orden de compra no será almacenada' %>
   </p>
 </div>
 <% end %>
