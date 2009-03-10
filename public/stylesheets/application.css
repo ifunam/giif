@@ -413,7 +413,7 @@ body {
 }
 .op_number{
     display:table-cell;
-    width: 100px;
+    width: 200px;
     padding: 2px;
     text-align: left;
 }

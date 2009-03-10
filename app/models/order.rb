@@ -19,15 +19,15 @@ class Order < ActiveRecord::Base
   has_one :file, :class_name => 'OrderFile'
   accepts_nested_attributes_for :file
   
-  has_many :order_files, :dependent => :destroy
-  has_many :files, :class_name => 'OrderFile'
-  accepts_nested_attributes_for :files
+#   has_many :order_files, :dependent => :destroy
+#   has_many :files, :class_name => 'OrderFile'
+#   accepts_nested_attributes_for :files
   
   has_one :project, :class_name => 'Project'
   accepts_nested_attributes_for :project
 
-  has_many :projects, :class_name => 'Project'
-  accepts_nested_attributes_for :projects
+#   has_many :projects, :class_name => 'Project'
+#   accepts_nested_attributes_for :projects
   
   has_one :currency_order
   accepts_nested_attributes_for :currency_order

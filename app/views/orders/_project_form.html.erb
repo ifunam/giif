@@ -1,0 +1,13 @@
+<% f.fields_for :project do |project_form| %>
+<div class="row" style="background-color: #e2eef3;">
+  <span class="op_type">
+    <%= project_form.select(:project_type_id, ProjectType.all(:order => 'name ASC').collect { |record| [record.name, record.id]}) %>
+  </span>
+  <span class="op_name">
+    <%= project_form.text_field :name, :size => '50', :maxlenght => '100' %>
+  </span>
+  <span class="op_number">
+    <%= project_form.text_field :key, :size => '5', :maxlenght => '10' %>
+  </span>
+</div>
+<% end %>

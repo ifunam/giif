@@ -1,0 +1,8 @@
+<div id="user_profile">
+  <div class="row" style="border: none;"><b>Nombre:</b> <%= user_data.fullname %> (<%= user_data.adscription_name %>)</div>
+    <div class="row" style="border: none;"><b>Teléfono:</b> <%= user_data.phone %></div>
+    <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= Date.today.to_s %></div>
+    <% if user_data.has_user_incharge? %>
+      <div class="row" style="border: none;"><b>Responsable académico:</b><%= user_data.user_incharge.fullname %></div>
+    <% end %>
+  </div>

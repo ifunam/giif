@@ -31,19 +31,19 @@ class User < ActiveRecord::Base
   end
   
   # TODO: Move this chunk of code to other model
-  def phone
-      record = Address.find(:first, :conditions => "user_id = #{self.id}")
-      record.phone unless record.nil?
-  end
+#   def phone
+#       record = Address.find(:first, :conditions => "user_id = #{self.id}")
+#       record.phone unless record.nil?
+#   end
 
-  def adscription_name # TODO: Move this method to UserProfile Class
-    record = UserAdscription.find(:first, :conditions => "user_id = #{self.id}")
-    record.adscription.name unless record.nil?
-  end
+#   def adscription_name # TODO: Move this method to UserProfile Class
+#     record = UserAdscription.find(:first, :conditions => "user_id = #{self.id}")
+#     record.adscription.name unless record.nil?
+#   end
   
-  def user_incharge_fullname
-    self.user_incharge.person.fullname
-  end
+#   def user_incharge_fullname
+#     self.user_incharge.person.fullname
+#   end
   # /TODO
   
   def is_activated?

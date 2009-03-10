@@ -1,12 +1,3 @@
-<div id="user_profile">
-  <div class="row" style="border: none;"><b>Nombre:</b> <%= @user_profile.fullname %> (<%= @user_profile.adscription_name %>)</div>
-  <div class="row" style="border: none;"><b>Teléfono:</b> <%= @user_profile.phone %></div>
-  <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= Date.today.to_s %></div>
-  <% if @user_profile.has_user_incharge? %>
-   <div class="row" style="border: none;"><b>Responsable académico:</b><%= @user_profile.user_incharge.fullname %></div>
-  <% end %>
-</div>
-
 <%= content_tag(:h2, "Artículo(s):") %>
 <div id="products" class="table">
     <span class="pd_quantity">Cantidad</span>
@@ -20,7 +11,23 @@
  
 <%= content_tag(:h2, "Proveedor(es):") %>
 <div id="providers" class="table">
-  	<span class="pv_description">Proveedor</span> <span class="pv_actions">Acciones</span>
+  	<span class="pv_description">Proveedor</span>
+        <span class="pv_actions">Acciones</span>
 	<%= render :partial => 'provider_form', :locals => { :f => f } %>
 </div>
 <%= link_to_function "Agregar" do |page|   page.insert_html :bottom, 'providers', :partial =>"provider_form", :locals => { :f => f } end %>
+
+<%= content_tag(:h2, "Anexos:") %>
+<div id="order_files" class="table">
+  <span class="of_filetype">Tipo de archivo</span>
+  <span class="of_file">Archivo</span>
+  <%= render :partial => "file_form", :locals => { :f => f } %>
+</div>
+
+<%= content_tag(:h2, "Con cargo a:") %>
+<div id="order_projects" class="table">
+  <span class="op_type">Tipo de proyecto</span>
+  <span class="op_name">Nombre del proyecto</span>
+  <span class="op_number">Número de proyecto / Partida</span>
+  <%= render :partial => "project_form", :locals => {:f => f} %>
+</div>
