@@ -88,12 +88,13 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "Should add new project" do
-    @order.project_attributes = { :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2}
-    @order.save
-    assert_not_nil @order.project
-    assert_equal 'Alpha project', @order.project.name
-  end
-
+      # Fix it => Test project_attributes  
+       @order.projects_attributes = [{ :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2 }]
+       @order.save
+       assert_not_nil @order.project
+       assert_equal 'Alpha project', @order.projects.last.name
+   end
+  
   test "Should add new projects" do
      @order.projects_attributes = [ { :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2}  ]
      assert_not_nil @order.projects

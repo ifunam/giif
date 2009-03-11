@@ -5,7 +5,7 @@
 </div>
  
 <%= error_messages_for 'order' %>
-<% form_for(@order, :html => {:id => 'order', :multipart => true }) do |f| %>
+<% form_for(@order) do |f| -%>
 <div id="data">
   
   <%= render :partial => 'user_data', :object => @user_profile%>

@@ -15,14 +15,9 @@ class OrdersController < ApplicationController
   def new
     @user_profile = user_profile
     @order = Order.new
-    @order.date = Date.today
-    @order.user_id = session[:user]
-    1.times{ @order.order_products.build }
-    @order.order_providers.build.provider = Provider.new
-    @order.order_file = OrderFile.new
-    @order.project = Project.new
-    @order.currency_order = CurrencyOrder.new
-    @currencies = Currency.find(:all)
+    [:products, :providers, :files, :projects].each do |m|
+      @order.send(m).build
+    end
   end
 
   def create

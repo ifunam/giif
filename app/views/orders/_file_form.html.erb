@@ -4,7 +4,7 @@
     <%= order_file_form.select(:file_type_id, FileType.all(:order => 'name ASC').collect { |record| [record.name, record.id]})%>
   </span>
 
- <span class="of_file" id="<%= 'order_file_upload' %>"
+ <span class="of_file" id="<%= 'order_file_upload' %>">
   <% unless !order_file_form.object.nil? %>
    <%= order_file_form.file_field(:file) %>
   <% else %>

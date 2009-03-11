@@ -1,11 +1,24 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'mocha'
  
-class OrderRequestsControllerTest < ActionController::TestCase
+class OrdersControllerTest < ActionController::TestCase
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
     :order_statuses, :orders, :order_products,:currencies, :currency_orders,
     :order_files, :project_types, :projects
  
+ def setup
+    @params = :order =>{ "project_attributes"=> 
+                          {"name"=>"saassas",
+    "project_type_id"=>"3",
+    "key"=>"2323"},
+    "order_products"=>{"quantity"=>"1",
+    "product_category_id"=>"1",
+    "description"=>"ssasa",
+    "price_per_unit"=>"23.00"},
+    "order_file"=>{"file_type_id"=>"2",
+    "file"=>#<File:/var/folders/eZ/eZqltdu3GpuegNOGT-FnM++++TM/-Tmp-/RackMultipart.1583.1>},
+    "order_providers"=>{"name"=>"lkasklasklsa"
+  }
   # TODO: Replace all this mess....
   def test_should_get_index
     @request.session[:user] = User.find_by_login('fernando').id
