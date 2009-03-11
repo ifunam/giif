@@ -3,7 +3,7 @@
   <%= content_tag(:b, "Secretaría Administrativa") %> <br/>
   <%= content_tag(:b, "Bienes y suministros") %> <br/>
 </div>
- 
+
 <%= error_messages_for 'order' %>
 <% form_for(@order, :html => {:id => 'order', :multipart => true }) do |f| -%>
 <div id="data">

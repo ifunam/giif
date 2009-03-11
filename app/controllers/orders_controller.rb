@@ -15,9 +15,13 @@ class OrdersController < ApplicationController
   def new
     @user_profile = user_profile
     @order = Order.new
-    [:products, :providers, :files, :projects].each do |m|
-      @order.send(m).build
-    end
+    @order.files.build
+    @order.build_project
+    @order.products.build
+    @order.providers.build
+#    [:products, :providers, :files, :projects].each do |m|
+#      @order.send(m).build
+#    end
   end
 
   def create
@@ -31,7 +35,7 @@ class OrdersController < ApplicationController
 #    @order.add_currency_data(session[:currency], session[:currency_order])
 #    if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
-        if @order.valid?
+        if @order.save
           format.html { redirect_to :action => "index" }
           format.xml  { render :xml => @order, :status => :created, :location => @order }
         else
