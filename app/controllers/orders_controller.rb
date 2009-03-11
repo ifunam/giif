@@ -22,26 +22,25 @@ class OrdersController < ApplicationController
 
   def create
     @user_profile = user_profile
-    @order = Order.new(params[:order].merge(:order_status_id => 1, :date => Date.today))
-    self.set_user(@order)
+    @order = Order.new(params[:order].merge(:order_status_id => 1, :date => Date.today, :user_id => session[:user]))
     
 #    @order.add_products(params[:products])
 #    @order.add_providers(params[:providers])
 #    @order.add_files(params[:files])
 #    @order.add_projects(params[:projects])
 #    @order.add_currency_data(session[:currency], session[:currency_order])
-    if request.env['HTTP_CACHE_CONTROL'].nil?
+#    if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
-        if @order.save
+        if @order.valid?
           format.html { redirect_to :action => "index" }
           format.xml  { render :xml => @order, :status => :created, :location => @order }
         else
-          format.html { render :action => "new" }
+          format.html { render :text => @order.errors.full_messages.to_sentence }
           format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
         end
 
       end
-    end
+ #   end
   end
 
   def send_order

@@ -1,11 +1,11 @@
-<% f.fields_for :order_file do |order_file_form| %>
+<% f.fields_for :files do |order_file_form| %>
 <div class="row" style="background-color: #e2eef3;">
   <span class="of_filetype">
     <%= order_file_form.select(:file_type_id, FileType.all(:order => 'name ASC').collect { |record| [record.name, record.id]})%>
   </span>
 
  <span class="of_file" id="<%= 'order_file_upload' %>">
-  <% unless !order_file_form.object.nil? %>
+  <% unless order_file_form.object.nil? %>
    <%= order_file_form.file_field(:file) %>
   <% else %>
    <%= render :partial => 'file', :object => order_file_form, :locals => {:f => f} %>

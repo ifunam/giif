@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # :secret => '6daee55e83b237ac80abfbade22cd326'
 
   protected
-  def  set_user(model)
+  def set_user(model)
     model.user_id = session[:user] if model.has_attribute? 'user_id'
     model.moduser_id = session[:user] if model.has_attribute? 'moduser_id'
     model.user_incharge_id = User.find(session[:user]).user_incharge.id if model.has_attribute? 'user_incharge_id' and !User.find(session[:user]).user_incharge.nil?
