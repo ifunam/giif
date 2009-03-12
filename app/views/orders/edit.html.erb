@@ -9,7 +9,7 @@
 <%= render :partial => 'currency_data' %>
 
 <div id="errors"><%= render :partial => 'errors' %></div>
- <% form_for :order_request, @order, :url => order_request_path(@order), :html => { :method => :put, :id => 'order', :multipart => true } do |f| %>
+ <% form_for :order_request, @order, :url => order_path(@order), :html => { :method => :put, :id => 'order', :multipart => true } do |f| %>
 <div id="data">
   <%= render :partial => 'form', :locals => {:f => f} %>
   <p>

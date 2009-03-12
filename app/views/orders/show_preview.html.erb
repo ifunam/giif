@@ -24,7 +24,7 @@
 
   <br/><br/>
   <div id="attached"> ANEXOS:<br/>
-  <span style="padding-left: 100px;"><%= @order.attachments[0].file_type.name %>  (<%= link_to @order.attachments[0].filename,  get_file_order_request_path(@order.attachments[0].id), :method => :get %>)</a>
+  <span style="padding-left: 100px;"><%= @order.attachments[0].file_type.name %>  (<%= link_to @order.attachments[0].filename,  get_file_order_path(@order.attachments[0].id), :method => :get %>)</a>
   </div>
 
   <br/><br/>

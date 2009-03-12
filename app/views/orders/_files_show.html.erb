@@ -1,4 +1,4 @@
 <p>
   <span id="cell_left"><%= files_show.file_type.name %></span>
-  <span id="cell_right" style="text-decoration: underline; color: blue;"><%= link_to files_show.filename,  get_file_order_request_path(files_show.id), :method => :get %></span>
+  <span id="cell_right" style="text-decoration: underline; color: blue;"><%= link_to files_show.filename,  get_file_order_path(files_show.id), :method => :get %></span>
 </p>

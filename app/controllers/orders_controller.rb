@@ -19,21 +19,15 @@ class OrdersController < ApplicationController
     @order.build_project
     @order.products.build
     @order.providers.build
-#    [:products, :providers, :files, :projects].each do |m|
-#      @order.send(m).build
-#    end
+    @order.currency_order = CurrencyOrder.new
   end
 
   def create
     @user_profile = user_profile
     @order = Order.new(params[:order].merge(:order_status_id => 1, :date => Date.today, :user_id => session[:user]))
-    
-#    @order.add_products(params[:products])
-#    @order.add_providers(params[:providers])
-#    @order.add_files(params[:files])
-#    @order.add_projects(params[:projects])
-#    @order.add_currency_data(session[:currency], session[:currency_order])
-#    if request.env['HTTP_CACHE_CONTROL'].nil?
+    @order.add_currency_data(session[:currency], session[:currency_order])
+
+    if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
           format.html { redirect_to :action => "index" }
@@ -44,7 +38,7 @@ class OrdersController < ApplicationController
         end
 
       end
- #   end
+    end
   end
 
   def send_order

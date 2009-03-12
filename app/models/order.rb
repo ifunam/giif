@@ -93,6 +93,16 @@ class Order < ActiveRecord::Base
    end
   end
 
+  def add_currency_data(currency, currency_order)
+    h = currency.attributes
+    [:id, :user_id, :created_at, :updated_at, :moduser_id].each do |k|
+      h.delete(k.to_s)
+    end
+
+    currency_order.currency = Currency.exists?(h) ? Currency.find(:first, :conditions => h) : currency
+    self.currency_order = currency_order
+  end
+
   def total_amount
     order_products.sum("quantity * price_per_unit").to_f
   end

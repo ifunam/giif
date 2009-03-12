@@ -9,15 +9,17 @@ class CurrenciesController < ApplicationController
   end
 
    def create
-     @record = Currency.new(params[:currency])
+     @order = params[:order]
+     @currency = Currency.new(params[:currency])
+     @currency_order = CurrencyOrder.new(:value => params[:currency_order]['value'], :order_id => @order, :currency_id => @currency.id)
      respond_to do |format|
-       if @record.valid?
-         session[:currency] = @record
-         session[:currency_order] = CurrencyOrder.new(params[:currency_order])
-         format.js { render :action => 'create.rjs' }
-       else
-         format.js { render :action => 'errors.rjs' }
-       end
+       session[:currency] = @currency
+       session[:currency_order] = @currency_order
+         if @currency.valid? && !@currency_order.value.nil?
+           format.js { render :action => 'create.rjs' }
+         else
+           format.js { render :action => 'errors.rjs' }
+         end
      end
    end
 
@@ -27,7 +29,7 @@ class CurrenciesController < ApplicationController
      if @record.id < 6
        @currency = CurrencyClient.new(@record.url, @record.conversion_title)
        session[:currency] = @record
-       session[:currency_order] = CurrencyOrder.new({:value => @currency.value})
+       session[:currency_order] = CurrencyOrder.new({:value => @currency.value, :order_id => session[:order]})
      end
 
      respond_to do |format|
