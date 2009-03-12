@@ -9,7 +9,7 @@
  </span>
 
   <span class="of_actions">
-   <% unless order_file_form.object.nil? %>
+   <% unless !order_file_form.object.nil? %>
     <%=  link_to_function("Cambiar archivo", nil, :id => "more_link") do |page|
          page.replace_html  'order_file_upload', order_file_form.file_field(:file)
          end %>

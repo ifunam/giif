@@ -426,7 +426,8 @@ body {
 
 #user_profile {
         margin-top: 15px;
-        border-bottom: 1px solid silver;
+        border: 1px solid silver;
+        background-color: #E2EEF3;
 }
 
 #user_profile b{
@@ -479,7 +480,7 @@ h3 {
 .fix {
     background-color: #e2eef3;
     width: 375px;
-    float: right;
+    border: 1px solid silver;
 }
 
 .fix-left {
