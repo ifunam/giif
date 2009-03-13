@@ -16,7 +16,7 @@
  
     <span class="pd_actions">
    	<% unless product_form.object.nil? %>
-    	<%= link_to_remote "Borrar", :url => destroy_item_order_path(:id => product_form.id, :table => 'order_product'), :method => :delete,
+    	<%= link_to_remote "Borrar", :url => destroy_item_order_path(:id => product_form.object_id, :table => 'order_product'), :method => :delete,
                                                    			   	 	:confirm => "¿Desea borrar este registro?"%>
     <% else%>
     	<%= link_to_function "Borrar", "$(this).up('.#{dom_id}').remove();" %>
