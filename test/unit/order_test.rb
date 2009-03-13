@@ -18,20 +18,20 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 'Sin enviar', @order.current_status
   end
 
-  test "Should change the current status to sent" do 
-    @order.change_to_sent_status
+  test "Should send the order" do 
+    @order.sent
     assert_equal 2, @order.order_status_id
   end
 
-  test "Should change the current status to approved" do 
+  test "Should approve the order" do 
     @order.order_status_id = 2
-    @order.change_to_approved_status
+    @order.approve
     assert_equal 3, @order.order_status_id
   end
 
-  test "Should change the current status to rejected" do 
+  test "Should rejecte the order" do 
     @order.order_status_id = 2
-    @order.change_to_rejected_status
+    @order.reject
     assert_equal 4, @order.order_status_id
   end
 

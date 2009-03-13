@@ -69,15 +69,15 @@ class Order < ActiveRecord::Base
     order_status.name
   end
 
-  def change_to_sent_status
+  def sent
     change_status(2) if order_status_id == 1
   end
 
-  def change_to_approved_status
+  def approve
     change_status(3) if order_status_id == 2
   end
 
-  def change_to_rejected_status
+  def reject
     change_status(4) if order_status_id == 2
   end
 
