@@ -1,9 +1,8 @@
 <div class="fix" id="currency_data">
   <div ="row">
     <span class="fix-left">Divisa:</span>
-    <span class="fix-right" ><%= session[:currency].name%></span>
-    currency_id: <%= session[:currency_order].order_id%><br/>
-    order_id: <%= session[:order]%>
+    <span class="fix-right" ><%= session[:currency_order].currency.name%></span>
+    currency_id: <%= session[:currency_order].currency_id%><br/>
   </div>
   <div ="row">
     <span class="fix-left">Tipo de cambio:</span>
@@ -11,7 +10,7 @@
   </div>
   <div ="row">
     <span class="fix-left">Fuente:</span>
-    <span class="fix-right" ><%= session[:currency].url%></span>
+    <span class="fix-right" ><%= session[:currency_order].currency.url%></span>
   </div>
   <div ="row">
     <span class="fix-left"></span>

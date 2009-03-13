@@ -19,14 +19,13 @@ class OrdersController < ApplicationController
     @order.build_project
     @order.products.build
     @order.providers.build
-    @order.currency_order = CurrencyOrder.new
+#    @order.currency_order = CurrencyOrder.new
   end
 
   def create
     @user_profile = user_profile
     @order = Order.new(params[:order].merge(:order_status_id => 1, :date => Date.today, :user_id => session[:user]))
-    @order.add_currency_data(session[:currency], session[:currency_order])
-
+    @order.currency_order = session[:currency_order]
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.save
@@ -87,16 +86,11 @@ class OrdersController < ApplicationController
   def update
     @user_profile = user_profile
     @order = Order.find(params[:id])
-    @order.add_products(params[:products])
-    @order.add_providers(params[:providers])
-    @order.add_files(params[:files])
-    @order.add_projects(params[:projects])
-    @order.add_currency_data(session[:currency], session[:currency_order])
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
-        if @order.save
+        if @order.update_attributes(params[:order])
           format.html { redirect_to :action => "show", :id => @order.id }
-          format.xml  { render :xml => @order, :status => :created, :location => @order }
+          format.xml  { render :xml => @order, :status => :updated, :location => @order }
         else
           format.html { render :action => "edit" }
           format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }

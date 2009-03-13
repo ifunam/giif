@@ -13,6 +13,7 @@
   <div class="row">
     <span class="fix-left">Tipo de cambio:</span>
     <span class="fix-right"><%= currency_order.text_field :value, :size => '25', :maxlenght => '50' %></span>
+	<span class="fix-right"><%= currency_order.hidden_field :currency_id, :value => 6 %></span>
   </div>
   <% end%>
   <%= submit_to_remote('change_currency', 'Guardar cambios', :url => {:controller => 'currencies', :action => 'create'})%>
