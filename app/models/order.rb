@@ -38,14 +38,9 @@ class Order < ActiveRecord::Base
   has_one :budget
   has_one :acquisition
   
-#  after_initialize :build_product
-#  after_initialize :build_provider
-#  after_initialize :build_file
-#  after_initialize :build_project
-  
   validates_associated :order_products, :order_status
 
-  #before_validation :verify_products_and_providers
+  before_validation :verify_products_and_providers
   before_save :read_files
   
   def read_files
@@ -60,33 +55,38 @@ class Order < ActiveRecord::Base
 
   def verify_products_and_providers
     validation = true
-    if self.order_products.size <= 0
+    if order_products.size <= 0
       errors.add_to_base("You should add at least one product")
       validation = false
-    elsif self.providers.size <= 0
+    elsif providers.size <= 0
       errors.add_to_base("You should add at least one provider")
       validation = false
     end
     validation
   end
 
-  def status_name
-    OrderStatus.find(self.order_status_id).name
+  def current_status
+    order_status.name
   end
 
   def change_to_sent_status
-    self.update_attributes(:order_status_id => 2) if self.order_status_id == 1
+    change_status(2) if order_status_id == 1
   end
 
   def change_to_approved_status
-    self.update_attributes(:order_status_id => 3) if self.order_status_id == 2
+    change_status(3) if order_status_id == 2
   end
 
   def change_to_rejected_status
-    self.update_attributes(:order_status_id => 4) if self.order_status_id == 2
+    change_status(4) if order_status_id == 2
   end
 
   def total_amount
     order_products.sum("quantity * price_per_unit").to_f
+  end
+
+  private 
+  def change_status(status_id)
+    update_attributes(:order_status_id => status_id)
   end
 end

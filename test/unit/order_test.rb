@@ -14,8 +14,8 @@ class OrderTest < ActiveSupport::TestCase
     @mock_file.stubs(:read).returns(StringIO.new(( ("01" *39) + "\n" * 10)).read)
   end
 
-  test "Should return the current status name" do
-    assert_equal 'Sin enviar', @order.status_name
+  test "Should return the current status" do
+    assert_equal 'Sin enviar', @order.current_status
   end
 
   test "Should change the current status to sent" do 
