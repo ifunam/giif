@@ -38,10 +38,10 @@ class Order < ActiveRecord::Base
   has_one :budget
   has_one :acquisition
   
-  after_initialize :build_product
-  after_initialize :build_provider
-  after_initialize :build_file
-  after_initialize :build_project
+#  after_initialize :build_product
+#  after_initialize :build_provider
+#  after_initialize :build_file
+#  after_initialize :build_project
   
   validates_associated :order_products, :order_status
 
@@ -50,9 +50,11 @@ class Order < ActiveRecord::Base
   
   def read_files
     files.each do |file|
-      file['content_type'] = file['file'].content_type
-      file['filename'] =  file['file'].original_filename
-      file['file'] = file['file'].read
+      if file.is_a? Hash
+        file['content_type'] = file['file'].content_type
+        file['filename'] =  file['file'].original_filename
+        file['file'] = file['file'].read
+      end
     end
   end
 

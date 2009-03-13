@@ -14,21 +14,21 @@ one:
  order_id: 1
  file_type_id: 2
  file: <%= fixture_data("logo_unam.jpg") %>
- content_type: "image/gif"
- filename: "top_secret"
+ content_type: "image/jpg"
+ filename: "top_secret.jpg"
 
 two:
  id: 2
  order_id: 2
  file_type_id: 3
  file: <%= fixture_data("logo_unam.jpg") %>
- content_type: "image/gif"
- filename: "top_secret_2"
+ content_type: "image/jpg"
+ filename: "top_secret_2.jpg"
 
 three:
  id: 3
  order_id: 3
  file_type_id: 2
  file: <%= fixture_data("logo_unam.jpg") %>
- content_type: "image/gif"
- filename: "top_secret_3"
+ content_type: "image/jpg"
+ filename: "top_secret_3.jpg"
