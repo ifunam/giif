@@ -75,24 +75,15 @@ class Order < ActiveRecord::Base
   end
 
   def change_to_sent_status
-    if self.order_status_id ==1
-      self.order_status_id = 2
-      self.save
-    end
+    self.update_attributes(:order_status_id => 2) if self.order_status_id == 1
   end
 
   def change_to_approved_status
-   if self.order_status_id ==2
-      self.order_status_id = 3
-      self.save
-   end
+    self.update_attributes(:order_status_id => 3) if self.order_status_id == 2
   end
 
   def change_to_rejected_status
-   if self.order_status_id ==2
-      self.order_status_id = 4
-      self.save
-   end
+    self.update_attributes(:order_status_id => 4) if self.order_status_id == 2
   end
 
   def add_currency_data(currency, currency_order)
