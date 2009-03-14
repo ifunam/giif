@@ -2,7 +2,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class OrderTest < ActiveSupport::TestCase
   fixtures :users, :order_statuses, :orders, :product_categories, :products, :order_products, 
   :providers, :order_providers, :project_types, :projects, :file_types, :order_files
-
+  remote_fixtures
+  
   should_have_many :order_products, :order_providers, :providers
   should_have_one :order_file, :project, :currency_order, :budget, :acquisition
 

@@ -44,11 +44,7 @@ class OrdersController < ApplicationController
     @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
-      if @order.change_to_sent_status
-#        Notifier.deliver_order_request_from_user(@order, user_profile)
-#         if UserProfileClient.find_by_login(:user).has_user_incharge?
-#           Notifier.deliver_order_to_userincharge(@order, user_incharge)
-#       end
+      if @order.sent
         format.js { render :action => 'send_order.rjs'}
       else
         format.js  { render :action => 'errors.rjs' }
