@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date ASC" ,
                                                     :page => params[:page] || 1, :per_page => 20)
     respond_to do |format|
-      format.html { render :action => :index }
+      format.html { render :index }
     end
   end
 
@@ -19,7 +19,9 @@ class OrdersController < ApplicationController
     @order.build_project
     @order.products.build
     @order.providers.build
-#    @order.currency_order = CurrencyOrder.new
+    respond_to do |format|
+        format.html { render :new }
+    end
   end
 
   def create
@@ -32,7 +34,7 @@ class OrdersController < ApplicationController
           format.html { redirect_to :action => "index" }
           format.xml  { render :xml => @order, :status => :created, :location => @order }
         else
-          format.html { render :text => @order.errors.full_messages.to_sentence }
+          format.html { render :new }
           format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
         end
 
@@ -45,9 +47,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     respond_to do |format|
       if @order.sent
-        format.js { render :action => 'send_order.rjs'}
+        format.js { render 'send_order.rjs'}
       else
-        format.js  { render :action => 'errors.rjs' }
+        format.js  { render 'errors.rjs' }
       end
     end
   end
@@ -56,22 +58,22 @@ class OrdersController < ApplicationController
     @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
-      format.html { render :action => 'edit'}
+      format.html { render 'edit' }
     end
   end
 
   def show
     @order = OrderReporter.find_by_order_id(params[:id])
     respond_to do |format|
-      format.html { render :action => "show"}
-      format.pdf  { render :action => "show.rpdf" }
+      format.html { render "show" }
+      format.pdf  { render "show.rpdf" }
     end
   end
 
   def show_preview
     @order = OrderReporter.find_by_order_id(params[:id])
     respond_to do |format|
-      format.html { render :action => "show_preview"}
+      format.html { render "show_preview"}
     end
   end
 
@@ -85,16 +87,15 @@ class OrdersController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.update_attributes(params[:order])
-          format.html { redirect_to :action => "show", :id => @order.id }
+          format.html { redirect_to "show", :id => @order.id }
           format.xml  { render :xml => @order, :status => :updated, :location => @order }
         else
-          format.html { render :action => "edit" }
+          format.html { render "edit" }
           format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
         end
       end
     end
   end
-
 
   def destroy
     @order = Order.find(params[:id])
@@ -110,7 +111,7 @@ class OrdersController < ApplicationController
     @record = @model.find(params[:id])
     @record.destroy
     respond_to do |format|
-      format.js { render :action => 'destroy_item.rjs'}
+      format.js { render 'destroy_item.rjs'}
     end
   end
 
@@ -127,10 +128,4 @@ class OrdersController < ApplicationController
   def user_incharge
     UserProfileClient.find_by_login(User.find(session[:user]).login).user_incharge
   end
-
-  def generate_pdf
-    @document = DocumentGenerator.new(@order, @user_profile)
-    @document.to_pdf
-  end
-
 end
