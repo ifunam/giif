@@ -155,7 +155,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 10.5, order.currency_order.value
   end
 
-  test "Should calculate total_amount for existent order" do
-    assert_equal 56670.0, @order.total_amount
+  test "Should calculate total_price for existent order" do
+    assert_equal 56670.0, @order.total_price
   end
 end
