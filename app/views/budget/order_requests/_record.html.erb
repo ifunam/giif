@@ -8,7 +8,7 @@
     </div>
   </span>
   <span class="date_td"><%= record.created_at.strftime("%d-%m-%Y") %></span>
-  <span class="status_td" id="<%= record.dom_id + '_status' %>"><%= record.status_name %></span>
+  <span class="status_td" id="<%= record.dom_id + '_status' %>"><%= record.current_status %></span>
   <span class="actions_td" id="<%= record.dom_id + '_actions' %>">
     <%= render :partial => 'record_actions', :locals => {:record => record} %>
     <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
