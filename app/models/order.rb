@@ -81,7 +81,7 @@ class Order < ActiveRecord::Base
     change_status(4) if order_status_id == 2
   end
 
-  def total_amount
+  def total_price
     order_products.sum("quantity * price_per_unit").to_f
   end
 

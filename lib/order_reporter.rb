@@ -88,6 +88,10 @@ class OrderReporter
     def currency
       @order.currency_order
     end
+
+    def total_price
+      @order.total_price
+    end
     
     def header
       ['Orden de compra No.', order_id, 'de', user_fullname, 'enviada el', order_date].join(' ')

@@ -10,6 +10,13 @@
 	<%= render :partial => 'section_show', :locals => { :title => 'Proveedor(es)', :partial => 'providers_show', :collection => @order.providers } %>
 	<%= render :partial => 'section_show', :locals => { :title => 'Anexo(s)', :partial => 'files_show', :collection => @order.attachments } %>
  	<%= render :partial => 'section_show', :locals => { :title => 'Con cargo a:', :partial => 'project_show', :object => @order.project } %>
+
+	<div id="collection">
+	  <div class="row">
+	    <h3>TOTAL</h3>
+	    	<%= @order.total_price %>
+	  </div>
+	</div>
   </div>
 
   <div id="bottom_image">
