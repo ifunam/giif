@@ -15,12 +15,11 @@ class CurrenciesControllerTest < ActionController::TestCase
     post :create, {:currency => { :name => 'Dólar canadiense', :url => 'http://themoneyconverter/ES/DCA/currency.asp'},
                    :currency_order => { :order_id => 1, :currency_id => 2, :value => 14.52}
                   }
- 
+    
     assert_template 'currencies/create.rjs'
-    assert_equal session[:currency].name, 'Dólar canadiense'
-    assert_equal session[:currency].url, 'http://themoneyconverter/ES/DCA/currency.asp'
-    assert_equal session[:currency_order].value, 14.52
-    assert_equal session[:currency_order].order_id, 1
+    assert_equal 14.52, session[:currency_order].value
+    assert_equal 1, session[:currency_order].order_id
+    assert_equal 2, session[:currency_order].currency_id
   end
  
   def test_should_not_create_new_currency
@@ -35,7 +34,6 @@ class CurrenciesControllerTest < ActionController::TestCase
     get :show, :id => 3
     
     assert_template 'show'
-    assert_not_nil session[:currency]
     assert_not_nil session[:currency_order]
   end
  
