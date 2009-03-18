@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'user_profile_client'
 class OrderReporter
     # Based on Template Design Pattern

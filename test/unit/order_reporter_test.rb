@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require File.dirname(__FILE__) + '/../test_helper'
 require 'order_reporter'
 class OrderReporterTest < ActiveSupport::TestCase

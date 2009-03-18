@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < ActiveSupport::TestCase
@@ -6,11 +8,11 @@ class UserTest < ActiveSupport::TestCase
   fixtures :addresses, :people, :adscriptions, :user_adscriptions
   # /TODO
   
-  should_validate_presence_of :login, :password, :email
-  should_validate_uniqueness_of :login, :email
+  #should_validate_presence_of :login, :password, :email
+ #  should_validate_uniqueness_of :login, :email
 
-  should_belong_to :user_incharge
-  should_have_one :person
+  #should_belong_to :user_incharge
+  #should_have_one :person
 
   def setup
     @newuser = { :login => 'fernando', :email => 'usuario@mail.com', :password => 'lifeislife', :password_confirmation => 'lifeislife'}
@@ -44,7 +46,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "Should encrypt your secret" do
-    assert_equal '26a81243a061f05b38fec50ae303e6b018e6bdd0fa0891904b272e509103f4a7e9dfc68a13eea9114616bfdee045d83eed78123380a7f348633c543d3a46055b', User.encrypt('yoursecret', 'RhKfxHddtln1XPWw1bIwVefodA2p9MROequn/oEG,t')
+    assert_equal '26a81243a061f05b38fec50ae303e6b018e6bdd0fa0891904b272e509103f4a7e9dfc68a13eea9114616bfdee045d83eed78123380a7f348633c543d3a46055b', User.encrypt('yoursecret' + 'RhKfxHddtln1XPWw1bIwVefodA2p9MROequn/oEG,t')
   end
 
   test "Should authenticate users with valid data" do
@@ -56,16 +58,16 @@ class UserTest < ActiveSupport::TestCase
     @user = User.create({ :login => 'golem', :email => 'golem@example.com', :password => 'quire', :password_confirmation => 'quire' })
     assert_equal 'golem', @user.login
     assert_equal 'golem@example.com', @user.email
-    assert_equal User.encrypt('quire', @user.salt), @user.password
+    assert_equal User.encrypt('quire' + @user.salt), @user.password
     assert !@user.is_activated?
   end
 
   test "Should activate an user and should maintain the same password" do
     @user = User.find_by_login('fernando')
-    assert_equal User.encrypt('maltiempo', @user.salt), @user.password
+    assert_equal User.encrypt('maltiempo' + @user.salt), @user.password
     @user.activate
     assert @user.is_activated?
-    assert_equal User.encrypt('maltiempo', @user.salt), @user.password
+    assert_equal User.encrypt('maltiempo' + @user.salt), @user.password
   end
 
   test "Should desactivate users and should maintain the same password" do
@@ -73,7 +75,7 @@ class UserTest < ActiveSupport::TestCase
     assert @user.is_activated?
     @user.unactivate
     assert !@user.is_activated?
-    assert_equal User.encrypt('maltiempo', @user.salt), @user.password
+    assert_equal User.encrypt('maltiempo' + @user.salt), @user.password
   end
 
   test "Should verify the current password returning nil" do
@@ -87,22 +89,5 @@ class UserTest < ActiveSupport::TestCase
     @user.current_password = 'inutil'
     assert !@user.send(:verify_current_password)
   end
-  
-  # TODO: Move this tests to other unit testing file
-  def test_phone
-      @record = User.find(2)
-      assert_equal '26-21-20-44', @record.phone
-  end
-  
-  def test_adscription_name
-    @record = User.find(2)
-      assert_equal 'Física Teórica', @record.adscription_name
-    end
-  
-    def test_user_incharge_fullname
-      @record = User.find(3)
-      assert_equal 'Reyes Jímenez Fernando',@record.user_incharge_fullname
-    end
-  # /TODO
 end
 

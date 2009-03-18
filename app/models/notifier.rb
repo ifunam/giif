@@ -1,3 +1,5 @@
+# encoding: utf-8
+#
 class Notifier < ActionMailer::Base
   # TODO: Change the domain and the email address to use accounts based on 
   #       yaml file, under RAILS_ROOT/config.
@@ -28,7 +30,7 @@ class Notifier < ActionMailer::Base
     @body              = { :order => order}
   end
 
-  def order_request_rejected(order, user_profile)
+  def order_request_rejected(order)
     @subject          = '[GIIF] Rechazo de solicitud interna de compra'
     @recipients      =  user_email(order.user.login)
     @from              = 'noreply@fisica.unam.mx'

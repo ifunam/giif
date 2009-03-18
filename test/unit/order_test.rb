@@ -1,11 +1,13 @@
+# encoding: utf-8
+
 require File.dirname(__FILE__) + '/../test_helper'
 class OrderTest < ActiveSupport::TestCase
   fixtures :users, :order_statuses, :orders, :product_categories, :products, :order_products, 
   :providers, :order_providers, :project_types, :projects, :file_types, :order_files
   remote_fixtures
-  
-  should_have_many :order_products, :order_providers, :providers
-  should_have_one :order_file, :project, :currency_order, :budget, :acquisition
+
+  #  should_have_many :order_products, :order_providers, :providers
+  #  should_have_one :order_file, :project, :currency_order, :budget, :acquisition
 
   def setup
     @order = Order.first
@@ -30,7 +32,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 3, @order.order_status_id
   end
 
-  test "Should rejecte the order" do 
+  test "Should rejected the order" do 
     @order.order_status_id = 2
     @order.reject
     assert_equal 4, @order.order_status_id
@@ -50,16 +52,16 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "Should add new providers" do
-    @order.providers_attributes = [ { :name => 'Mac de México' } ]
+    @order.providers_attributes = [ { :name => 'Mac de Azcapotzalco' } ]
     assert_not_nil @order.providers
     @order.save
-    assert_equal 'Mac de México', @order.providers.last.name
+    assert_equal 'Mac de Azcapotzalco', @order.providers.last.name
   end
 
   test "Should update providers" do
-    @order.providers_attributes = { "1" => { :name => 'Mac de México City'}}
+    @order.providers_attributes = { "1" => { :name => 'Mac of Mexico City'}}
     assert_not_nil @order.providers
-    assert_equal 'Mac de México City', @order.providers.last.name
+    assert_equal 'Mac of Mexico City', @order.providers.last.name
   end
 
   # test "Should add new files" do
@@ -86,25 +88,25 @@ class OrderTest < ActiveSupport::TestCase
   #   end
 
   test "Should add new project" do
-      # Fix it => Test project_attributes  
-       @order.projects_attributes = [{ :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2 }]
-       @order.save
-       assert_not_nil @order.project
-       assert_equal 'Alpha project', @order.projects.last.name
-   end
-  
-  test "Should add new projects" do
-     @order.projects_attributes = [ { :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2}  ]
-     assert_not_nil @order.projects
-     assert_equal 'Alpha project', @order.projects.last.name
+    # Fix it => Test project_attributes  
+    @order.projects_attributes = [{ :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2 }]
+    @order.save
+    assert_not_nil @order.project
+    assert_equal 'Alpha project', @order.projects.last.name
   end
-  
+
+  test "Should add new projects" do
+    @order.projects_attributes = [ { :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2}  ]
+    assert_not_nil @order.projects
+    assert_equal 'Alpha project', @order.projects.last.name
+  end
+
   test "Should update projects" do
     @order.projects_attributes = { 1 => { :name => 'Beta project', :key => '132-LPO', :project_type_id => 2 } }
     @order.save
     assert_not_nil @order.project
     assert_equal 'Beta project', @order.projects.last.name
-   end
+  end
 
   test "Should not create order with empty products" do
     @order = Order.build_valid
@@ -120,8 +122,8 @@ class OrderTest < ActiveSupport::TestCase
 
   test "Should add product for an existent order" do
     @order.products_attributes = [ {:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X', :product_category_id => 1},
-                                    {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y', :product_category_id => 2}
-                                  ]
+      {:quantity => 3,  :price_per_unit => 145.70, :description => 'Routers marca Y', :product_category_id => 2}
+    ]
     @order.save
     assert_equal 3, @order.order_products.count
   end

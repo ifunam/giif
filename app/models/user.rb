@@ -22,29 +22,13 @@ class User < ActiveRecord::Base
   class << self
       def authenticate?(l,pw)
         @user = User.find_by_login(l)
-        (!@user.nil? and @user.password == encrypt(pw, @user.salt) and @user.is_activated?) ? true : false
+        !@user.nil? and @user.password == encrypt(pw + @user.salt) and @user.is_activated?
       end
 
-      def encrypt(password, mysalt)
-        Digest::SHA512.hexdigest(password + mysalt)
+      def encrypt(string)
+        Digest::SHA512.hexdigest(string)
       end
   end
-  
-  # TODO: Move this chunk of code to other model
-  def phone
-      record = Address.find(:first, :conditions => "user_id = #{self.id}")
-      record.phone unless record.nil?
-  end
-
-  def adscription_name # TODO: Move this method to UserProfile Class
-    record = UserAdscription.find(:first, :conditions => "user_id = #{self.id}")
-    record.adscription.name unless record.nil?
-  end
-  
-  def user_incharge_fullname
-    self.user_incharge.person.fullname
-  end
-  # /TODO
   
   def is_activated?
     self.status
@@ -67,14 +51,14 @@ class User < ActiveRecord::Base
     if self.password != nil
       self.salt = random_string(40)
       plaintext = password
-      self.password = User.encrypt(plaintext, self.salt)
+      self.password = User.encrypt(plaintext + self.salt)
       self.password_confirmation = nil
     end
   end
 
   def verify_current_password
     if !self.current_password.nil?
-      if User.find(:first, :conditions => ["id = ?", self.id]).password != User.encrypt(self.current_password, self.salt)
+      if User.find(:first, :conditions => ["id = ?", self.id]).password != User.encrypt(self.current_password + self.salt)
         errors.add("current_password", "is not valid")
         return false
       end
@@ -88,13 +72,8 @@ class User < ActiveRecord::Base
   end
   
   # TODO: Remove this method
-  def random_string(n)
-    if n.to_i > 1
-      s = ""
-      char64 = (('a'..'z').collect + ('A'..'Z').collect + ('0'..'9').collect + ['.','/']).freeze
-      n.times { s << char64[(Time.now.tv_usec * rand) % 64] }
-      s
-    end
+  def random_string(n=39)
+    User.encrypt(Time.now.to_s).slice(0..n)
   end
   # /TODO
 end
