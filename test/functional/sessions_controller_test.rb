@@ -12,7 +12,7 @@ class SessionsControllerTest < ActionController::TestCase
   def test_should_signup
     post :signup, :user => {:login => "alex", :password => "valid_password" }
     assert_equal 'Bienvenido(a)!', flash[:notice]
-    assert_redirected_to :controller => "order_requests"
+    assert_redirected_to :controller => "orders"
   end
  
   def test_should_not_signup

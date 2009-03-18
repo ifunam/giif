@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
 
   def create
     @user_profile = user_profile
+
     @order = Order.new(params[:order].merge(:order_status_id => 1, :date => Date.today, :user_id => session[:user]))
     @order.currency_order = session[:currency_order]
     if request.env['HTTP_CACHE_CONTROL'].nil?
@@ -46,11 +47,8 @@ class OrdersController < ApplicationController
     @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
-      if @order.sent
-        format.js { render 'send_order.rjs'}
-      else
-        format.js  { render 'errors.rjs' }
-      end
+      @order.sent
+      format.js { render 'send_order.rjs'}
     end
   end
 

@@ -88,5 +88,6 @@ class Order < ActiveRecord::Base
   private 
   def change_status(status_id)
     update_attributes(:order_status_id => status_id)
+    true
   end
 end

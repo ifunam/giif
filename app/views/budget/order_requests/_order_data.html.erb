@@ -16,7 +16,7 @@
   <div id="number_title"><a>No.</a></div><div id="quantity_title"><a>CANTIDAD</a></div><div id="description_title"><a>DESCRIPCIÓN DE LOS BIENES E INSUMOS REQUERIDOS</a></div><div id="unit_title"><a>UNIDAD</a></div><div id="price_per_unit_title"><a>PRECIO POR UNIDAD</a></div><div id="total_title"><a>IMPORTE</a></div>
 
   <%= render :partial => "product", :collection => @order.order_products, :locals => { :i => @order.order_products.last.id}%>
-  <span style="padding-left: 830px;">COSTO TOTAL: <div id="total_sum"><%= order_request_total_cost(@order.id)%></div></span>
+  <span style="padding-left: 830px;">COSTO TOTAL: <div id="total_sum"><%= @order.total_price%></div></span>
 
   <br/><br/><div id="number_title"><a>No.</a></div><div id="provider_title"><a>PROVEEDORES</a></div>
   <%= render :partial => "provider", :collection => @order.providers%>
@@ -36,6 +36,6 @@
   <div style="border: 1px solid black;">DIVISA<br/>
     <div id="inrow-left">Divisa: </div><div id="inrow-right"><%= @order.currency_order.currency.name%></div><br/>
     <div id="inrow-left">Tipo de cambio: </div><div id="inrow-right"><%= @order.currency_order.value%></div><br/>
-    <div id="inrow-left">Equivalente en M.N.: </div><div id="inrow-right"><%= @order.currency_order.value *  order_request_total_cost(@order.id)%></div><br/>
+    <div id="inrow-left">Equivalente en M.N.: </div><div id="inrow-right"><%= @order.currency_order.value *  @order.total_price%></div><br/>
   </div><br/>
 

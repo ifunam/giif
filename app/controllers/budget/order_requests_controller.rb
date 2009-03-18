@@ -13,8 +13,8 @@ class Budget::OrderRequestsController < ApplicationController
     @order = Order.find(params[:id])
 
     respond_to do |format|
-      if @order.change_to_approved_status
-        Notifier.deliver_request_approved(@order, user_profile)
+      if @order.approve
+        Notifier.deliver_request_approved(@order)
         format.js { render :action => 'approve.rjs'}
       else
         format.js  { render :action => 'errors.rjs' }
@@ -27,8 +27,8 @@ class Budget::OrderRequestsController < ApplicationController
     @order = Order.find(params[:id])
     
     respond_to do |format|
-      if @order.change_to_rejected_status
-        Notifier.deliver_order_request_rejected(@order, user_profile)
+      if @order.reject
+        Notifier.deliver_order_request_rejected(@order)
         format.js { render :action => 'reject.rjs'}
       else
         format.js  { render :action => 'errors.rjs' }
