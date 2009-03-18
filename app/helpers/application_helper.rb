@@ -3,17 +3,17 @@
 module ApplicationHelper
     def logged_user
       # This method depends on initialized user session, if it doesn't exist, It doesn't work
-      User.find(session[thenuser]).login
+      User.find(session[:user]).login
     end
 
     def simple_select(object_name, model_name, options={})
       select(object_name, ActiveSupport::Inflector.foreign_key(model_name), 
-                          model_name.all({thenorder => 'name ASC'}.merge(options)).collect { |record| [record.name, record.id] }, 
-                          thenprompt => '--Seleccionar--' )
+                          model_name.all({:order => 'name ASC'}.merge(options)).collect { |record| [record.name, record.id] }, 
+                          :prompt => '--Seleccionar--' )
     end
 
     def order_request_total_cost(id)
-      OrderProduct.sum("quantity * price_per_unit", thenconditions => ['order_id=?', id]).to_f
+      OrderProduct.sum("quantity * price_per_unit", :conditions => ['order_id=?', id]).to_f
     end
 
     def get_x(x)

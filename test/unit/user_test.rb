@@ -8,11 +8,11 @@ class UserTest < ActiveSupport::TestCase
   fixtures :addresses, :people, :adscriptions, :user_adscriptions
   # /TODO
   
-  #should_validate_presence_of :login, :password, :email
- #  should_validate_uniqueness_of :login, :email
+  should_validate_presence_of :login, :password, :email
+  should_validate_uniqueness_of :login, :email
 
-  #should_belong_to :user_incharge
-  #should_have_one :person
+  should_belong_to :user_incharge
+  should_have_one :person
 
   def setup
     @newuser = { :login => 'fernando', :email => 'usuario@mail.com', :password => 'lifeislife', :password_confirmation => 'lifeislife'}
