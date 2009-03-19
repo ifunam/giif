@@ -1,4 +1,4 @@
-class Budget::OrderRequestsController < ApplicationController
+class Budget::OrdersController < ApplicationController
 
   layout "budget_order_request"
 

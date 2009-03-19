@@ -1,4 +1,4 @@
-class Acquisition::OrderRequestsController < ApplicationController
+class Acquisition::OrdersController < ApplicationController
 
   layout "budget_order_request"
 
