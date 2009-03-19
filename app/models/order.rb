@@ -60,8 +60,8 @@ class Order < ActiveRecord::Base
       error_msg = "You should add at least one provider"
     end
 
-    if defined?(error_msg)
-      errors.add_to_base(error_msg) unless errors.full_messages.include? error_msg
+    if defined?(error_msg) 
+      errors.add_to_base(error_msg)  unless errors.full_messages.include? error_msg
       false
     end
 
