@@ -1,7 +1,7 @@
-<% f.fields_for :files do |order_file_form| %>
+<% f.fields_for :file do |order_file_form| %>
 <div class="row" style="background-color: #e2eef3;">
   <span class="of_filetype">
-    <%= order_file_form.select(:file_type_id, FileType.all(:order => 'name ASC').collect { |record| [record.name, record.id]})%>
+    <%= order_file_form.select(:file_type_id, FileType.all(:order => 'name ASC').collect { |record| [record.name, record.id]}, :prompt => '--Seleccionar--')%>
   </span>
 
  <span class="of_file" id="<%= 'order_file_upload' %>">

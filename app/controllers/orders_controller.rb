@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
   def new
     @user_profile = user_profile
     @order = Order.new
-    @order.files.build
+    @order.build_file
     @order.build_project
     @order.products.build
     @order.providers.build
@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
 
   def create
     @user_profile = user_profile
-
     @order = Order.new(params[:order].merge(:order_status_id => 1, :date => Date.today, :user_id => session[:user]))
     @order.currency_order = session[:currency_order]
     if request.env['HTTP_CACHE_CONTROL'].nil?

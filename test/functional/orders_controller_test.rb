@@ -39,29 +39,29 @@ class OrdersControllerTest < ActionController::TestCase
     assert_template 'new'
   end
  
-#   def test_should_create_order
-# #    @request.session[:currency] = Currency.new(:name => 'Dólar nigeriano', :url => 'http://www.currencyexchange.com')
-# #    @request.session[:currency_order] = CurrencyOrder.new(:order_id => 1, :currency_id => 2, :value => 13.45)
- 
-#     post :create, { :order => {  
-#                                 :products_attributes => [
-#                                                          {:description => 'Notebook', :price_per_unit => 789.00, :quantity => 2, :product_category_id => 2},
-#                                                          {:description => 'Server', :price_per_unit => 1980.00, :quantity => 3, :product_category_id => 3}
-#                                                         ],
-#                                 :providers_attributes => [
-#                                                           {:name => 'Proveedor A'}
-#                                                          ],
-
-#                                 :file_attributes => { :file_type_id => 1, :file => fixture_file_upload('../../public/images/rails.png', 'image/png', :binary)},
-
-#                                 :project_attributes =>  { :name => 'Proyecto de investigación en ciencia de materiales', :key => '123-Q', :project_type_id => 2}
-#                                },
-#                      :multipart => true
-#                   }
- 
-#     assert_redirected_to :action => 'index'
-#   end
- 
+   def test_should_create_order
+ # #    @request.session[:currency] = Currency.new(:name => 'Dólar nigeriano', :url => 'http://www.currencyexchange.com')
+ # #    @request.session[:currency_order] = CurrencyOrder.new(:order_id => 1, :currency_id => 2, :value => 13.45)
+ #  
+     post :create, { :order => {  
+                                  :products_attributes => [
+                                                            { :description => 'Notebook', :price_per_unit => 789.00, :quantity => 2, :product_category_id => 2 },
+                                                            { :description => 'Server', :price_per_unit => 1980.00, :quantity => 3, :product_category_id => 3 }
+                                                          ],
+                                  :providers_attributes => [
+                                                            { :name => 'Proveedor A' }
+                                                           ],
+  
+                                  :file_attributes => { :file_type_id => 1, :file => fixture_file_upload('../../public/images/rails.png', 'image/png', :binary) },
+  
+                                  :project_attributes =>  { :name => 'Proyecto de investigación en ciencia de materiales', :key => '123-Q', :project_type_id => 2}
+                                 },
+                      :multipart => true
+                    }
+   
+      assert_redirected_to :action => 'index'
+    end
+  #  
 #   def test_should_not_create_order_with_not_valid_description_of_products
 #     @request.session[:user] = User.find_by_login('fernando').id
 #     @request.session[:currency] = Currency.new(:name => 'Dólar nigeriano', :url => 'http://www.currencyexchange.com')
@@ -103,11 +103,11 @@ class OrdersControllerTest < ActionController::TestCase
     assert_template 'edit'
   end
  
-  def test_should_get_show
-    @request.session[:user] = User.find_by_login('fernando').id
-    get :show, :id => 1
-    assert_template 'show'
-  end
+  # def test_should_get_show
+  #   @request.session[:user] = User.find_by_login('fernando').id
+  #   get :show, :id => 1
+  #   assert_template 'show'
+  # end
  
 #   def test_should_post_update
 #     @request.session[:user] = User.find_by_login('fernando').id

@@ -41,28 +41,30 @@ class Order < ActiveRecord::Base
   validates_associated :order_products, :order_status
 
   before_validation :verify_products_and_providers
-  before_save :read_files
-  
-  def read_files
-    files.each do |file|
-      if file.is_a? Hash
-        file['content_type'] = file['file'].content_type
-        file['filename'] =  file['file'].original_filename
-        file['file'] = file['file'].read
-      end
+
+  # Fix It: Move this method to OrderFile class if the accepts_nested_attributes_for method is improved
+  before_save :read_file
+
+  def read_file
+     if file.class == OrderFile and !file.file.nil? and !file.file.is_a? String
+      file.content_type = file.file.content_type
+      file.filename = file.file.original_filename
+      file.file = file.file.read
     end
   end
 
   def verify_products_and_providers
-    validation = true
-    if order_products.size <= 0
-      errors.add_to_base("You should add at least one product")
-      validation = false
-    elsif providers.size <= 0
-      errors.add_to_base("You should add at least one provider")
-      validation = false
+    if products.length <= 0
+      error_msg = "You should add at least one product"
+    elsif providers.length <= 0
+      error_msg = "You should add at least one provider"
     end
-    validation
+
+    if defined?(error_msg)
+      errors.add_to_base(error_msg) unless errors.full_messages.include? error_msg
+      false
+    end
+
   end
 
   def current_status
