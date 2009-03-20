@@ -60,10 +60,11 @@ body {
     font-size: 14px;
     color: ##CC3366;
     display:table-cell;
-    width: 220px;
+    width: 275px;
     text-align: center;
-    background-color: #e2eef3;
+/*    background-color: #e2eef3;*/
     padding: 2px;
+    background: url("../images/bg_cell_menu.jpg") no-repeat;
 }
 
 /*Advice*/
@@ -335,6 +336,11 @@ body {
 #collection a:hover {
     color: green;
     text-decoration: none;
+}
+
+#icon img {
+    color: white;
+    vertical-align: bottom;
 }
 
 /*style for each cell of order request*/
