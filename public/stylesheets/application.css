@@ -82,7 +82,6 @@ body {
 
 /*General cells*/
 .row{
-   // display: table-row;
    padding: 2px;
    border-bottom: 1px solid silver;
    width: 95%;
@@ -177,72 +176,38 @@ body {
   padding: 2px;
   text-align: left;
 }
-.id_th{
-    display: table-cell;
-    font-weight: bold;
-    width: 60px;
-}
 
-.description_th{
-    display: table-cell;
-    font-weight: bold;
-    width: 500px;
-}
-
-.amount_th{
-    display: table-cell;
-    font-weight: bold;
-    width: 90px;
-}
-
-.date_th{
-    display: table-cell;
-    font-weight: bold;
-    width: 90px;
-}
-
-.status_th{
-    display: table-cell;
-    font-weight: bold;
-    width: 90px;
-}
-
-.actions_th{
-    display: table-cell;
-    font-weight: bold;
-    width: 170px;
-}
-
-.id_td{
+.id{
     display: table-cell;
     width: 60px;
 }
-.description_td{
+
+.description{
     display: table-cell;
-    width: 500px;
+    width: 370px;
 }
 
-.amount_td{
-    display: table-cell;
-    width: 90px;
-}
-
-.date_td{
+.amount{
     display: table-cell;
     width: 90px;
 }
 
-.status_td{
+.date{
     display: table-cell;
     width: 90px;
 }
 
-.status_td img {
-    vertical-align: bottom;
+.date_update{
+    display: table-cell;
+    width: 110px;
 }
 
+.status{
+    display: table-cell;
+    width: 90px;
+}
 
-.actions_td{
+.actions{
     display: table-cell;
     width: 170px;
 }
@@ -781,18 +746,5 @@ h3 {
 #acquisition_cell {
     width: 348px;
     display: inline-block;
-}
-
-/*columns of *acquisition/order_requests*/
-.description_acq{
-    display: table-cell;
-    font-weight: bold;
-    width: 370px;
-}
-
-.date_update_acq{
-    display: table-cell;
-    font-weight: bold;
-    width: 110px;
 }
 

@@ -1,20 +1,2 @@
-<div id="collection">
-  A continuación se listan las ordenes de compra que ha solicitado. <br/><br/>
-  <div class="row">
-    <span class="id_th">No. de orden</span>
-    <span class="description_th">Descripcion de artículos</span>
-    <span class="date_th">Fecha de solicitud</span>
-    <span class="status_th">Estado</span>
-    <span class="actions_th">Acciones</span>
-  </div>
-  <%= render :partial => 'record', :collection => @collection %>
-  <div>
-    <%= will_paginate @collection %>
-<br/><br/>
-
-    <div id="add">
-         <%= link_to( image_tag("add.png", :size => '16x16'), new_order_path )%>
-         <%= link_to 'Agregar nueva orden de compra', new_order_path%>
-    </div>
-  </div>
-</div>
+<%= render :partial => 'shared/index', :collection => @collection,
+:locals => {:title => "A continuación se listan las ordenes de compra solicitadas por el personal del IFUNAM."}%>

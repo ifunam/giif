@@ -1,0 +1,21 @@
+<div id="collection">
+  <%= title%>
+  <div id="currency_form">
+  </div><br/><br/>
+  <div class="row" style="font-weight: bold;">
+    <span class="id">No. de orden</span>
+    <span class="description">Descripcion de artículos</span>
+    <span class="date">Fecha de solicitud</span>
+    <span class="date_update">Última fecha de actualización</span>
+    <span class="status">Estado</span>
+    <span class="actions">Acciones</span>
+  </div>
+  <%= render :partial => 'shared/record', :collection => @collection %>
+  <div>
+    <%= will_paginate @collection %>
+  </div>
+</div>
+<div id="add">
+  <%= link_to( image_tag("icon_add_order.jpg", :size => '16x16'), new_order_path )%>
+  <%= link_to 'Agregar nueva orden de compra', new_order_path%>
+</div>
