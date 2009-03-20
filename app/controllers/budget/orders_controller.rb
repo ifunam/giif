@@ -1,6 +1,6 @@
 class Budget::OrdersController < ApplicationController
 
-  layout "budget_order_request"
+  layout "orders"
 
   def index
     @collection = Order.paginate(:all, :conditions => [ "order_status_id>1" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
