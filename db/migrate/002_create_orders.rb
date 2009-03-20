@@ -33,7 +33,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer    :quantity, :null => false
       t.text       :description, :null => false
       t.text       :unit # TODO: Verify if :unit  is required and not null
-      t.float      :price_per_unit, :null => false
+      t.float      :price_per_unit
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
