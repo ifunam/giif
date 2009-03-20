@@ -22,6 +22,11 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 'Sin enviar', @order.current_status
   end
 
+  test "Should send estimate request to our providers" do 
+    @order.send_estimate_request
+    assert_equal 'Cotizaciones en progreso', @order.current_status
+  end
+  
   test "Should send the order" do 
     @order.sent
     assert_equal 2, @order.order_status_id
@@ -32,6 +37,7 @@ class OrderTest < ActiveSupport::TestCase
     @order.approve
     assert_equal 3, @order.order_status_id
   end
+
 
   test "Should rejected the order" do 
     @order.order_status_id = 2

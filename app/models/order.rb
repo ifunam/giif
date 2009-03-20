@@ -75,6 +75,10 @@ class Order < ActiveRecord::Base
     change_status(2) if order_status_id == 1
   end
 
+  def send_estimate_request
+    change_status(5) if order_status_id == 1
+  end
+
   def approve
     change_status(3) if order_status_id == 2
   end
