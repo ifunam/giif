@@ -3,7 +3,7 @@
    <%= link_to 'Modificar', edit_order_path(record) %> |
    <%= link_to 'Borrar', order_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?' %> <br/>
 <div id="send_mail">
-  <%= link_to_remote( image_tag("e-mail.png"), :url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" )%>
+  <%= link_to_remote( image_tag("email.jpg"), :url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" )%>
   <%= link_to_remote 'Enviar orden de compra',  :url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();" %>
 </div>
    <% else%>

@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   #  before_filter :authorize
 
   def index
+    @user_profile = user_profile
     @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date ASC" ,
                                                     :page => params[:page] || 1, :per_page => 20)
     respond_to do |format|

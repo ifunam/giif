@@ -3,6 +3,7 @@ class Acquisition::OrdersController < ApplicationController
   layout "orders"
 
   def index
+    @user_profile = user_profile
     @collection = Order.paginate(:all, :conditions => [ "order_status_id=3" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
     respond_to do |format|
       format.html { render :action => 'index' }

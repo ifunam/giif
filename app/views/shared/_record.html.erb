@@ -1,0 +1,18 @@
+<div class=<%="row_" + ((record_counter + 1) % 2).to_s%>>
+  <span class="id"><%= record.id %></span>
+  <span class="description">
+    <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/><br/>
+    <span style="margin-left: 50px; font-weight: bold;">Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%> (<%= link_to 'Ver más detalles', order_path(record) %>)</span>
+  </span>
+  <span class="date"><%= record.date.strftime("%d-%m-%Y") %></span>
+  <span class="date_update"><%= record.updated_at.strftime("%d-%m-%Y") %></span>
+  <% id=record.order_status_id.to_s%>
+  <span class="status" id="<%= record.dom_id + '_status' %>">
+    <%= image_tag("status_"+id+".jpg", :size => '16x16')%>
+    <%= record.current_status %>
+  </span>
+  <span class="actions" id="<%= record.dom_id + '_actions' %>">
+    <%= render :partial => 'record_actions', :locals => {:record => record} %>
+    <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
+</span>
+</div>
