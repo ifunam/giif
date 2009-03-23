@@ -9,6 +9,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups
 
+  map.resources :estimates
+  
+  map.resources :providers
+
+  map.resources :products
+
   map.namespace :budget do |budget|
     budget.resource :session
     budget.resources :orders
