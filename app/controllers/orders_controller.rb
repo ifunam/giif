@@ -15,10 +15,6 @@ class OrdersController < ApplicationController
   def new
     @user_profile = user_profile
     @order = Order.new
-    @order.build_file
-    @order.build_project
-    @order.products.build
-    @order.providers.build
     respond_to do |format|
         format.html { render :new }
     end
@@ -117,12 +113,4 @@ class OrdersController < ApplicationController
     send_data record.file, :type => record.content_type, :filename => record.filename, :disposition => 'attachment'
   end
 
-  private
-  def user_profile
-    UserProfileClient.find_by_login(User.find(session[:user]).login)
-  end
-
-  def user_incharge
-    UserProfileClient.find_by_login(User.find(session[:user]).login).user_incharge
-  end
 end

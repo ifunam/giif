@@ -1,4 +1,5 @@
 class Order < ActiveRecord::Base
+  
   validates_presence_of :date,  :order_status_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id, :order_status_id, :greater_than => 0, :only_integer => true
@@ -40,11 +41,30 @@ class Order < ActiveRecord::Base
   
   validates_associated :order_products, :order_status
 
+  # After initialize callbacks
+  # after_initialize :build_file
+  # after_initialize :build_project
+  # after_initialize :build_products
+  # after_initialize :build_providers
+ 
   before_validation :verify_products_and_providers
-
   # Fix It: Move this method to OrderFile class if the accepts_nested_attributes_for method is improved
   before_save :read_file
 
+  def initialize(*args)
+     super
+     build_file
+     build_project
+     products.build
+     providers.build
+  end
+  def self.paginate_by_user_id(user_id, page=1, per_page=20)
+    mypaginate(:conditions => { :user_id =>  user_id })
+  end
+  
+  def self.mypaginate(options={}, page=1, per_page=20)
+    paginate(:all, options.merge(:page => page, :per_page => per_page))
+  end
   def read_file
      if file.class == OrderFile and !file.file.nil? and !file.file.is_a? String
       file.content_type = file.file.content_type
