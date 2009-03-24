@@ -1,8 +1,10 @@
-motorola:
+Motorola:
  id: 1
  product_type_id: 1
  model: BGY7654
  vendor: Motorola
+
+HP:
  id: 2
  product_type_id: 2
  model: JK19876

@@ -1,4 +1,5 @@
 class ProvidersController < ApplicationController
+  
   def destroy
     @record = Provider.find(params[:id])
     @record.destroy
