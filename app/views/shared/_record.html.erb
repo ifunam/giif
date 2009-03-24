@@ -2,7 +2,7 @@
   <span class="id"><%= record.id %></span>
   <span class="description">
     <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/><br/>
-    <span style="margin-left: 50px; font-weight: bold;">Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%> (<%= link_to 'Ver más detalles', order_path(record) %>)</span>
+    <span style="margin-left: 50px; font-weight: bold;">Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%> <span id="icon"><%= link_to(image_tag("icon_details.jpg", :title => 'Ver más detalles', :size => '16x16'), :action => 'show', :id => record.id)%></span></span>
   </span>
   <span class="date"><%= record.date.strftime("%d-%m-%Y") %></span>
   <span class="date_update"><%= record.updated_at.strftime("%d-%m-%Y") %></span>
@@ -12,7 +12,8 @@
     <%= record.current_status %>
   </span>
   <span class="actions" id="<%= record.dom_id + '_actions' %>">
-    <%= render :partial => 'record_actions', :locals => {:record => record} %>
+
+    <%= render :partial => 'shared/actions', :locals => {:record => record} %>    
     <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
 </span>
 </div>

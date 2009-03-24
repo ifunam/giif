@@ -1,0 +1,8 @@
+<div id="icon">
+  <% status = activate_links(record.order_status_id)%>
+  <%= link_to_status(status[0], 'Editar', 'icon_modify.jpg', {:action => 'edit', :id => record.id})%>
+  <%= link_to(image_tag('icon_delete.jpg',:title => 'Eliminar'), order_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?') %>
+  <%= link_to_status(status[2], 'Ver HTML', 'icon_details.jpg', {:action => 'show_preview', :id => record.id})%>
+  <%= link_to_status(status[3], 'Ver PDF', 'icon_pdf.jpg', {:action => 'show_pdf', :id => record.id})%>
+  <%= link_to_status(status[4],'Enviar solicitud', 'icon_email.jpg', {:url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();"})%>
+</div>
