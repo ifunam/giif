@@ -1,6 +1,6 @@
 Feature: Saving and sending estimates requests
 
-So that I can fill a basic order request with some products and providers, this will be sent to our providers
+In order to fill a basic order request with some products and providers, this will be sent to our providers
 As an academic (salva user)
 I want to save and send the order request of products to our providers, including quantity, description and category for each product
 
