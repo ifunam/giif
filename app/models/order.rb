@@ -53,8 +53,8 @@ class Order < ActiveRecord::Base
 
   def initialize(*args)
      super
-     build_file
-     build_project
+      build_file
+      build_project
      products.build
      providers.build
   end

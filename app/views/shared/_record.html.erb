@@ -12,8 +12,19 @@
     <%= record.current_status %>
   </span>
   <span class="actions" id="<%= record.dom_id + '_actions' %>">
-
-    <%= render :partial => 'shared/actions', :locals => {:record => record} %>    
-    <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
+  
+  <div id="icon">
+    <%= render :partial => "shared/"+backend_name+"_actions", :locals => {:record => record, :backend_name => backend_name}%>
+  </div>
+  <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
 </span>
+
+<% if backend_name=="budget" or backend_name=="acquisition"%>
+<br/>
+<div class="user_row">
+  <span class="user_col_left">Área del solicitante: </span><span class="user_col_right"><%= @user_profile.adscription_name%></span>
+  <hr/ style="color: silver;">
+  <span class="user_col_left">Nombre del solicitante: </span><span class="user_col_right"><%= @user_profile.fullname%></span><br/>
+</div>
+<% end%>
 </div>

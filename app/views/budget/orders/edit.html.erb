@@ -1,7 +1,7 @@
-<% form_for :budget, @budget, :url => budget_order_request_path, :html => { :method => :put, :id => @budget, :multipart => true } do |f| %>
+<% form_for :budget, @budget, :url => budget_order_path, :html => { :method => :put, :id => @budget, :multipart => true } do |f| %>
 <%= render :partial => 'form', :locals => {:f => f}%>
 <div id="row_submit">
   <%= f.submit "Actualizar datos", :onclick => "return (confirm('¿Desea actualizar los datos?'));"%>
-  <%= link_to 'Cancelar', budget_order_requests_path, :confirm => 'Al cancelar los cambios no serán guardados' %>
+  <%= link_to 'Cancelar', budget_orders_path, :confirm => 'Al cancelar los cambios no serán guardados' %>
   </div><br/>
 <% end%>

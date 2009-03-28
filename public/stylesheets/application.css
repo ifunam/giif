@@ -105,6 +105,24 @@ body {
    display: table-cell;
    padding: 0px;
 }
+
+.user_row {
+    border: 1px solid silver;
+    width: 450px;
+    margin-left: 55px;
+}
+
+.user_col_left {
+    display: inline-block;
+    font-weight: bold;
+    width: 150px;
+}
+
+.user_col_right {
+    display: inline-block;
+    width: 300px;
+}
+
 /*Orders*/
 #title_ob{
     text-size: medium;
@@ -209,7 +227,7 @@ body {
 
 .actions{
     display: table-cell;
-    width: 170px;
+    width: 250px;
 }
 
 /*Total*/
@@ -748,3 +766,6 @@ h3 {
     display: inline-block;
 }
 
+.opacity_false {
+    opacity: 0.3;
+}

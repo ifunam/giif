@@ -11,7 +11,7 @@ module OrderHelper
     case status
     when false then image_tag(image_name, :title => title)
     when true  then
-      if title=='Enviar solicitud'
+      if (title=='Enviar solicitud' or title=="Aprobar" or title=="Cambiar divisa" )
         link_to_remote(image_tag(image_name, :title => title), options) 
       else 
         link_to(image_tag(image_name, :title => title), options) 
@@ -19,10 +19,19 @@ module OrderHelper
     end
   end
 
-  def activate_links(order_status)
-    case order_status
-    when 1 then [true, true, true, true, true]
-    when 3 then [false, false, true, true, false]
+  def activate_links(backend_status)
+    case backend_status
+    when "order_sin_enviar" then [true, true, true, true, true]
+#     when "order_en_proceso" then [true, true, true, true, true]     
+#     when "order_aprobado" then [true, true, true, true, true]     
+#     when "order_rechazado" then [true, true, true, true, true]     
+#     when "order_transferencia" then [true, true, true, true, true]     
+    when "budget_en_proceso" then [true, false, true, true, true, true, true, false]
+    when "budget_aprobado" then [false, false, false, false, false, false, true, true]
+#     when "budget_rechazado" then [true, true, true, true, true]     
+#     when "budget_transferencia" then [true, true, true, true, true]     
+    when "acquisition_aprobado" then [true, false, true, false, false]
     end
   end
+
 end
