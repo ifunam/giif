@@ -261,9 +261,8 @@ body {
     color: red;
 }
 
-#icon {
-    padding-top: 5px;
-}
+/* #icon { */
+/* } */
 
 /* #icon a { */
 /*     text-decoration: none; */
@@ -273,9 +272,7 @@ body {
 /* } */
 
 #icon img {
-    color: white;
-    padding-top: -10px;
-    vertical-align: bottom;
+    border: 1px solid transparent;
 }
 
 #add {
