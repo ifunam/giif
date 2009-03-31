@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   
-  validates_presence_of :date,  :order_status_id
+  validates_presence_of :date
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id, :order_status_id, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_incharge_id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -52,12 +52,13 @@ class Order < ActiveRecord::Base
   before_save :read_file
 
   def initialize(*args)
-     super
-      build_file
-      build_project
-     products.build
-     providers.build
+    super
+    if args.size > 0
+      products.build unless args.first[:products_attributes]
+      providers.build unless args.first[:providers_attributes]
+    end
   end
+  
   def self.paginate_by_user_id(user_id, page=1, per_page=20)
     mypaginate(:conditions => { :user_id =>  user_id })
   end
@@ -65,6 +66,12 @@ class Order < ActiveRecord::Base
   def self.mypaginate(options={}, page=1, per_page=20)
     paginate(:all, options.merge(:page => page, :per_page => per_page))
   end
+  
+  def build_file_and_project
+      build_file
+      build_project
+  end
+
   def read_file
      if file.class == OrderFile and !file.file.nil? and !file.file.is_a? String
       file.content_type = file.file.content_type
@@ -74,21 +81,15 @@ class Order < ActiveRecord::Base
   end
 
   def verify_products_and_providers
-    if products.length <= 0
-      error_msg = "You should add at least one product"
-    elsif providers.length <= 0
-      error_msg = "You should add at least one provider"
+    if self.send(:products).length <= 0
+      errors.add_to_base("You should add at least one product")
+    elsif self.send(:providers).length <= 0 
+      errors.add_to_base("You should add at least one product")
     end
-
-    if defined?(error_msg) 
-      errors.add_to_base(error_msg)  unless errors.full_messages.include? error_msg
-      false
-    end
-
   end
 
   def current_status
-    self.order_status.name
+    order_status.name
   end
 
   def sent
@@ -110,7 +111,7 @@ class Order < ActiveRecord::Base
   def form_filled
     change_status(7) if order_status_id == 2
   end
-
+ 
   def total_price
     order_products.sum("quantity * price_per_unit").to_f
   end

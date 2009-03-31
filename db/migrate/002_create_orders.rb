@@ -7,7 +7,8 @@ class CreateOrders < ActiveRecord::Migration
     end
 
     create_table :orders do |t|
-      t.references :user,:order_status, :null => false
+      t.references :user, :null => false
+      t.references :order_status, :null => false, :default => 1
       t.references :user_incharge, :class_name => 'User', :foreign_key => "user_incharge_id"
       t.date       :date, :null => false
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"

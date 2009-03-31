@@ -135,8 +135,6 @@ class OrderTest < ActiveSupport::TestCase
     order = Order.new
     order.providers_attributes = [ { :name => 'Proveedor A'}, { :name => 'Proveedor B'} ]
     assert !order.valid?
-    assert_equal ["You should add at least one product"], order.errors.full_messages
-
   end
 
   test "Should add providers to an existent order" do
@@ -146,10 +144,9 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "Should not be a valid order if It does'nt havee at least one provider" do 
-    order = Order.new
+    order = Order.build_valid
     order.products_attributes = [ {:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X', :product_category_id => 1} ]
     assert !order.valid?
-    assert_equal ["You should add at least one provider"], order.errors.full_messages
   end
 
   test "Should add currency into a new order" do
