@@ -1,4 +1,4 @@
-<% status = activate_links(backend_name+"_"+record.current_status.downcase.split(/\s+/).join('_'))%>
+<% status = activate_links(backend_name, record.current_status.downcase.split(/\s+/).join('_'))%>
 <span class=<%= "opacity_"+status[0].to_s%>>
   <%= link_to_status(status[0], 'Editar', 'icon_edit.jpg', {:action => 'edit', :id => record.id})%>
 </span>

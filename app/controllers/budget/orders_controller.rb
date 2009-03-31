@@ -4,7 +4,7 @@ class Budget::OrdersController < ApplicationController
 
   def index
     @user_profile = user_profile
-    @collection = Order.paginate(:all, :conditions => [ "order_status_id>1" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
+    @collection = Order.paginate(:all, :conditions => [ "order_status_id>=5" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
     respond_to do |format|
       format.html { render :action => 'index' }
     end
@@ -54,8 +54,11 @@ class Budget::OrdersController < ApplicationController
     @budget = Budget.new(params[:budget])
     @budget.user_id = session[:user]
 
+    @order = Order.find(params[:id])
+
     respond_to do |format|
       if @budget.save
+        @order.change_status(7)
         format.html { redirect_to :action => "index" }
       else
         format.html { render :action => "new", :id => @budget.order_id }

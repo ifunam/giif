@@ -8,7 +8,7 @@
   <span class="date_update"><%= record.updated_at.strftime("%d-%m-%Y") %></span>
   <% id=record.order_status_id.to_s%>
   <span class="status" id="<%= record.dom_id + '_status' %>">
-    <%= image_tag("status_"+id+".jpg", :size => '16x16')%>
+    <%= image_tag("status_"+record.current_status.downcase.split(/\s+/).join('_')+".jpg")%>
     <%= record.current_status %>
   </span>
   <span class="actions" id="<%= record.dom_id + '_actions' %>">

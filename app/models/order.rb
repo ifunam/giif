@@ -116,7 +116,7 @@ class Order < ActiveRecord::Base
     order_products.sum("quantity * price_per_unit").to_f
   end
 
-  private 
+#  private 
   def change_status(status_id)
     update_attributes(:order_status_id => status_id)
   end

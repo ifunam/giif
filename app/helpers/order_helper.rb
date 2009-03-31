@@ -19,19 +19,22 @@ module OrderHelper
     end
   end
 
-  def activate_links(backend_status)
-    case backend_status
-    when "order_sin_enviar" then [true, true, true, true, true]
-#     when "order_en_proceso" then [true, true, true, true, true]     
-#     when "order_aprobado" then [true, true, true, true, true]     
-#     when "order_rechazado" then [true, true, true, true, true]     
-#     when "order_transferencia" then [true, true, true, true, true]     
-    when "budget_en_proceso" then [true, false, false, true, true, true, true, false]
-    when "budget_aprobado" then [false, false, false, false, false, false, true, true]
-    when "budget_en_proceso_y_con_datos" then [false, false, false, false, false, false, true, true]
-#     when "budget_rechazado" then [true, true, true, true, true]     
-#     when "budget_transferencia" then [true, true, true, true, true]     
-    when "acquisition_aprobado" then [true, false, true, false, false]
+  def activate_links(backend, status)
+    if backend == "order" 
+      case status
+      when "solicitud_no_enviada" : [true, true, true, true, true]
+      else [false, false, true, true, false]
+      end
+    elsif backend == "budget" 
+      case status
+      when "presupuesto_en_progreso" : [true, false, false, true, true, true, true, true]
+      else [false, false, false, false, false, false, true, true]
+      end
+    elsif backend == "acquisition" 
+      case status
+      when "adquisición_en_progreso" : [true, false, true, true, false]
+      else [false, false, true, true, false]
+      end
     end
   end
 
