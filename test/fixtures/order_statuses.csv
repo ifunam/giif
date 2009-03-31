@@ -4,3 +4,5 @@ id, name
  3, Aprobado
  4, Rechazado
  5, Cotizaciones en progreso
+ 6, Transferencia
+ 7, En proceso y con datos

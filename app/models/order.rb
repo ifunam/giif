@@ -88,7 +88,7 @@ class Order < ActiveRecord::Base
   end
 
   def current_status
-    order_status.name
+    self.order_status.name
   end
 
   def sent
@@ -105,6 +105,10 @@ class Order < ActiveRecord::Base
 
   def reject
     change_status(4) if order_status_id == 2
+  end
+
+  def form_filled
+    change_status(7) if order_status_id == 2
   end
 
   def total_price

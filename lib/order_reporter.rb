@@ -92,6 +92,10 @@ class OrderReporter
     def total_price
       @order.total_price
     end
+
+    def current_status
+      @order.current_status.downcase.split(/\s+/).join('_')
+    end
     
     def header
       ['Orden de compra No.', order_id, 'de', user_fullname, 'enviada el', order_date].join(' ')
