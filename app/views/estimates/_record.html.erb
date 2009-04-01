@@ -1,9 +1,9 @@
 <span class="id"><%= record.id %></span>
 <span class="description">
 	<b>Productos:</b> <br/>
-	<%= product_list(record.products) %><br/>
+        <%= numerate_list(record.products, "description") %><br/>
 	<b>Proveedores:</b> <br/>
-	<%= provider_list(record.providers) %><br/>
+	<%= numerate_list(record.providers, "name") %><br/>
 </span>
 <span class="date"><%= record.date.to_s :short %></span>
 <span class="date_update"><%= record.updated_at.to_s :date_only %></span>
