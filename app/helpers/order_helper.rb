@@ -20,7 +20,12 @@ module OrderHelper
   end
 
   def activate_links(backend, status)
-    if backend == "order" 
+    if backend == "estimate"
+      case status
+      when "solicitud_no_enviada" : [true, true]
+      else [false, false]
+      end
+    elsif backend == "order" 
       case status
       when "solicitud_no_enviada" : [true, true, true, true, true]
       else [false, false, true, true, false]

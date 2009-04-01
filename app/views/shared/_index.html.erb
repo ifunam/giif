@@ -1,24 +1,9 @@
-<div id="collection">
-  <%= title%>
-  <div id="currency_form">
-  </div><br/><br/>
-  <div class="row" style="font-weight: bold;">
-    <span class="id">No. de orden</span>
-    <span class="description">Descripcion de artículos</span>
-    <span class="date">Fecha de solicitud</span>
-    <span class="date_update">Última fecha de actualización</span>
-    <span class="status">Estado</span>
-    <span class="actions">Acciones</span>
-  </div>
-  <%= render :partial => 'shared/record', :collection => @collection, :locals => {:backend_name => backend_name}%>
-  <div>
-    <%= will_paginate @collection %>
-  </div>
+<br/><br/>
+<div class="row" style="font-weight: bold;">
+  <span class="id">No. de orden</span>
+  <span class="description">Descripcion de artículos</span>
+  <span class="date">Fecha de solicitud</span>
+  <span class="date_update">Última fecha de actualización</span>
+  <span class="status">Estado</span>
+  <span class="actions">Acciones</span>
 </div>
-
-<% if backend_name == "order" then%>
-<div id="add">
-  <%= link_to( image_tag("icon_add_order.jpg", :title => 'Agregar solicitud interna de compra'), new_order_path )%>
-  <%= link_to 'Agregar solicitud interna de compra', new_order_path%>
-</div>
-<% end%>

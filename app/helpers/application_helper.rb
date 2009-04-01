@@ -16,12 +16,12 @@ module ApplicationHelper
       items.collect {|p| content_tag(:ol, content_tag(:li, p[field_name]))}
     end
 
-    def product_list(products)
-      products.collect {|p| content_tag(:ol, content_tag(:li, p.description))}
-    end
+#     def product_list(products)
+#       products.collect {|p| content_tag(:ol, content_tag(:li, p.description))}
+#     end
 
-    def provider_list(providers)
-      providers.collect {|p| content_tag(:ol, content_tag(:li, p.name))}
-    end
+#     def provider_list(providers)
+#       providers.collect {|p| content_tag(:ol, content_tag(:li, p.name))}
+#     end
 
 end

@@ -1,15 +1,12 @@
 <div id="collection">
-  "A continuación se listan las solicitudes de orden de compra por parte del usuario: <%= @user_profile.fullname%>"
-  <div class="row" style="font-weight: bold;">
-    <span class="id">No. de orden</span>
-    <span class="description">Descripcion de artículos</span>
-    <span class="date">Fecha de solicitud</span>
-    <span class="date_update">Última fecha de actualización</span>
-    <span class="status">Estado</span>
-    <span class="actions">Acciones</span>
-  </div>
-  <%= render :partial => 'record', :collection => @collection %>
-  <div>
- 	<%= will_paginate @collection %>
-  </div>
+A continuación se listan las solicitudes de cotización por parte del usuario: <%= @user_profile.fullname%>
+<%= render :partial => 'shared/index'%>
+<div id="currency_form">
+  <%= render :partial => 'shared/record', :collection => @collection, :locals => {:backend_name => "estimate"}%>
+  <%= will_paginate @collection %>
+</div>
+<div id="add">
+  <%= link_to( image_tag("icon_add_order.jpg", :title => 'Agregar solicitud de cotización'), new_estimate_path )%>
+  <%= link_to 'Agregar solicitud de cotización', new_estimate_path%>
+</div>
 </div>

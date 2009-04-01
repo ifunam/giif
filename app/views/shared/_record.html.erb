@@ -1,7 +1,7 @@
 <div class=<%="row_" + ((record_counter + 1) % 2).to_s%>>
   <span class="id"><%= record.id %></span>
   <span class="description">
-    <% count = 0%><%= record.order_products.collect {|product| "#{count+=1}. "+product.description}.join("<br\>") %><br/><br/>
+    <%= numerate_list(record.order_products, "description")%><br/>
     <span style="margin-left: 50px; font-weight: bold;">Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%> <span id="icon"><%= link_to(image_tag("icon_details.jpg", :title => 'Ver más detalles', :size => '16x16'), :action => 'show', :id => record.id)%></span></span>
   </span>
   <span class="date"><%= record.date.strftime("%d-%m-%Y") %></span>
@@ -18,13 +18,4 @@
   </div>
   <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
 </span>
-
-<% if backend_name=="budget" or backend_name=="acquisition"%>
-<br/>
-<div class="user_row">
-  <span class="user_col_left">Área del solicitante: </span><span class="user_col_right"><%= @user_profile.adscription_name%></span>
-  <hr/ style="color: silver;">
-  <span class="user_col_left">Nombre del solicitante: </span><span class="user_col_right"><%= @user_profile.fullname%></span><br/>
-</div>
-<% end%>
 </div>
