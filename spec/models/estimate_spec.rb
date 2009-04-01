@@ -38,4 +38,18 @@ describe "Estimate" do
      @record = Order.new(@valid_attributes.merge(:products_attributes => @products))
      @record.should_not be_valid
   end
+  
+  it "should paginate unsent orders by user_id" do
+    @record = Order.create!(@valid_attributes.merge(:products_attributes => @products, :providers_attributes => @providers))
+    @record.current_status.should == "Sin enviar"
+    @collection = Order.paginate_unsent_by_user_id(1)
+    @collection.size.should == 1
+  end
+  
+  it "should paginate orders than has been sent to providers by user_id" do
+    @record = Order.create!(@valid_attributes.merge(:products_attributes => @products, :providers_attributes => @providers))
+    @collection = Order.paginate_unsent_by_user_id(1)
+    @collection.size.should == 1
+  end
+  
 end
