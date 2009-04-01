@@ -48,6 +48,7 @@ describe "Estimate" do
   
   it "should paginate orders than has been sent to providers by user_id" do
     @record = Order.create!(@valid_attributes.merge(:products_attributes => @products, :providers_attributes => @providers))
+    @record.send_estimate_request
     @collection = Order.paginate_unsent_by_user_id(1)
     @collection.size.should == 1
   end
