@@ -1,0 +1,14 @@
+<div class="<%= 'row_' + ((record_counter + 1) % 2).to_s %>">
+  <span class="id"><%= record.id %></span>
+  <span class="description">
+	<b>Productos:</b><br/>
+    <%= numerate_list(record.products, :description, :quantity)%><br/>
+
+	<b>Proveedores:</b><br/>
+    <%= numerate_list(record.providers, :name, :email)%><br/>
+
+
+  </span>
+  <span class="date"><%= record.date.to_s :short %></span>
+
+</div>

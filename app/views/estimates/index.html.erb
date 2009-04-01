@@ -1,12 +1,14 @@
 <div id="collection">
 A continuación se listan las solicitudes de cotización por parte del usuario: <%= @user_profile.fullname%>
 <%= render :partial => 'shared/index'%>
+
 <div id="currency_form">
-  <%= render :partial => 'shared/record', :collection => @collection, :locals => {:backend_name => "estimate"}%>
+  <%= render :partial => 'record', :collection => @collection %>
   <%= will_paginate @collection %>
 </div>
+
 <div id="add">
-  <%= link_to( image_tag("icon_add_order.jpg", :title => 'Agregar solicitud de cotización'), new_estimate_path )%>
-  <%= link_to 'Agregar solicitud de cotización', new_estimate_path%>
+	<%= link_to_action( 'Agregar solicitud de cotización',  'icon_add_order.jpg',  new_estimate_path) %>
 </div>
+
 </div>

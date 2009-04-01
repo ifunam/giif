@@ -58,6 +58,9 @@ class Order < ActiveRecord::Base
     if args.size > 0
       products.build unless args.first[:products_attributes]
       providers.build unless args.first[:providers_attributes]
+    else
+      providers.build
+      products.build
     end 
   end
   
@@ -66,14 +69,10 @@ class Order < ActiveRecord::Base
   end
 
   def self.paginate_unsent_by_user_id(user_id, page=1, per_page=20)
-    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id = 1 OR orders.order_status_id = 5)", user_id ], 
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id = 1 OR orders.order_status_id = 5 )", user_id ], 
              :page => page, :per_page => per_page)
   end
 
-  def self.mypaginate(options={}, page=1, per_page=20)
-    paginate(options.merge(:page => page, :per_page => per_page))
-  end
-  
   def build_file_and_project
       build_file
       build_project

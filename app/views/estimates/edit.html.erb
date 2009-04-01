@@ -1,0 +1,13 @@
+<%= error_messages_for 'order' %>
+<% form_for(@order, :url => { :controller => :estimates, :action => :update }) do |f| -%>
+<div id="data">
+   <%= render :partial => 'orders/user_data', :object => @user_profile%>
+   <%= render :partial => 'form', :locals => { :f => f } %><br/>
+
+  <div style="padding-right: 150px; text-align: right;">
+   	<%= f.submit "Guardar cambios" %>
+   	<%= link_to 'Cancelar', estimates_path, :confirm => 'Al cancelar la orden de compra no será almacenada' %><br/><br/>
+  </div>
+  </p>
+</div>
+<% end %>

@@ -1,21 +1,20 @@
-<div class=<%="row_" + ((record_counter + 1) % 2).to_s%>>
+
+<div class="<%= set_row_class(record) %>">
   <span class="id"><%= record.id %></span>
   <span class="description">
-    <%= numerate_list(record.order_products, "description")%><br/>
-    <span style="margin-left: 50px; font-weight: bold;">Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%> <span id="icon"><%= link_to(image_tag("icon_details.jpg", :title => 'Ver más detalles', :size => '16x16'), :action => 'show', :id => record.id)%></span></span>
+	<b>Productos:</b><br/>
+    <%= numerate_list(record.products, :description)%><br/>
+
+	<b>Proveedores:</b><br/>
+    <%= numerate_list(record.providers, :name)%><br/>
   </span>
-  <span class="date"><%= record.date.strftime("%d-%m-%Y") %></span>
-  <span class="date_update"><%= record.updated_at.strftime("%d-%m-%Y") %></span>
-  <% id=record.order_status_id.to_s%>
+  <span class="date"><%= record.date.to_s :short %></span>
+  <span class="date_update"><%= record.updated_at.to_s :date_only) %></span>
   <span class="status" id="<%= record.dom_id + '_status' %>">
-    <%= image_tag("status_"+record.current_status.downcase.split(/\s+/).join('_')+".jpg")%>
+    <%= status_image_tag(record)%>
     <%= record.current_status %>
   </span>
   <span class="actions" id="<%= record.dom_id + '_actions' %>">
-  
-  <div id="icon">
-    <%= render :partial => "shared/"+backend_name+"_actions", :locals => {:record => record, :backend_name => backend_name}%>
-  </div>
-  <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
-</span>
+   	<%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
+  </span>
 </div>

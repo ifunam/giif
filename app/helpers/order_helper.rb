@@ -43,4 +43,11 @@ module OrderHelper
     end
   end
 
+  def set_row_class(object)
+  	'row_' + ((object_counter + 1) % 2).to_s
+  end
+  
+  def status_image_tag(record)
+    image_tag("status_"+record.current_status.downcase.split(/\s+/).join('_')+".jpg")
+  end
 end
