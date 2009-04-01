@@ -1,9 +1,7 @@
 #background image
-pdf.add_image_from_file(RAILS_ROOT + "/templates/images/new_order_format_bg.jpg", 65, 0, 480)
+pdf.add_image_from_file(RAILS_ROOT + "/templates/images/order_template.jpg", 65, 0, 480)
 
 #stamps
-image_name = "order"
-
 image = case @order.current_status
  when "sin_enviar" : "orden_cancelada.jpg"
  when "en_proceso" : "suficiencia_presupuestal_conacyt.jpg"
