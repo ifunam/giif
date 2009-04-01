@@ -261,20 +261,6 @@ body {
     color: red;
 }
 
-/* #icon { */
-/* } */
-
-/* #icon a { */
-/*     text-decoration: none; */
-/*     color: green; */
-/*     font-size: 12px; */
-/*     vertical-align: middle; */
-/* } */
-
-#icon img {
-    border: 1px solid transparent;
-}
-
 #add {
     padding-left: 650px;
 }
@@ -321,6 +307,12 @@ body {
 #icon img {
     color: white;
     vertical-align: bottom;
+    border: 1px solid transparent;
+    opacity: 0.4;
+}
+
+#icon img:hover {
+    opacity: 1;
 }
 
 /*style for each cell of order request*/

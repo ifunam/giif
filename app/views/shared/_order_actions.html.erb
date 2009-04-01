@@ -1,16 +1,6 @@
 <% status = activate_links(backend_name, record.current_status.downcase.split(/\s+/).join('_'))%>
-<span class=<%= "opacity_"+status[0].to_s%>>
   <%= link_to_status(status[0], 'Editar', 'icon_edit.jpg', {:action => 'edit', :id => record.id})%>
-</span>
-<span class=<%= "opacity_"+status[1].to_s%>>
   <%= link_to(image_tag('icon_delete.jpg',:title => 'Eliminar'), order_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?') %>
-</span>
-<span class=<%= "opacity_"+status[2].to_s%>>
   <%= link_to_status(status[2], 'Ver HTML', 'icon_details.jpg', {:action => 'show_preview', :id => record.id})%>
-</span>
-<span class=<%= "opacity_"+status[3].to_s%>>
   <%= link_to_status(status[3], 'Ver PDF', 'icon_pdf.jpg', {:action => 'show_pdf', :id => record.id})%>
-</span>
-<span class=<%= "opacity_"+status[4].to_s%>>
   <%= link_to_status(status[4],'Enviar solicitud', 'icon_email.jpg', {:url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();"})%>
-</span>
