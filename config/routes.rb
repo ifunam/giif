@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups
 
-  map.resources :estimates, :member => {:destroy_item => :delete}
+  map.resources :estimates
   
   map.resources :providers
 

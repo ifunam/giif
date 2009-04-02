@@ -11,7 +11,7 @@ module OrderHelper
     case status
     when false then image_tag(image_name, :title => title)
     when true  then
-      if (title=='Enviar solicitud' or title=="Aprobar" or title=="Cambiar divisa" )
+      if (title=='Enviar solicitud' or title=="Aprobar" or title=="Cambiar divisa")
         link_to_remote(image_tag(image_name, :title => title), options) 
       else 
         link_to(image_tag(image_name, :title => title), options) 
