@@ -3,14 +3,14 @@ pdf.add_image_from_file(RAILS_ROOT + "/templates/images/order_template.jpg", 65,
 
 #stamps
 image = case @order.current_status
- when "sin_enviar" : "orden_cancelada.jpg"
- when "en_proceso" : "suficiencia_presupuestal_conacyt.jpg"
+ when "solicitud_no_enviada" : "orden_cancelada.jpg"
+ when "presupuesto_en_progreso" : "suficiencia_presupuestal_conacyt.jpg"
  when "aprobado" : "suficiencia_presupuestal_dgapa.jpg"
 # when "rechazado" : "orden_cancelada.jpg"
 # when "transferencia" : "orden_cancelada.jpg"
 end
 
-unless image.nil? then pdf.add_image_from_file(RAILS_ROOT + "/templates/images/stamps/" + image, 390, 705, 100) end
+unless image.nil? then pdf.add_image_from_file(RAILS_ROOT + "/templates/images/stamps/" + image, 390, 605, 200) end
 
 #user data
 pdf.add_text(492, 692, @order.order_id, 10)                                                    #folio

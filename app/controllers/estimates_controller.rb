@@ -1,4 +1,5 @@
 class EstimatesController < ApplicationController
+  layout 'orders'
   def index
     @user_profile = user_profile
     @collection = Order.paginate_unsent_by_user_id(session[:user], params[:page], params[:per_page])
