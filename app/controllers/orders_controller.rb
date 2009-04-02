@@ -6,9 +6,8 @@ class OrdersController < ApplicationController
 
   def index
     @user_profile = user_profile
-    @collection = Order.paginate(:all, :conditions => [ "order_status_id>=3" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
-#    @collection = Order.paginate(:all, :conditions => {:user_id =>  session[:user]},:order => "date ASC" ,
-#                                                    :page => params[:page] || 1, :per_page => 20)
+    @collection = Order.paginate_estimate_by_providers(session[:user], params[:page], params[:per_page])
+
     respond_to do |format|
       format.html { render :index }
     end

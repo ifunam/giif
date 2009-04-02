@@ -1,4 +1,4 @@
-<% status = activate_links(backend_name, record.current_status.downcase.split(/\s+/).join('_'))%>
+<% status = activate_links(controller_name, record.current_status.downcase.split(/\s+/).join('_'))%>
   <%= link_to_status(status[0], 'Editar', 'icon_edit.jpg', {:action => 'edit', :id => record.id})%>
   <%= link_to(image_tag('icon_delete.jpg',:title => 'Eliminar'), order_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta orden de compra?') %>
   <%= link_to_status(status[2], 'Ver HTML', 'icon_details.jpg', {:action => 'show_preview', :id => record.id})%>

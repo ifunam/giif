@@ -1,4 +1,4 @@
-<% status = activate_links(backend_name, record.current_status.downcase.split(/\s+/).join('_'))%>
+<% status = activate_links(controller_name, record.current_status.downcase.split(/\s+/).join('_'))%>
   <%= link_to_status(status[0], 'Capturar datos', 'icon_edit.jpg', {:action => 'new', :id => record.id})%>
   <%= link_to_status(status[1], 'Editar', 'icon_edit.jpg', {:action => 'edit', :id => record.id})%>
   <%= link_to_status(status[2], 'Ver HTML', 'icon_details.jpg', {:action => 'show_preview', :id => record.id})%>

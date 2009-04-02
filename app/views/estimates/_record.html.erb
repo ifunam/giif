@@ -9,8 +9,7 @@
   <span class="date"><%= record.date.to_s :short %></span>
   <span class="date_update"><%= record.updated_at.to_s :short %></span>
   <span class="status"><%= record.order_status.name %></span>
-
-    <span class="actions"><%= render :partial => 'actions', :locals => {:record => record}%></span>
+  <span class="actions"><%= render :partial => 'actions', :locals => {:record => record}%></span>
 
   <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
 </div>

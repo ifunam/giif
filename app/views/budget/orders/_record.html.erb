@@ -1,0 +1,29 @@
+<div class=<%= set_row_class(record_counter)%>>
+
+ <span class="id"><%= record.id %></span>
+ <span class="description">
+   <%= numerate_list(record.order_products, "description")%><br/>
+   <span style="margin-left: 50px; font-weight: bold;">Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%>
+   <span id="icon">
+      <%= link_to(image_tag("icon_details.jpg", :title => 'Ver más detalles', :size => '16x16'), :action => 'show', :id => record.id)%>
+   </span>
+   </span>
+ </span>
+ 
+ <span class="date"><%= record.date.strftime("%d-%m-%Y") %></span>
+ <span class="date_update"><%= record.updated_at.strftime("%d-%m-%Y") %></span>
+ <span class="status"><%= record.current_status %></span>
+ <span class="actions" id="<%= record.dom_id + '_actions' %>">
+  <div id="icon">
+    <%= render :partial => 'actions', :locals => {:record => record}%>
+  </div>
+  <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
+  </span>
+
+  <br/>
+  <div class="user_row">
+    <span class="user_col_left">Área del solicitante: </span><span class="user_col_right"><%= @user_profile.adscription_name%></span>
+    <hr/ style="color: silver;">
+    <span class="user_col_left">Nombre del solicitante: </span><span class="user_col_right"><%= @user_profile.fullname%></span><br/>
+  </div>
+</div>

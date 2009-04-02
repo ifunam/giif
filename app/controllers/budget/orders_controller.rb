@@ -4,7 +4,7 @@ class Budget::OrdersController < ApplicationController
 
   def index
     @user_profile = user_profile
-    @collection = Order.paginate(:all, :conditions => [ "order_status_id>=5" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
+    @collection = Order.paginate_for_budget_backend(session[:user], params[:page], params[:per_page])
     respond_to do |format|
       format.html { render :action => 'index' }
     end

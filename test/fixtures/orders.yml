@@ -16,4 +16,5 @@ three:
  id: 3
  user_id: 2
  date: 2008-02-16
- order_status_id: 10
+ order_status_id: 8
+ ip_address: 192.168.1.3

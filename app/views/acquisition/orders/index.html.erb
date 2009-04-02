@@ -2,7 +2,7 @@
 A continuación se listan las ordenes de compra aprobadas por el área de Presupuestos de la Secretaría Administrativa del IFUNAM.
   <%= render 'shared/index'%>
   <div id="currency_form">
-   <%= render :partial => 'shared/admin_record', :collection => @collection, :locals => {:backend_name => "acquisition"}%>
+   <%= render :partial => 'record', :collection => @collection%>
    <%= will_paginate @collection %>
   </div>
 </div>

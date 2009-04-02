@@ -1,0 +1,4 @@
+<% status = activate_links(controller_name, record.current_status.downcase.split(/\s+/).join('_'))%>
+  <%= link_to_status(status[0], 'Editar', 'icon_edit.jpg', {:action => 'edit', :id => record.id})%>
+  <%= link_to(image_tag('icon_delete.jpg',:title => 'Eliminar'), estimate_url(:id => record.id), :method => :delete, :confirm => '¿Desea borrar esta solicitud de cotización?') %>  
+  <%= link_to_status(status[2],'Enviar solicitud', 'icon_email.jpg', {:url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();"})%>

@@ -69,7 +69,22 @@ class Order < ActiveRecord::Base
   end
 
   def self.paginate_unsent_by_user_id(user_id, page=1, per_page=20)
-    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id = 1 OR orders.order_status_id = 2 )", user_id ], 
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id <= 2)", user_id ], 
+             :page => page, :per_page => per_page)
+  end
+
+  def self.paginate_estimate_by_providers(user_id, page=1, per_page=20)
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 2)", user_id ], 
+             :page => page, :per_page => per_page)
+  end
+
+  def self.paginate_for_budget_backend(user_id, page=1, per_page=20)
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 4)", user_id ], 
+             :page => page, :per_page => per_page)
+  end
+
+  def self.paginate_for_acquisition_backend(user_id, page=1, per_page=20)
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 8)", user_id ], 
              :page => page, :per_page => per_page)
   end
 

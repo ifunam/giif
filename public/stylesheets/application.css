@@ -231,7 +231,6 @@ body {
 }
 
 .actions img {
-    color: white;
     vertical-align: bottom;
     border: 1px solid transparent;
     opacity: 0.4;
@@ -773,4 +772,9 @@ h3 {
 
 .opacity_false {
     opacity: 0.3;
+}
+
+#icon img{
+    vertical-align: bottom;
+    border: 1px solid transparent;
 }

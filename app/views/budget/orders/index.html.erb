@@ -2,7 +2,7 @@
   A continuación se listan las solicitudes internas de compra por parte del personal del IFUNAM.
   <%= render 'shared/index'%>
   <div id="currency_form">
-   <%= render :partial => 'shared/admin_record', :collection => @collection, :locals => {:backend_name => "budget"}%>
+   <%= render :partial => 'record', :collection => @collection%>
    <%= will_paginate @collection %>
   </div>
 </div>

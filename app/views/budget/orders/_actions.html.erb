@@ -1,4 +1,4 @@
-<% status = activate_links(backend_name, record.current_status.downcase.split(/\s+/).join('_'))%>
+<% status = activate_links("budget/"+controller_name, record.current_status.downcase.split(/\s+/).join('_'))%>
   <%= link_to_status(status[0], 'Capturar datos', 'icon_approve.jpg', {:action => 'new', :id => record.id})%>
   <%= link_to_status(status[1], 'Editar', 'icon_edit.jpg', {:action => 'edit', :id => record.id})%>
   <%= link_to_status(status[2], 'Aprobar', 'icon_approve.jpg', {:url => {:action => 'approve', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();"})%>

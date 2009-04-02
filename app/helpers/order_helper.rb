@@ -26,17 +26,18 @@ module OrderHelper
       when "cotización_en_progreso" : []
       else [false, false, false]
       end
-    elsif controller_name == "order" 
+    elsif controller_name == "orders" 
       case status
       when "solicitud_no_enviada" : [true, true, true, true, true]
+      when "cotización_en_progreso" : [true, true, false, false, false]
       else [false, false, true, true, false]
       end
-    elsif controller_name == "budget" 
+    elsif controller_name == "budget/orders" 
       case status
       when "presupuesto_en_progreso" : [true, false, false, true, true, true, true, true]
       else [false, false, false, false, false, false, true, true]
       end
-    elsif controller_name == "acquisition" 
+    elsif controller_name == "acquisition/orders" 
       case status
       when "adquisición_en_progreso" : [true, false, true, true, false]
       else [false, false, true, true, false]

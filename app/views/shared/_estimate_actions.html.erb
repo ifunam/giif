@@ -1,7 +1,0 @@
-<% status = activate_links(backend_name, record.current_status.downcase.split(/\s+/).join('_'))%>
-<span class=<%= "opacity_"+status[0].to_s%>>
-  <%= link_to(image_tag('icon_name.jpg',:title => 'Action_name'), {})%>
-</span>
-<span class=<%= "opacity_"+status[1].to_s%>>
-  <%= link_to(image_tag('icon_name.jpg',:title => 'Action_name'), {})%>
-</span>
