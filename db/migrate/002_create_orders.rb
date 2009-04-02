@@ -30,13 +30,19 @@ class CreateOrders < ActiveRecord::Migration
     end
 
     create_table :order_products do |t|
-      t.references :order, :product_category, :null => false
+      t.references :order, :product_category, :unit_type,:null => false
       t.integer    :quantity, :null => false
       t.text       :description, :null => false
       t.text       :unit # TODO: Verify if :unit  is required and not null
       t.float      :price_per_unit
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
+    end
+
+    create_table :unit_types do |t|
+      t.string     :name, :null => false
+      t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
+      t.timestamps      
     end
 
     create_table :file_types do |t|
@@ -114,6 +120,6 @@ class CreateOrders < ActiveRecord::Migration
   def self.down
     drop_table :project_types, :projects, :order_statuses, :orders, :order_products,
     :file_types, :order_files, :providers, :order_providers, :order_logs, :currencies,
-    :currency_orders, :direct_adjudication_types, :acquisitions, :files_uploaded, :budgets
+    :currency_orders, :direct_adjudication_types, :acquisitions, :files_uploaded, :budgets, :unit_types
   end
 end

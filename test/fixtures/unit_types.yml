@@ -1,0 +1,15 @@
+Cajas:
+ id: 1
+ name: "caja(s)"
+
+Piezas:
+ id: 2
+ name: "pieza(s)"
+
+Metros:
+ id: 3
+ name: "metro(s)"
+
+Otro:
+ id: 4
+ name: "otro(s)"

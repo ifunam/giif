@@ -16,6 +16,14 @@ module ApplicationHelper
     content_tag(:ol, records.collect { |p| content_tag(:li, attributes.collect { |a| p.send(a) }.compact.join(', ') )})
   end
 
+  def list_products(products)
+    content_tag(:ol, products.collect { |p| content_tag(:li, p.description+" --"+p.quantity.to_s+" "+p.unit_type.name+"--")})
+  end
+
+  def list_providers(providers)
+    content_tag(:ol, providers.collect { |p| content_tag(:li, p.name+"  ("+p.email+")")})
+  end
+
   def link_to_action(title, icon, action)
     link_to(image_tag(icon, :title => title), action) + link_to(title, action)
   end

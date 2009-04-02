@@ -1,15 +1,15 @@
 
-<div class="<%= set_row_class(record) %>">
+<div class="<%= set_row_class(record_counter) %>">
   <span class="id"><%= record.id %></span>
   <span class="description">
 	<b>Productos:</b><br/>
-    <%= numerate_list(record.products, :description)%><br/>
+    <%= numerate_list(record.products, :description)%>
 
 	<b>Proveedores:</b><br/>
     <%= numerate_list(record.providers, :name)%><br/>
   </span>
   <span class="date"><%= record.date.to_s :short %></span>
-  <span class="date_update"><%= record.updated_at.to_s :date_only) %></span>
+  <span class="date_update"><%= record.updated_at.to_s :date_only %></span>
   <span class="status" id="<%= record.dom_id + '_status' %>">
     <%= status_image_tag(record)%>
     <%= record.current_status %>

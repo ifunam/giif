@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :budget do |budget|
     budget.resource :session
-    budget.resources :orders
+    budget.resources :orders, :member => { :reject => :post}
   end
 
   map.namespace :acquisition do |acquisition|

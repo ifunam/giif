@@ -318,10 +318,19 @@ body {
 /*style for each cell of order request*/
 .pv_description{
     display:table-cell;
-    width: 700px;
+    width: 550px;
     padding: 2px;
     text-align: left;
 }
+
+.pv_email{
+    display:table-cell;
+    width: 180px;
+    padding: 2px;
+    text-align: left;
+}
+
+
 .pv_actions{
     display:table-cell;
     width: 70px;
@@ -350,6 +359,13 @@ body {
 .pd_type {
     display:table-cell;
     width: 240px;
+    padding: 2px;
+    text-align: left;
+}
+
+.pd_unit {
+    display:table-cell;
+    width: 100px;
     padding: 2px;
     text-align: left;
 }

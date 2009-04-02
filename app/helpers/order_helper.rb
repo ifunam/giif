@@ -44,7 +44,7 @@ module OrderHelper
   end
 
   def set_row_class(object)
-  	'row_' + ((object_counter + 1) % 2).to_s
+  	'row_' + ((object + 1) % 2).to_s
   end
   
   def status_image_tag(record)

@@ -1,10 +1,12 @@
 <%= content_tag(:h2, "Artículo(s):") %>
 <div id="products" class="table">
     <span class="pd_quantity">Cantidad</span>
-	<span class="pd_description">Descripción</span> 
-	<span class="pd_type">Categoría del producto</span>
-	<span class="pd_actions">Acciones</span>
-	<%= render :partial => 'product_form', :locals => { :f => f } %>
+    <span class="pd_description">Descripción</span> 
+    <span class="pd_type">Categoría</span>
+    <span class="pd_unit">Unidad</span>
+    <span class="pd_actions">Acciones</span>
+      
+    <%= render :partial => 'product_form', :locals => { :f => f } %>
 </div>
 
 <%= link_to_function "Agregar" do |page|   

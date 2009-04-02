@@ -7,6 +7,8 @@ class OrderProduct < ActiveRecord::Base
   belongs_to :user
   belongs_to :product_category
   
+  belongs_to :unit_type
+  
   def total_price_per_product
     (quantity * price_per_unit).to_f
   end

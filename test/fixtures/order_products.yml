@@ -1,6 +1,7 @@
 UPS_Triplite:
  id: 1
  product_category_id: 1
+ unit_type_id: 1
  order_id: 1
  quantity: 10
  description: "UPS Triplite 500W"
@@ -9,6 +10,7 @@ UPS_Triplite:
 two:
  id: 2
  product_category_id: 1
+ unit_type_id: 2
  order_id: 2
  quantity: 15
  description: "Laptop Gateway MX989-L"
@@ -17,6 +19,7 @@ two:
 three:
  id: 3
  product_category_id: 2
+ unit_type_id: 3
  order_id: 3
  quantity: 4
  description: "Servidores IBM de alto rendimiento"
