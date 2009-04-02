@@ -1,13 +1,10 @@
 id, name
 1, Cotización no enviada
 2, Cotización en progreso
-3, Cotización recibida
-4, Solicitud no enviada
-5, Presupuesto en progreso
-6, Presupuesto en progreso(sin respuesta)
-7, Rechazado
-8, Transferencia
-9, Aprobado
-10, Adquisición en progreso
-11, Adquisición en progreso(sin_notificación)
-12, Adquisición realizada
+3, Solicitud no enviada
+4, Presupuesto en progreso
+5, Rechazado
+6, Transferencia
+7, Aprobado
+8, Adquisición en progreso
+9, Adquisición realizada

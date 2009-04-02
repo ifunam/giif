@@ -230,6 +230,17 @@ body {
     width: 250px;
 }
 
+.actions img {
+    color: white;
+    vertical-align: bottom;
+    border: 1px solid transparent;
+    opacity: 0.4;
+}
+
+.actions img:hover {
+    opacity: 1;
+}
+
 /*Total*/
 #total{
     margin-left: 615px;
@@ -302,17 +313,6 @@ body {
 #collection a:hover {
     color: green;
     text-decoration: none;
-}
-
-#icon img {
-    color: white;
-    vertical-align: bottom;
-    border: 1px solid transparent;
-    opacity: 0.4;
-}
-
-#icon img:hover {
-    opacity: 1;
 }
 
 /*style for each cell of order request*/

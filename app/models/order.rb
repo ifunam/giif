@@ -69,7 +69,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.paginate_unsent_by_user_id(user_id, page=1, per_page=20)
-    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id = 1 OR orders.order_status_id = 5 )", user_id ], 
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id = 1 OR orders.order_status_id = 2 )", user_id ], 
              :page => page, :per_page => per_page)
   end
 
@@ -122,7 +122,7 @@ class Order < ActiveRecord::Base
     order_products.sum("quantity * price_per_unit").to_f
   end
 
-#  private 
+  private 
   def change_status(status_id)
     update_attributes(:order_status_id => status_id)
   end

@@ -19,23 +19,24 @@ module OrderHelper
     end
   end
 
-  def activate_links(backend, status)
-    if backend == "estimate"
+  def activate_links(controller_name, status)
+    if controller_name == "estimates"
       case status
-      when "solicitud_no_enviada" : [true, true]
-      else [false, false]
+      when "cotización_no_enviada" : [true, true, true]
+      when "cotización_en_progreso" : []
+      else [false, false, false]
       end
-    elsif backend == "order" 
+    elsif controller_name == "order" 
       case status
       when "solicitud_no_enviada" : [true, true, true, true, true]
       else [false, false, true, true, false]
       end
-    elsif backend == "budget" 
+    elsif controller_name == "budget" 
       case status
       when "presupuesto_en_progreso" : [true, false, false, true, true, true, true, true]
       else [false, false, false, false, false, false, true, true]
       end
-    elsif backend == "acquisition" 
+    elsif controller_name == "acquisition" 
       case status
       when "adquisición_en_progreso" : [true, false, true, true, false]
       else [false, false, true, true, false]
