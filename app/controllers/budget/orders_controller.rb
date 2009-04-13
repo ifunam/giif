@@ -93,6 +93,14 @@ class Budget::OrdersController < ApplicationController
     end
   end
 
+  def show
+    @order = OrderReporter.find_by_order_id(params[:id])
+    respond_to do |format|
+      format.html { render "show" }
+      format.pdf  { render "show.rpdf" }
+    end
+  end
+
   def show_currency
     # @order = Order.find(params[:id])
     @currencies = Currency.find(:all, :conditions => ['id <= ?', 6])

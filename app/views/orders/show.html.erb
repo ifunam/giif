@@ -1,15 +1,15 @@
-<%= render :partial => 'navlinks_show' %>
+<%= render :partial => 'shared/navlinks_show' %>
 <h2 style="margin-left: 50px;">Los datos de su orden de compra son los siguientes:</h2>
 <div id="or_data">
   <div id="top_image">
   </div>
   <div id="user_data">
-  	<%= render :partial => 'section_show', :locals => { :title => 'Información del solicitante:', :partial => 'user_profile_show', :object => @order } %>
- 	<%= render :partial => 'section_show', :locals => { :title => 'Divisa:', :partial => 'currency_show', :object => @order.currency } %>
-	<%= render :partial => 'section_show', :locals => { :title => 'Artículo(s)', :partial => 'products_show', :collection  => @order.products } %>
-	<%= render :partial => 'section_show', :locals => { :title => 'Proveedor(es)', :partial => 'providers_show', :collection => @order.providers } %>
-	<%= render :partial => 'section_show', :locals => { :title => 'Anexo(s)', :partial => 'files_show', :collection => @order.attachments } %>
- 	<%= render :partial => 'section_show', :locals => { :title => 'Con cargo a:', :partial => 'project_show', :object => @order.project } %>
+  	<%= render :partial => 'shared/section_show', :locals => { :title => 'Información del solicitante:', :partial => 'shared/user_profile_show', :object => @order } %>
+ 	<%= render :partial => 'shared/section_show', :locals => { :title => 'Divisa:', :partial => 'shared/currency_show', :object => @order.currency } %>
+	<%= render :partial => 'shared/section_show', :locals => { :title => 'Artículo(s)', :partial => 'shared/products_show', :collection  => @order.products } %>
+	<%= render :partial => 'shared/section_show', :locals => { :title => 'Proveedor(es)', :partial => 'shared/providers_show', :collection => @order.providers } %>
+	<%= render :partial => 'shared/section_show', :locals => { :title => 'Anexo(s)', :partial => 'shared/files_show', :collection => @order.attachments } %>
+ 	<%= render :partial => 'shared/section_show', :locals => { :title => 'Con cargo a:', :partial => 'shared/project_show', :object => @order.project } %>
 
 	<div id="collection">
 	  <div class="row">
@@ -22,6 +22,6 @@
   <div id="bottom_image">
   </div>
 </div>
-<%= render :partial => 'navlinks_show' %>
+<%= render :partial => 'shared/navlinks_show' %>
 <br/>
 <br/>

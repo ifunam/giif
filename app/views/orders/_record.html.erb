@@ -1,11 +1,16 @@
 <div class="<%= set_row_class(record_counter) %>">
   <span class="id"><%= record.id %></span>
   <span class="description">
-	<b>Productos:</b><br/>
+    <b>Productos:</b><br/>
     <%= numerate_list(record.products, :description)%>
-
-	<b>Proveedores:</b><br/>
-    <%= numerate_list(record.providers, :name)%><br/>
+    <b>Proveedores:</b>
+    <%= numerate_list(record.providers, :name)%>
+    <span style="margin-left: 50px; font-weight: bold;">
+      Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%>
+    </span>
+    <span id="icon">
+      <%= link_to(image_tag("icon_details.png", :title => 'Ver más detalles', :size => '16x16'), :action => 'show', :id => record.id)%>
+    </span>
   </span>
   <span class="date"><%= record.date.to_s :short %></span>
   <span class="date_update"><%= record.updated_at.to_s :date_only %></span>

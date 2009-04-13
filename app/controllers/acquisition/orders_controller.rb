@@ -33,11 +33,10 @@ class Acquisition::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-    @user = user_profile
-
+    @order = OrderReporter.find_by_order_id(params[:id])
     respond_to do |format|
-      format.html { render :action => "show" }
+      format.html { render "show" }
+      format.pdf  { render "show.rpdf" }
     end
   end
 
