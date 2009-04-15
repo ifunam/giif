@@ -1,0 +1,32 @@
+budget_presupuesto_en_progreso:
+ id: 1
+ order_status_id: 4
+ controller_id: 3
+ action: edit
+
+estimates_unsent_action1:
+ id: 2
+ order_status_id: 1
+ controller_id: 1
+ action: edit
+
+estimates_unsent_action2:
+ id: 3
+ order_status_id: 1
+ controller_id: 1
+ action: show
+
+estimates_unsent_action3:
+ id: 4
+ order_status_id: 1
+ controller_id: 1
+ action: destroy
+ method: delete
+
+
+estimates_unsent_action4:
+ id: 5
+ order_status_id: 1
+ controller_id: 1
+ action: send
+ is_remote: true

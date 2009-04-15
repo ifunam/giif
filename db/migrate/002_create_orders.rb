@@ -6,6 +6,19 @@ class CreateOrders < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :controllers do |t|
+      t.string :name, :null => false
+      t.timestamps
+    end
+
+    create_table :permissions do |t|
+      t.references :order_status, :controller, :null => false
+      t.text :action, :null => false
+      t.text :method, :default => "get"
+      t.boolean :is_remote, :null => false, :default => false
+      t.timestamps
+    end    
+
     create_table :orders do |t|
       t.references :user, :null => false
       t.references :order_status, :null => false, :default => 1
@@ -118,7 +131,7 @@ class CreateOrders < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :project_types, :projects, :order_statuses, :orders, :order_products,
+    drop_table :project_types, :projects, :order_statuses, :controllers, :permissions, :orders, :order_products,
     :file_types, :order_files, :providers, :order_providers, :order_logs, :currencies,
     :currency_orders, :direct_adjudication_types, :acquisitions, :files_uploaded, :budgets, :unit_types
   end
