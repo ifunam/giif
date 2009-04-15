@@ -28,6 +28,13 @@ class EstimatesController < ApplicationController
       end
     end
   end
+
+  def show 
+    @order = OrderReporter.find_by_order_id(params[:id])
+    respond_to do |format|
+      format.html { render 'show' }
+    end
+  end
  
   def edit
      @user_profile = user_profile

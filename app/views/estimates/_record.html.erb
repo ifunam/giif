@@ -5,11 +5,15 @@
       <%= list_products(record.products)%>
     <b>Proveedores:</b><br/>
       <%= list_providers(record.providers)%>
+    <span id="icon" style="margin-left: 250px;">
+      <%= link_to(image_tag("icon_details.png", :title => 'Ver detalles', :size => '16x16'), :action => 'show', :id => record.id)%>
+    </span>
   </span>
   <span class="date"><%= record.date.to_s :short %></span>
   <span class="date_update"><%= record.updated_at.to_s :short %></span>
   <span class="status"><%= record.order_status.name %></span>
-  <span class="actions"><%= render :partial => 'actions', :locals => {:record => record}%></span>
+<% {:url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator'el).show();", :complete => "$('order_status_loader_indicator').hide();"}%>
+  <span class="actions"><%= links_for_actions(controller_name, record)%></span>
 
   <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
 </div>

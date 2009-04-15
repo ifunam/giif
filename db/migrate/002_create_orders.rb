@@ -15,6 +15,8 @@ class CreateOrders < ActiveRecord::Migration
       t.references :order_status, :controller, :null => false
       t.text :action, :null => false
       t.text :method, :default => "get"
+      t.text :title, :null => false
+      t.text :confirm
       t.boolean :is_remote, :null => false, :default => false
       t.timestamps
     end    

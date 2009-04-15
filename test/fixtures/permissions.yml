@@ -3,30 +3,36 @@ budget_presupuesto_en_progreso:
  order_status_id: 4
  controller_id: 3
  action: edit
+ title: "Editar"
 
-estimates_unsent_action1:
+estimates_unsent_edit:
  id: 2
  order_status_id: 1
  controller_id: 1
  action: edit
+ title: "Editar"
 
-estimates_unsent_action2:
+estimates_unsent_show:
  id: 3
  order_status_id: 1
  controller_id: 1
  action: show
+ title: "Ver HTML"
 
-estimates_unsent_action3:
+estimates_unsent_delete:
  id: 4
  order_status_id: 1
  controller_id: 1
  action: destroy
  method: delete
+ confirm: "Esta seguro que desea borrar este registro"
+ title: "Eliminar"
 
 
-estimates_unsent_action4:
+estimates_unsent_send:
  id: 5
  order_status_id: 1
  controller_id: 1
  action: send
  is_remote: true
+ title: "Enviar solicitud"

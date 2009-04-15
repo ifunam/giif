@@ -45,13 +45,13 @@ module OrderHelper
     end
   end
 
-  def link_to_actions(controller_name, record)
+  def links_for_actions(controller_name, record)
 #    Controller.find_by_name(controller_name).permissions.find_by_status_id(record.order_status_id).collect do |permission|
-    Controller.find_by_name(controller_name).permissions.find(:all, :conditions => ['order_status_id = ?', record.order_status_id]).collect do |permission|
-      if permission.is_remote?
-        link_to_remote(image_tag("icon_"+permission.action+".png", :title => permission.action), :url => {:action => permission.action, :id => record.id})
+    Controller.find_by_name(controller_name).permissions.find(:all, :conditions => ['order_status_id = ?', record.order_status_id]).collect do |p|
+      if p.is_remote?
+        link_to_remote(image_tag("icon_"+p.action+".png", :title => p.action), :url => {:action => p.action, :id => record.id})
       else
-        link_to(image_tag("icon_"+permission.action+".png", :title => permission.action), {:action => permission.action, :id => record.id}, :method => permission.method.to_sym)
+        link_to(image_tag("icon_"+p.action+".png", :title => p.title), {:action => p.action, :id => record.id}, :method => p.method.to_sym, :confirm => p.confirm)
       end
     end.join(' ')
   end
