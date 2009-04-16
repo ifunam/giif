@@ -16,8 +16,8 @@ estimates_unsent_show:
  id: 3
  order_status_id: 1
  controller_id: 1
- action: show
- title: "Ver HTML"
+ action: show_preview
+ title: "Vista previa"
 
 estimates_unsent_delete:
  id: 4

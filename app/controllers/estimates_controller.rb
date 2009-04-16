@@ -35,6 +35,13 @@ class EstimatesController < ApplicationController
       format.html { render 'show' }
     end
   end
+
+  def show_preview
+    @order = OrderReporter.find_by_order_id(params[:id])
+    respond_to do |format|
+      format.html { render 'show_preview' }
+    end
+  end
  
   def edit
      @user_profile = user_profile

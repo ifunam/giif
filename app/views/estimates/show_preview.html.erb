@@ -1,0 +1,7 @@
+<%= render :partial => 'shared/preview_header', :object => @order%>
+
+<div id="order_request_data">
+  <%= render :partial => 'shared/preview_user_profile', :object => @order%>
+  <%= render :partial => 'shared/preview_estimate_products_header', :object => @order%><br/>
+  <%= render :partial => 'shared/preview_estimate_providers_header', :object => @order%><br/>
+</div>

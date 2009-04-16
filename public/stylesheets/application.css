@@ -490,6 +490,7 @@ h3 {
 #template_header {
     text-align: center;
     font: 8pt Arial, sans-serif;
+    font-weight: bold;
     background: url("../images/escudo_unam.jpg");
     background-position: left;
     background-repeat: no-repeat;
@@ -590,7 +591,7 @@ h3 {
 #description_title {
     border: 1px solid black;
     border-left: none;
-    width: 588px;
+    width: 508px;
     height: 20px;
     display: inline-block;
     text-align: center;
@@ -601,7 +602,7 @@ h3 {
     border-top: none;
     border-left: none;
     margin-left: -3px;
-    width: 568px;
+    width: 488px;
     height: 20px;
     display: inline-block;
     padding-left: 20px;
@@ -611,7 +612,7 @@ h3 {
 #unit_title {
     border: 1px solid black;
     border-left: none;
-    width: 50px;
+    width: 130px;
     height: 20px;
     display: inline-block;
     text-align: center;
@@ -622,11 +623,11 @@ h3 {
     border-top: none;
     border-left: none;
     margin-left: -3px;
-    width: 30px;
+    width: 110px;
     height: 20px;
     display: inline-block;
-    padding-right: 20px;
-    text-align: right;
+    padding-left: 20px;
+    text-align: left;
     font-weight: normal;
 }
 
@@ -701,6 +702,50 @@ h3 {
     border-left: none;
     margin-left: -3px;
     width: 1002px;
+    height: 20px;
+    display: inline-block;
+    text-align: left;
+    font-weight: normal;
+    padding-left: 20px;
+}
+
+#estimate_provider_title {
+    border: 1px solid black;
+    border-left: none;
+    width: 600px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#estimate_provider_cell {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: -3px;
+    width: 580px;
+    height: 20px;
+    display: inline-block;
+    text-align: left;
+    font-weight: normal;
+    padding-left: 20px;
+}
+
+#email_title {
+    border: 1px solid black;
+    border-left: none;
+    width: 200px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#email_cell {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: -3px;
+    width: 180px;
     height: 20px;
     display: inline-block;
     text-align: left;
