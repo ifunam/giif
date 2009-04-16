@@ -51,7 +51,7 @@ module OrderHelper
       if p.is_remote?
         link_to_remote(image_tag("icon_"+p.action+".png", :title => p.action), :url => {:action => p.action, :id => record.id})
       else
-        link_to(image_tag("icon_"+p.action+".png", :title => p.title), {:action => p.action, :id => record.id}, :method => p.method.to_sym, :confirm => p.confirm)
+        link_to(image_tag("icon_"+p.action+".png", :title => p.title), {:action => p.action, :id => record.id}, :method => p.method.to_sym, :confirm => p.options)
       end
     end.join(' ')
   end

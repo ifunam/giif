@@ -25,7 +25,7 @@ estimates_unsent_delete:
  controller_id: 1
  action: destroy
  method: delete
- confirm: "Esta seguro que desea borrar este registro"
+ options: "'Esta seguro que desea borrar este registro'"
  title: "Eliminar"
 
 
