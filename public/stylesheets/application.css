@@ -240,6 +240,10 @@ body {
     opacity: 1;
 }
 
+.progress_bar img{
+    opacity: 1;
+}
+
 /*Total*/
 #total{
     margin-left: 615px;

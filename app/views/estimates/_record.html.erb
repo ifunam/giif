@@ -11,9 +11,9 @@
   </span>
   <span class="date"><%= record.date.to_s :short %></span>
   <span class="date_update"><%= record.updated_at.to_s :short %></span>
-  <span class="status"><%= record.order_status.name %></span>
-<% {:url => {:action => 'send_order', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator'el).show();", :complete => "$('order_status_loader_indicator').hide();"}%>
-  <span class="actions"><%= links_for_actions(controller_name, record)%></span>
+  <span class="status"><%= record.order_status.name%></span>
+  <span class="actions">
 
-  <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
+    <span class="progress_bar"><%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %></span>
+  </span>
 </div>

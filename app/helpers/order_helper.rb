@@ -46,14 +46,25 @@ module OrderHelper
   end
 
   def links_for_actions(controller_name, record)
-#    Controller.find_by_name(controller_name).permissions.find_by_status_id(record.order_status_id).collect do |permission|
     Controller.find_by_name(controller_name).permissions.find(:all, :conditions => ['order_status_id = ?', record.order_status_id]).collect do |p|
+
       if p.is_remote?
-        link_to_remote(image_tag("icon_"+p.action+".png", :title => p.action), :url => {:action => p.action, :id => record.id})
+        link_to_remote(icon_tag(p), :url => {:action => p.action, :id => record.id}, :format => 'js', 
+                       :loading => loading_indicator(record.id),
+                       :complete => "$('record_status_loader_indicator').hide();")
       else
-        link_to(image_tag("icon_"+p.action+".png", :title => p.title), {:action => p.action, :id => record.id}, :method => p.method.to_sym, :confirm => p.options)
+        link_to(icon_tag(p), {:action => p.action, :id => record.id}, :method => p.method.to_sym, :confirm => p.message)
       end
     end.join(' ')
+  end
+
+  def icon_tag(record)
+    icon_name= "icon_#{record.action}.png"
+    image_tag(icon_name, :title => record.title)
+  end
+  
+  def loading_indicator(id)
+    "$('record_#{id}_status').update(''); $('record_status_loader_indicator').show();" 
   end
 
   def set_row_class(object)

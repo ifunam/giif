@@ -2,7 +2,7 @@ one:
  id: 1
  user_id: 3
  date: 2008-01-01
- order_status_id: 4
+ order_status_id: 3
  ip_address: 192.168.1.1
  
 two:

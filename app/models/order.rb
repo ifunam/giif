@@ -114,7 +114,7 @@ class Order < ActiveRecord::Base
   end
 
   def sent
-    change_status(2) if order_status_id == 1
+    change_status(4) if order_status_id == 3
   end
 
   def send_estimate_request

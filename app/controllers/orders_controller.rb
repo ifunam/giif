@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def send_order
+  def send_data
     @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
@@ -60,7 +60,7 @@ class OrdersController < ApplicationController
     @order = OrderReporter.find_by_order_id(params[:id])
     respond_to do |format|
       format.html { render "show" }
-      format.pdf  { render "show.rpdf" }
+#      format.pdf  { render "show.rpdf" }
     end
   end
 
@@ -72,7 +72,11 @@ class OrdersController < ApplicationController
   end
 
   def show_pdf
-    send_file File.join(RAILS_ROOT, 'tmp', 'documents', "solicitud_compra_"+params[:id]+".pdf"), :type => 'application/pdf', :disposition => 'inline'    
+    @order = OrderReporter.find_by_order_id(params[:id])
+    respond_to do |format|
+      format.pdf  { render "show.rpdf" }
+    end
+#    send_file File.join(RAILS_ROOT, 'tmp', 'documents', "solicitud_compra_"+params[:id]+".pdf"), :type => 'application/pdf', :disposition => 'inline'    
   end
 
   def update
