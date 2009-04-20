@@ -17,6 +17,7 @@ class EstimatesController < ApplicationController
   end
 
   def create
+    @user_profile = user_profile
     @order = Order.new(params[:order].merge(:date => Date.today, :user_id => session[:user]))
     respond_to do |format|
       if @order.save
@@ -71,6 +72,15 @@ class EstimatesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :action => 'index' }
     end
+  end
+
+  def send_data
+    @user_profile = user_profile
+    @order = Order.find(params[:id])
+    respond_to do |format|
+      @order.send_estimate_request
+      format.js { render 'orders/send_order.rjs'}
+    end    
   end
 
 end

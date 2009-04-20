@@ -11,9 +11,11 @@
   </span>
   <span class="date"><%= record.date.to_s :short %></span>
   <span class="date_update"><%= record.updated_at.to_s :short %></span>
-  <span class="status"><%= record.order_status.name%></span>
-  <span class="actions">
-
-    <span class="progress_bar"><%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %></span>
+  <span class="status" id="<%= record.dom_id + '_status' %>">
+    <%= record.current_status %>
+  </span>
+  <span class="actions" id="<%= record.dom_id + '_actions' %>">
+    <%= links_for_actions(controller_name, record)%><br/><br/>
+    <span class="progress_bar"><%= image_tag('progress_bar3.gif', :id => "record_#{record.id}_loader_indicator", :style => 'display: none') %></span>
   </span>
 </div>

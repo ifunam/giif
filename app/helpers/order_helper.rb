@@ -51,7 +51,7 @@ module OrderHelper
       if p.is_remote?
         link_to_remote(icon_tag(p), :url => {:action => p.action, :id => record.id}, :format => 'js', 
                        :loading => loading_indicator(record.id),
-                       :complete => "$('record_status_loader_indicator').hide();")
+                       :complete => loading_complete(record.id))
       else
         link_to(icon_tag(p), {:action => p.action, :id => record.id}, :method => p.method.to_sym, :confirm => p.message)
       end
@@ -64,11 +64,15 @@ module OrderHelper
   end
   
   def loading_indicator(id)
-    "$('record_#{id}_status').update(''); $('record_status_loader_indicator').show();" 
+    "$('record_#{id}_loader_indicator').show();" 
   end
 
+  def loading_complete(id)
+    "$('record_#{id}_loader_indicator').hide();"
+end
+
   def set_row_class(object)
-  	'row_' + ((object + 1) % 2).to_s
+    'row_' + ((object + 1) % 2).to_s
   end
   
   def status_image_tag(record)

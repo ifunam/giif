@@ -33,7 +33,7 @@ estimates_unsent_send_data:
  id: 5
  order_status_id: 1
  controller_id: 1
- action: send_order
+ action: send_data
  is_remote: true
  title: "Enviar solicitud"
 

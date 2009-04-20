@@ -78,6 +78,11 @@ class Order < ActiveRecord::Base
              :page => page, :per_page => per_page)
   end
 
+  def self.paginate_by_orders(user_id, page=1, per_page=20)
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 3)", user_id ], 
+             :page => page, :per_page => per_page)
+  end
+
   def self.paginate_for_budget_backend(user_id, page=1, per_page=20)
     paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 4)", user_id ], 
              :page => page, :per_page => per_page)
@@ -118,7 +123,7 @@ class Order < ActiveRecord::Base
   end
 
   def send_estimate_request
-    change_status(5) if order_status_id == 1
+    change_status(2) if order_status_id == 1
   end
 
   def approve

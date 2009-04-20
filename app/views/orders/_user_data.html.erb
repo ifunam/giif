@@ -3,9 +3,9 @@
   <div id="user_profile">
     <div class="row" style="border: none;"><b>Nombre:</b><%= user_data.fullname %> (<%= user_data.adscription_name %>)</div>
     <div class="row" style="border: none;"><b>Teléfono:</b><%= user_data.phone %></div>
-    <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= "fecha de solicitud"%></div>
+    <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= "FECHA DE SOLICITUD"%></div>
     <% if "has_user" %>
-      <div class="row" style="border: none;"><b>Responsable académico:</b><%= user_data.user_incharge.fullname %><</div>
+      <div class="row" style="border: none;"><b>Responsable académico:</b><%= user_data.user_incharge.fullname %></div>
     <% end %>
   </div>
 </div>

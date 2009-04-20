@@ -84,7 +84,7 @@ body {
 .row{
    padding: 2px;
    border-bottom: 1px solid silver;
-   width: 85%;
+   width: 95%;
 }
 
 .row_0 {
@@ -222,12 +222,12 @@ body {
 
 .status{
     display: table-cell;
-    width: 90px;
+    width: 130px;
 }
 
 .actions{
     display: table-cell;
-    width: 250px;
+    width: 190px;
 }
 
 .actions img {
