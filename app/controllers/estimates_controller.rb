@@ -79,7 +79,7 @@ class EstimatesController < ApplicationController
     @order = Order.find(params[:id])
     respond_to do |format|
       @order.send_estimate_request
-      format.js { render 'orders/send_order.rjs'}
+      format.js { render 'shared/send_order.rjs'}
     end    
   end
 

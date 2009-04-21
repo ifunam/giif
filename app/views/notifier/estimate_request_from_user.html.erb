@@ -1,0 +1,26 @@
+*****************************************************************************************
+****                 SOLICITUD DE COTIZACIÓN DE PRODUCTOS                            ****
+*****************************************************************************************
+
+A través del GIIF ha enviado la solicitud de cotización de los siguientes productos:
+<% @order.products.each do |product|%>
+<%= "    \n #{product.quantity.to_s} #{product.description} (#{product.unit_type.name})"%>
+<% end %>
+
+a los siguientes proveedores:
+<% @order.providers.each do |provider|%>
+   <%= "\n" + provider.name + ' <<' + provider.email + '>>'%>
+<% end %>
+
+Su solicitud de cotización tiene las siguientes características:
+
+Número de solicitud: <%= @order.id %>
+Fecha de creación:   <%= @order.created_at.strftime("%d-%m-%Y")%>
+
+Los correos han sido enviados a través del GIIF de manera automática.
+ 
+Ahora debe esperar para recibir la respuesta a su cotización por parte de los proveedores.
+
+                                                                Instituto de Física, UNAM.
+                                                        
+*****************************************************************************************

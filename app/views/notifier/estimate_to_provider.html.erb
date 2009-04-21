@@ -1,0 +1,24 @@
+*********************************************************************************************************
+****                              SOLICITUD DE COTIZACIÓN DE PRODUCTOS                               ****
+*********************************************************************************************************
+
+Instituto de Física
+Universidad Nacional Autónoma de México
+Fecha: <%= @order.created_at.strftime("%d-%mm-%Y")%>
+
+A quien corresponda:
+
+A través de este medio deseo hacer de su conocimiento que el Instituto de Física esta interesado en la
+cotización de los siguientes productos: 
+<% @order.products.each do |product|%>
+<%= "     \n #{product.quantity.to_s} #{product.description} (#{product.unit_type.name}"%>
+<% end %>
+
+Para responder a la solicitud de cotización de clic en el siguiente enlace:
+
+                    <<link>>
+
+             Este mensaje ha sido generado de manera automática por el Sistema de Gestión del Inventario
+             del Instituto de Física de la Universidad Nacional Autónoma de México.
+                                                        
+********************************************************************************************************
