@@ -126,18 +126,18 @@ class Order < ActiveRecord::Base
     change_status(2) if order_status_id == 1
   end
 
+  def send_estimate_to_orders
+    change_status(10) if order_status_id == 2
+  end
+
   def approve
-    change_status(3) if order_status_id == 2
+    change_status(7) if order_status_id == 4
   end
 
   def reject
-    change_status(4) if order_status_id == 2
+    change_status(5) if order_status_id == 4
   end
 
-  def form_filled
-    change_status(7) if order_status_id == 2
-  end
- 
   def total_price
     order_products.sum("quantity * price_per_unit").to_f
   end

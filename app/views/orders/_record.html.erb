@@ -5,9 +5,11 @@
     <%= numerate_list(record.products, :description)%>
     <b>Proveedores:</b>
     <%= numerate_list(record.providers, :name)%>
+    <% unless record.currency.nil?%>
     <span style="margin-left: 50px; font-weight: bold;">
       Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%>
     </span>
+    <% end%>
     <span id="icon">
       <%= link_to(image_tag("icon_show.png", :title => 'Ver más detalles', :size => '16x16'), :action => 'show', :id => record.id)%>
     </span>

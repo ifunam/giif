@@ -28,24 +28,30 @@ estimates_unsent_delete:
  message: "Esta seguro que desea borrar este registro"
  title: "Eliminar"
 
-
 estimates_unsent_send_data:
  id: 5
  order_status_id: 1
  controller_id: 1
  action: send_data
  is_remote: true
- title: "Enviar solicitud"
+ title: "Solicitar cotización"
+
+estimates_sent_to_orders:
+ id: 6
+ order_status_id: 2
+ controller_id: 1
+ action: send_estimate
+ title: "Enviar sin cotización"
 
 orders_unsent_edit:
- id: 6
+ id: 7
  order_status_id: 3
  controller_id: 2
  action: edit
  title: "Editar"
 
 orders_unsent_destroy:
- id: 7
+ id: 8
  order_status_id: 3
  controller_id: 2
  action: destroy
@@ -54,21 +60,21 @@ orders_unsent_destroy:
  title: "Eliminar"
 
 orders_unsent_show_preview:
- id: 8
+ id: 9
  order_status_id: 3
  controller_id: 2
  action: show_preview
  title: "Vista previa"
 
 orders_unsent_show_pdf:
- id: 9
+ id: 10
  order_status_id: 3
  controller_id: 2
  action: show_pdf
  title: "Ver PDF"
 
 orders_unsent_send_data:
- id: 10
+ id: 11
  order_status_id: 3
  controller_id: 2
  action: send_data
@@ -76,7 +82,7 @@ orders_unsent_send_data:
  title: "Enviar solicitud"
 
 orders_in_progress_show_pdf:
- id: 11
+ id: 12
  order_status_id: 4
  controller_id: 2
  action: show_pdf

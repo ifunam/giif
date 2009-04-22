@@ -9,7 +9,7 @@ A través del GIIF ha enviado la solicitud de cotización de los siguientes prod
 
 a los siguientes proveedores:
 <% @order.providers.each do |provider|%>
-   <%= "\n" + provider.name + ' <<' + provider.email + '>>'%>
+   <%= "\n" + provider.name + ' <' + provider.email + '>'%>
 <% end %>
 
 Su solicitud de cotización tiene las siguientes características:

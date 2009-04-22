@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resource :session
+  map.resource :provider_session
 
   map.resources :orders, :member => {:get_file => :get, :destroy_item => :delete, :send_order => :post }
 
@@ -10,6 +11,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups
 
   map.resources :estimates
+  map.resources :estimates do |estimate|
+    estimate.resources :files
+  end
   
   map.resources :providers
 
