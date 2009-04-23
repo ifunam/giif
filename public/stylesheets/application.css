@@ -827,3 +827,10 @@ h3 {
     vertical-align: bottom;
     border: 1px solid transparent;
 }
+
+/*TODO: Migrate this chunk of code to sass*/
+/*Stylesheet for */
+#file_titles {
+   text-decoration: underline;
+   border: 1px solid red;
+}

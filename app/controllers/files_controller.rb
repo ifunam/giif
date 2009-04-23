@@ -5,7 +5,7 @@ before_filter :session_provider_required
   def index
     @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
     respond_to do |format|
-      format.html { render :index}
+      format.html { render 'index.html.haml'}
     end
   end
 
