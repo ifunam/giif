@@ -1,9 +1,9 @@
 class ProviderSessionsController < ApplicationController
   def create
     if authenticate?(params)
-      session[:provider_id]
-      redirect_to :controller => 'files'
-      #redirect_to :files, :order_id => params[:order_id]
+      session[:provider_id] = params[:provider_id]
+      session[:order_id] = params[:order_id]
+      redirect_to :controller => 'files', :provider_id => session[:provider_id], :order_id => session[:order_id]
     else
       render :text => "Para poder acceder al sitio debe acceder a través de la liga recibida a través de un correo electrónico"
     end
@@ -13,7 +13,9 @@ class ProviderSessionsController < ApplicationController
 #   end
 
   def destroy
-    reset_session
+#    reset_session
+    session[:provider_id] = nil
+    session[:order_id] = nil
     render :text => 'Good bye!'
   end
 
@@ -26,6 +28,5 @@ class ProviderSessionsController < ApplicationController
     end  
     return false
   end
-
 
 end
