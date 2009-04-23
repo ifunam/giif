@@ -83,7 +83,7 @@ class EstimatesController < ApplicationController
     end    
   end
 
-  def send_estimate
+  def send_to_order
     @order = Order.find(params[:id])
     respond_to do |format|
       @order.send_estimate_to_orders

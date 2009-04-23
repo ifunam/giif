@@ -40,7 +40,7 @@ estimates_sent_to_orders:
  id: 6
  order_status_id: 2
  controller_id: 1
- action: send_estimate
+ action: send_to_order
  title: "Enviar sin cotización"
 
 orders_unsent_edit:
