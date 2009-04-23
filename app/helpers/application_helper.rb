@@ -6,6 +6,10 @@ module ApplicationHelper
     User.find(session[:user]).login
   end
 
+  def logged_provider
+    Provider.find(session[:provider_id]).name
+  end
+
   def simple_select(object_name, model_name, options={})
     select(object_name, ActiveSupport::Inflector.foreign_key(model_name), 
     model_name.all({:order => 'name ASC'}.merge(options)).collect { |record| [record.name, record.id] }, 

@@ -35,7 +35,7 @@ before_filter :session_provider_required
 
   private
   def session_provider_required
-    (!session[:provider_id].nil? and !Provider.find(session[:provider_id]).nil?) ? (return true) : (return false)
+     (!session[:provider_id].nil? and !Provider.find(session[:provider_id]).nil?) ? (return true) : (return false)
   end
 
 end

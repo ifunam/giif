@@ -22,8 +22,8 @@
         <div id="contain">
           <div id = "links">
             <br>
-              Usuario: <%= logged_user  %> |
-              <span id="icon"><%= link_to(image_tag("icon_exit.png", :size => '16x16', :title => 'Cerrar sesión'), session_path, :method => :delete )%></span>
+              Usuario: <%= logged_provider  %> |
+              <span id="icon"><%= link_to(image_tag("icon_exit.png", :size => '16x16', :title => 'Cerrar sesión'), provider_session_path, :method => :delete )%></span>
               </br>
           </div>
           <p style="background-color: yellow"><%= flash[:notice] %></p>
