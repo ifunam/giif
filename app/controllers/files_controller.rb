@@ -3,22 +3,23 @@ skip_before_filter :login_required
 before_filter :session_provider_required
 
   def index
-#    @provider = Provider.find(session[:provider_id])
-    @order = Order.find(params[:order_id])
-    @order.files.build
-    @order_reporter = OrderReporter.find_by_order_id(session[:order_id])
-#    @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
+
     respond_to do |format|
-      format.html { render 'index.html.haml'}
+      format.html { render 'index'}
     end
   end
 
 def new
+#TODO: redirect to :message in case that provider_id and session[:provider_id] are nil
+#    @provider = Provider.find(session[:provider_id])
+#    @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
+
     @order = Order.find(params[:order_id])
     @order.files.build
     @order_reporter = OrderReporter.find_by_order_id(session[:order_id])
+
     respond_to do |format|
-      format.html { render 'index.html.haml'}
+      format.html { render 'new'}
     end
 
 end

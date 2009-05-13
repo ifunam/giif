@@ -39,5 +39,11 @@
         = @order.providers.first.email
       %br
 
+      %h3 Datos adjuntos:
+      #attachment_cell
+        = render :partial => 'attachment', :locals => {:f => f}
+      = link_to_function "Agregar" do |page|
+        - page.insert_html :bottom, 'attachment_cell', :partial => 'attachment', :locals => {:f => f}
+%br      
 
   
