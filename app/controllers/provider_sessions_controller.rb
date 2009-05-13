@@ -6,17 +6,14 @@ class ProviderSessionsController < ApplicationController
       redirect_to :controller => 'files', :provider_id => session[:provider_id], :order_id => session[:order_id]
     else
       render :text => "Para poder acceder al sitio debe acceder a través de la liga recibida a través de un correo electrónico"
+      #render :status => 401
     end
   end
 
-#   def show
-#   end
-
   def destroy
-#    reset_session
     session[:provider_id] = nil
     session[:order_id] = nil
-    render :text => 'Good bye!'
+    render :text => 'Good bye!'#, This method should display a fancy message
   end
 
   private 

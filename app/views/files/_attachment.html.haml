@@ -1,0 +1,3 @@
+- f.fields_for :files do |order_file|
+  = order_file.file_field :file
+  = link_to 'Guardar', :action => 'save_file'

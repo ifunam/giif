@@ -18,8 +18,8 @@ Para responder a la solicitud de cotización de clic en el siguiente enlace:
 <% token = User.encrypt([@order.id, @provider.id, @provider.created_at.to_s].join('_')).slice(0..9) %>
 
 <%= url_for :controller => 'provider_session', :action => 'create', :token => token, 
-                                                                   :order_id => @order.id, :provider_id => @provider.id,
-                                                                   :host => 'localhost:3000', :only_path => false%>
+                                                                    :order_id => @order.id, :provider_id => @provider.id,
+                                                                    :host => 'localhost:3000', :only_path => false%>
 
 Este mensaje ha sido generado de manera automática por el Sistema de Gestión del Inventario del Instituto 
 de Física de la Universidad Nacional Autónoma de México.

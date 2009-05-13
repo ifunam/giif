@@ -3,11 +3,25 @@ skip_before_filter :login_required
 before_filter :session_provider_required
 
   def index
-    @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
+#    @provider = Provider.find(session[:provider_id])
+    @order = Order.find(params[:order_id])
+    @order.files.build
+    @order_reporter = OrderReporter.find_by_order_id(session[:order_id])
+#    @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
     respond_to do |format|
       format.html { render 'index.html.haml'}
     end
   end
+
+def new
+    @order = Order.find(params[:order_id])
+    @order.files.build
+    @order_reporter = OrderReporter.find_by_order_id(session[:order_id])
+    respond_to do |format|
+      format.html { render 'index.html.haml'}
+    end
+
+end
 
   def update
     @file = OrderFile.new(params[:order_file])
