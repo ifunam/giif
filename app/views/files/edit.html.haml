@@ -1,4 +1,6 @@
-- form_for(@order, :html => {:id => 'order', :multipart => true }) do |f| 
+#error_messages
+  = error_messages_for :order
+- form_for(@order, :url => {:controller => 'files', :action => 'update', :id => @order.id}, :html => {:id => 'order', :multipart => true }) do |f| 
   #file_form
     #form_data 
       %h3 Datos del solicitante:
@@ -24,8 +26,7 @@
           Cantidad
         #description_header
           Descripción
-      -@order.products.each do |product|
-        = render :partial => 'product', :object => product
+      = render :partial => 'product', :collection => @order.products
 
       %h3 Datos del proveedor:
       #cell_left
@@ -39,11 +40,20 @@
         = @order.providers.first.email
       %br
 
-      %h3 Datos adjuntos:
-      #attachment_cell
-        = render :partial => 'attachment', :locals => {:f => f}
-      = link_to_function "Agregar" do |page|
-        - page.insert_html :bottom, 'attachment_cell', :partial => 'attachment', :locals => {:f => f}
-%br      
 
-  
+      %h3 Datos adjuntos:
+      #attachment_row
+        #attachment_header
+          Archivo adjunto
+        #file_type_header 
+          Tipo de archivo
+        #actions_header
+          Acciones
+      #attachment_cell
+        = render :partial => 'file', :locals => {:f => f}, :collection => @order.files
+      = link_to_function "Agregar" do |page|
+        - page.insert_html :bottom, 'attachment_cell', :partial => 'file', :locals => {:f => f}, :collection => @order.files
+
+  #submit
+    = f.submit "Adjuntar archivos", :onclick => "return (confirm('¿Desea guardar los archivos adjuntos?'));"
+%br       

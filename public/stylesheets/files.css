@@ -1,3 +1,6 @@
+#error_messages {
+  margin-left: 50px; }
+
 #file_form {
   width: 100%;
   margin-left: 50px; }
@@ -8,6 +11,7 @@
 #row_header {
   width: 500px;
   text-align: center;
+  font-weight: bold;
   background-color: #C0C0C0; }
 
 #number_header {
@@ -32,5 +36,26 @@
   padding-left: 40px;
   display: inline-block; }
 
+#attachment_row {
+  width: 620px;
+  font-weight: bold;
+  background-color: #C0C0C0; }
+
+#attachment_header {
+  width: 350px;
+  display: inline-block; }
+
+#file_type_header {
+  width: 120px;
+  display: inline-block; }
+
+#actions_header {
+  width: 140px;
+  display: inline-block; }
+
 #attachment_cell {
-  width: 500px; }
+  width: 620px; }
+
+#submit {
+  width: 150px;
+  margin-left: 440px; }

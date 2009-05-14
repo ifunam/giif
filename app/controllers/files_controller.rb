@@ -3,36 +3,42 @@ skip_before_filter :login_required
 before_filter :session_provider_required
 
   def index
+    @order = Order.find(params[:id])
 
     respond_to do |format|
       format.html { render 'index'}
     end
   end
 
-def new
-#TODO: redirect to :message in case that provider_id and session[:provider_id] are nil
-#    @provider = Provider.find(session[:provider_id])
-#    @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
+  def edit
+    #TODO: redirect to :message in case that provider_id and session[:provider_id] are nil
+    #    @provider = Provider.find(session[:provider_id])
+    #    @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
 
     @order = Order.find(params[:order_id])
+#    3.times {@order.files.build}
     @order.files.build
-    @order_reporter = OrderReporter.find_by_order_id(session[:order_id])
+    @order_reporter = OrderReporter.find_by_order_id(params[:order_id])
 
     respond_to do |format|
-      format.html { render 'new'}
+      format.html { render 'edit'}
     end
-
-end
+  end
 
   def update
-    @file = OrderFile.new(params[:order_file])
+    @order = Order.find(params[:id])
+    @order_reporter = OrderReporter.find_by_order_id(params[:id])
+
     respond_to do |format|
-      if @file.save
-        format.html { render :text => 'Su archivo ha sido guardado' }
+      if @order.update_attributes(params[:order])
+        #send notification email
+        format.html { redirect_to 'index', :id => @order.id}
       else
-        format.html { render :action => 'new'}
+        format.html { render 'edit', :id => @order.id}
       end
+
     end
+    
   end
 
   def show
