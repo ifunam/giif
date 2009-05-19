@@ -1,6 +1,7 @@
 #error_messages
   = error_messages_for :order
-- form_for(@order, :url => {:controller => 'files', :action => 'update', :id => @order.id}, :html => {:id => 'order', :multipart => true }) do |f| 
+
+- form_for(@order, :url => {:controller => 'files', :action => 'update', :id => @order.id}, :html => {:id => 'order', :multipart => true }) do |f|
   #file_form
     #form_data 
       %h3 Datos del solicitante:
@@ -50,10 +51,10 @@
         #actions_header
           Acciones
       #attachment_cell
-        = render :partial => 'file', :locals => {:f => f}, :collection => @order.files
+        = hidden_field(:file_form, :index, :value => 0)
+        = render :partial => 'file', :object => OrderFile.new, :collection => @order.files, :locals => {:f => f}
       = link_to_function "Agregar" do |page|
-        - page.insert_html :bottom, 'attachment_cell', :partial => 'file', :locals => {:f => f}, :collection => @order.files
+        - page.insert_html :bottom, 'attachment_cell', :partial => 'file', :locals => {:f => f}, :collection => @order.files 
 
   #submit
     = f.submit "Adjuntar archivos", :onclick => "return (confirm('¿Desea guardar los archivos adjuntos?'));"
-%br       

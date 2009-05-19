@@ -1,10 +1,8 @@
-- index ||= file_counter
-- new_or_existing = file.new_record? ? 'new' : 'existing'
-- id_or_index = file.new_record? ? index : file.id 
-- prefix = "order[files_attributes][]" 
+= javascript_tag("my_index = (parseInt($('file_form_index').value) + 1); $('file_form_index').setValue(my_index);")
 
-- f.fields_for :files do |order_file|
-  = order_file.file_field :file
-  = simple_select('order[files_attributes][0]', FileType)
-  = link_to_function "Quitar", "$(this).up('order_files_attributes_#{index}_file').remove();"
+#files
+- f.fields_for prefix do |file_form|
+  = file_form.file_field :file
+  = file_form.select(:file_type_id, FileType.all.collect {|record| [record.name, record.id]})
+  = link_to_function "Quitar", "$(this).up('order_files_attributes__file').remove();"
 

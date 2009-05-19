@@ -99,7 +99,7 @@ class Order < ActiveRecord::Base
   end
 
   def read_file
-     if file.class == OrderFile and !file.file.nil? and !file.file.is_a? String
+     if file.class == OrderFile #and !file.file.nil? and !file.file.is_a? String
       file.content_type = file.file.content_type
       file.filename = file.file.original_filename
       file.file = file.file.read
