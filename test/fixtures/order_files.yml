@@ -1,34 +1,25 @@
-<%
-def fixture_data(name)
-  render_binary("#{RAILS_ROOT}/test/fixtures/#{name}")
-end
+#<%
+# def fixture_data(name)
+#   render_binary("#{RAILS_ROOT}/test/fixtures/#{name}")
+# end
 
-def render_binary(filename)
-  data = File.open(filename,'rb').read
-  "!binary | #{[data].pack('m').gsub(/\n/,"\n    ")}\n"
-end
-%>
+# def render_binary(filename)
+#   data = File.open(filename,'rb').read
+#   "!binary | #{[data].pack('m').gsub(/\n/,"\n    ")}\n"
+# end
+# %>
 
 one:
  id: 1
  order_id: 1
  file_type_id: 2
- file: <%= fixture_data("logo_unam.jpg") %>
- content_type: "image/jpg"
- filename: "top_secret.jpg"
 
 two:
  id: 2
  order_id: 2
  file_type_id: 3
- file: <%= fixture_data("logo_unam.jpg") %>
- content_type: "image/jpg"
- filename: "top_secret_2.jpg"
 
 three:
  id: 3
  order_id: 3
  file_type_id: 2
- file: <%= fixture_data("logo_unam.jpg") %>
- content_type: "image/jpg"
- filename: "top_secret_3.jpg"

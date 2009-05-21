@@ -49,7 +49,7 @@ class Order < ActiveRecord::Base
  
   before_validation :verify_products_and_providers
   # Fix It: Move this method to OrderFile class if the accepts_nested_attributes_for method is improved
-  before_save :read_file
+#  before_save :read_file
   
   default_scope :order => "orders.date ASC"
   

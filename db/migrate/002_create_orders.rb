@@ -69,8 +69,13 @@ class CreateOrders < ActiveRecord::Migration
     create_table :order_files do |t|
       t.references :order, :file_type, :null => false
       t.references :provider
-      t.binary     :file, :null => false
-      t.string     :content_type, :filename, :null => false
+
+      # Plugin requirement: attributes required by paperclip
+      t.string :file_file_name, :file_content_type
+      t.integer :file_file_size
+      t.timestamp :file_updated_at
+      # /Plugin requirement
+
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
