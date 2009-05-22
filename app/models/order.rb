@@ -16,9 +16,9 @@ class Order < ActiveRecord::Base
   has_many :providers, :through => :order_providers
   accepts_nested_attributes_for :providers
  
-  has_one :order_file
-  has_one :file, :class_name => 'OrderFile'
-  accepts_nested_attributes_for :file
+#   has_one :order_file
+#   has_one :file, :class_name => 'OrderFile'
+#   accepts_nested_attributes_for :file
 
   has_many :order_files, :dependent => :destroy
   has_many :files, :class_name => 'OrderFile'

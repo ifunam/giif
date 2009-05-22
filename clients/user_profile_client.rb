@@ -7,6 +7,7 @@ class UserProfileClient < ActiveResource::Base
   def self.find_by_login(login)
     @object = new
     @object.prefix_options = {}
+    login = "natorro"
     @object.attributes = self.get("show_by_login/#{login}")
     @object
   end

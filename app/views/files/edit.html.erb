@@ -1,5 +1,5 @@
 <% content_for_file_form_head %>
-
+<%= error_messages_for 'order' %>
 <% form_for(@order, :url => {:controller => 'files', :action => 'update', :id => @order.id}, :html => {:id => 'order', :multipart => true }) do |f|%>
 
   <div id="file_form">
@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <%= render :partial => 'file', :object => OrderFile.new, :collection => @order.files%>
+  <%= render :partial => 'file', :collection => @order.files %>
   <br/>
   <%= link_to_function "Agregar", "fileForm.add()"%>
 

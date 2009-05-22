@@ -1,4 +1,6 @@
-<%= content_tag(:h2, "Artículo(s):") %>
+<% content_for_estimate_form_head %>
+
+<h2>Artículo(s):</h2>
 <div id="products" class="table">
     <span class="pd_quantity">Cantidad</span>
     <span class="pd_description">Descripción</span> 
@@ -14,12 +16,14 @@
  end %>
 
 
-<%= content_tag(:h2, "Proveedor(es):") %>
+<h2> Proveedor(es):</h2>
 <div id="providers" class="table">
   	<span class="pv_description">Proveedor</span>  	
 	<span class="pv_email">Email</span>
     <span class="pv_actions">Acciones</span>
-	<%= render :partial => 'provider_form', :locals => { :f => f } %>
+    <%= render :partial => 'provider_form', :locals => { :f => f } %>
+    <%= link_to_function "Agregar", "providerForm.add"%>        
+
 </div>
 <%= link_to_function "Agregar" do |page|   
 	page.insert_html :bottom, 'providers', :partial =>"provider_form", :locals => { :f => f }

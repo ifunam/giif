@@ -3,7 +3,7 @@ skip_before_filter :login_required
 before_filter :session_provider_required
 
   def index
-
+    @order = Order.find(params[:order_id])
 
     respond_to do |format|
       format.html { render 'index'}

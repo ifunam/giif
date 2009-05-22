@@ -1,0 +1,9 @@
+
+<div id="files">
+<% fields_for :providers do |provider_form| -%> 
+<p> 
+  <%= provider_form.text_field :name%>
+  <%= provider_form.text_field :email%>
+</p> 
+<% end -%> 
+</div> 

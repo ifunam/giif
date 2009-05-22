@@ -1,15 +1,14 @@
-<%- 
-  index ||= file_counter
-  new_or_existing = file.new_record? ? 'new' : 'existing'
-  id_or_index = file.new_record? ? index : file.id 
-  prefix = "order[files_attributes]" 
--%> 
-
-
+<% index = index_file_form(file, file_counter, index ||= file_counter) %>
 <div id="files">
-<% fields_for :files do |file_form| -%> 
+<% fields_for 'order[files_attributes]' do |file_form| -%> 
+
 <p> 
-  <%= file_form.file_field :file, :index => id_or_index%>
+  <% unless file.file.size.nil? %>
+  <%= link_to file.file_file_name, file.file.url, :target => '_new' %>
+  <% else %>
+  <%= file_form.file_field :file, :index => index %>
+  <%= file_form.select :file_type_id, FileType.all.collect {|record| [record.name, record.id]}, {:prompt => "--Seleccionar--"}, {:index => index} %>
+  <% end %>
 </p> 
 <% end -%> 
 </div> 
