@@ -1,4 +1,4 @@
-<% content_for_estimate_form_head %>
+
 
 <h2>Artículo(s):</h2>
 <div id="products" class="table">
@@ -21,10 +21,7 @@
   	<span class="pv_description">Proveedor</span>  	
 	<span class="pv_email">Email</span>
     <span class="pv_actions">Acciones</span>
-    <%= render :partial => 'provider_form', :locals => { :f => f } %>
-    <%= link_to_function "Agregar", "providerForm.add"%>        
-
+    <%= render :partial => 'provider', :object => @order.providers[0]%>
 </div>
-<%= link_to_function "Agregar" do |page|   
-	page.insert_html :bottom, 'providers', :partial =>"provider_form", :locals => { :f => f }
-end %>
+<%= link_to_function "Agregar desde funcion javascript", "providerForm.add()"%>        
+
