@@ -1,3 +1,12 @@
+<%- content_for :head do -%>
+  <script type="text/javascript" charset="utf-8">
+   //<![CDATA[
+     providerForm = new Subform('<%= escape_javascript(render(:partial => "provider", :object => OrderProvider.new, :locals => {:index => "INDEX"})) %>',<%= @order.providers.length %>,'providers');
+     productForm = new Subform('<%= escape_javascript(render(:partial => "product", :object => OrderProduct.new, :locals => {:index => "INDEX"})) %>',<%= @order.products.length %>,'products');
+   //]]>
+  </script>
+<%- end -%>
+
 <%= error_messages_for 'order' %>
 <% form_for(@order, :url => { :controller => :estimates, :action => :update }) do |f| -%>
 <div id="data">

@@ -11,7 +11,8 @@ class EstimatesController < ApplicationController
   def new
     @user_profile = user_profile
     @order = Order.new
-    @order.providers.build
+    @order.order_providers.build
+    @order.order_products.build
     respond_to do |format|
       format.html { render :new }
     end
@@ -20,6 +21,14 @@ class EstimatesController < ApplicationController
   def create
     @user_profile = user_profile
     @order = Order.new(params[:order].merge(:date => Date.today, :user_id => session[:user]))
+#    @params = params[:order]
+#    @order.order_products = params['order']['products_attributes']['0']
+#    @order.order_products.build
+#    @order.order_providers.build
+#    @order.order_providers[0]['email'] = params['order']['providers_attributes']['0']['email']
+#    @order.order_providers[0]['name'] = params['order']['providers_attributes']['0']['name']
+    
+
     respond_to do |format|
       if @order.save
         format.html { redirect_to :action => "index" }
@@ -58,7 +67,7 @@ class EstimatesController < ApplicationController
     @order.attributes = params[:order]
     respond_to do |format|
         if @order.save
-          format.html { redirect_to :action => "index" }
+          format.html { redirect_to :action => "index"}
           format.xml  { render :xml => @order, :status => :updated, :location => @order }
         else
           format.html { render "edit" }

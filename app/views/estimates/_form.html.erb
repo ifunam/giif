@@ -1,27 +1,27 @@
-
-
 <h2>Artículo(s):</h2>
-<div id="products" class="table">
+
+  <div id="products" class="table">
     <span class="pd_quantity">Cantidad</span>
     <span class="pd_description">Descripción</span> 
     <span class="pd_type">Categoría</span>
     <span class="pd_unit">Unidad</span>
     <span class="pd_actions">Acciones</span>
-      
-    <%= render :partial => 'product_form', :locals => { :f => f } %>
-</div>
 
-<%= link_to_function "Agregar" do |page|   
-	page.insert_html :bottom, 'products', :partial => "product_form", :locals => { :f => f }
- end %>
+    <%= render :partial => 'product', :collection => @order.products%> 
+  </div>
+
+<%= link_to_function "Agregar", "productForm.add()"%>        
 
 
 <h2> Proveedor(es):</h2>
-<div id="providers" class="table">
-  	<span class="pv_description">Proveedor</span>  	
-	<span class="pv_email">Email</span>
+
+  <div id="providers" class="table">
+    <span class="pv_description">Proveedor</span>  	
+    <span class="pv_email">Email</span>
     <span class="pv_actions">Acciones</span>
-    <%= render :partial => 'provider', :object => @order.providers[0]%>
-</div>
-<%= link_to_function "Agregar desde funcion javascript", "providerForm.add()"%>        
+    
+    <%= render :partial => 'provider', :collection => @order.providers%>
+  </div>
+
+<%= link_to_function "Agregar", "providerForm.add()"%>        
 

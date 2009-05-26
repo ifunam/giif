@@ -1,27 +1,36 @@
 <%
-    index ||= 1
-    id_or_index = provider.new_record? ? index : file.id 
-    prefix = 'order[providers_attributes]'
+  index ||= provider_counter
+  id_or_index = provider.new_record? ? index : provider.id 
+  prefix = "order[providers_attributes][#{id_or_index}]"
 %>
 
-<div id="files">
-<% fields_for prefix do |provider_form| -%> 
-   <% dom_id = provider_form.object.nil? ? 'new' : provider_form.object.dom_id %>
-   <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
-	<span class="pv_description">
-     	<%= provider_form.text_field :name, :size => '64', :index => index %>
-   	</span>
-	<span class="pv_email">
-     	<%= provider_form.text_field :email, :size => '20', :index => index %>
-   	</span>
-   	<span class="pv_actions">
-  	<% unless 3<4 %>Agregar validacion si esta vacio
-      	<%= link_to_remote "Borrar", :url => provider_path(provider_form.object_id), :method => :delete, :confirm => "¿Desea borrar este registro?" %>												
-   <% else%>
-   		<%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
-    <% end %>
-    <%= index%>
-   	</span>
+<div id="providers">
+  <% fields_for prefix do |provider_form| -%> 
+  <% dom_id = provider_form.object.nil? ? provider.dom_id : 'new' %>
+
+    <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
+
+      <span class="pv_description">
+        <%= provider_form.text_field :name, :size => '64' %>
+      </span>
+	
+      <span class="pv_email">
+     	<%= provider_form.text_field :email, :size => '20' %>
+      </span>
+   	
+      <span class="pv_actions">
+        <% unless provider.new_record? %>
+          <%= link_to_remote "Borrar", :url => provider_path(provider.id), :method => :delete, :confirm => "¿Desea borrar este registro de manera permanente?" %>
+        <% else%>
+          <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
+        <% end %>
+        
+        <%= index%>
+        <%= dom_id%>
+
+
+      </span>
+
     </div>
-<% end -%> 
+  <% end -%> 
 </div> 

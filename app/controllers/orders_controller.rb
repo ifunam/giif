@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
     @user_profile = user_profile
     @order = Order.new
     @order.providers.build
+    @order.products.build
     respond_to do |format|
         format.html { render :new }
     end

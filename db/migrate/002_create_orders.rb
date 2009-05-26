@@ -82,7 +82,7 @@ class CreateOrders < ActiveRecord::Migration
 
     create_table :providers do |t|
       t.string     :name, :null => false
-      t.string     :email
+      t.string     :email, :null => false
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end

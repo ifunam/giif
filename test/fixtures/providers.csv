@@ -1,6 +1,6 @@
-id,name
-1, Computación Génericos y Suministros
-2, HP México
-3, Corporación UNISOL S.A. de C.V.
-4, Grupo Salinas
-5, Tonermex S.A. de C.V.
+id,name,email
+1, Computación Génericos y Suministros, genericos@hotmail.com
+2, HP México, ventas-latino@hp.com
+3, Corporación UNISOL S.A. de C.V., unisol@yahoo.com.mx
+4, Grupo Salinas, ventas@grupo-salinas.com
+5, Tonermex S.A. de C.V., tonermex@gmail.com

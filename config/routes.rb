@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :products
 
+  map.resources :order_products
+
   map.namespace :budget do |budget|
     budget.resource :session
     budget.resources :orders, :member => { :reject => :post}

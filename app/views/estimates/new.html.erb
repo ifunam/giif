@@ -2,6 +2,7 @@
   <script type="text/javascript" charset="utf-8">
    //<![CDATA[
      providerForm = new Subform('<%= escape_javascript(render(:partial => "provider", :object => Provider.new, :locals => {:index => "INDEX"})) %>',<%= @order.providers.length %>,'providers');
+     productForm = new Subform('<%= escape_javascript(render(:partial => "product", :object => OrderProduct.new, :locals => {:index => "INDEX"})) %>',<%= @order.products.length %>,'products');
    //]]>
   </script>
 <%- end -%>
