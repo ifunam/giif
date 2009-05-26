@@ -1,8 +1,8 @@
 <%
   index ||= product_counter
   id_or_index = product.new_record? ? index : product.id 
-  prefix = product.new_record? ? "order[products_attributes][#{id_or_index}]" : "order[products_attributes][][][#{id_or_index}]"
-#  prefix = "order[products_attributes][#{id_or_index}]"
+#  prefix = product.new_record? ? "order[products_attributes][#{id_or_index}]" : "order[products_attributes][#{id_or_index}]"
+  prefix = "order[products_attributes][#{id_or_index}]"
 %>
 
 
@@ -12,11 +12,11 @@
 <%= prefix %>
 
 <div id="products">
-  <% fields_for prefix do |product_form| %>
+  <% fields_for prefix, product do |product_form| %>
   <% dom_id = product_form.object.nil? ? product.dom_id : 'new'%>
-
+    <%= product_form.hidden_field(:id, :value => product.id) unless product.new_record? %>
     <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
-      <span class="pd_quantity">
+	  <span class="pd_quantity">
         <%= product_form.text_field :quantity, :size => '4', :maxlenght => '4'%>
       </span>
   	

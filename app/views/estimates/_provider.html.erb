@@ -5,13 +5,13 @@
 %>
 
 <div id="providers">
-  <% fields_for prefix do |provider_form| -%> 
+  <% fields_for prefix, provider do |provider_form| -%> 
   <% dom_id = provider_form.object.nil? ? provider.dom_id : 'new' %>
-
+  	<%= provider_form.hidden_field(:id, :value => provider.id) unless provider.new_record? %>
     <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
-
+	<% if provider.respond_to? 'name' %>
       <span class="pv_description">
-        <%= provider_form.text_field :name, :size => '64' %>
+        <%= text_field_with_auto_complete  prefix, :name %>
       </span>
 	
       <span class="pv_email">
@@ -25,8 +25,9 @@
           <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
         <% end %>
         
-      </span>
-
+       </span>
+    <% end %>
     </div>
+
   <% end -%> 
 </div> 
