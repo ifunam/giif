@@ -1,13 +1,15 @@
 <%
   index ||= product_counter
   id_or_index = product.new_record? ? index : product.id 
-  prefix = "order[products_attributes][#{id_or_index}]"
+  prefix = product.new_record? ? "order[products_attributes][#{id_or_index}]" : "order[products_attributes][][][#{id_or_index}]"
+#  prefix = "order[products_attributes][#{id_or_index}]"
 %>
 
 
 <%= product.id%><br/>
 <%= product.quantity%>
-<%= product.description%>
+<%= product.description%><br/>
+<%= prefix %>
 
 <div id="products">
   <% fields_for prefix do |product_form| %>
@@ -37,9 +39,6 @@
           <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
         <% end %>
   
-      <%= index%>
-      <%= dom_id%>
-
       </span>
 
     </div>

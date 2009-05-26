@@ -1,11 +1,12 @@
 <div style="display: inline-table; width: 50%;">
   <%= content_tag(:h2, "Datos personales:") %>
+
   <div id="user_profile">
     <div class="row" style="border: none;"><b>Nombre:</b><%= user_data.fullname %> (<%= user_data.adscription_name %>)</div>
     <div class="row" style="border: none;"><b>Teléfono:</b><%= user_data.phone %></div>
-    <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= "FECHA DE SOLICITUD"%></div>
-    <% if "has_user" %>
-      <div class="row" style="border: none;"><b>Responsable académico:</b><%= user_data.user_incharge.fullname %></div>
-    <% end %>
+    <div class="row" style="border: none;"><b>Fecha de solicitud:</b> <%= @order.created_at :short%></div>
+      <% if "has_user" %>
+        <div class="row" style="border: none;"><b>Responsable académico:</b><%= user_data.user_incharge.fullname %></div>
+      <% end %>
   </div>
 </div>
