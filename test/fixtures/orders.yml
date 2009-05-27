@@ -1,20 +1,27 @@
 one:
  id: 1
  user_id: 3
+ date: 2009-05-27
+ order_status_id: 1
+ ip_address: 132.248.7.37
+
+two:
+ id: 2
+ user_id: 3
  date: 2008-01-01
  order_status_id: 3
  ip_address: 192.168.1.1
  
-two:
- id: 2
- user_id: 2
+three:
+ id: 3
+ user_id: 3
  date: 2008-02-16
  order_status_id: 5
  ip_address: 192.168.1.2
  
-three:
- id: 3
- user_id: 2
+four:
+ id: 4
+ user_id: 3
  date: 2008-02-16
  order_status_id: 8
  ip_address: 192.168.1.3

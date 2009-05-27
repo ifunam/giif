@@ -5,15 +5,9 @@
   prefix = "order[products_attributes][#{id_or_index}]"
 %>
 
-
-<%= product.id%><br/>
-<%= product.quantity%>
-<%= product.description%><br/>
-<%= prefix %>
-
 <div id="products">
   <% fields_for prefix, product do |product_form| %>
-  <% dom_id = product_form.object.nil? ? product.dom_id : 'new'%>
+  <% dom_id = product.new_record? ? 'new' : product.dom_id %>
     <%= product_form.hidden_field(:id, :value => product.id) unless product.new_record? %>
     <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
 	  <span class="pd_quantity">

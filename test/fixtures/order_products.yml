@@ -1,26 +1,34 @@
-UPS_Triplite:
+product_for_estimates:
  id: 1
+ product_category_id: 3
+ unit_type_id: 2
+ order_id: 1
+ quantity: 3
+ description: "Macbook air LMF90"
+
+UPS_Triplite:
+ id: 2
  product_category_id: 1
  unit_type_id: 1
- order_id: 1
+ order_id: 2
  quantity: 10
  description: "UPS Triplite 500W"
  price_per_unit: 5667.00
 
 two:
- id: 2
+ id: 3
  product_category_id: 1
  unit_type_id: 2
- order_id: 2
+ order_id: 3
  quantity: 15
  description: "Laptop Gateway MX989-L"
  price_per_unit: 1234.67
 
 three:
- id: 3
+ id: 4
  product_category_id: 2
  unit_type_id: 3
- order_id: 3
+ order_id: 4
  quantity: 4
  description: "Servidores IBM de alto rendimiento"
  price_per_unit: 7834.67

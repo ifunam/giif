@@ -1,6 +1,6 @@
 class EstimatesController < ApplicationController
   layout 'orders'
-   auto_complete_for :provider, :name
+  #auto_complete_for :provider, :name
   
   def index
     @user_profile = user_profile
@@ -35,20 +35,6 @@ class EstimatesController < ApplicationController
     end
   end
 
-  def show 
-    @order = OrderReporter.find_by_order_id(params[:id])
-    respond_to do |format|
-      format.html { render 'show' }
-    end
-  end
-
-  def show_preview
-    @order = OrderReporter.find_by_order_id(params[:id])
-    respond_to do |format|
-      format.html { render 'show_preview' }
-    end
-  end
- 
   def edit
      @user_profile = user_profile
      @order = Order.find(params[:id])

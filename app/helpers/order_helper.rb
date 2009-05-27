@@ -46,7 +46,7 @@ module OrderHelper
   end
 
   def links_for_actions(controller_name, record)
-    Controller.find_by_name(controller_name).permissions.find(:all, :conditions => ['order_status_id = ?', record.order_status_id]).collect do |p|
+    Controller.find_by_name(controller_name).permissions.find(:all, :conditions => ['order_status_id = ?', record.order_status_id], :order => 'id').collect do |p|
 
       if p.is_remote?
         link_to_remote(icon_tag(p), :url => {:action => p.action, :id => record.id}, :format => 'js', 

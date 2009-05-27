@@ -5,29 +5,30 @@
 %>
 
 <div id="providers">
+  
   <% fields_for prefix, provider do |provider_form| -%> 
-  <% dom_id = provider_form.object.nil? ? provider.dom_id : 'new' %>
-  	<%= provider_form.hidden_field(:id, :value => provider.id) unless provider.new_record? %>
-    <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
-	<% if provider.respond_to? 'name' %>
-      <span class="pv_description">
-        <%= text_field_with_auto_complete  prefix, :name %>
-      </span>
-	
-      <span class="pv_email">
-     	<%= provider_form.text_field :email, :size => '20' %>
-      </span>
-   	
-      <span class="pv_actions">
-        <% unless provider.new_record? %>
-          <%= link_to_remote "Borrar", :url => provider_path(provider.id), :method => :delete, :confirm => "¿Desea borrar este registro de manera permanente?" %>
-        <% else%>
-          <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
-        <% end %>
-        
-       </span>
-    <% end %>
-    </div>
+    <% dom_id = provider.new_record? ? 'new' : provider.dom_id%>
+    <%= provider_form.hidden_field(:id, :value => provider.id) unless provider.new_record? %>
 
+    <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
+      <% if provider.respond_to? 'name' %>
+        <span class="pv_description">
+          <%= provider_form.text_field :name, :size => '65' %>
+        </span>
+  
+        <span class="pv_email">
+          <%= provider_form.text_field :email, :size => '20' %>
+        </span>
+  
+        <span class="pv_actions">
+          <% unless provider.new_record? %>
+            <%= link_to_remote "Borrar", :url => provider_path(provider.id), :method => :delete, :confirm => "¿Desea borrar este registro de manera permanente?" %>
+          <% else%>
+            <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
+          <% end %>
+        </span>
+      <% end %>
+    </div>
   <% end -%> 
+
 </div> 

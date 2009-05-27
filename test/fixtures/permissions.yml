@@ -12,13 +12,6 @@ estimates_unsent_edit:
  action: edit
  title: "Editar"
 
-estimates_unsent_show_preview:
- id: 3
- order_status_id: 1
- controller_id: 1
- action: show_preview
- title: "Vista previa"
-
 estimates_unsent_delete:
  id: 4
  order_status_id: 1
@@ -29,7 +22,7 @@ estimates_unsent_delete:
  title: "Eliminar"
 
 estimates_unsent_send_data:
- id: 5
+ id: 3
  order_status_id: 1
  controller_id: 1
  action: send_data

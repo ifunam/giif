@@ -5,9 +5,6 @@
       <%= list_products(record.products)%>
     <b>Proveedores:</b><br/>
       <%= list_providers(record.providers)%>
-    <span id="icon" style="margin-left: 250px;">
-      <%= link_to(image_tag("icon_show.png", :title => 'Ver detalles', :size => '16x16'), :action => 'show', :id => record.id)%>
-    </span>
   </span>
   <span class="date"><%= record.date.to_s :short %></span>
   <span class="date_update"><%= record.updated_at.to_s :short %></span>
