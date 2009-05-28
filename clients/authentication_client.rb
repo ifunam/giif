@@ -6,5 +6,6 @@ class AuthenticationClient < ActiveResource::Base
 
   def self.authenticate?(login, passwd)
     self.get(:login, { :login=> login, :passwd => passwd })['authentication']
+#    true
   end
 end

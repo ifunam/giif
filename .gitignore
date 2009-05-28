@@ -9,3 +9,4 @@ tmp/*
 coverage
 spool/*
 public/system/*
+clients/user_data_client.rb
