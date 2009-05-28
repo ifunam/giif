@@ -1,7 +1,9 @@
 class FilesController < ApplicationController
-skip_before_filter :login_required
-before_filter :session_provider_required
-
+  before_filter :session_provider_required
+  skip_before_filter :login_required
+  
+  helper :all
+  
   def index
     @order = Order.find(params[:order_id])
 
@@ -14,9 +16,8 @@ before_filter :session_provider_required
     #TODO: redirect to :message in case that provider_id and session[:provider_id] are nil
     #    @provider = Provider.find(session[:provider_id])
     #    @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
-
-    @order = Order.find(params[:order_id])
-    @order_reporter = OrderReporter.find_by_order_id(params[:order_id])
+    @order = Order.find(params[:estimate_id])
+    @order_reporter = OrderReporter.find_by_order_id(params[:estimate_id])
 #    @order.files.build
 
 

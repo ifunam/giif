@@ -10,7 +10,7 @@ class Notifier < ActionMailer::Base
     @from            = 'noreply@fisica.unam.mx'
     @sent_on         = Time.now
     @body            = { :order => order}
-   order.providers.each do |provider|
+    order.providers.each do |provider|
     Notifier.deliver_estimate_to_provider(order, provider)
    end
   end
