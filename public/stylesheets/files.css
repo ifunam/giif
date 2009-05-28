@@ -10,31 +10,47 @@
 
 #row_header {
   width: 500px;
-  text-align: center;
   font-weight: bold;
-  background-color: #C0C0C0; }
+  background-color: #C0C0C0;
+  display: table; }
 
-#number_header {
-  width: 50px;
-  display: inline-block; }
+#quantity_header {
+  width: 70px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid black; }
 
 #description_header {
-  width: 436px;
-  display: inline-block; }
-
-#product_row {
-  width: 500px;
-  background-color: #DCDCDC; }
-
-#numeric_cell {
-  width: 50px;
+  width: 427px;
+  display: inline-block;
   text-align: center;
-  display: inline-block; }
+  border: 1px solid black;
+  border-left: none; }
 
-#description_text_cell {
-  width: 400px;
+#product_row_odd {
+  width: 500px;
+  background-color: #DCDCDC;
+  display: table; }
+
+#product_row_even {
+  width: 500px;
+  background-color: #F5F5F5;
+  display: table; }
+
+#quantity {
+  width: 70px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid black;
+  border-top: none; }
+
+#description {
+  width: 387px;
   padding-left: 40px;
-  display: inline-block; }
+  display: inline-block;
+  border: 1px solid black;
+  border-top: none;
+  border-left: none; }
 
 #attachment_row {
   width: 620px;

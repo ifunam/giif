@@ -1,0 +1,12 @@
+- index ||= file_counter
+- new_or_existing = file.new_record? ? 'new' : 'existing'
+- id_or_index = file.new_record? ? index : file.id 
+- prefix = "order[files_attributes]"
+
+- fields_for prefix do |file_form|
+  %p
+    - unless file.file.size.nil?
+      = link_to file.file_file_name, file.file.url, :target => '_new'
+    - else
+      = file_form.file_field :file, :index => index
+      = file_form.select :file_type_id, FileType.all.collect {|record| [record.name, record.id]}, {:prompt => "--Seleccionar--"}, {:index => index}

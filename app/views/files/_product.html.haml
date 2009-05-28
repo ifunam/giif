@@ -1,0 +1,6 @@
+- even_or_odd = product_counter%2==0 ? "product_row_odd" : "product_row_even"
+%div{:id => even_or_odd}
+  #quantity
+    = product.quantity
+  #description
+    = product.description
