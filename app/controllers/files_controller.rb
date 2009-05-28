@@ -16,9 +16,9 @@ before_filter :session_provider_required
     #    @files = OrderFile.all(:conditions => ['order_id = ? AND provider_id = ?', params[:id], session[:provider_id]])
 
     @order = Order.find(params[:order_id])
-#    3.times {@order.files.build}
-    @order.files.build
     @order_reporter = OrderReporter.find_by_order_id(params[:order_id])
+#    @order.files.build
+
 
     respond_to do |format|
       format.html { render 'edit'}

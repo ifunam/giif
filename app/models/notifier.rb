@@ -17,6 +17,15 @@ class Notifier < ActionMailer::Base
 
   def estimate_to_provider(order, provider)
     user_profile = user_profile(order.user.login)
+    @subject         = '[GIIF] Solicitud de cotización respondida'
+    @recipients      = 'fereyji@gmail.com'#provider.email
+    @from            = 'noreply@fisica.unam.mx'
+    @sent_on         = Time.now
+    @body            = { :order => order, :provider => provider }
+  end
+
+  def estimate_response_from_provider(order)
+    user_profile = user_profile(order.user.login)
     @subject         = '[GIIF] Solicitud de cotización del IFUNAM'
     @recipients      = 'fereyji@gmail.com'#provider.email
     @from            = 'noreply@fisica.unam.mx'

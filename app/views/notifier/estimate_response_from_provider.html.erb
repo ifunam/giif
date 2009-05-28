@@ -1,0 +1,27 @@
+*********************************************************************************************************
+****                              SOLICITUD DE COTIZACIÓN DE PRODUCTOS                               ****
+*********************************************************************************************************
+
+Universidad Nacional Autónoma de México
+Instituto de Física
+
+Fecha: <%= Date.today :short %>
+
+Estimado usuario
+
+A través de este medio deseo hacer de su conocimiento que se ha recibido cotización por parte del proveedor
+
+
+el siguiente enlace:
+<% token = User.encrypt([@order.id, @provider.id, @provider.created_at.to_s].join('_')).slice(0..9) %>
+
+<%= url_for :controller => 'provider_session', :action => 'create', :token => token,
+                                                                    :order_id => @order.id, :provider_id => @provider.id,
+                                                                    :host => 'localhost:3000', :only_path => false%>
+
+Este mensaje ha sido generado de manera automática por el Sistema de Gestión del Inventario del Instituto 
+de Física de la Universidad Nacional Autónoma de México.
+
+Por favor no responda a este correo.
+                                                        
+********************************************************************************************************
