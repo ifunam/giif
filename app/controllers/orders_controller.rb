@@ -16,8 +16,11 @@ class OrdersController < ApplicationController
   def new
     @user_profile = user_profile
     @order = Order.new
-    @order.providers.build
-    @order.products.build
+    @order.providers.build  if @order.providers.size  > 0
+    @order.products.build   if @order.products.size   == 0
+    @order.files.build      if @order.files.size      == 0
+    @order.projects.build   if @order.projects.size   == 0
+
     respond_to do |format|
         format.html { render :new }
     end
@@ -25,7 +28,7 @@ class OrdersController < ApplicationController
 
   def create
     @user_profile = user_profile
-    @order = Order.new(params[:order].merge(:order_status_id => 1, :date => Date.today, :user_id => session[:user]))
+    @order = Order.new(params[:order]).merge(:order_status_id => 1, :date => Date.today, :user_id => session[:user]))
     @order.currency_order = session[:currency_order]
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|

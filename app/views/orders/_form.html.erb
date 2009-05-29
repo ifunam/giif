@@ -1,35 +1,69 @@
-
-<%= content_tag(:h2, "Artículo(s):") %>
+<h2> Artículo(s): </h2>
 <div id="products" class="table">
-    <span class="pd_quantity">Cantidad</span>
-	<span class="pd_description">Descripción</span> 
-	<span class="pd_price">Precio unitario</span>
-	<span class="pd_type">Categoría del producto</span>
-	<span class="pd_actions">Acciones</span>
-	<%= render :partial => 'product_form', :locals => { :f => f } %>
+  <span class="pd_quantity">
+    Cantidad
+  </span>
+  <span class="pd_description">
+    Descripción
+  </span> 
+  <span class="pd_price">
+    Precio unitario
+  </span>
+  <span class="pd_type">
+    Categoría del producto
+  </span>
+  <span class="pd_actions">
+    Acciones
+  </span>
+  
+  <%= render :partial => 'product', :collection => @order.products %>
+  
 </div>
-<%= link_to_function "Agregar" do |page| page.insert_html :bottom, 'products', :partial => "product_form", :locals => { :f => f } end %>  
+
+<%= link_to_function "Agregar" do |page| page.insert_html :bottom, 'products', :partial => "product" end %>  
  
-<%= content_tag(:h2, "Proveedor(es):") %>
+<h2> Proveedor(es): </h2>
 <div id="providers" class="table">
-  	<span class="pv_description">Proveedor</span>
-        <span class="pv_actions">Acciones</span>
-	<%= render :partial => 'provider_form', :locals => { :f => f } %>
-</div>
-<%= link_to_function "Agregar" do |page|   page.insert_html :bottom, 'providers', :partial =>"provider_form", :locals => { :f => f } end %>
+  <span class="pv_description">
+    Proveedor
+  </span>
+  <span class="pv_email">
+    Correo electrónico
+  </span>
+  <span class="pv_actions">
+    Acciones
+  </span>
+	
+  <%= render :partial => 'provider', :collection => @order.providers %>
 
-<%= content_tag(:h2, "Anexos:") %>
-<div id="order_files" class="table">
-  <span class="of_filetype">Tipo de archivo</span>
-  <span class="of_file">Archivo</span>
-  <%= render :partial => "file_form", :locals => { :f => f } %>
 </div>
 
-<%= content_tag(:h2, "Con cargo a:") %>
-<div id="order_projects" class="table">
+<%= link_to_function "Agregar" do |page|   page.insert_html :bottom, 'providers', :partial =>"provider" end %>
+
+
+<h2> Anexos: </h2>
+<div id="files" class="table">
+  <span class="of_filetype">
+    Tipo de archivo
+  </span>
+  <span class="of_file">
+    Archivo
+  </span>
+  
+  <%= render :partial => "file", :collection => @order.files %>
+
+</div>
+
+<%= link_to_function "Agregar" do |page|   page.insert_html :bottom, 'files', :partial =>"file" end %>
+
+<h2> Con cargo a:</h2>
+<div id="projects" class="table">
   <span class="op_type">Tipo de proyecto</span>
   <span class="op_name">Nombre del proyecto</span>
   <span class="op_number">Número de proyecto / Partida</span>
-  <%= render :partial => "project_form", :locals => { :f => f } %>
+  
+  <%= render :partial => "project", :collection => @order.projects %>  
 
 </div>
+
+<%= link_to_function "Agregar" do |page|   page.insert_html :bottom, 'projects', :partial =>"project" end %>
