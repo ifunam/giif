@@ -352,6 +352,14 @@ body {
     padding: 2px;
     text-align: left;
 }
+
+.pd_description_order{
+    display:table-cell;
+    width: 350px;
+    padding: 2px;
+    text-align: left;
+}
+
 .pd_price{
     display:table-cell;
     width: 100px;

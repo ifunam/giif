@@ -6,33 +6,32 @@
 
 <% fields_for prefix, product do |product_form| %>
 <% dom_id =  product_form.object.nil? ? 'new' : product_form.object.dom_id %>
-
+<%= product_form.hidden_field(:id, :value => product.id) unless product.new_record? %>
 
   <div class="<%= dom_id %>" style="background-color: #e2eef3;" id="<%= dom_id %>">
     <span class="pd_quantity">
-      <%= product_form.text_field :quantity, :size => '4', :maxlenght => '4' %>
+      <%= product_form.text_field :quantity, :size => '3', :maxlenght => '4' %>
     </span>
   	
-    <span class="pd_description">
-      <%= product_form.text_field :description, :size => '47', :maxlenght => '70' %>
+    <span class="pd_description_order">
+      <%= product_form.text_field :description, :size => '40', :maxlenght => '70' %>
     </span>
   	
     <span class="pd_price">
-      <%= product_form.text_field :price_per_unit, :size => '9', :maxlenght => '15' %>
+      <%= product_form.text_field :price_per_unit, :size => '7', :maxlenght => '15' %>
     </span>
 
-    <span class="pd_unit" id="unit_type">
+    <span class="pd_unit">
       <%= product_form.select(:unit_type_id, UnitType.all(:order => 'name ASC').collect { |record| [record.name, record.id] })%>
     </span>
   	
-    <span class="pd_type" id="product_type">
+    <span class="pd_type">
       <%= product_form.select(:product_category_id, ProductCategory.all(:order => 'name ASC').collect { |record| [record.name, record.id] })%>
     </span>
  
     <span class="pd_actions">
-      <% unless product_form.object.nil? %>
-        <%= link_to_remote "Borrar", :url => destroy_item_order_path(:id => product_form.object_id, :table => 'order_product'), :method => :delete,
-                                                   			   	 	:confirm => "¿Desea borrar este registro?"%>
+      <% unless product.new_record? %>
+        <%= link_to_remote "Borrar", :url => order_product_path(product.id), :method => :delete, :confirm => "¿Desea borrar este registro de manera permanente?"%>
       <% else%>
     	<%= link_to_function "Borrar", "$(this).up('.#{dom_id}').remove();" %>
       <% end %>

@@ -4,21 +4,35 @@
   prefix = "order[files_attributes][#{id_or_index}]"
 %>
 
-<% fields_for prefix do |order_file_form| %>
-<div class="row" style="background-color: #e2eef3;">
+<% fields_for prefix, file do |file_form| %>
+<% dom_id = file_form.object.nil? ? 'new' : file_form.object.dom_id %>
+<%= file_form.hidden_field(:id, :value => file.id) unless file.new_record? %>
+
+<div class="row" style="background-color: #e2eef3;" id=<%= dom_id %>>
   <span class="of_filetype">
-    <%= order_file_form.select(:file_type_id, FileType.all(:order => 'name ASC').collect { |record| [record.name, record.id]}, :prompt => '--Seleccionar--')%>
+    <%= file_form.select(:file_type_id, FileType.all(:order => 'name ASC').collect { |record| [record.name, record.id]}, :prompt => '--Seleccionar--')%>
   </span>
 
- <span class="of_file" id="<%= 'order_file_upload' %>">
-   <%= order_file_form.file_field(:file) %>
+ <span class="of_file" id="<%= 'file_form_upload' %>">
+   <% if file.new_record? %>
+     <%= file_form.file_field(:file) %>
+   <% else %>
+     <%= link_to file.file_file_name, file.file.url, :target => '_new' %>
+   <% end %>
+   
  </span>
 
   <span class="of_actions">
-   <% unless !order_file_form.object.nil? %>
-    <%=  link_to_function("Cambiar archivo", nil, :id => "more_link") do |page|
-         page.replace_html  'order_file_upload', order_file_form.file_field(:file)
-         end %>
+   <% unless file.new_record? %>
+     <%=  link_to_function("Cambiar archivo", nil, :id => "more_link") do |page|
+            page.replace_html  'file_form_upload', file_form.file_field(:file)
+          end %>
+   <% end %>
+
+   <% unless file.new_record? %>
+      <%= link_to_remote "Borrar", :url => order_file_path(file.id), :method => :delete, :confirm => "¿Desea borrar este registro de manera permanente?"%>
+   <% else%>
+     <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
    <% end %>
   </span>
 </div>

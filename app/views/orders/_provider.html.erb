@@ -6,6 +6,7 @@
 
 <% fields_for prefix, provider do |provider_form| %>
 <% dom_id = provider_form.object.nil? ? 'new' : provider_form.object.dom_id %>
+<%= provider_form.hidden_field(:id, :value => provider.id) unless provider.new_record? %>
 
   <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
 
@@ -19,7 +20,7 @@
    	
     <span class="pv_actions">
       <% unless provider_form.object.nil? %>
-        <%= link_to_remote "Borrar", :url => destroy_item_order_path(:id => provider_form.object_id, :table => 'order_provider'), :method => :delete, :confirm => "¿Desea borrar este registro?"%>
+             <%= link_to_remote "Borrar", :url => {:controller => 'provider', :action => :destroy, :id => provider.id}, :confirm => "¿Desea borrar este registro de manera permanente?", :method => :delete %>
       <% else%>
         <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
       <% end %>

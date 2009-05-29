@@ -15,11 +15,15 @@ ActionController::Routing::Routes.draw do |map|
     estimate.resources :files
   end
   
-  map.resources :providers
+  map.resources :providers, :member => {:destroy => :delete}
 
   map.resources :products
 
   map.resources :order_products
+
+  map.resources :projects
+  
+  map.resources :order_files
 
   map.namespace :budget do |budget|
     budget.resource :session

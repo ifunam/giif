@@ -7,7 +7,8 @@
 <div id="products">
   <% fields_for prefix, product do |product_form| %>
   <% dom_id = product.new_record? ? 'new' : product.dom_id %>
-    <%= product_form.hidden_field(:id, :value => product.id) unless product.new_record? %>
+  <%= product_form.hidden_field(:id, :value => product.id) unless product.new_record? %>
+
     <div class="row" style="background-color: #e2eef3;" id="<%= dom_id %>">
 	  <span class="pd_quantity">
         <%= product_form.text_field :quantity, :size => '4', :maxlenght => '4'%>
@@ -31,7 +32,6 @@
         <% else%>
           <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
         <% end %>
-  
       </span>
 
     </div>

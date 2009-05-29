@@ -5,15 +5,29 @@
 %>
 
 <% fields_for prefix, project do |project_form| %>
-<div class="row" style="background-color: #e2eef3;">
+<% dom_id = project.new_record? ? 'new' : project.dom_id %>
+<%= project_form.hidden_field(:id, :value => project.id) unless project.new_record? %>
+
+<div class="row" style="background-color: #e2eef3;" id=<%= dom_id%>>
   <span class="op_type">
     <%= project_form.select(:project_type_id, ProjectType.all(:order => 'name ASC').collect { |record| [record.name, record.id]}) %>
   </span>
+
   <span class="op_name">
     <%= project_form.text_field :name, :size => '50', :maxlenght => '100' %>
   </span>
+
   <span class="op_number">
     <%= project_form.text_field :key, :size => '5', :maxlenght => '10' %>
   </span>
+
+  <span class="pd_actions">
+    <% unless project.new_record? %>
+      <%= link_to_remote "Borrar", :url => project_path(project.id), :method => :delete, :confirm => "¿Desea borrar este registro de manera permanente?"%>
+    <% else%>
+      <%= link_to_function "Borrar", "$(this).up('.row').remove();" %>
+    <% end %>
+  </span>
+
 </div>
 <% end %>
