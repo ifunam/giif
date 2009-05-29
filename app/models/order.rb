@@ -79,7 +79,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.paginate_by_orders(user_id, page=1, per_page=20)
-    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 3)", user_id ], 
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 2)", user_id ], 
              :page => page, :per_page => per_page)
   end
 

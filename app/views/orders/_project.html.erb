@@ -4,7 +4,7 @@
   prefix = "order[projects_attributes][#{id_or_index}]"
 %>
 
-<% fields_for prefix do |project_form| %>
+<% fields_for prefix, project do |project_form| %>
 <div class="row" style="background-color: #e2eef3;">
   <span class="op_type">
     <%= project_form.select(:project_type_id, ProjectType.all(:order => 'name ASC').collect { |record| [record.name, record.id]}) %>

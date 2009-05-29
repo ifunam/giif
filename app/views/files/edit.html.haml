@@ -1,4 +1,4 @@
-- content_for_file_form_head
+= content_for_file_form_head
 #error_messages
   = error_messages_for :order
 - form_for(@order, :url => {:controller => 'files', :action => 'update', :id => @order.id}, :html => {:id => 'order', :multipart => true }) do |f| 

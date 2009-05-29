@@ -1,5 +1,10 @@
+
 <div id="collection">
-A continuación se listan las solicitudes de orden de compra por parte del usuario: <%= @user_profile.fullname%>
+	<div class="user_info">
+	<%= content_tag(:b, 'Académico:')%> <%= @user_profile.fullname%>
+		<span style="padding-left: 580px; font-size: 14px; text-decoration: underline;"><%= link_to 'Solicitar cotización', estimates_url %></span>
+	</div>
+
 <%= render :partial => 'shared/index'%>
 <div id="currency_form">
   <%= render :partial => 'record', :collection => @collection%>
