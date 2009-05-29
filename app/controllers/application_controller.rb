@@ -26,8 +26,8 @@ class ApplicationController < ActionController::Base
   end
   
   def user_profile
-#    UserProfileClient.find_by_login(User.find(session[:user]).login)
-    UserDataClient.find_by_login(User.find(session[:user]).login)
+    UserProfileClient.find_by_login(User.find(session[:user]).login)
+#    UserDataClient.find_by_login(User.find(session[:user]).login)
   end
   
 end

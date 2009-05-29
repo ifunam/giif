@@ -1,4 +1,10 @@
-<% fields_for :file do |order_file_form| %>
+<%
+  index ||= file_counter
+  id_or_index = file.new_record? ? index : file.id 
+  prefix = "order[files_attributes][#{id_or_index}]"
+%>
+
+<% fields_for prefix do |order_file_form| %>
 <div class="row" style="background-color: #e2eef3;">
   <span class="of_filetype">
     <%= order_file_form.select(:file_type_id, FileType.all(:order => 'name ASC').collect { |record| [record.name, record.id]}, :prompt => '--Seleccionar--')%>

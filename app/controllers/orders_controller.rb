@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
   def create
     @user_profile = user_profile
-    @order = Order.new(params[:order]).merge(:order_status_id => 1, :date => Date.today, :user_id => session[:user]))
+    @order = Order.new(params[:order].merge(:order_status_id => 3, :date => Date.today, :user_id => session[:user]))
     @order.currency_order = session[:currency_order]
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|

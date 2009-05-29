@@ -1,4 +1,10 @@
-<% fields_for :products do |product_form| %>
+<%
+  index ||= product_counter
+  id_or_index = product.new_record? ? index : product.id 
+  prefix = "order[products_attributes][#{id_or_index}]"
+%>
+
+<% fields_for prefix do |product_form| %>
 <% dom_id =  product_form.object.nil? ? 'new' : product_form.object.dom_id %>
 
   <div class="<%= dom_id %>" style="background-color: #e2eef3;" id="<%= dom_id %>">
@@ -12,6 +18,10 @@
   	
     <span class="pd_price">
       <%= product_form.text_field :price_per_unit, :size => '9', :maxlenght => '15' %>
+    </span>
+
+    <span class="pd_unit" id="unit_type">
+      <%= product_form.select(:unit_type_id, UnitType.all(:order => 'name ASC').collect { |record| [record.name, record.id] })%>
     </span>
   	
     <span class="pd_type" id="product_type">

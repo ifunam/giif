@@ -1,7 +1,6 @@
 <%
   index ||= product_counter
   id_or_index = product.new_record? ? index : product.id 
-#  prefix = product.new_record? ? "order[products_attributes][#{id_or_index}]" : "order[products_attributes][#{id_or_index}]"
   prefix = "order[products_attributes][#{id_or_index}]"
 %>
 

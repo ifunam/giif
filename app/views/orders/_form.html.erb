@@ -1,3 +1,14 @@
+<%- content_for :head do -%>
+  <script type="text/javascript" charset="utf-8">
+   //<![CDATA[
+     productForm = new Subform('<%= escape_javascript(render(:partial => "product", :object => OrderProduct.new, :locals => {:index => "INDEX"})) %>',<%= @order.products.length %>,'products');
+     providerForm = new Subform('<%= escape_javascript(render(:partial => "provider", :object => Provider.new, :locals => {:index => "INDEX"})) %>',<%= @order.providers.length %>,'providers');
+     fileForm = new Subform('<%= escape_javascript(render(:partial => "file", :object => OrderFile.new, :locals => {:index => "INDEX"})) %>',<%= @order.files.length %>,'files');
+     projectForm = new Subform('<%= escape_javascript(render(:partial => "project", :object => Project.new, :locals => {:index => "INDEX"})) %>',<%= @order.projects.length %>,'projects');
+   //]]>
+  </script>
+<%- end -%>
+
 <h2> Artículo(s): </h2>
 <div id="products" class="table">
   <span class="pd_quantity">
@@ -16,11 +27,10 @@
     Acciones
   </span>
   
-  <%= render :partial => 'product', :collection => @order.products %>
-  
+  <%= render :partial => 'product', :collection => @order.products %> 
 </div>
 
-<%= link_to_function "Agregar" do |page| page.insert_html :bottom, 'products', :partial => "product" end %>  
+<%= link_to_function "Agregar", "productForm.add()" %>  
  
 <h2> Proveedor(es): </h2>
 <div id="providers" class="table">
@@ -38,7 +48,7 @@
 
 </div>
 
-<%= link_to_function "Agregar" do |page|   page.insert_html :bottom, 'providers', :partial =>"provider" end %>
+<%= link_to_function "Agregar", "providerForm.add()"%>
 
 
 <h2> Anexos: </h2>
@@ -54,7 +64,7 @@
 
 </div>
 
-<%= link_to_function "Agregar" do |page|   page.insert_html :bottom, 'files', :partial =>"file" end %>
+<%= link_to_function "Agregar", "fileForm.add()" %>
 
 <h2> Con cargo a:</h2>
 <div id="projects" class="table">
@@ -66,4 +76,4 @@
 
 </div>
 
-<%= link_to_function "Agregar" do |page|   page.insert_html :bottom, 'projects', :partial =>"project" end %>
+<%= link_to_function "Agregar", "projectForm.add()"%>
