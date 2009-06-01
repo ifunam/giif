@@ -4,9 +4,9 @@ class OrderObserver < ActiveRecord::Observer
   def after_update(order)
     case order.order_status_id
       when 2
-        Notifier.deliver_estimate_request_from_user(order)
+#        Notifier.deliver_estimate_request_from_user(order)
       when 3
-        Notifier.deliver_request_approved(order)
+#        Notifier.deliver_request_approved(order)
       when 4
         Notifier.deliver_request_approved(order)
       end
