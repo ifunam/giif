@@ -17,3 +17,8 @@ four:
  id: 1
  provider_id: 5
  order_id: 1
+
+provider_for_estimates_with_id_2:
+ id: 5
+ provider_id: 5
+ order_id: 5

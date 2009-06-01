@@ -32,3 +32,12 @@ three:
  quantity: 4
  description: "Servidores IBM de alto rendimiento"
  price_per_unit: 7834.67
+
+products_for_estimates_with_id_5:
+ id: 5
+ product_category_id: 3
+ unit_type_id: 4
+ order_id: 5
+ quantity: 1
+ description: "Router CISCO LMK-09"
+ price_per_unit: 67498.67
