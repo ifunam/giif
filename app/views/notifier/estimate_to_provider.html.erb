@@ -16,7 +16,7 @@ cotización de los siguientes productos:
 <% end %>
 
 Para responder a la solicitud de cotización de clic en el siguiente enlace:
-<% token = User.encrypt([@order.id, @provider.id, @provider.created_at.to_s].join('_')).slice(0..9) %>
+<% token = Provider.encrypt_token(@provider.id, @order.id, @provider.created_at.to_s) %>
 
 <%= url_for :controller => 'provider_session', :action => 'create', :token => token,
                                                                     :order_id => @order.id, :provider_id => @provider.id,
