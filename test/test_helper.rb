@@ -80,6 +80,10 @@ class Test::Unit::TestCase
     # @request = TestRequest.new
      @request.session[:user] = User.authenticate?(login,password) ?  User.find_by_login(login.to_s).id : nil
   end
+  
+  def session_as(login)
+     @request.session[:user] = User.find_by_login(login).id
+  end
 
   module Shoulda
     module Extensions
