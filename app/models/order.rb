@@ -146,4 +146,5 @@ class Order < ActiveRecord::Base
   def change_status(status_id)
     update_attributes(:order_status_id => status_id)
   end
+
 end
