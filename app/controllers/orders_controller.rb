@@ -65,7 +65,7 @@ class OrdersController < ApplicationController
     @order = OrderReporter.find_by_order_id(params[:id])
     respond_to do |format|
       format.html { render "show" }
-#      format.pdf  { render "show.rpdf" }
+      format.pdf  { render "show.rpdf" }
     end
   end
 
@@ -74,14 +74,6 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html { render "show_preview"}
     end
-  end
-
-  def show_pdf
-    @order = OrderReporter.find_by_order_id(params[:id])
-    respond_to do |format|
-      format.pdf  { render "show.rpdf" }
-    end
-#    send_file File.join(RAILS_ROOT, 'tmp', 'documents', "solicitud_compra_"+params[:id]+".pdf"), :type => 'application/pdf', :disposition => 'inline'    
   end
 
   def update

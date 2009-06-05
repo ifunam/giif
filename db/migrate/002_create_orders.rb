@@ -17,6 +17,7 @@ class CreateOrders < ActiveRecord::Migration
       t.text :method, :default => "get"
       t.text :title, :null => false
       t.text :message
+      t.text :format
       t.boolean :is_remote, :null => false, :default => false
       t.timestamps
     end    

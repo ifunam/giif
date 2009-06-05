@@ -50,8 +50,10 @@ module OrderHelper
 
       if p.is_remote?
         link_to_remote(icon_tag(p), :url => {:action => p.action, :id => record.id}, :format => 'js', 
-                       :loading => loading_indicator(record.id),
+                       :loading => loading_indicator(record.id), 
                        :complete => loading_complete(record.id))
+      elsif !p.format.nil? and p.format == 'pdf'
+        link_to(icon_tag(p), {:action => p.action, :id => record.id, :format => 'pdf'}, :method =>  p.method.to_sym)
       else
         link_to(icon_tag(p), {:action => p.action, :id => record.id}, :method => p.method.to_sym, :confirm => p.message)
       end

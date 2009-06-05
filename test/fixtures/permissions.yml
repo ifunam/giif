@@ -63,7 +63,8 @@ orders_unsent_show_pdf:
  id: 10
  order_status_id: 3
  controller_id: 2
- action: show_pdf
+ action: show
+ format: pdf
  title: "Ver PDF"
 
 orders_unsent_send_data:
