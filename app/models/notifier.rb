@@ -4,9 +4,9 @@ class Notifier < ActionMailer::Base
   # TODO: Change the domain and the email address to use accounts based on 
   #       yaml file, under RAILS_ROOT/config.
   def estimate_request_from_user(order)
-    user_profile = user_profile(order.user.login)
+    user_profile     = user_profile(order.user.login)
     @subject         = '[GIIF] Solicitud de cotización enviada'
-    @recipients      = user_profile.email
+    @recipients      = 'fereyji@gmail.com' #user_profile.email
     @from            = 'noreply@fisica.unam.mx'
     @sent_on         = Time.now
     @body            = { :order => order}
@@ -18,16 +18,28 @@ class Notifier < ActionMailer::Base
   def estimate_to_provider(order, provider)
     user_profile = user_profile(order.user.login)
     @subject         = '[GIIF] Solicitud de cotización del IFUNAM'
-    @recipients      = provider.email
+    @recipients      = 'fereyji@gmail.com' #user_profile.email
+    @from            = 'noreply@fisica.unam.mx'
+    @sent_on         = Time.now
+    @body            = { :order => order}
+    order.providers.each do |provider|
+      Notifier.deliver_estimate_to_provider(order, provider)
+    end
+  end
+
+  def estimate_to_provider(order, provider)
+    user_profile = user_profile(order.user.login)
+    @subject         = '[GIIF] Solicitud de cotización del IFUNAM'
+    @recipients      = 'fereyji@gmail.com' #provider.email
     @from            = 'noreply@fisica.unam.mx'
     @sent_on         = Time.now
     @body            = { :order => order, :provider => provider }
   end
 
-  def estimate_response_from_provider(order)
+  def estimate_response_from_provider(order, provider)
     user_profile = user_profile(order.user.login)
     @subject         = '[GIIF] Solicitud de cotización respondida'
-    @recipients      = provider.email
+    @recipients      = 'fereyji@gmail.com' #provider.email
     @from            = 'noreply@fisica.unam.mx'
     @sent_on         = Time.now
     @body            = { :order => order, :provider => provider }
@@ -36,7 +48,7 @@ class Notifier < ActionMailer::Base
   def order_request_from_user(order)
     user_profile     = user_profile(order.user.login)
     @subject         = '[GIIF] Solicitud de orden de compra enviada'
-    @recipients      = user_profile.email
+    @recipients      = 'fereyji@gmail.com' #user_profile.email
     @from            = 'noreply@fisica.unam.mx'
     @sent_on         = Time.now
     @body            = { :order => order}
@@ -46,7 +58,7 @@ class Notifier < ActionMailer::Base
 
   def order_to_userincharge(order, email)
     @subject         = '[GIIF] Solicitud de aprobación de orden de compra'
-    @recipients      = email
+    @recipients      = 'fereyji@gmail.com' #email
     @from            = 'noreply@fisica.unam.mx'
     @sent_on         = Time.now
     @body            = { :order => order}
@@ -54,7 +66,7 @@ class Notifier < ActionMailer::Base
 
   def request_approved(order)
     @subject          = '[GIIF] Aprobación de solicitud interna de compra'
-    @recipients       = user_email(order.user.login)
+    @recipients       = 'fereyji@gmail.com' #user_email(order.user.login)
     @from             = 'noreply@fisica.unam.mx'
     @sent_on          = Time.now
     @body             = { :order => order}

@@ -33,12 +33,12 @@
       #cell_left
         Nombre del proveedor:
       #cell_right
-        = @order.providers.first.name
+        = Provider.find(session[:provider_id]).name
       %br
       #cell_left
         Correo electrónico:
       #cell_right
-        = @order.providers.first.email
+        = Provider.find(session[:provider_id]).email
       %br
 
 
@@ -50,9 +50,9 @@
           Tipo de archivo
         #actions_header
           Acciones
-      #attachment_cell
+      #files
         = render :partial => 'file', :collection => @order.files
-        = link_to_function "Agregar", "fileForm.add()"
+      = link_to_function "Agregar", "fileForm.add()"
   #submit
     = f.submit "Adjuntar archivos"
 %br       

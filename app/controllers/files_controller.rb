@@ -5,7 +5,6 @@ class FilesController < ApplicationController
   helper :all
   
   def edit
-    #el token debe funcionar solo una vez
     @order = Order.find(params[:estimate_id])
     @order.files.build
     @order_reporter = OrderReporter.find_by_order_id(params[:estimate_id])

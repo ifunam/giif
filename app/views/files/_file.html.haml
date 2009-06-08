@@ -3,10 +3,12 @@
 - id_or_index = file.new_record? ? index : file.id 
 - prefix = "order[files_attributes]"
 
-- fields_for prefix do |file_form|
-  %p
+.rows
+  - fields_for prefix do |file_form|
     - unless file.file.size.nil?
-      = link_to file.file_file_name, file.file.url, :target => '_new'
+      = ""
     - else
+      = file_form.hidden_field :provider_id, :value => session[:provider_id], :index => index
       = file_form.file_field :file, :index => index
       = file_form.select :file_type_id, FileType.all.collect {|record| [record.name, record.id]}, {:prompt => "--Seleccionar--"}, {:index => index}
+      = link_to_function "Borrar", "$(this).up('.rows').remove();"
