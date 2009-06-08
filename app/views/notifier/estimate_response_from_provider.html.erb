@@ -13,11 +13,9 @@ A través de este medio deseo hacer de su conocimiento que se ha recibido cotiza
 
 
 el siguiente enlace:
-<% token = User.encrypt([@order.id, @provider.id, @provider.created_at.to_s].join('_')).slice(0..9) %>
 
-<%= url_for :controller => 'provider_session', :action => 'create', :token => token,
-                                                                    :order_id => @order.id, :provider_id => @provider.id,
-                                                                    :host => 'localhost:3000', :only_path => false%>
+<%= url_for :controller => 'orders', :action => 'edit', :id => @order.id,
+                                                                    :host => 'localhost:3000'%>
 
 Este mensaje ha sido generado de manera automática por el Sistema de Gestión del Inventario del Instituto 
 de Física de la Universidad Nacional Autónoma de México.
