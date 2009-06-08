@@ -6,12 +6,14 @@
   <%= content_tag(:b, "Bienes y suministros") %> <br/>
 </div>
 
-<%= render :partial => 'currency_data' %>
-
 <div id="errors"><%= render :partial => 'errors' %></div>
  <% form_for :order_request, @order, :url => order_path(@order), :html => { :method => :put, :id => 'order', :multipart => true } do |f| %>
 <div id="data">
-  <%= render :partial => 'form', :locals => {:f => f} %>
+
+    <%= render :partial => 'user_data', :object => @user_profile%>
+    <%= render :partial => 'currency_data' %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  
   <p>
     <%= f.submit "Actualizar orden de compra", :onclick => "return (confirm('¿Desea enviar esta orden de compra?'));"%>
     <%= link_to 'Cancelar', orders_path, :confirm => 'Al cancelar los cambios no serán almacenados' %>

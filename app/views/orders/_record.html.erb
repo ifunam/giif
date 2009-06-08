@@ -23,8 +23,8 @@
 
   <span class="actions" id="<%= record.dom_id + '_actions' %>">
     <%= links_for_actions(controller_name, record)%><br/>
-    <span class="progress_bar"><%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none'
-) %></span>
+    <span class="progress_bar"><%= image_tag('progress_bar3.gif', :id => "record_#{record.id}_loader_indicator", :style => 'display: none') %></span>
+</span>
   </span>
 
 </div>

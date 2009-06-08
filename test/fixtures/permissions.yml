@@ -52,13 +52,6 @@ orders_unsent_destroy:
  message: "Esta seguro que desea borrar este registro"
  title: "Eliminar"
 
-orders_unsent_show_preview:
- id: 9
- order_status_id: 3
- controller_id: 2
- action: show_preview
- title: "Vista previa"
-
 orders_unsent_show_pdf:
  id: 10
  order_status_id: 3
@@ -75,9 +68,26 @@ orders_unsent_send_data:
  is_remote: true
  title: "Enviar solicitud"
 
-orders_in_progress_show_pdf:
+orders_budget_in_progress_show_pdf:
  id: 12
  order_status_id: 4
  controller_id: 2
- action: show_pdf
+ action: show
+ format: pdf
  title: "Ver PDF"
+
+order_unestimate_edit:
+ id: 13
+ order_status_id: 10
+ controller_id: 2
+ action: edit
+ title: "Agregar datos"
+
+order_unestimate_delete:
+ id: 14
+ order_status_id: 10
+ controller_id: 2
+ action: destroy
+ method: delete
+ title: "Eliminar"
+ message: "Esta seguro que desea borrar este registro" 

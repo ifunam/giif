@@ -49,13 +49,15 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     respond_to do |format|
       @order.sent
-      format.js { render 'send_order.rjs'}
+      format.js { render 'shared/send_order.rjs'}
     end
   end
 
   def edit
     @user_profile = user_profile
     @order = Order.find(params[:id])
+    @order.files.build      if @order.files.size      == 0
+    @order.projects.build   if @order.projects.size   == 0
     respond_to do |format|
       format.html { render 'edit' }
     end
@@ -82,7 +84,8 @@ class OrdersController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.update_attributes(params[:order])
-          format.html { redirect_to "show", :id => @order.id }
+          @order.change_to_unsent_to_order
+          format.html { redirect_to :action => 'index'}
           format.xml  { render :xml => @order, :status => :updated, :location => @order }
         else
           format.html { render "edit" }

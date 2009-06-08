@@ -8,5 +8,5 @@ tmp/*
 .#*
 coverage
 spool/*
-public/system/*
+public/system/files/*
 clients/user_data_client.rb

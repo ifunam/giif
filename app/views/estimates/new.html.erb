@@ -2,6 +2,7 @@
 <% form_for(@order, :url => { :controller => :estimates, :action => :create }) do |f| -%>
 <div id="data">
    <%= render :partial => 'orders/user_data', :object => @user_profile%>
+   <%= render :partial => 'orders/currency_info' %>
    <%= render :partial => 'form', :locals => { :f => f } %><br/>
 
   <div style="padding-right: 150px; text-align: right;">

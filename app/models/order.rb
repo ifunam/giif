@@ -79,7 +79,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.paginate_by_orders(user_id, page=1, per_page=20)
-    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 2)", user_id ], 
+    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 3)", user_id ], 
              :page => page, :per_page => per_page)
   end
 
@@ -129,7 +129,11 @@ class Order < ActiveRecord::Base
   def send_estimate_to_orders
     change_status(10) if order_status_id == 2
   end
-
+  
+  def change_to_unsent_to_order
+    change_status(3) if order_status_id == 10
+  end
+  
   def approve
     change_status(7) if order_status_id == 4
   end

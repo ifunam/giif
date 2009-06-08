@@ -1,22 +1,23 @@
-<br/>
-<h2 style="margin-left: 100px;">Divisa:</h2>
-<div class="fix" id="currency_data" style="margin-left: 100px;">
-  <div ="row">
+<div style="margin-left: 25px; display: inline-table; width: 45%;">
+<h2 style=""> Divisa: </h2>
+<div class="fix" id="currency_data">
+  <div class="row">
     <span class="fix-left">Divisa:</span>
     <span class="fix-right" ><%= @order.currency_order.currency.name%></span>
   </div>
-  <div ="row">
+  <div class="row">
     <span class="fix-left">Tipo de cambio:</span>
     <span class="fix-right" ><%= @order.currency_order.value%></span>
   </div>
-  <div ="row">
+  <div class="row">
     <span class="fix-left">Fuente:</span>
     <span class="fix-right" ><%= @order.currency_order.currency.url%></span>
   </div>
-  <div ="row">
+  <div class="row">
     <span class="fix-left"></span>
     <span class="fix-right" style="text-align: right; padding-right: 50px;"><%= link_to_remote "Cambiar divisa", :url => { :controller => 'currencies', :action => 'change_currency'} %></span>
   </div>
   <div id="currency_form">
   </div>
+</div>
 </div>
