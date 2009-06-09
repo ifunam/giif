@@ -115,7 +115,15 @@ class Order < ActiveRecord::Base
   end
 
   def current_status
-    order_status.name
+    order_status.id == 2? (order_status.name + "\n" + self.estimates_received + " de "+ self.providers.size.to_s) : (order_status.name)
+  end
+
+  def estimates_received
+    estimates = 0
+    self.providers.each do |provider|
+      estimates = estimates + 1 unless OrderFile.find_by_order_id_and_provider_id(self,provider).nil?
+    end
+    return estimates.to_s
   end
 
   def sent

@@ -9,7 +9,8 @@
   <span class="date"><%= record.date.to_s :short %></span>
   <span class="date_update"><%= record.updated_at.to_s :short %></span>
   <span class="status" id="<%= record.dom_id + '_status' %>">
-    <%= record.current_status %>
+    <%= record.current_status %><br/>
+
   </span>
   <span class="actions" id="<%= record.dom_id + '_actions' %>">
     <%= links_for_actions(controller_name, record)%><br/><br/>

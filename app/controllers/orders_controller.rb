@@ -48,7 +48,8 @@ class OrdersController < ApplicationController
     @user_profile = user_profile
     @order = Order.find(params[:id])
     respond_to do |format|
-      @order.sent
+      @order.change_to_unsent_to_order
+#      @order.sent
       format.js { render 'shared/send_order.rjs'}
     end
   end
@@ -84,7 +85,6 @@ class OrdersController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       respond_to do |format|
         if @order.update_attributes(params[:order])
-          @order.change_to_unsent_to_order
           format.html { redirect_to :action => 'index'}
           format.xml  { render :xml => @order, :status => :updated, :location => @order }
         else
