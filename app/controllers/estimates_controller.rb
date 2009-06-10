@@ -23,7 +23,6 @@ class EstimatesController < ApplicationController
   def create
     @user_profile = user_profile
     @order = Order.new(params[:order].merge(:date => Date.today, :user_id => session[:user]))
-    @order.currency_order = CurrencyOrder.new(:value => session[:currency_order].value, :currency_id => session[:currency_order].currency_id, :order_id=>params[:id])
 
     respond_to do |format|
       if @order.save

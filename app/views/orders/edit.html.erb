@@ -11,7 +11,13 @@
 <div id="data">
 
     <%= render :partial => 'user_data', :object => @user_profile%>
-    <%= render :partial => 'currency_data' %>
+    <span id="currency_content">
+      <% if @order.currency_order.nil?%>
+        <%= render :partial => 'currencies/form' %>
+      <% else %>
+        <%= render :partial => 'currencies/currency_data' %>
+      <% end %>
+    </span>
     <%= render :partial => 'form', :locals => {:f => f} %>
   
   <p>

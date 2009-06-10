@@ -7,7 +7,7 @@
     <%= numerate_list(record.providers, :name)%>
     <% unless record.currency.nil?%>
     <span style="margin-left: 50px; font-weight: bold;">
-      Total: <%= record.total_price %>, Divisa: <%= record.currency_order.currency.name%>
+      Total: <%= record.total_price %>,<%= " Divisa: " + record.currency_order.currency.name if !record.currency_order.nil?%>
     </span>
     <% end%>
     <span id="icon">

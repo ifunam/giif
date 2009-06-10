@@ -1,0 +1,13 @@
+<div style="margin-left: 25px; display: inline-table; width: 45%;">
+<h2 style=""> Divisa: </h2>
+<div class="fix" id="currency_data">
+  <div ="row">
+    <span class="fix-left">Divisa:</span>
+    <span class="fix-right" ><%= simple_select(:currency, Currency)%></span>
+  </div>
+  <%= observe_field :currency_currency_id, :url => {:action => :show_currency, :controller => 'currencies'},  :with => "'id='+$('currency_currency_id').value", :loading => "$('currency_form').update(''); $('currency_loader_indicator').show();", :complete => "$('currency_loader_indicator').hide();" %>
+  <%= image_tag('progress_bar3.gif', :id => 'currency_loader_indicator', :style => 'display:none') %>
+  <div id="currency_form">
+  </div>
+</div>
+</div>

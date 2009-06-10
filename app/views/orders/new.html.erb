@@ -9,7 +9,7 @@
 <div id="data">
   
   <%= render :partial => 'user_data', :object => @user_profile%>
-  <%= render :partial => 'currency_info' %>
+  <span id="currency_content"><%= render :partial => 'currencies/form' %></span>
   <%= render :partial => 'form', :locals => { :f => f} %><br/>
 
   <div style="padding-right: 150px; text-align: right;">

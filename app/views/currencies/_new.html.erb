@@ -1,17 +1,14 @@
 <div id="currency_form">
-
   <div id="error_messages">
   </div>
   
-<% remote_form_for(:currency, :controller => 'currencies', :action => 'create') do |f| %>
-  
+<% fields_for :currency do |currency| %>
   <div class="row">
     <span class="fix-left">
-      Divisa:
+      Nombre:
     </span>
-
     <span class="fix-right">
-      <%= f.text_field :name, :size => '25', :maxlenght => '50' %>
+      <%= currency.text_field :name, :size => '25', :maxlenght => '50' %>
     </span>
   </div>
 
@@ -19,12 +16,12 @@
     <span class="fix-left">
       Fuente:
     </span>
-    
     <span class="fix-right">
-      <%= f.text_field :url, :size => '25', :maxlenght => '50' %>
+      <%= currency.text_field :url, :size => '25', :maxlenght => '50' %>
     </span>
   </div>
-  
+<% end%>
+
   <% fields_for :currency_order do |currency_order| %>
     <div class="row">
       <span class="fix-left">
@@ -34,16 +31,10 @@
       <span class="fix-right">
         <%= currency_order.text_field :value, :size => '25', :maxlenght => '50' %>
       </span>
-      
-
       <%= currency_order.hidden_field :currency_id, :value => 6 %>
-
     </div>
   <% end%>
 
-  <%= submit_to_remote('change_currency', 'Guardar cambios', :url => {:controller => 'currencies', :action => 'create'})%>
-  <%= link_to_remote "Cancelar", :url => { :controller => 'currencies', :action => 'change_currency'} %>
-
-<% end%>
+  <%= submit_to_remote('change_currency', 'Guardar cambios', :url => {:controller => 'currencies', :action => 'create_currency'})%>
 
 </div>

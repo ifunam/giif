@@ -1,19 +1,21 @@
+<div style="margin-left: 25px; display: inline-table; width: 45%;">
+<h2 style=""> Divisa: </h2>
 <div class="fix" id="currency_data">
   <div ="row">
     <span class="fix-left">Divisa:</span>
     <span class="fix-right" ><%= session[:currency_order].currency.name%></span>
-    currency_id: <%= session[:currency_order].currency_id%><br/>
-  </div>
-  <div ="row">
-    <span class="fix-left">Tipo de cambio:</span>
-    <span class="fix-right" ><%= session[:currency_order].value%>
   </div>
   <div ="row">
     <span class="fix-left">Fuente:</span>
     <span class="fix-right" ><%= session[:currency_order].currency.url%></span>
   </div>
   <div ="row">
+    <span class="fix-left">Tipo de cambio:</span>
+    <span class="fix-right" ><%= session[:currency_order].value%>
+  </div>
+  <div ="row">
     <span class="fix-left"></span>
     <span class="fix-right" style="text-align: right; padding-right: 50px;"><%= link_to_remote "Cambiar divisa", :url => { :controller => 'currencies', :action => 'change_currency'} %></span>
   </div>
+</div>
 </div>
