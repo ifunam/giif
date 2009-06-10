@@ -12,10 +12,10 @@ class OrderTest < ActiveSupport::TestCase
   def setup
     @order = Order.find(2)
     @mock_file = mock('file')
- #   @mock_file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf')
-#    @mock_file.stubs(:content_type).returns('application/pdf')
-#   @mock_file.stubs(:read).returns(StringIO.new(( ("01" *39) + "\n" * 10)).read)
-#    @mock.returns(@mock)
+    #   @mock_file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf')
+    #    @mock_file.stubs(:content_type).returns('application/pdf')
+    #   @mock_file.stubs(:read).returns(StringIO.new(( ("01" *39) + "\n" * 10)).read)
+    #    @mock.returns(@mock)
   end
 
   test "Should return the current status" do
@@ -24,10 +24,10 @@ class OrderTest < ActiveSupport::TestCase
 
   test "Should change order_status name" do
     @order.sent
-    
+
     assert_equal 4, @order.order_status_id
   end
-  
+
   test "Should approve the order" do 
     @order.order_status_id = 4
     @order.approve
@@ -70,18 +70,17 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "Should add new files" do
-      @order.update_attributes(:files_attributes => {  "0"  => { :file => @mock_file, :file_type_id => 2 }} )
-      @order.save
-      assert_equal 2, @order.files.count
+    @order.update_attributes(:files_attributes => {  "0"  => { :file => @mock_file, :file_type_id => 2 }} )
+    @order.save
+    assert_equal 2, @order.files.count
   end
 
-    test "Should update existent files" do
-     @order.update_attributes(:files_attributes => { "0" =>  { :id => @order.files.first.id, :file => @mock_file, :file_type_id => 2 }})
-     @order.save
-     # assert_equal "", @order.files.first.file.
-    end
-  
-  
+  test "Should update existent files" do
+    @order.update_attributes(:files_attributes => { "0" =>  { :id => @order.files.first.id, :file => @mock_file, :file_type_id => 2 }})
+    @order.save
+    # assert_equal "", @order.files.first.file.
+  end
+
   test "Should add new project" do
     assert_equal 1, @order.projects.size
     @order.projects_attributes = {"0" => Project.valid_hash }
@@ -98,18 +97,18 @@ class OrderTest < ActiveSupport::TestCase
 
   test "Should not create a new order if it doesn't has valid providers" do 
     order = Order.new(Order.valid_hash.merge(
-                      :products_attributes =>  { "0" => OrderProduct.valid_hash }, 
-                      :providers_attributes => { "0" => Provider.invalid_hash }
-                      ) )
+    :products_attributes =>  { "0" => OrderProduct.valid_hash }, 
+    :providers_attributes => { "0" => Provider.invalid_hash }
+    ) )
     assert !order.valid?
     assert !order.errors.full_messages.empty?
   end
 
   test "Should not create a new order if it doesn't has valid products" do 
     order = Order.new(Order.valid_hash.merge(
-                      :products_attributes =>  { "0" => OrderProduct.invalid_hash }, 
-                      :providers_attributes => { "0" => Provider.valid_hash } 
-                      ) )
+    :products_attributes =>  { "0" => OrderProduct.invalid_hash }, 
+    :providers_attributes => { "0" => Provider.valid_hash } 
+    ) )
     assert !order.valid?
     assert !order.errors.full_messages.empty?
   end
