@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class EstimatesControllerTest < ActionController::TestCase
 
   fixtures :users, :order_statuses, :orders, :product_categories, 
-           :order_products, :controllers, :permissions
+           :order_products, :controllers, :permissions, :unit_types
 
   remote_fixtures
 

@@ -16,10 +16,6 @@ class Order < ActiveRecord::Base
   has_many :providers, :through => :order_providers
   accepts_nested_attributes_for :providers
  
-#   has_one :order_file
-#   has_one :file, :class_name => 'OrderFile'
-#   accepts_nested_attributes_for :file
-
   has_many :order_files, :dependent => :destroy
   has_many :files, :class_name => 'OrderFile'
   accepts_nested_attributes_for :files
@@ -41,15 +37,7 @@ class Order < ActiveRecord::Base
   
   validates_associated :order_products, :order_status
 
-  # After initialize callbacks
-  # after_initialize :build_file
-  # after_initialize :build_project
-  # after_initialize :build_products
-  # after_initialize :build_providers
- 
   before_validation :verify_products_and_providers
-  # Fix It: Move this method to OrderFile class if the accepts_nested_attributes_for method is improved
-#  before_save :read_file
   
   default_scope :order => "orders.date ASC"
   
@@ -96,14 +84,6 @@ class Order < ActiveRecord::Base
   def build_file_and_project
       build_file
       build_project
-  end
-
-  def read_file
-     if file.class == OrderFile #and !file.file.nil? and !file.file.is_a? String
-      file.content_type = file.file.content_type
-      file.filename = file.file.original_filename
-      file.file = file.file.read
-    end
   end
 
   def verify_products_and_providers
