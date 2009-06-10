@@ -47,32 +47,30 @@ class OrderTest < ActiveSupport::TestCase
 
   test "Should add new products" do 
     assert_equal 1, @order.products.size
-    @order.products_attributes = {"0" => {:quantity=>1, :product_category_id=>2, :description=>"IPod nano 32GB negro", :unit_type_id=>1}, "1" => {:quantity=>2, :product_category_id=>2, :description=>"IPod nano 32GB negro", :unit_type_id=>1}}
+    @order.products_attributes = {"0" => OrderProduct.valid_hash, "1" => OrderProduct.valid_hash}
     @order.save
     assert_equal 3, @order.products.size
-    assert_equal 'IPod nano 32GB negro', @order.products.last.description
   end
 
   test "Should update product" do 
-    @product = @order.products.first
-    @order.products_attributes = {"0" => {:id => @product.id, :quantity=>1, :product_category_id=>2, :description=>"Product description updated", :unit_type_id=>1}}
+    product_hash =  OrderProduct.valid_hash
+    @order.products_attributes = { "0"=> product_hash.merge(:id => @order.products.first.id) }
     @order.save
-    assert_equal 'Product description updated', @order.products.first.description
+    assert_equal product_hash['description'], @order.products.first.description
   end
 
   test "Should add new providers" do
     assert_equal 1, @order.providers.size
-    @order.providers_attributes = {"0"=>{:name=>"Apple Store", :email=>"fereyji@gmail.com"}, "1"=>{:name=>"Computación Génericos y Suministros", :email=>"fereyjim@yahoo.com.mx"}}
+    @order.providers_attributes = {"0"=> Provider.valid_hash, "1" => Provider.valid_hash}
     @order.save
     assert_equal 3, @order.providers.size
-    assert_equal 'Computación Génericos y Suministros', @order.providers.last.name
   end
 
   test "Should update provider" do
-    @provider = @order.providers.first
-    @order.providers_attributes = {"0"=>{:id => @provider.id, :name=>"Provider name updated", :email=>"fereyji@gmail.com"}}
+    provider_hash =  Provider.valid_hash
+    @order.providers_attributes = { "0"=> provider_hash.merge(:id => @order.providers.first.id) }
     @order.save
-    assert_equal 'Provider name updated', @order.providers.first.name
+    assert_equal provider_hash['name'], @order.providers.first.name
   end
 
   #  test "Should add new files" do
@@ -94,37 +92,35 @@ class OrderTest < ActiveSupport::TestCase
   
   test "Should add new project" do
     assert_equal 1, @order.projects.size
-    @order.projects_attributes = {"0" => { :name => 'Alpha project', :key => '132-LPO', :project_type_id => 2 }}
+    @order.projects_attributes = {"0" => Project.valid_hash }
     @order.save
     assert_equal 2, @order.projects.size
-    assert_equal 'Alpha project', @order.projects.last.name
   end
 
   test "Should update projects" do
-    @project = @order.projects.first
-    @order.projects_attributes = { "0" => { :id => @order.id, :name => 'Project updated', :key => '132-LPO', :project_type_id => 2 } }
+    project_hash =  Project.valid_hash
+    @order.projects_attributes = { "0" => project_hash.merge(:id => @order.projects.first.id)}
     @order.save
-    assert_equal 'Project updated', @order.projects.first.name
+    assert_equal project_hash['name'], @order.projects.first.name
   end
 
-#   test "Should not be a valid order if it doesn't has at least one product" do 
-#     order = Order.new(:user_id => 2, :order_status_id => 1, :id => 5)
-#     order.providers_attributes = {"0" => {:id => 4, :name => 'Proveedor A'}}
-#     assert !order.valid?
-#     assert_equal 1, order.providers.size
-#     assert_equal "", order.errors.full_messages
-#     assert !order.errors.full_messages.nil?
-#     assert order.errors.full_messages.include?("Providers email can\'t be blank")
-#   end
+  test "Should not create a new order if it doesn't has valid providers" do 
+    order = Order.new(Order.valid_hash.merge(
+                      :products_attributes =>  { "0" => OrderProduct.valid_hash }, 
+                      :providers_attributes => { "0" => Provider.invalid_hash }
+                      ) )
+    assert !order.valid?
+    assert !order.errors.full_messages.empty?
+  end
 
-#   test "Should not be a valid order if It does'nt havee at least one provider" do 
-#     order_p = Order.new
-#     order_p.products_attributes = { "0" => {:quantity => 2,  :price_per_unit => 123.00, :description => 'Servidor marca X', :product_category_id => 1} }
-#     assert !order_p.valid?
-#     assert !order_p.errors.full_messages.nil?
-#     assert_equal "", order_p.errors.full_messages
-#     assert order_p.errors.full_messages.include?("Products product category can\'t be blank")
-#   end
+  test "Should not create a new order if it doesn't has valid products" do 
+    order = Order.new(Order.valid_hash.merge(
+                      :products_attributes =>  { "0" => OrderProduct.invalid_hash }, 
+                      :providers_attributes => { "0" => Provider.valid_hash } 
+                      ) )
+    assert !order.valid?
+    assert !order.errors.full_messages.empty?
+  end
 
   test "Should calculate total_price for existent order" do
     assert_equal 56670.0, @order.total_price
