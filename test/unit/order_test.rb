@@ -12,9 +12,9 @@ class OrderTest < ActiveSupport::TestCase
   def setup
     @order = Order.find(2)
     @mock_file = mock('file')
-    @mock_file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf')
-    @mock_file.stubs(:content_type).returns('application/pdf')
-    @mock_file.stubs(:read).returns(StringIO.new(( ("01" *39) + "\n" * 10)).read)
+ #   @mock_file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf')
+#    @mock_file.stubs(:content_type).returns('application/pdf')
+#   @mock_file.stubs(:read).returns(StringIO.new(( ("01" *39) + "\n" * 10)).read)
 #    @mock.returns(@mock)
   end
 
@@ -27,11 +27,7 @@ class OrderTest < ActiveSupport::TestCase
     
     assert_equal 4, @order.order_status_id
   end
-
-#   test "Should send emails to each provider" do
-#     assert_equal 1, @order.providers.size
-#   end
-    
+  
   test "Should approve the order" do 
     @order.order_status_id = 4
     @order.approve
@@ -73,22 +69,18 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal provider_hash['name'], @order.providers.first.name
   end
 
-  #  test "Should add new files" do
-  #     @order.file_attributes = {  :file => @mock_file, :file_type_id => 2 }
-  #     @order.save
-  #     assert_equal 1, @order.files.count
-  # end
+  test "Should add new files" do
+      @order.update_attributes(:files_attributes => {  "0"  => { :file => @mock_file, :file_type_id => 2 }} )
+      @order.save
+      assert_equal 2, @order.files.count
+  end
 
-#   # test "Should update existent files" do
-#   #    @order.files_attributes = { 
-#   #        {  :id => 1,
-#   #             :file => @mock_file, :file_type_id => 2
-#   #            }
-#   #     }
-#   #     @order.save
-#   #     assert_equal "fdp.TYCANOC_otceyorp_otseupuserP", @order.files.last.filename
-#   #   end
-#   # 
+    test "Should update existent files" do
+     @order.update_attributes(:files_attributes => { "0" =>  { :id => @order.files.first.id, :file => @mock_file, :file_type_id => 2 }})
+     @order.save
+     # assert_equal "", @order.files.first.file.
+    end
+  
   
   test "Should add new project" do
     assert_equal 1, @order.projects.size
