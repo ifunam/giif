@@ -23,3 +23,13 @@ three:
  id: 3
  order_id: 3
  file_type_id: 2
+
+order_file_for_budget_with_id_4:
+ id: 4
+ order_id: 4
+ file_type_id: 1
+
+order_file_for_budget_with_id_6:
+ id: 5
+ order_id: 6
+ file_type_id: 2

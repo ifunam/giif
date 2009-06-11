@@ -20,3 +20,10 @@ project_three:
  name: "Air nano-filter float"
  project_type_id: 1
  key: "WXY-PR34"
+
+project_for_budget_with_id_6:
+ id: 4
+ order_id: 6
+ name: "Generator of energy with sun light"
+ project_type_id: 3
+ key: "GSL-01"

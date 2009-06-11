@@ -1,10 +1,3 @@
-budget_presupuesto_en_progreso:
- id: 1
- order_status_id: 4
- controller_id: 3
- action: edit
- title: "Editar"
-
 estimates_unsent_edit:
  id: 2
  order_status_id: 1
@@ -91,3 +84,18 @@ order_unestimate_delete:
  method: delete
  title: "Eliminar"
  message: "Esta seguro que desea borrar este registro" 
+
+budget_presupuesto_en_progreso:
+ id: 1
+ order_status_id: 4
+ controller_id: 2
+ action: new
+ title: "Capturar datos"
+
+budget_capturar_datos:
+ id: 15
+ order_status_id: 8
+ controller_id: 2
+ action: delete
+ title: "Capturar datos"
+

@@ -4,7 +4,8 @@ class Acquisition::OrdersController < ApplicationController
 
   def index
     @user_profile = user_profile
-    @collection = Order.paginate(:all, :conditions => [ "order_status_id>=8" ], :order => "date ASC" , :page => params[:page] || 1, :per_page => 20)
+    @collection = Order.paginate_for_acquisition_backend(session[:user], page=1, per_page=20)
+
     respond_to do |format|
       format.html { render :action => 'index' }
     end

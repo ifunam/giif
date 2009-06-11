@@ -12,14 +12,7 @@ order_request_unsent:
  order_status_id: 3
  ip_address: 192.168.1.1
  
-three:
- id: 3
- user_id: 3
- date: 2008-02-16
- order_status_id: 5
- ip_address: 192.168.1.2
- 
-four:
+acquisition_en_proceso:
  id: 4
  user_id: 3
  date: 2008-02-16
@@ -32,3 +25,17 @@ estimate_request_waiting_provider_estimate:
  date: 2009-06-01
  order_status_id: 2
  ip_address: 192.168.1.3 
+
+budget_rejected:
+ id: 3
+ user_id: 3
+ date: 2008-02-16
+ order_status_id: 5
+ ip_address: 192.168.1.2
+
+budget_en_proceso:
+ id: 6
+ user_id: 3
+ date: 2008-02-16
+ order_status_id: 4
+ ip_address: 192.168.1.2

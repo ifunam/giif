@@ -23,7 +23,11 @@
 
   <br/><br/>
   <div id="attached"> ANEXOS:<br/>
-    <span style="padding-left: 100px;"><%= @order.order_file.file_type.name %>  (<%= link_to @order.order_file.filename,  get_file_order_path(@order.order_file.id), :method => :get %>)</a>
+    <% @order.files.each do |file|%>
+      <span style="padding-left: 100px;"><%= file.file_type.name %>  
+      (<%= link_to file.file_file_name,  file.file.url, :target => '_new' %>)
+      </span>
+    <% end %>
   </div>
 
   <br/><br/>

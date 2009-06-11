@@ -22,3 +22,8 @@ provider_for_estimates_with_id_2:
  id: 5
  provider_id: 5
  order_id: 5
+
+provider_for_budget_with_id_6:
+ id: 6
+ provider_id: 2
+ order_id: 6

@@ -15,3 +15,15 @@ three:
  currency_id: 5
  order_id: 3
  value: 21.56
+
+currency_for_budget_with_id_6:
+ id: 4
+ currency_id: 2
+ order_id: 6
+ value: 15.56
+
+currency_for_budget_with_id_4:
+ id: 5
+ currency_id: 2
+ order_id: 4
+ value: 15.56
