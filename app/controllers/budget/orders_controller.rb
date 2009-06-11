@@ -58,7 +58,7 @@ class Budget::OrdersController < ApplicationController
 
     respond_to do |format|
       if @budget.save
-        @order.change_status(7)
+        @order.approve
         format.html { redirect_to :action => "index" }
       else
         format.html { render :action => "new", :id => @budget.order_id }
@@ -98,15 +98,6 @@ class Budget::OrdersController < ApplicationController
     respond_to do |format|
       format.html { render "show" }
       format.pdf  { render "show.rpdf" }
-    end
-  end
-
-  def show_currency
-    # @order = Order.find(params[:id])
-    @currencies = Currency.find(:all, :conditions => ['id <= ?', 6])
-
-    respond_to do |format|
-      format.js { render :action => 'change_currency.rjs'}
     end
   end
 
