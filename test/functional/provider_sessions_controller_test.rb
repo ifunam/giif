@@ -6,13 +6,18 @@ class ProviderSessionsControllerTest < ActionController::TestCase
   :providers, :order_files
 
   test "provider signup" do
-    post :create, :provider_id => 5, :order_id => 1, :token => '6f1727190c'
+    post :create, :provider_id => 5, :order_id => 1, :token => token_valid_for_provider_and_order(5,1)
     assert :success
     assert_redirected_to edit_estimate_file_path( :estimate_id => 1, :id => 5)
   end
 
+  test "provider signup failed because uploading files has been made" do
+    post :create, :provider_id => 5, :order_id => 5, :token => token_valid_for_provider_and_order(5,5)
+    assert_response 401
+  end
+
   test "provider signup fail" do
-    post :create, :provider_id => 5, :order_id => 1
+    post :create, :provider_id => 5, :order_id => 1, :token => nil
     assert_response 401
     assert_template 'unauthorized_message'
   end  

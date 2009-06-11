@@ -85,6 +85,14 @@ class Test::Unit::TestCase
      @request.session[:user] = User.find_by_login(login).id
   end
 
+  def provider_session_as(name)
+     session[:provider_id] = Provider.find_by_name(name).id
+  end
+
+  def token_valid_for_provider_and_order(provider_id, order_id)
+    Provider.encrypt_token(provider_id, order_id, Provider.find(provider_id).created_at.to_s)
+  end
+
   module Shoulda
     module Extensions
       include Test::Unit::Assertions

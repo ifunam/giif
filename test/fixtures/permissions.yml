@@ -61,14 +61,6 @@ orders_unsent_send_data:
  is_remote: true
  title: "Enviar solicitud"
 
-orders_budget_in_progress_show_pdf:
- id: 12
- order_status_id: 4
- controller_id: 2
- action: show
- format: pdf
- title: "Ver PDF"
-
 order_unestimate_edit:
  id: 13
  order_status_id: 10
@@ -85,6 +77,14 @@ order_unestimate_delete:
  title: "Eliminar"
  message: "Esta seguro que desea borrar este registro" 
 
+orders_budget_in_progress_show_pdf:
+ id: 12
+ order_status_id: 4
+ controller_id: 2
+ action: show
+ format: pdf
+ title: "Ver PDF"
+
 budget_presupuesto_en_progreso:
  id: 1
  order_status_id: 4
@@ -92,10 +92,10 @@ budget_presupuesto_en_progreso:
  action: new
  title: "Capturar datos"
 
-budget_capturar_datos:
+budget_rechazar:
  id: 15
- order_status_id: 8
+ order_status_id: 4
  controller_id: 2
- action: delete
- title: "Capturar datos"
-
+ action: reject
+ title: "Rechazar"
+ is_remote: true

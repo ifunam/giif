@@ -33,3 +33,9 @@ order_file_for_budget_with_id_6:
  id: 5
  order_id: 6
  file_type_id: 2
+
+order_file_for_order_with_id_5_and_provider_id_5:
+ id: 6
+ order_id: 5
+ file_type_id: 3
+ provider_id: 5

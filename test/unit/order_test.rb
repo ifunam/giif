@@ -78,7 +78,6 @@ class OrderTest < ActiveSupport::TestCase
   test "Should update existent files" do
     @order.update_attributes(:files_attributes => { "0" =>  { :id => @order.files.first.id, :file => @mock_file, :file_type_id => 2 }})
     @order.save
-    # assert_equal "", @order.files.first.file.
   end
 
   test "Should add new project" do

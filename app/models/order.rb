@@ -98,14 +98,6 @@ class Order < ActiveRecord::Base
     order_status.id == 2? (order_status.name + "\n" + self.estimates_received + " de "+ self.providers.size.to_s) : (order_status.name)
   end
 
-  def estimates_received
-    estimates = 0
-    self.providers.each do |provider|
-      estimates = estimates + 1 unless OrderFile.find_by_order_id_and_provider_id(self,provider).nil?
-    end
-    return estimates.to_s
-  end
-
   def sent
     change_status(4) if order_status_id == 3
   end
@@ -132,6 +124,14 @@ class Order < ActiveRecord::Base
 
   def total_price
     order_products.sum("quantity * price_per_unit").to_f
+  end
+
+  def estimates_received
+    estimates = 0
+    self.providers.each do |provider|
+      estimates = estimates + 1 unless OrderFile.find_by_order_id_and_provider_id(self,provider).nil?
+    end
+    return estimates.to_s
   end
 
   private 

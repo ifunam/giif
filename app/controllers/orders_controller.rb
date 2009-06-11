@@ -2,7 +2,6 @@ require 'rubygems'
 require 'pdf/writer'
 require 'order_reporter'
 class OrdersController < ApplicationController
-  #  before_filter :authorize
 
   def index
     @user_profile = user_profile
@@ -72,13 +71,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def show_preview
-    @order = OrderReporter.find_by_order_id(params[:id])
-    respond_to do |format|
-      format.html { render "show_preview"}
-    end
-  end
-
   def update
     @user_profile = user_profile
     @order = Order.find(params[:id])
@@ -99,7 +91,6 @@ class OrdersController < ApplicationController
 
   def destroy
     @order = Order.find(params[:id])
-    @order.destroy unless @order.order_status == 1
 
     respond_to do |format|
       format.html { redirect_to :action => 'index' }
@@ -110,14 +101,10 @@ class OrdersController < ApplicationController
     @model = ActiveSupport::Inflector.camelize(params[:table]).constantize
     @record = @model.find(params[:id])
     @record.destroy
+
     respond_to do |format|
       format.js { render 'destroy_item.rjs'}
     end
-  end
-
-  def get_file
-    record = OrderFile.find(params[:id])
-    send_data record.file, :type => record.content_type, :filename => record.filename, :disposition => 'attachment'
   end
 
 end
