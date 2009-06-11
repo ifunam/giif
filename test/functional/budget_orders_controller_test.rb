@@ -1,10 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-# Bug fixes:
-# Correction for class name
-# Correction of order ids
-# Session handling integration
-# assertions for template rendering
-# rename order_requests by orders
 class Budget::OrdersControllerTest < ActionController::TestCase
 
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
