@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+
   def destroy
      @record = Product.find(params[:id])
      @record.destroy
@@ -6,4 +7,5 @@ class ProductsController < ApplicationController
        format.js { render 'destroy.rjs' }
      end
    end
+
 end

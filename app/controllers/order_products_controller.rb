@@ -1,4 +1,5 @@
 class OrderProductsController < ApplicationController
+
   def destroy
      @record = OrderProduct.find(params[:id])
      @record.destroy

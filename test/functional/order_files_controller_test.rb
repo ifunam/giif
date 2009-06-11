@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+ 
+class OrderFilesControllerTest < ActionController::TestCase
 
-class ProductsControllerTest < ActionController::TestCase
-
-  fixtures :users, :products
+  fixtures :users, :order_files
 
   def setup
     session_as('fernando')
@@ -14,5 +14,5 @@ class ProductsControllerTest < ActionController::TestCase
     assert :success
     assert_template 'destroy.rjs'
   end
-
+ 
 end

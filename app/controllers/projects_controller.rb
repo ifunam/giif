@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  
+
   def destroy
     @record = Project.find(params[:id])
     @record.destroy
