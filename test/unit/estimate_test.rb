@@ -5,7 +5,7 @@ class OrderTest < ActiveSupport::TestCase
    fixtures :users, :order_statuses, :orders, :product_categories, :order_products, 
             :providers, :file_types
 
-  should_have_many :order_products, :order_providers
+  remote_fixtures
 
   def setup
     @order = Order.find(1)
@@ -13,7 +13,7 @@ class OrderTest < ActiveSupport::TestCase
 
   test "Should send estimate request to providers" do 
     @order.send_estimate_request
-    assert_equal 'Cotizaciones en progreso', @order.current_status
+    assert_equal "Cotización en proceso\n0 de 1", @order.current_status
   end
 
 #    @order.products_attributes = {"0" => {:quantity=>1, :product_category_id=>2, :description=>"HHHHHHHHHHHHHHHHHHHhh", :unit_type_id=>1}, "1" => {:quantity=>2, :product_category_id=>2, :description=>"IPod Touch 16 GB", :unit_type_id=>1}}

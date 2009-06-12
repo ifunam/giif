@@ -12,19 +12,16 @@ class OrderTest < ActiveSupport::TestCase
   def setup
     @order = Order.find(2)
     @mock_file = mock('file')
-    #   @mock_file.stubs(:original_filename).returns('Presupuesto_proyecto_CONACYT.pdf')
-    #    @mock_file.stubs(:content_type).returns('application/pdf')
-    #   @mock_file.stubs(:read).returns(StringIO.new(( ("01" *39) + "\n" * 10)).read)
-    #    @mock.returns(@mock)
   end
 
   test "Should return the current status" do
+    @order = Order.find(2)
     assert_equal 'Solicitud no enviada', @order.current_status
   end
 
   test "Should change order_status name" do
+    @order = Order.find(2)
     @order.sent
-
     assert_equal 4, @order.order_status_id
   end
 
@@ -125,6 +122,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "Should calculate total_price for existent order" do
+    @order = Order.find(2)
     assert_equal 56670.0, @order.total_price
   end
 end

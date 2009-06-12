@@ -20,7 +20,7 @@ class OrderReporterTest < ActiveSupport::TestCase
   end
 
   test "Should return the order_id" do
-    assert_equal '1', @report.order_id
+    assert_equal '2', @report.order_id
   end
 
   test "Should return the order date" do
@@ -76,11 +76,11 @@ class OrderReporterTest < ActiveSupport::TestCase
    end
    
    test "Should return the report's header" do
-     assert_equal "Orden de compra No. 1 de Juárez Robles Jesús Alejandro enviada el January  1, 2008", @report.header
+     assert_equal "Orden de compra No. 2 de Juárez Robles Jesús Alejandro enviada el January  1, 2008", @report.header
    end
    
    test "Should return the report's name" do
-     assert_equal "orden_de_compra_alex_1", @report.name
+     assert_equal "orden_de_compra_alex_2", @report.name
    end
    
    test "Should return the report's footer" do

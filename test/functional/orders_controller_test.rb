@@ -30,13 +30,13 @@ class OrdersControllerTest < ActionController::TestCase
                               :products_attributes  => [ OrderProduct.valid_hash, OrderProduct.valid_hash ],
                               :providers_attributes => [ Provider.valid_hash,  Provider.valid_hash, Provider.valid_hash ],
                               :files_attributes     => { "0" => {
-                                                                 :file => @mock_file, :file_type_id => 2
+                                                                 :file => @mock_file, :file_type_id => nil
                                                                 }
                                                        },
                               :projects_attributes  => [ Project.valid_hash]
                              }
 
-    assert_redirected_to :action => 'index'
+    assert_template 'new'
   end
 
   test "should not create new order with invalid params" do

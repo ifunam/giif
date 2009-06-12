@@ -10,8 +10,4 @@ class PersonTest < ActiveSupport::TestCase
   should_validate_numericality_of :id, :user_id
   should_belong_to :user
 
-  def test_fullname
-    @record = Person.find(1)
-    assert_equal 'Reyes Jímenez Fernando',  @record.fullname
-  end
  end

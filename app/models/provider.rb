@@ -1,6 +1,7 @@
 require 'digest/sha2'
 class Provider < ActiveRecord::Base
   validates_presence_of :name, :email
+#  validates_uniqueness_of :name
 
   def self.authenticate?(provider_id, order_id, token)
     if Provider.exists?(provider_id) and Order.exists?(order_id) 
