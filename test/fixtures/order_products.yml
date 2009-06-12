@@ -50,3 +50,12 @@ products_for_budget_with_id_3:
  quantity: 3
  description: "Mac Book air"
  price_per_unit: 2949.34
+
+products_for_order_7:
+ id: 7
+ product_category_id: 3
+ unit_type_id: 3
+ order_id: 7
+ quantity: 12
+ description: "Mouses Dell"
+ price_per_unit: 249.34

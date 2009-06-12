@@ -41,6 +41,18 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 5, @order.order_status_id
   end
 
+  test "Should change order_status_id to -solicitud sin cotización-" do 
+    @order.order_status_id = 2
+    @order.send_estimate_to_orders
+    assert_equal 10, @order.order_status_id
+  end  
+
+  test "Should change order_status_id to -solicitud no enviada-" do 
+    @order.order_status_id = 10
+    @order.change_to_unsent_order
+    assert_equal 3, @order.order_status_id
+  end  
+
   test "Should add new products" do 
     assert_equal 1, @order.products.size
     @order.products_attributes = {"0" => OrderProduct.valid_hash, "1" => OrderProduct.valid_hash}

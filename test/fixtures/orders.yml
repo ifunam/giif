@@ -11,6 +11,14 @@ order_request_unsent:
  date: 2008-01-01
  order_status_id: 3
  ip_address: 192.168.1.1
+
+order_request_without_estimates:
+ id: 7
+ user_id: 3
+ date: 2008-01-01
+ order_status_id: 10
+ ip_address: 192.168.1.1
+
  
 acquisition_en_proceso:
  id: 4

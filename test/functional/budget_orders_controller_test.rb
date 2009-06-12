@@ -29,8 +29,8 @@ class Budget::OrdersControllerTest < ActionController::TestCase
   end
 
   test "should reject order request" do
-    post :reject, :id => 2
-    assert_template 'budget/orders'
+    post :reject, :id => 6
+    assert_template 'reject.rjs'
   end
 
   test "should not reject order request" do
@@ -53,6 +53,11 @@ class Budget::OrdersControllerTest < ActionController::TestCase
     assert_redirected_to 'budget/orders'
   end
 
+  test "should not create order request" do
+    post :create, :budget =>  Budget.invalid_hash, :id => 6
+    assert_template 'new'
+  end
+
   test "should update order request" do
     post :update, :id => 3, :budget => Budget.valid_hash
     assert_redirected_to 'budget/orders'
@@ -60,22 +65,17 @@ class Budget::OrdersControllerTest < ActionController::TestCase
 
   test "should not update order request" do
     post :update, :id => 3, :budget => Budget.invalid_hash
-    assert_redirected_to 'budget/orders/new'
+    assert_template 'new'
   end
 
-  # FIX IT: Complete and fix the following tests
+  test "should show order in html format" do
+    post :show, :id => 6
+    assert_template 'show'
+   end
 
-  # test "should show order in pdf format" do
-  #    post :show, :id => 1
-  #  end
+  test "should show order in pdf format" do
+     post :show, :id => 6, :format => 'pdf'
+    assert_template 'show.rpdf'
+   end
 
-  # test "should show order" do
-  #    post :show, :id => 1
-  #  end
-
-  #   test "should not create order request" do
-  #     post :create, :budget =>  Budget.invalid_hash, :id => 4
-  #     assert_redirected_to 'budget/orders'
-  #   end
-  # /FIXIT
 end

@@ -6,8 +6,4 @@ class Person < ActiveRecord::Base
   validates_uniqueness_of :user_id
 
   belongs_to :user
-
-  def fullname
-    [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname.strip].compact.join(' ')
-  end
 end

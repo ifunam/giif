@@ -27,3 +27,8 @@ provider_for_budget_with_id_6:
  id: 6
  provider_id: 2
  order_id: 6
+
+provider_for_order_7:
+ id: 7
+ provider_id: 2
+ order_id: 7

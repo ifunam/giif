@@ -16,7 +16,6 @@
  <span class="actions" id="<%= record.dom_id + '_actions' %>">
   <div id="icon">
     <%= links_for_actions(controller_name, record)%><br/>
-    <%= render :partial => 'actions', :locals => {:record => record}%>
   </div>
   <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
   </span>

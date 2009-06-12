@@ -81,11 +81,6 @@ class Order < ActiveRecord::Base
              :page => page, :per_page => per_page)
   end
 
-  def build_file_and_project
-      build_file
-      build_project
-  end
-
   def verify_products_and_providers
     if self.send(:products).length <= 0
       errors.add_to_base("You should add at least one product")
@@ -110,7 +105,7 @@ class Order < ActiveRecord::Base
     change_status(10) if order_status_id == 2
   end
   
-  def change_to_unsent_to_order
+  def change_to_unsent_order
     change_status(3) if order_status_id == 10
   end
   

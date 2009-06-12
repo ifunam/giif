@@ -53,6 +53,7 @@ class Budget::OrdersController < ApplicationController
   def create
     @budget = Budget.new(params[:budget])
     @budget.user_id = session[:user]
+    @user = user_profile
 
     @order = Order.find(params[:id])
 
@@ -61,34 +62,20 @@ class Budget::OrdersController < ApplicationController
         @order.approve
         format.html { redirect_to :action => "index" }
       else
-        format.html { render :action => "new", :id => @budget.order_id }
+        format.html { render 'new', :id => @budget.order_id }
       end
     end
   end
 
   def update
     @budget = Budget.find_by_order_id(params[:id])
+    @order = Order.find(params[:id])
 
     respond_to do |format|
       if @budget.update_attributes(params[:budget])
         format.html { redirect_to :action => "index" }
       else
-        format.html { redirect_to :action => "new", :id => @budget.order_id }
-      end
-    end
-  end
-
-  def update_currency_order
-    @order =  Order.find(session[:order])
-    @currency_order = CurrencyOrder.find_by_order_id(session[:order])
-    @currency_order.currency_id = session[:currency_order].currency_id
-    @currency_order.value = session[:currency_order].value
-  
-    respond_to do |format|
-      if @currency_order.save
-        format.js { render :action => 'update_currency_order.rjs'}
-      else
-        #
+        format.html { render 'new', :id => @budget.order_id }
       end
     end
   end
@@ -99,11 +86,6 @@ class Budget::OrdersController < ApplicationController
       format.html { render "show" }
       format.pdf  { render "show.rpdf" }
     end
-  end
-
-
-  def show_pdf
-    send_file File.join(RAILS_ROOT, 'tmp', 'documents', "solicitud_compra_" + params[:id]  + ".pdf"), :type => 'application/pdf', :disposition => 'inline'
   end
 
   private
