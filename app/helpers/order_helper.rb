@@ -22,24 +22,24 @@ module OrderHelper
     end.join(' ')
   end
 
-  def icon_tag(record)
-    icon_name= "icon_#{record.action}.png"
-    image_tag(icon_name, :title => record.title)
+  def icon_tag(permission)
+    icon_name= "icon_#{permission.action}.png"
+    image_tag(icon_name, :title => permission.title)
   end
   
   def loading_indicator(id)
-    "$('record_#{id}_loader_indicator').show();" 
+    "$('record_#{id}_loader_indicator').show();"
   end
 
   def loading_complete(id)
     "$('record_#{id}_loader_indicator').hide();"
 end
 
-  def set_row_class(object)
-    'row_' + ((object + 1) % 2).to_s
+  def set_row_class(partial_counter)
+    'row_' + ((partial_counter + 1) % 2).to_s
   end
   
-  def status_image_tag(record)
-    image_tag("status_"+record.current_status.downcase.split(/\s+/).join('_')+".jpg")
+  def status_image_tag(order)
+    image_tag("status_"+order.current_status.downcase.split(/\s+/).join('_')+".jpg")
   end
 end
