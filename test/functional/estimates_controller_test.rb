@@ -8,7 +8,7 @@ class EstimatesControllerTest < ActionController::TestCase
   remote_fixtures
 
   def setup
-    session_as('fernando')
+    session_as('alex')
   end
 
   def test_should_get_index

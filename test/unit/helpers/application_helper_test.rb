@@ -7,8 +7,6 @@ class ApplicationHelperTest < ActionController::TestCase
 
   include ApplicationHelper
   include ActionView::Helpers
-  include ActionView::Helpers::FormOptionsHelper
-#  include ActionController::Base
 
   test "should return the login of a logged user" do
     @request = ActionController::TestRequest.new
@@ -42,12 +40,20 @@ class ApplicationHelperTest < ActionController::TestCase
     assert_dom_equal %Q(<a href=\"send\"><img title=\"Enviar\" src=\"/images/icon_send.png\" alt=\"Icon_send\" /></a><a href=\"send\">Enviar</a>), link_to_action("Enviar", "icon_send.png", "send")    
   end
 
-#   test "should return render for partial" do
+#   test "should return javascript function for file_form" do
 #     @order = Order.find(4)
-#     assert_dom_equal %Q(), render_file_form
+#     assert_dom_equal "", content_for_file_form_head
 #   end
   
   test "should render a simple select html using ActiveRecord find options" do
     assert_dom_equal %Q(<select name=\"form[currency_id]\" id=\"form_currency_id\"><option value=\"\">--Seleccionar--</option>\n<option value=\"3\">Dólar Américano</option>\n<option value=\"2\">Euro</option>\n<option value=\"5\">Libra esterlina</option>\n<option value=\"6\">Otro</option>\n<option value=\"1\">Peso</option>\n<option value=\"4\">Yen</option></select>), simple_select(:form, Currency, :conditions => "id <= 6")
+  end
+
+  test "should return index for new file" do
+    assert_equal 3, index_file_form(OrderFile.new, nil, 3)
+  end
+  
+  test "should return file.id for existing file" do
+    assert_equal 3, index_file_form(OrderFile.find(3), nil, 3)
   end
 end

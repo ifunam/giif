@@ -37,8 +37,6 @@ class Order < ActiveRecord::Base
   
   validates_associated :order_products, :order_status
 
-  before_validation :verify_products_and_providers
-  
   default_scope :order => "orders.date ASC"
   
   def initialize(*args)
@@ -52,41 +50,24 @@ class Order < ActiveRecord::Base
     end 
   end
   
-  def self.paginate_by_user_id(user_id, page=1, per_page=20)
-    paginate(:conditions => { :user_id =>  user_id }, :page => page, :per_page => per_page)
-  end
-
-  def self.paginate_unsent_by_user_id(user_id, page=1, per_page=20)
+  def self.paginate_estimates_by_user_id(user_id, page=1, per_page=20)
     paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id <= 2)", user_id ], 
              :page => page, :per_page => per_page)
   end
 
-  def self.paginate_estimate_by_providers(user_id, page=1, per_page=20)
-    paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 2)", user_id ], 
-             :page => page, :per_page => per_page)
-  end
-
-  def self.paginate_by_orders(user_id, page=1, per_page=20)
+  def self.paginate_orders_by_user_id(user_id, page=1, per_page=20)
     paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 3)", user_id ], 
              :page => page, :per_page => per_page)
   end
 
-  def self.paginate_for_budget_backend(user_id, page=1, per_page=20)
+  def self.paginate_orders_for_budget_backend(user_id, page=1, per_page=20)
     paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 4) AND (orders.order_status_id < 8)", user_id ], 
              :page => page, :per_page => per_page)
   end
 
-  def self.paginate_for_acquisition_backend(user_id, page=1, per_page=20)
+  def self.paginate_orders_for_acquisition_backend(user_id, page=1, per_page=20)
     paginate(:conditions => [" orders.user_id = ? AND ( orders.order_status_id >= 8)", user_id ], 
              :page => page, :per_page => per_page)
-  end
-
-  def verify_products_and_providers
-    if self.send(:products).length <= 0
-      errors.add_to_base("You should add at least one product")
-    elsif self.send(:providers).length <= 0 
-      errors.add_to_base("You should add at least one product")
-    end
   end
 
   def current_status

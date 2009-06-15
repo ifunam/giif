@@ -33,8 +33,4 @@ class CurrencyClientTest < ActiveSupport::TestCase
     assert_equal 14.72247, @currency_client.value
   end
   
-  test "Should convert the currency using the default conversion type (US/MXN)" do
-    @currency_client.expects(:convert).with(10).returns(147.4131)
-    assert_equal 147.4131, @currency_client.convert(10)
-  end
 end

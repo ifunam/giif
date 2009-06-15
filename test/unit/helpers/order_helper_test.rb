@@ -22,8 +22,9 @@ class OrderHelperTest < ActionController::TestCase
   end
 
 #TODO: Create test for links_for_actions
-#   test "should return link_to for a remote action" do
-#   end
+   test "should return link_to for a remote action" do
+
+   end
 #TODO
  
   test "should return image_tag() with specific format for an icon" do

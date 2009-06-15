@@ -6,6 +6,14 @@ product_for_estimates:
  quantity: 3
  description: "Macbook air LMF90"
 
+product_for_estimates_with_id_7:
+ id: 8
+ product_category_id: 3
+ unit_type_id: 2
+ order_id: 8
+ quantity: 3
+ description: "Macbook air LMF90"
+
 UPS_Triplite:
  id: 2
  product_category_id: 1

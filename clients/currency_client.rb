@@ -24,7 +24,4 @@ class CurrencyClient
     item[:description].split(' = ').last.split(' ').first.to_f
   end
 
-  def convert(amount)
-    value * amount.to_f
-  end
 end

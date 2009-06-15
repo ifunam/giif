@@ -46,6 +46,8 @@ module ApplicationHelper
     end
   end
 
+#TODO: Make a helper that can be used by any form (orders, providers, ...)
+
 #   def render_estimate_form
 #     render(:partial => "provider_form_row", :object => OrderProvider.new, :locals => {:index => "INDEX"}, :collection => @order.providers)
 #   end
@@ -59,6 +61,7 @@ module ApplicationHelper
 #       javascript_tag(javascript_for_estimate_form)
 #     end
 #   end
+#TODO
 
   def index_file_form(file, file_counter, index)
     index ||= file_counter

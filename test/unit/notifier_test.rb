@@ -7,12 +7,22 @@ class NotifierTest < ActionMailer::TestCase
   fixtures :users, :orders
   remote_fixtures
 
-  test "should test estimate request for provider sending from some user" do
-    response = Notifier.create_estimate_to_provider(Order.first, Provider.first)
-    assert_equal '[GIIF] Solicitud de cotización del IFUNAM', response.subject
+#   test "should receive estimate request confirmation" do
+#     response = Notifier.create_estimate_request_from_user(Order.first)
+#     assert_equal '[GIIF] Solicitud de cotización enviada', response.subject
+#   end
+
+#   test "should send estimate to provider from some user" do
+#     response = Notifier.create_estimate_to_provider(Order.first, Provider.first)
+#     assert_equal '[GIIF] Solicitud de cotización del IFUNAM', response.subject
+#   end
+
+  test "should send estimate response for provider" do
+    response = Notifier.create_estimate_response_from_provider(Order.first, Provider.first)
+    assert_equal '[GIIF] Solicitud de cotización respondida', response.subject
   end
 
-  test "should test order request sending from some user" do
+  test "should send order request sending from some user" do
     response = Notifier.create_order_request_from_user(Order.first)
     assert_equal '[GIIF] Solicitud de orden de compra enviada', response.subject
   end

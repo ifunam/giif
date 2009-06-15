@@ -5,6 +5,20 @@ estimate_request_new:
  order_status_id: 1
  ip_address: 132.248.7.37
 
+estimate_request_with_provider_estimate:
+ id: 5
+ user_id: 3
+ date: 2009-06-01
+ order_status_id: 2
+ ip_address: 192.168.1.3 
+
+estimate_request_waiting_provider_estimate:
+ id: 8
+ user_id: 3
+ date: 2009-06-01
+ order_status_id: 2
+ ip_address: 192.168.1.3 
+
 order_request_unsent:
  id: 2
  user_id: 3
@@ -26,13 +40,6 @@ acquisition_en_proceso:
  date: 2008-02-16
  order_status_id: 8
  ip_address: 192.168.1.3
-
-estimate_request_waiting_provider_estimate:
- id: 5
- user_id: 3
- date: 2009-06-01
- order_status_id: 2
- ip_address: 192.168.1.3 
 
 budget_rejected:
  id: 3

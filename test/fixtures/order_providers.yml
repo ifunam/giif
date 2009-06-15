@@ -23,12 +23,17 @@ provider_for_estimates_with_id_2:
  provider_id: 5
  order_id: 5
 
+provider_for_estimates_with_id_7:
+ id: 8
+ provider_id: 2
+ order_id: 7
+
 provider_for_budget_with_id_6:
  id: 6
  provider_id: 2
  order_id: 6
 
-provider_for_order_7:
+provider_for_order_8:
  id: 7
  provider_id: 2
- order_id: 7
+ order_id: 8

@@ -125,4 +125,25 @@ class OrderTest < ActiveSupport::TestCase
     @order = Order.find(2)
     assert_equal 56670.0, @order.total_price
   end
+
+  test "should return conditions for pagination by user_id for estimates" do
+    assert_equal 3, Order.paginate_estimates_by_user_id(3, nil, nil).size
+    assert_equal 'WillPaginate::Collection', Order.paginate_orders_by_user_id(3, nil, nil).class.name
+  end
+
+  test "should return conditions for pagination of orders by user_id" do
+    assert_equal 5, Order.paginate_orders_by_user_id(3, nil, nil).size
+    assert_equal 'WillPaginate::Collection', Order.paginate_orders_by_user_id(3, nil, nil).class.name
+  end
+
+  test "should return conditions for pagination by user_id for budget_backend" do
+    assert_equal 2, Order.paginate_orders_for_budget_backend(3, nil, nil).size
+    assert_equal 'WillPaginate::Collection', Order.paginate_orders_by_user_id(3, nil, nil).class.name
+  end
+
+  test "should return conditions for pagination by user_id for acquisition_backend" do
+    assert_equal 2, Order.paginate_orders_for_acquisition_backend(3, nil, nil).size
+    assert_equal 'WillPaginate::Collection', Order.paginate_orders_by_user_id(3, nil, nil).class.name
+  end
+
 end
