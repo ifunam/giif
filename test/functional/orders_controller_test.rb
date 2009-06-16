@@ -4,7 +4,8 @@ require 'mocha'
 class OrdersControllerTest < ActionController::TestCase
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
     :order_statuses, :orders, :order_products,:currencies, :currency_orders,
-    :order_files, :project_types, :projects, :permissions
+    :order_files, :project_types, :projects, :controllers, :permissions, 
+    :file_types
 
   remote_fixtures
  
@@ -26,20 +27,18 @@ class OrdersControllerTest < ActionController::TestCase
   end
  
   test "should create new order" do
-    post :create,  :order => { 
-                              :products_attributes  => [ OrderProduct.valid_hash, OrderProduct.valid_hash ],
-                              :providers_attributes => [ Provider.valid_hash,  Provider.valid_hash, Provider.valid_hash ],
-                              :files_attributes     => { "0" => {
-                                                                 :file => @mock_file, :file_type_id => nil
-                                                                }
-                                                       },
-                              :projects_attributes  => [ Project.valid_hash]
+     post :create, :order => { 
+                                :products_attributes => [ OrderProduct.valid_hash, OrderProduct.valid_hash ],
+                                :providers_attributes => [ Provider.valid_hash,  Provider.valid_hash, Provider.valid_hash ],
+                                :files_attributes     => { "0" => { :file => @mock_file, :file_type_id => 1 } },
+                                :projects_attributes  => [ Project.valid_hash]
                              }
-
-    assert_template 'new'
-  end
-
-  test "should not create new order with invalid params" do
+                   
+  
+     assert_redirected_to :action => 'index'
+   end
+   
+   test "should not create new order with invalid params" do
     post :create,  :order => { 
                               :products_attributes  => [ OrderProduct.invalid_hash, OrderProduct.valid_hash ],
                               :providers_attributes => [ Provider.invalid_hash,  Provider.invalid_hash, Provider.invalid_hash ],
@@ -81,7 +80,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should update order" do
     post :update, :id => 2,
-                   :order => { 
+                  :order => { 
                               :products_attributes  => [ OrderProduct.valid_hash(:id => 2), OrderProduct.valid_hash ],
                               :providers_attributes => [ Provider.valid_hash(:id => 1),  Provider.valid_hash, Provider.valid_hash ],
                               :files_attributes     => { "0" => {

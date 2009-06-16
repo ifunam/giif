@@ -1,16 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ApplicationControllerTest < ActionController::TestCase
-  fixtures :users
   
-  include ActionView::Helpers
-  include OrderHelper
-
-  def setup
+  test "Should have login_required before filter" do
+     assert_equal [ :login_required, :verify_authenticity_token ], ApplicationController.before_filters
   end
 
-  test "should get store_location" do 
-
-  end
-  
 end

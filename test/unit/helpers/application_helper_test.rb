@@ -1,22 +1,48 @@
 # encoding: utf-8
 
 require File.dirname(__FILE__) + '/../../test_helper'
+require 'action_view/test_case'
+
+# class ApplicationHelperViewTest < ActionView::TestCase
+#   fixtures :users, :order_statuses, :orders, :product_categories, :order_products, :unit_types,
+#   :providers, :order_providers, :currencies, :currency_orders, :order_files
+# 
+#   include ApplicationHelper
+#   include ActionView::Helpers
+# 
+#   def setup
+#     @view = ActionView::Base.new("#{RAILS_ROOT}/app/views/files")
+#   end
+# 
+#   test "should return javascript function for file_form" do
+#     @order = Order.find(8)
+#     @request = ActionController::TestRequest.new
+#     @controller = OrdersController.new
+#    assert_nil content_for_file_form_head # FIX IT: It depends or rendering
+#   end
+# end
 
 class ApplicationHelperTest < ActionController::TestCase
-  fixtures :users, :order_statuses, :currencies, :providers, :orders
+  fixtures :users, :order_statuses, :orders, :product_categories, :order_products, :unit_types,
+  :providers, :order_providers, :currencies, :currency_orders, :order_files
+  #, :order_products
 
   include ApplicationHelper
   include ActionView::Helpers
 
-  test "should return the login of a logged user" do
+  def setup
     @request = ActionController::TestRequest.new
-    @request.session[:user] = User.find_by_login('alex').id
+    @controller = OrdersController.new
+    @view = ActionView::Base.new("#{RAILS_ROOT}/app/views/files")
+  end
+
+  test "should return the login of a logged user" do
+    session_as('alex')
     assert_equal "alex", logged_user
   end
 
   test "should return the login of a logged provider" do
-    @request = ActionController::TestRequest.new
-    @request.session[:provider_id] = Provider.find_by_name('HP México').id
+    provider_session_as('HP México')
     assert_equal "HP México", logged_provider
   end
 
@@ -40,11 +66,6 @@ class ApplicationHelperTest < ActionController::TestCase
     assert_dom_equal %Q(<a href=\"send\"><img title=\"Enviar\" src=\"/images/icon_send.png\" alt=\"Icon_send\" /></a><a href=\"send\">Enviar</a>), link_to_action("Enviar", "icon_send.png", "send")    
   end
 
-#   test "should return javascript function for file_form" do
-#     @order = Order.find(4)
-#     assert_dom_equal "", content_for_file_form_head
-#   end
-  
   test "should render a simple select html using ActiveRecord find options" do
     assert_dom_equal %Q(<select name=\"form[currency_id]\" id=\"form_currency_id\"><option value=\"\">--Seleccionar--</option>\n<option value=\"3\">Dólar Américano</option>\n<option value=\"2\">Euro</option>\n<option value=\"5\">Libra esterlina</option>\n<option value=\"6\">Otro</option>\n<option value=\"1\">Peso</option>\n<option value=\"4\">Yen</option></select>), simple_select(:form, Currency, :conditions => "id <= 6")
   end

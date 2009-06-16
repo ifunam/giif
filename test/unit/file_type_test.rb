@@ -7,5 +7,4 @@ class FileTypeTest < ActiveSupport::TestCase
   should_validate_uniqueness_of :name
   should_validate_numericality_of :id
   should_not_allow_zero_or_negative_number_for :id
-#  should_belong_to :order_file
 end

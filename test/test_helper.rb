@@ -86,7 +86,7 @@ class Test::Unit::TestCase
   end
 
   def provider_session_as(name)
-     session[:provider_id] = Provider.find_by_name(name).id
+     @request.session[:provider_id] = Provider.find_by_name(name).id
   end
 
   def token_valid_for_provider_and_order(provider_id, order_id)

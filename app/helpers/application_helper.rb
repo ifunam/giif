@@ -36,6 +36,7 @@ module ApplicationHelper
     render(:partial => "file", :locals => {:index => "INDEX"}, :collection => @order.files)
   end
 
+
   def javascript_for_file_form
     "fileForm = new Subform('#{escape_javascript(render_file_form)}', #{@order.files.length},'files');"
   end

@@ -6,7 +6,8 @@ class OrderHelperTest < ActionController::TestCase
   include ActionView::Helpers
   include OrderHelper
 
-  fixtures :order_products, :providers, :order_files, :projects, :orders
+  fixtures :order_products, :providers, :order_files, :projects, :product_categories, :products, 
+  :orders, :permissions, :order_statuses
   
   test "Should return the value for *x* coordinate" do
     assert_equal "150",  get_coordinated_for_x(1)
@@ -28,7 +29,7 @@ class OrderHelperTest < ActionController::TestCase
 #TODO
  
   test "should return image_tag() with specific format for an icon" do
-    assert_dom_equal %Q(<img title=\"Editar\" src=\"/images/icon_edit.png?1244475393\" alt=\"Icon_edit\" />), icon_tag(Permission.find(2))
+    assert_match /images\/icon_edit.png/, icon_tag(Permission.find(2))
   end
   
   test "should return loading indicator for a specific id" do
@@ -47,7 +48,7 @@ class OrderHelperTest < ActionController::TestCase
   end
 
   test "should return image_tag(order) with specific format for a status image" do
-    assert_dom_equal %Q(<img src=\"/images/status_solicitud_no_enviada.jpg\" alt=\"Status_solicitud_no_enviada\" />), status_image_tag(Order.find(2))
+    assert_match /images\/status_solicitud_no_enviada.jpg/, status_image_tag(Order.find(2))
   end
 
 end
