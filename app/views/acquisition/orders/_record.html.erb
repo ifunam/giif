@@ -10,17 +10,19 @@
    </span>
  </span>
  
- <span class="date"><%= record.date.strftime("%d-%m-%Y") %></span>
- <span class="date_update"><%= record.updated_at.strftime("%d-%m-%Y") %></span>
- <span class="status"><%= record.current_status %></span>
+ <span class="date"><%= record.date.to_s :short %></span>
+ <span class="date_update"><%= record.updated_at.to_s :date_only %></span>
+ <span class="status" id="<%= record.dom_id + 'status' %>">
+   <%= record.current_status %>
+ </span>
  <span class="actions" id="<%= record.dom_id + '_actions' %>">
-  <div id="icon">
-    <%= links_for_actions(controller_name, record)%><br/>
-  </div>
-  <%= image_tag('progress_bar3.gif', :id => 'order_status_loader_indicator', :style => 'display: none') %>
-  </span>
+   <%= links_for_actions(controller_name, record)%><br/>
+   <span class="progress_bar">
+     <%= image_tag('progress_bar3.gif', :id => "record_#{record.id}loader_indicator", :style => 'display: none') %>
+   </span>
+ </span>
 
-  <br/>
+ <br/>
   <div class="user_row">
     <span class="user_col_left">Área del solicitante: </span><span class="user_col_right"><%= @user_profile.adscription_name%></span>
     <hr/ style="color: silver;">

@@ -142,7 +142,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "should return conditions for pagination by user_id for acquisition_backend" do
-    assert_equal 2, Order.paginate_orders_for_acquisition_backend(3, nil, nil).size
+    assert_equal 1, Order.paginate_orders_for_acquisition_backend(3, nil, nil).size
     assert_equal 'WillPaginate::Collection', Order.paginate_orders_by_user_id(3, nil, nil).class.name
   end
 

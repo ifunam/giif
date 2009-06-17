@@ -100,3 +100,25 @@ budget_presupuesto_en_progreso_rechazar:
  action: reject
  title: "Rechazar"
  is_remote: true
+
+acquisition_adquisicion_en_progreso_new:
+ id: 17
+ order_status_id: 8
+ controller_id: 2
+ action: new
+ title: "Capturar datos"
+
+acquisition_adquisicion_en_progreso_edit:
+ id: 18
+ order_status_id: 8
+ controller_id: 2
+ action: edit
+ title: "Editar"
+
+acquisition_adquisicion_en_progreso_show:
+ id: 19
+ order_status_id: 8
+ controller_id: 2
+ action: show
+ format: pdf
+ title: "Vista previa"
