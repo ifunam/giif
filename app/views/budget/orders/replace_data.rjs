@@ -1,0 +1,2 @@
+page.replace_html "#{@order.dom_id}_status", @order.current_status
+page.replace_html @order.dom_id + '_actions', :partial => 'actions', :locals => { :record => @order}

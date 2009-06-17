@@ -1,9 +1,3 @@
-<% status = activate_links("budget/"+controller_name, record.current_status.downcase.split(/\s+/).join('_'))%>
-  <%= link_to_status(status[0], 'Capturar datos', 'icon_approve.png', {:action => 'new', :id => record.id})%>
-  <%= link_to_status(status[1], 'Editar', 'icon_edit.png', {:action => 'edit', :id => record.id})%>
-  <%= link_to_status(status[2], 'Aprobar', 'icon_approve.png', {:url => {:action => 'approve', :id => record.id}, :format => 'js', :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();"})%>
-  <%= link_to_status(status[3], 'Rechazar', 'icon_reject.png', {:url => reject_budget_order_path(record), :loading => "$('order_"+ record.id.to_s + "_status').update(''); $('order_status_loader_indicator').show();", :complete => "$('order_status_loader_indicator').hide();"})%>
-  <%= link_to_status(status[4], 'Transferir', 'icon_reject.png', {:action => 'transfer', :id => record.id})%>
-  <%= link_to_status(status[5], 'Cambiar divisa', 'icon_change_currency.png', {:url => { :controller => '../currencies', :action => 'update', :id => record.id} })%>
-  <%= link_to_status(status[6], 'Ver HTML', 'icon_details.png', {:action => 'show_preview', :id => record.id})%>
-  <%= link_to_status(status[7], 'Ver PDF', 'icon_pdf.png', {:action => 'show_pdf', :id => record.id})%>
+<span class="actions">
+  <%= links_for_actions(controller_name, record)%>
+</span>

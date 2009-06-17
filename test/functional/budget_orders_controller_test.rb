@@ -4,7 +4,7 @@ class Budget::OrdersControllerTest < ActionController::TestCase
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
   :order_statuses, :orders, :order_products,:currencies, :currency_orders,
   :file_types, :order_files, :direct_adjudication_types, :acquisitions,
-  :project_types, :projects, :budgets
+  :project_types, :projects, :budgets, :controllers, :permissions
 
   remote_fixtures
 
@@ -20,7 +20,7 @@ class Budget::OrdersControllerTest < ActionController::TestCase
 
   test "should approve order request" do
     post :approve, :id => 6
-    assert_template 'budget/orders/approve.rjs'
+    assert_template 'budget/orders/replace_data.rjs'
   end
 
   test "should not approve order request" do
@@ -30,7 +30,7 @@ class Budget::OrdersControllerTest < ActionController::TestCase
 
   test "should reject order request" do
     post :reject, :id => 6
-    assert_template 'reject.rjs'
+    assert_template 'replace_data.rjs'
   end
 
   test "should not reject order request" do

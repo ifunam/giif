@@ -8,6 +8,10 @@ class OrderObserver < ActiveRecord::Observer
         Notifier.deliver_estimate_request_from_user(order)
       when 4
         Notifier.deliver_order_request_from_user(order)
+      when 5
+        Notifier.deliver_order_request_rejected(order)
+      when 7
+        Notifier.deliver_order_request_approved(order)
       end
     end
   end

@@ -25,5 +25,23 @@ class OrderObserverTest < ActiveSupport::TestCase
     response = Notifier.create_order_request_from_user(Order.first)
     assert_equal '[GIIF] Solicitud de orden de compra enviada', response.subject    
   end
+
+  test "send email notification to user about order request rejected" do
+    @order = Order.find(6)
+    @order.reject
+    
+    assert_equal 5, @order.order_status_id
+    response = Notifier.create_order_request_rejected(@order)
+    assert_equal '[GIIF] Rechazo de solicitud interna de compra', response.subject    
+  end
+
+  test "send email notification to user about order request approved" do
+    @order = Order.find(6)
+    @order.approve
+    
+    assert_equal 7, @order.order_status_id
+    response = Notifier.create_order_request_approved(@order)
+    assert_equal '[GIIF] Aprobación de solicitud interna de compra', response.subject    
+  end
   
 end

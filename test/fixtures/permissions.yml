@@ -77,7 +77,7 @@ order_unestimate_delete:
  title: "Eliminar"
  message: "Esta seguro que desea borrar este registro" 
 
-orders_budget_in_progress_show_pdf:
+orders_presupuesto_en_progreso_show_pdf:
  id: 12
  order_status_id: 4
  controller_id: 2
@@ -85,15 +85,16 @@ orders_budget_in_progress_show_pdf:
  format: pdf
  title: "Ver PDF"
 
-budget_presupuesto_en_progreso:
- id: 1
+budget_presupuesto_en_progreso_aprobar:
+ id: 15
  order_status_id: 4
  controller_id: 2
- action: new
- title: "Capturar datos"
+ action: approve
+ title: "Aprobar"
+ is_remote: true
 
-budget_rechazar:
- id: 15
+budget_presupuesto_en_progreso_rechazar:
+ id: 16
  order_status_id: 4
  controller_id: 2
  action: reject

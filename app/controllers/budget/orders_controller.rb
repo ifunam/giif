@@ -15,8 +15,7 @@ class Budget::OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.approve
-        Notifier.deliver_request_approved(@order)
-        format.js { render :action => 'approve.rjs'}
+        format.js { render :action => 'replace_data.rjs'}
       else
         format.js  { render :action => 'errors.rjs' }
       end
@@ -29,10 +28,9 @@ class Budget::OrdersController < ApplicationController
     
     respond_to do |format|
       if @order.reject
-        Notifier.deliver_order_request_rejected(@order)
-        format.js { render :action => 'reject.rjs'}
+        format.js { render :action => 'replace_data.rjs'}
       else
-        format.js  { render :action => 'errors.rjs' }
+        format.js { render :action => 'errors.rjs' }
       end
     end
   end
@@ -42,12 +40,6 @@ class Budget::OrdersController < ApplicationController
     @user = user_profile
     @budget = Budget.new
     @budget.order_id = @order.id
-  end
-
-  def edit
-    @order = Order.find(params[:id])
-    @user = user_profile
-    @budget = Budget.find_by_order_id(params[:id])
   end
 
   def create

@@ -1,1 +1,0 @@
-page.replace_html :currency_form, :partial => 'currency', :object => @currencies
