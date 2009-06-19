@@ -1,0 +1,56 @@
+<div style="border: 1px solid black;">
+  <div id="budget_advice">
+  ESPACIO EXCLUSIVO PARA SER LLENADO POR EL ÁREA DE ADQUISICIONES
+  </div>
+  <hr/>
+  <div style="text-align: center; font-size: 8pt;">
+    FORMA DE ADQUISICIÓN
+  </div>
+  <hr>
+  <%= error_messages_for :acquistion %>
+
+  <div style="text-align:center;">
+    <div id="acquisition_cell">
+      ADJUDICACIÓN DIRECTA<br/>
+      <span class="fix-left">
+        Divisa:
+      </span>
+      <span class="fix-right" >
+        <%= simple_select(:acquisition, DirectAdjudicationType)%>
+      </span>
+    </div>
+    <div id="acquisition_cell" style="border: 1px solid black;">
+      INVITACIÓN A CUANDO MENOS TRES PERSONAS<br/>
+      <span class="fix-left">
+        DGPROV
+      </span>
+      <span class="fix-right" >
+        <%= radio_button("acquisition", "is_subcomittee_invitation", false)%>
+      </span>
+      <span class="fix-left">
+      SUBCOMITÉ
+      </span>
+      <span class="fix-right" >
+        <%= radio_button("acquisition", "is_subcomittee_invitation",  true)%>
+      </span>
+    </div>
+    <div id="acquisition_cell" style="border: 1px solid black;">
+      LICITACIÓN PÚBLICA<br/>
+      <span class="fix-left">
+        DGPROV
+      </span>
+      <span class="fix-right" >
+        <%= radio_button("acquisition", "is_subcomittee_bid", false)%>
+      </span>
+      <span class="fix-left">
+        SUBCOMITÉ
+      </span>
+      <span class="fix-right" >
+        <%= radio_button("acquisition", "is_subcomittee_bid", true)%>
+      </span>
+    </div>
+  </div>
+  <%= hidden_field :acquisition, :order_id %>
+
+  
+</div><br/>

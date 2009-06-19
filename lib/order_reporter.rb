@@ -114,4 +114,8 @@ class OrderReporter
       @order.budget
     end
 
+    def acquisition
+      @order.acquisition
+    end
+
 end

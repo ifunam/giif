@@ -22,7 +22,6 @@ class Budget::OrdersController < ApplicationController
   def create
     @budget = Budget.new(params[:budget])
     @budget.user_id = session[:user]
-    @user = user_profile
 
     @order = Order.find(params[:id])
 

@@ -12,18 +12,16 @@ class Acquisition::OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.find(params[:id])
-    @user = user_profile
-    @acquisition = Acquisition.new
-    @acquisition.order_id = @order.id
+    @order_reporter = OrderReporter.find_by_order_id(params[:id])
+    @acquisition = Acquisition.new(:order_id => @order_reporter.order_id)
+ 
     respond_to do |format|
-      format.html { render :action => 'new' }
+      format.html { render :action => 'new'}
     end
+    
   end
 
   def create
-    @order = Order.find(params[:id])
-    @user_profile = user_profile
     @acquisition = Acquisition.new(params[:acquisition])
     @acquisition.user_id = session[:user]
     
@@ -36,17 +34,8 @@ class Acquisition::OrdersController < ApplicationController
     end
   end
 
-  def show
-    @order = OrderReporter.find_by_order_id(params[:id])
-    respond_to do |format|
-      format.html { render "show" }
-      format.pdf  { render "show.rpdf" }
-    end
-  end
-
   def edit
-    @order = Order.find(params[:id])
-    @user = user_profile
+    @order_reporter = OrderReporter.find_by_order_id(params[:id])
     @acquisition = Acquisition.find_by_order_id(params[:id])
 
     respond_to do |format|
@@ -65,6 +54,14 @@ class Acquisition::OrdersController < ApplicationController
       else
         format.html { render 'new', :id => @acquisition.order_id }
       end
+    end
+  end
+
+  def show
+    @order = OrderReporter.find_by_order_id(params[:id])
+    respond_to do |format|
+      format.html { render "show" }
+      format.pdf  { render "show.rpdf" }
     end
   end
 

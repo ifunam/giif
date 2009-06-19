@@ -1,16 +1,15 @@
-
-  <%= render :partial => "shared/html_view_header"%>
-  <div id="order_request_data">
-    <div id="table">
-      <%= render :partial => "shared/html_view_user_data"%>
-      <%= render :partial => "shared/html_view_products_table"%><br/>
-      <%= render :partial => "shared/html_view_providers_table"%><br/>
-      <%= render :partial => "shared/html_view_files_table"%><br/>
-      <%= render :partial => "shared/html_view_projects_table"%><br/>
-      <%= render :partial => "shared/html_view_currency_table"%><br/>
-      <%= render :partial => "shared/html_view_budget_form", :locals => {:f => f}%><br/>
-    </div>
+<%= render :partial => "shared/html_view_header"%>
+<div id="order_request_data">
+  <div id="table">
+    <%= render :partial => "shared/html_view_user_data"%>
+    <%= render :partial => "shared/html_view_products_table"%><br/>
+    <%= render :partial => "shared/html_view_providers_table"%><br/>
+    <%= render :partial => "shared/html_view_files_table"%><br/>
+    <%= render :partial => "shared/html_view_projects_table"%><br/>
+    <%= render :partial => "shared/html_view_currency_table"%><br/>
+    <%= render :partial => "shared/html_view_budget_form", :locals => {:f => f}%><br/>
   </div>
+</div>
 
 
 
