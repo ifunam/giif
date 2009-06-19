@@ -1,0 +1,34 @@
+<div id="table-row">
+  <div id="number_title">
+    <a>No.</a>
+  </div>
+  <div id="quantity_title">
+    <a>CANTIDAD</a>
+  </div>
+  <div id="description_title">
+    <a>DESCRIPCIÓN DE LOS BIENES E INSUMOS REQUERIDOS</a>
+  </div>
+  <div id="unit_title">
+    <a>UNIDAD</a>
+  </div>
+  <div id="price_per_unit_title">
+    <a>PRECIO POR UNIDAD</a>
+  </div>
+  <div id="total_title">
+    <a>IMPORTE</a>
+  </div>
+</div>
+<div id="table-row">
+  <%= render :partial => "shared/html_view_product_table", :collection => @order_reporter.products%>
+</div>
+<div id="table-row">
+  <span style="padding-left: 830px;">
+    COSTO TOTAL:
+    <div id="total_sum">
+      <%= @order_reporter.total_price%>
+    </div>
+  </span>
+</div>
+
+
+

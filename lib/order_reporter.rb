@@ -33,7 +33,7 @@ class OrderReporter
     end
 
     def order_date_formatted
-      @order.date.strftime("%d     %m     %Y")
+      @order.date.strftime("%d  |   %m   |  %Y")
     end
 
     def remote_ip_address
@@ -81,8 +81,8 @@ class OrderReporter
       @order.order_files
     end
 
-    def project
-      @order.project
+    def projects
+      @order.projects
     end
 
     def currency
@@ -109,4 +109,9 @@ class OrderReporter
       ip_address =  !remote_ip_address.nil? ? "from #{remote_ip_address}," : ''
       ['Giif - Inst. Fís., UNAM,', user_login, ip_address, (Time.now.to_s :long)].join(' ')
     end
+
+    def budget
+      @order.budget
+    end
+
 end

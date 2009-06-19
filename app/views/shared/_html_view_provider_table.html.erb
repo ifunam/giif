@@ -1,0 +1,17 @@
+<div id="table-row">
+  <div id="number_title">
+    <a>No.</a>
+  </div>
+  <div id="provider_title">
+    <a>PROVEEDORES</a>
+  </div>
+  <div id="provider_email_title">
+    <a>CORREO ELECTRÓNICO</a>
+  </div>
+
+  <%= render :partial => "shared/html_view_provider_row", :collection => @order_reporter.providers %>
+
+</div>
+
+
+

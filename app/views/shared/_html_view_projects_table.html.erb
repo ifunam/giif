@@ -1,0 +1,23 @@
+<div id="charge">
+  CON CARGO A:<br/>
+  <% @order_reporter.projects.each do |project|%>
+    <div id="inrow-left">
+      Presupuesto:
+    </div>
+    <div id="inrow-right">
+      <%= project.project_type.name%>
+    </div><br/>
+    <div id="inrow-left">
+      Nombre del proyecto:
+    </div>
+    <div id="inrow-right">
+      <%= project.name%>
+    </div><br/>
+    <div id="inrow-left">
+      Número de proyecto: 
+    </div>
+    <div id="inrow-right">
+      <%= project.key%>
+    </div><br/><br/>
+  <% end %>
+</div>

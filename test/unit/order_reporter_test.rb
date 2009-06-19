@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'order_reporter'
 class OrderReporterTest < ActiveSupport::TestCase
-  fixtures :users, :order_statuses, :orders, :order_products, :providers, :order_providers, :project_types, :projects, :order_files, :currencies, :currency_orders
+  fixtures :users, :order_statuses, :orders, :order_products, :providers, :order_providers, :project_types, :projects, :order_files, :currencies, :currency_orders, :budgets
   remote_fixtures
   
   def setup
@@ -68,7 +68,7 @@ class OrderReporterTest < ActiveSupport::TestCase
    end
    
    test "Should return the order's project" do
-     assert_instance_of Project, @report.project
+     assert_instance_of Project, @report.projects.first
    end
    
    test "Should return the order's currency" do
@@ -86,4 +86,10 @@ class OrderReporterTest < ActiveSupport::TestCase
    test "Should return the report's footer" do
      assert @report.footer.include?("Giif - Inst. Fís., UNAM, alex from 192.168.1.1")
    end
+
+  test "Should return budget's order" do
+    @report = OrderReporter.find_by_order_id(6)
+    assert_instance_of Budget, @report.budget
+  end
+
 end

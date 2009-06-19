@@ -1,4 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
+include
+
 class Budget::OrdersControllerTest < ActionController::TestCase
 
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,

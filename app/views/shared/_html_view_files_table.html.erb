@@ -1,0 +1,10 @@
+<div id="table-row">
+  <div id="attached">
+    ANEXOS:<br/>
+    <% @order_reporter.attachments.each do |file|%>
+      <span style="padding-left: 100px;"><%= file.file_type.name %>  
+        (<%= link_to file.file_file_name,  file.file.url, :target => '_new' %>)
+      </span>
+    <% end %>
+  </div>
+</div>

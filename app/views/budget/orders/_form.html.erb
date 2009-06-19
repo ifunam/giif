@@ -1,14 +1,16 @@
-<div id="template_header">
-  <%= render :partial => "order_data"%>
 
-  <div style="border: 1px solid black;">
-    <div id="budget_advice">ESPACIO EXCLUSIVO PARA SER LLENADO POR EL ÁREA DE PRESUPUESTO</div>
-    <%= error_messages_for :budget %>
-    <div id="code_title">Código: <span style="display: inline-block;"><%=f.text_field :code, :size => 15%></span></div>
-    <div id="extaccount_title">Cuenta Ing. Ext.: <span style="display: inline-block;"><%=f.text_field :external_account, :size => 15%></span></div>
-    <div id="prevnumber_title">Previo No.: <span style="display: inline-block;"><%= f.text_field :previous_number, :size => 15%></span></div><br/><br/>
-    <div id="observations_title">Observaciones: </div><div id="text_area_observations"><%= f.text_area :observations, :size => '80x2'%></div><br/>
+  <%= render :partial => "shared/html_view_header"%>
+  <div id="order_request_data">
+    <div id="table">
+      <%= render :partial => "shared/html_view_user_data"%>
+      <%= render :partial => "shared/html_view_products_table"%><br/>
+      <%= render :partial => "shared/html_view_providers_table"%><br/>
+      <%= render :partial => "shared/html_view_files_table"%><br/>
+      <%= render :partial => "shared/html_view_projects_table"%><br/>
+      <%= render :partial => "shared/html_view_currency_table"%><br/>
+      <%= render :partial => "shared/html_view_budget_form", :locals => {:f => f}%><br/>
+    </div>
   </div>
-  <%= hidden_field :budget, :order_id %>
-</div><br/>
+
+
 

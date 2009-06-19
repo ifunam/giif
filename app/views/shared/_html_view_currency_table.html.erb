@@ -1,0 +1,21 @@
+<div style="border: 1px solid black;">
+  DIVISA<br/>
+  <div id="inrow-left">
+    Divisa:
+  </div>
+  <div id="inrow-right">
+    <%= @order_reporter.currency.currency.name%>
+  </div><br/>
+  <div id="inrow-left">
+    Tipo de cambio:
+  </div>
+  <div id="inrow-right">
+    <%= @order_reporter.currency.value%>
+  </div><br/>
+  <div id="inrow-left">
+    Equivalencia en M.N.:
+  </div>
+  <div id="inrow-right">
+    <%= @order_reporter.currency.value *  @order_reporter.total_price%>
+  </div><br/>
+</div><br/>

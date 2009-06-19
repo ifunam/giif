@@ -1,12 +1,12 @@
 estimates_unsent_edit:
- id: 2
+ id: 1
  order_status_id: 1
  controller_id: 1
  action: edit
  title: "Editar"
 
 estimates_unsent_delete:
- id: 4
+ id: 2
  order_status_id: 1
  controller_id: 1
  action: destroy
@@ -23,21 +23,21 @@ estimates_unsent_send_data:
  title: "Solicitar cotización"
 
 estimates_sent_to_orders:
- id: 6
+ id: 4
  order_status_id: 2
  controller_id: 1
  action: send_to_order
  title: "Enviar sin cotización"
 
 orders_unsent_edit:
- id: 7
+ id: 5
  order_status_id: 3
  controller_id: 2
  action: edit
  title: "Editar"
 
 orders_unsent_destroy:
- id: 8
+ id: 6
  order_status_id: 3
  controller_id: 2
  action: destroy
@@ -46,7 +46,7 @@ orders_unsent_destroy:
  title: "Eliminar"
 
 orders_unsent_show_pdf:
- id: 10
+ id: 7
  order_status_id: 3
  controller_id: 2
  action: show
@@ -54,7 +54,7 @@ orders_unsent_show_pdf:
  title: "Ver PDF"
 
 orders_unsent_send_data:
- id: 11
+ id: 8
  order_status_id: 3
  controller_id: 2
  action: send_data
@@ -62,14 +62,14 @@ orders_unsent_send_data:
  title: "Enviar solicitud"
 
 order_unestimate_edit:
- id: 13
+ id: 9
  order_status_id: 10
  controller_id: 2
  action: edit
  title: "Agregar datos"
 
 order_unestimate_delete:
- id: 14
+ id: 10
  order_status_id: 10
  controller_id: 2
  action: destroy
@@ -77,8 +77,22 @@ order_unestimate_delete:
  title: "Eliminar"
  message: "Esta seguro que desea borrar este registro" 
 
-orders_presupuesto_en_progreso_show_pdf:
+budget_presuspuesto_en_progreso_new:
+ id: 11
+ order_status_id: 4
+ controller_id: 2
+ action: new
+ title: "Capturar datos"
+
+budget_presupuesto_en_progreso_edit:
  id: 12
+ order_status_id: 4
+ controller_id: 2
+ action: edit
+ title: "Editar"
+
+budget_presupuesto_en_progreso_show_pdf:
+ id: 13
  order_status_id: 4
  controller_id: 2
  action: show
@@ -86,7 +100,7 @@ orders_presupuesto_en_progreso_show_pdf:
  title: "Ver PDF"
 
 budget_presupuesto_en_progreso_aprobar:
- id: 15
+ id: 14
  order_status_id: 4
  controller_id: 2
  action: approve
@@ -94,7 +108,7 @@ budget_presupuesto_en_progreso_aprobar:
  is_remote: true
 
 budget_presupuesto_en_progreso_rechazar:
- id: 16
+ id: 18
  order_status_id: 4
  controller_id: 2
  action: reject
@@ -102,21 +116,21 @@ budget_presupuesto_en_progreso_rechazar:
  is_remote: true
 
 acquisition_adquisicion_en_progreso_new:
- id: 17
+ id: 15
  order_status_id: 8
  controller_id: 2
  action: new
  title: "Capturar datos"
 
 acquisition_adquisicion_en_progreso_edit:
- id: 18
+ id: 16
  order_status_id: 8
  controller_id: 2
  action: edit
  title: "Editar"
 
 acquisition_adquisicion_en_progreso_show:
- id: 19
+ id: 17
  order_status_id: 8
  controller_id: 2
  action: show
