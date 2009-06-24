@@ -1,21 +1,33 @@
-<div style="border: 1px solid black;">
-  DIVISA<br/>
-  <div id="inrow-left">
-    Divisa:
-  </div>
-  <div id="inrow-right">
-    <%= @order_reporter.currency.currency.name%>
-  </div><br/>
-  <div id="inrow-left">
-    Tipo de cambio:
-  </div>
-  <div id="inrow-right">
-    <%= @order_reporter.currency.value%>
-  </div><br/>
-  <div id="inrow-left">
-    Equivalencia en M.N.:
-  </div>
-  <div id="inrow-right">
-    <%= @order_reporter.currency.value *  @order_reporter.total_price%>
-  </div><br/>
-</div><br/>
+<div id="currency_data">
+  <p style="background-color: yellow; width: 1060px; margin: auto; text-align: center;"><%= flash[:notice] %></p>
+  <div style="border: 1px solid black; display: table; width: 1058px;">
+    <div style="width: 300px; display: table-cell;" id="currency_order_data">
+      DIVISA<br/>
+      <div id="inrow-left">
+        Divisa:
+      </div>
+      <div id="inrow-right">
+        <%= @order_reporter.currency.currency.name%>
+      </div>
+      <br/>
+      <div id="inrow-left">
+        Tipo de cambio:
+      </div>
+      <div id="inrow-right">
+        <%= @order_reporter.currency.value%>
+      </div><br/>
+      <div id="inrow-left">
+        Equivalencia en M.N.:
+      </div>
+      <div id="inrow-right">
+        <%= @order_reporter.currency.value *  @order_reporter.total_price%>
+      </div><br/>
+    </div>
+    
+    <div id="currency_content" style="display: table-cell; width: 400px;">
+      <br/><br/>
+      <%= link_to_remote "Cambiar divisa", :url => {:action => 'get_currency', :controller => '/currencies'} %>
+    </div>
+
+    </div>
+</div>

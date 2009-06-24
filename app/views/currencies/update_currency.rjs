@@ -1,0 +1,2 @@
+page.replace_html :currency_data, :partial => 'shared/html_view_currency_table'
+page.visual_effect :highlight, 'currency_data', :duration => 3, :startcolor => '#B0E0E6'

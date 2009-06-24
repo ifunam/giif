@@ -1,0 +1,11 @@
+<div class="row">
+  <span class="fix-left">
+    Tipo de cambio:
+  </span>
+  <span class="fix-right">
+    <%= submit_currency.value%>
+  </span>
+</div>
+<span style="margin-left: 200px;">
+  <%= link_to_remote "Cambiar divisa", :url => {:controller => 'currencies', :action => 'update_currency', :id => @record.id} %>
+</span>
