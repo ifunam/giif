@@ -1,5 +1,5 @@
 <div id="currency_data">
-  <p style="background-color: yellow; width: 1060px; margin: auto; text-align: center;"><%= flash[:notice] %></p>
+  <p style="background-color: yellow; width: 1060px; margin: auto; text-align: center;"><%= flash[:currency] %></p>
   <div style="border: 1px solid black; display: table; width: 1058px;">
     <div style="width: 300px; display: table-cell;" id="currency_order_data">
       DIVISA<br/>
@@ -26,7 +26,7 @@
     
     <div id="currency_content" style="display: table-cell; width: 400px;">
       <br/><br/>
-      <%= link_to_remote "Cambiar divisa", :url => {:action => 'get_currency', :controller => '/currencies'} %>
+      <%= link_to_remote "Cambiar divisa", :url => {:action => 'get_currency', :controller => '/currencies', :order_id => @order_reporter.order_id} %>
     </div>
 
     </div>

@@ -20,6 +20,7 @@ class CurrenciesController < ApplicationController
 
 #TODO: Insert this code in a general method
   def get_currency
+    session[:order_id] = params[:order_id]   
     respond_to do |format|
       format.js { render :action => 'get_currency.rjs'}
     end    
@@ -34,20 +35,20 @@ class CurrenciesController < ApplicationController
     end
 
     respond_to do |format|
-      flash[:notice] = 'La divisa se ha actualizado'
       format.js { render :action => 'submit_currency.rjs'}
     end    
   end
 #TODO
 
   def update_currency
-    @order_reporter = OrderReporter.find_by_order_id(6) #FIX IT
-    @order = Order.find(6) # FIX IT
+    @order_reporter = OrderReporter.find_by_order_id(session[:order_id])
+    @order = Order.find(session[:order_id])
     @order.currency_order.value = session[:currency_order].value
     @order.currency_order.currency_id = session[:currency_order].currency_id
 
     respond_to do |format|
       @order.save
+      flash[:currency] = 'La divisa se ha actualizado'
       format.js { render :action => 'update_currency.rjs'}
     end    
   end
