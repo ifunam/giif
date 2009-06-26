@@ -96,7 +96,7 @@ class CreateOrders < ActiveRecord::Migration
 
     create_table :order_logs do |t|
       t.references :order, :user, :null => false
-      t.references :user_incharge, :class_name => 'User', :foreign_key => "user_incharge_id"
+      t.references :class_name => 'User', :foreign_key => "user_incharge_id"
       t.references :moduser, :class_name => 'User', :foreign_key => "moduser_id"
       t.timestamps
     end
