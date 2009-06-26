@@ -108,4 +108,29 @@ class OrdersController < ApplicationController
     end
   end
 
+  def transfer
+    @order = Order.find(params[:id])
+
+    respond_to do |format|
+      format.html { render 'transfer'}
+    end
+  end
+
+  def send_transfer
+    @order = Order.find(params[:id])
+    
+    respond_to do |format|
+      if @order.order_log.nil?
+        @order.order_log = OrderLog.new(:order_id => @order.id, :user_id => session[:user])
+        @order.save
+        @order.transfer
+        flash[:notice] = "Solicitud de transferencia enviada"
+        format.html { redirect_to :action => 'index'}
+      else
+        flash[:notice] = "Solicitud de transferencia no enviada, ya ha sido realizado con anterioridad."
+        format.html { redirect_to :action => 'index'}
+      end
+    end
+  end
+
 end

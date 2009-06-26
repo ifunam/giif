@@ -34,6 +34,7 @@ class Order < ActiveRecord::Base
 
   has_one :budget
   has_one :acquisition
+  has_one :order_log
   
   validates_associated :order_products, :order_status
 
@@ -96,6 +97,10 @@ class Order < ActiveRecord::Base
 
   def reject
     change_status(5) if order_status_id == 4
+  end
+
+  def transfer
+    change_status(6) if order_status_id == 5
   end
 
   def total_price

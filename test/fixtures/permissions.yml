@@ -77,6 +77,13 @@ order_unestimate_delete:
  title: "Eliminar"
  message: "Esta seguro que desea borrar este registro" 
 
+order_rejected_transfer:
+ id: 19
+ order_status_id: 5
+ controller_id: 2
+ action: transfer
+ title: "Transferencia"
+
 budget_presuspuesto_en_progreso_new:
  id: 11
  order_status_id: 4

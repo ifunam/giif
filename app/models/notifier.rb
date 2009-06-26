@@ -67,7 +67,16 @@ class Notifier < ActionMailer::Base
     @sent_on          = Time.now
     @body             = { :order => order}
   end
-  private
+
+  def order_request_transfer(order)
+    @subject          = '[GIIF] Solicitud de transferencia de recursos'
+    @recipients       = 'fereyji@gmail.com' #user_email(order.user.login)
+    @from             = 'noreply@fisica.unam.mx'
+    @sent_on          = Time.now
+    @body             = { :order => order}
+  end
+
+private
 
   def user_email(login)
     user_profile(login).email

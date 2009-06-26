@@ -1,8 +1,20 @@
-Ciudad Universitaría, <%= Date.today.strftime("%d-%m-%Y")%>
+*********************************************************************************************************
+****                              SOLICITUD INTERNA DE COMPRA RECHAZADA                              ****
+*********************************************************************************************************
+
+Instituto de Física, UNAM.
+Solicitud Interna de Compra
+
+Estimado usuario
 
 Su solicitud de orden de compra ha sido rechazada.
 
-Número de orden:   <%= @order.id %>
-Fecha de solicitud:   <%= @order.created_at.strftime("%d-%m-%Y") %>
+Existe la posibilidad de realizar una transferencia de recursos, si dese realizarla por favor ingrese en la siguiente enlace:
 
-Secretaría administrativa, IFUNAM.
+<%= url_for :controller => 'orders', :action => 'transfer', :id => @order.id,
+                                                                    :host => 'localhost:3000'%>
+
+Este mensaje ha sido generado de manera automática por el Sistema de Gestión del Inventario del Instituto 
+de Física de la Universidad Nacional Autónoma de México.
+
+Por favor no responda a este correo.

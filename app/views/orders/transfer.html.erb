@@ -1,0 +1,17 @@
+<%= error_messages_for 'order' %>
+<% form_for @order, :url => {:action => 'send_transfer', :id => @order.id} do |f| %>
+
+<div id='data'>
+  <h2> Transferencia de recursos: </h2>
+<p>
+  Su solicitud interna de compra ha sido rechazada debido a la falta de recursos de la dependencia a la que pertenece.
+</p>
+<p>
+  Puede solicitar una transferencia de recursos. El tiempo de espera puede tardar desde días hasta un mes.
+</p>
+<span style="margin-left: 500px;">
+  <%= f.submit "Solicitar transferencia" %>
+</span>
+<% end %>
+</div>
+<br/>

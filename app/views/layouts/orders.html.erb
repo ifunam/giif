@@ -27,7 +27,7 @@
               <span id="icon"><%= link_to(image_tag("icon_exit.png", :size => '16x16', :title => 'Cerrar sesión'), session_path, :method => :delete )%></span>
               </br>
           </div>
-          <p style="background-color: yellow"><%= flash[:notice] %></p>
+          <p style="background-color: yellow; text-align: center; margin: auto; width: 1100px;"><%= flash[:notice] %></p>
           <%= yield %>
         </div>
         <div id="footer">
