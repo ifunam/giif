@@ -3,7 +3,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class Acquisition::OrdersControllerTest < ActionController::TestCase
   fixtures :users, :people, :addresses, :adscriptions, :user_adscriptions,
            :order_statuses, :orders, :order_products,:currencies, :currency_orders,
-           :file_types, :order_files, :direct_adjudication_types, :acquisitions
+           :file_types, :order_files, :direct_adjudication_types, :acquisitions,
+           :permissions, :project_types, :projects
 
   remote_fixtures
 
@@ -60,16 +61,10 @@ class Acquisition::OrdersControllerTest < ActionController::TestCase
   end
  
   test "should update acquisition data" do
-    post :update, {:id => 3, :acquisition => Acquisition.valid_hash }
+    post :update, {:id => 4, :acquisition => Acquisition.valid_hash }
     
     assert_redirected_to 'acquisition/orders'
   end
 
-  test "should not update acquisition data" do
-    post :update, {:id => 3, :acquisition => Acquisition.invalid_hash }
-    
-    assert_template 'new'
-  end
- 
 end
  

@@ -1,13 +1,15 @@
+<% project_sow.each do |project|%>
 <p>
   <span id="cell_left">Nombre del proyecto:</span>
-  <span id="cell_right"><%= project_show.name %></span>
+  <span id="cell_right"><%= project.name %></span>
 </p>
 <p>
   <span id="cell_left">Tipo de proyecto:</span>
-  <span id="cell_right"><%= project_show.project_type.name %></span>
+  <span id="cell_right"><%= project.project_type.name %></span>
 </p>
 <p>
   <span id="cell_left">Número de proyecto:</span>
-  <span id="cell_right"><%= project_show.key %></span>
+  <span id="cell_right"><%= project.key %></span>
 </p>
 <br>
+<% end%>

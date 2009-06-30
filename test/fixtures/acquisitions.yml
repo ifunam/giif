@@ -1,7 +1,7 @@
 acquisition_one:
  id: 1
- order_id: 3
- user_id: 2
+ order_id: 4
+ user_id: 3
  direct_adjudication_type_id: 1
  is_subcomittee_invitation: true
  is_subcomittee_bid: true

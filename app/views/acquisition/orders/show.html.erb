@@ -10,7 +10,7 @@
     <%= render :partial => 'shared/section_show', :locals => { :title => 'Artículo(s)', :partial => 'shared/products_show', :collection  => @order.products } %>
     <%= render :partial => 'shared/section_show', :locals => { :title => 'Proveedor(es)', :partial => 'shared/providers_show', :collection => @order.providers } %>
     <%= render :partial => 'shared/section_show', :locals => { :title => 'Anexo(s)', :partial => 'shared/files_show', :collection => @order.attachments } %>
-    <%= render :partial => 'shared/section_show', :locals => { :title => 'Con cargo a:', :partial => 'shared/project_show', :object => @order.project } %>
+    <%= render :partial => 'shared/section_show', :locals => { :title => 'Con cargo a:', :partial => 'shared/project_show', :object => @order.projects } %>
 
 	<div id="collection">
 	  <div class="row">
