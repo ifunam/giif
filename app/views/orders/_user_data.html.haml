@@ -1,0 +1,24 @@
+%div{ :style => "display: inline-table; width: 50%;" }
+  = content_tag(:h2, "Datos personales:")
+  #user_profile
+    .row{ :style => "border: none;" }
+      %b
+        Nombre:
+      = user_data.fullname
+      (
+      = user_data.adscription_name
+      )
+    .row{ :style => "border: none;" }
+      %b
+        Teléfono:
+      = user_data.phone
+    .row{ :style => "border: none;" }
+      %b
+        Fecha de solicitud:
+      = @order.new_record? ? (Date.today :short) : (@order.created_at :short)
+    - if user_data.has_user_incharge?
+      .row{ :style => "border: none;" }
+        %b
+          Responsable académico:
+        = user_data.user_incharge.fullname
+

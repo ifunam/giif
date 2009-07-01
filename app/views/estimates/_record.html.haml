@@ -1,0 +1,25 @@
+%div{ :class => set_row_class(record_counter) }
+  %span.id
+    = record.id
+  %span.description
+    %b
+      Productos:
+    %br
+    = list_products(record.order_products)
+    %b
+      Proveedores:
+    %br
+    = list_providers(record.providers)
+  %span.date
+    = record.date.to_s :short
+  %span.date_update
+    = record.updated_at.to_s :short
+  %span.status{ :id => record.dom_id + '_status' }
+    = record.current_status
+    %br
+  %span.actions{ :id => record.dom_id + '_actions' }
+    = links_for_actions(controller_name, record)
+    %br
+    %br
+    %span.progress_bar
+      = image_tag('progress_bar3.gif', :id => "record_#{record.id}_loader_indicator", :style => 'display: none')

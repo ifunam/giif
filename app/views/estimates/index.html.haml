@@ -1,0 +1,11 @@
+#collection
+  = content_tag(:b, 'Académico:')
+  = @user_profile.fullname
+  %span{ :style => "padding-left: 560px; font-size: 14px; text-decoration: underline;" }
+    = link_to 'Mis órdenes de compra', orders_url
+  = render :partial => 'shared/index'
+  #currency_form
+    = render :partial => 'record', :collection => @collection
+    = will_paginate @collection
+  #add
+    = link_to_action( 'Agregar solicitud de cotización',  'icon_add_order.png',  new_estimate_path)
