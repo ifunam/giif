@@ -9,7 +9,7 @@
 	url = git://github.com/mislav/will_paginate.git
 [submodule "vendor/plugins/rpdf"]
 	path = vendor/plugins/rpdf
-	url = git://github.com/alexjr85/rpdf.git
+	url = git://github.com/alecz/rpdf.git
 [submodule "vendor/plugins/paperclip"]
 	path = vendor/plugins/paperclip
 	url = git://github.com/thoughtbot/paperclip.git
