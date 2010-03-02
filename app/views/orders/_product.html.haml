@@ -21,4 +21,3 @@
         = link_to_remote "Borrar", :url => order_product_path(product.id), :method => :delete, :confirm => "¿Desea borrar este registro de manera permanente?"
       - else
         = link_to_function "Borrar", "$(this).up('.#{dom_id}').remove();"
-
